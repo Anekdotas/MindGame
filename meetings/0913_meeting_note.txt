@@ -1,0 +1,5 @@
+20:30 Meeting start
+20:45 Trying to connect code running in android emulator to server running Kotlin
+21:00 App keeps crashing when trying to connect to server
+21:10 Conclusions: need to understand Android studio and java sockets better
+21:15 Meeting end

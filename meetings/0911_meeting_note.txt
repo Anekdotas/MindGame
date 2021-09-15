@@ -1,0 +1,21 @@
+16:00 - Meeting start
+16:15 - Created git group and sandbox project
+16:30 - Decided that: we are aiming for at least 8/10 for the project total score
+16:40 - Work split for next week (until 09-16):
+Aras - Setting up server in VU infrastructure that can be accessed via kotlin code
+Andrej - Testing multi-window android app environment, trying window template for uploading data (to server)
+Vidmantas - Learning basics of git version control, testing modular system for file reading
+16:45 Conflict resolution:
+--Before any accusations can be made, we, as a team, have to figure out which part(s)
+of our system (server, app, database, etc.) is causing a problem
+--In case of a two-person conflict, the third member must be present during "dissucssions" to prevent unproductive behavior (ex. insults)
+16:50 Discipline rules:
+--avoid distractions that are unrelated to project work
+--look into discord bots for managing meeting flow (simmilar to teams raising a hand)
+17:05 Social life:
+--Thursday live meeting are optional, but reccomended. We can take time off the project to have fun toghether if we want
+--If PBL goes fully remote we HAVE TO meet in person at least twice per week
+--Sunday meets are not mandatory unless it's a rescheduled meet from Saturday
+17:10 Roles: to be discussed later
+17:15 Decided when we meet next (09-15 19:30h)
+17:20 Meeting end

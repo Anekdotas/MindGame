@@ -1,0 +1,8 @@
+21:13 - Meeting start
+21:25 - Decided: Heavily focus on modular structure, give more attention to the server/DB side of project
+21:32 - Decided: Barebones app version gets 'abcd' type questions from DB, and then the user can interact with them (play), GUI not important
+21:49 - Decided: Isolate end-user from the technical details when possible
+21:53 - Show and tell Andrej about java sockets in kotlin (basic chat app)
+21:55 - Informal talk about what's hidden behind a URL (port, ip, navigation in DB)
+21:20 - Talked about the 'pieces' we need to set up to get really started
+22:47 - Meeting end
