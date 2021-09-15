@@ -1,0 +1,9 @@
+12:05 – The start of the meeting
+12:05 – 12:54	Suggesting and reviewing ideas, planning functionality
+•	Generated 7 ideas
+•	Generated a way to solve the problem with special Lithuanian chars (LT Unicode)
+12:54 – 13:00 Summing-up
+
+Tasks:
+1.Andrej:
+	a. Draw profile and host pictures

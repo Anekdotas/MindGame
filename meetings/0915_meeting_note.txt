@@ -1,0 +1,7 @@
+19:40 Meeting start
+20:50 Meeting end
+
+During this meet:
+	1) GitLab repository was set-up by Vidmantas
+	2) Contributors (lecturers) were added by Andrej
+	3) A way how to connect to GitLab and work with it was shown and explained to Aras by Andrej
