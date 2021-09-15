@@ -11,6 +11,9 @@
         android:theme="@style/Theme.MindGameApplication">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
