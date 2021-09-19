@@ -1,0 +1,12 @@
+19:00 Meeting start
+19:05 – Level structure
+19:18 – Talking about requirement to set goals for 2-3 weeks (also required for PSE course)
+19:20 – Talking about URI
+19:30 – Talking about PostgREST
+19:53 Meeting end
+
+Tasks:
+• Set goals for 2-3 weeks
+	1) API - figure out how to work with it
+	2) Run a server
+		 Run a server on VU infrastructure
