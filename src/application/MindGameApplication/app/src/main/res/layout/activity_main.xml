@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
+    android:background="@drawable/simple_background"
     tools:context=".MainActivity">
 
     <TextView
@@ -72,6 +72,7 @@
                 android:layout_marginTop="20dp"
                 >
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
