@@ -8,8 +8,7 @@ import android.view.View.*
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
-import io.supabase.postgrest.PostgrestDefaultClient
-import java.net.URI
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,14 +26,12 @@ class MainActivity : AppCompatActivity() {
                 if(userName.text.toString().isEmpty()) {
                     Toast.makeText(this@MainActivity, "No Username Selected", Toast.LENGTH_SHORT).show()
             }
-                else{
+                else {
                     Toast.makeText(this@MainActivity, "Welcome ${userName.text.toString()}", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, QuestionsProto::class.java)
+                    val intent = Intent(this, QuestionsProtoActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
-        }
-
-
+            }
     }
 }

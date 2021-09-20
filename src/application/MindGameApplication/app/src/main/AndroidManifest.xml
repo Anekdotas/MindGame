@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MindGameApplication">
         <activity
-            android:name=".QuestionsProto"
+            android:name=".QuestionsProtoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
