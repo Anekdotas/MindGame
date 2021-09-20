@@ -79,6 +79,7 @@
                     android:hint="Name"
                     android:textColor="#363A43"
                     android:textColorHint="#7A8089"
+                    android:maxLength="20"
                      />
 
             </com.google.android.material.textfield.TextInputLayout>
