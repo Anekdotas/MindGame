@@ -48,4 +48,11 @@
 | Sep. 17   | 13:25 - 13:35 | 10 min        | Figuring out what the best way to draw an apps scheme |
 |           | 13:23 - 14:37 | 74 min        | Drawing schemes of different app versions |
 |           | 14:45 - 15:33 | 48 min        | Writing down personal activity in .md format |
-|  | **Total:** | **?h ??min** | |
+| Sep. 18   | 19:00 - 20:00 | 60 min        | Preparing and running quick server tests |
+| Sep. 19   | 16:00 - 16:30 | 30 min        | Running some server tests  |
+| 	    |		    |		    | One of the reasons why app crashes was solved |
+|           | 17:33 - 18:02 | 29 min        | Drafting level file structure |
+|           | 18:02 - 18:22 | 20 min        | Drawing logo |
+|           | 19:00 – 19:53 | 53 min        | Group meeting |
+|           | 20:00 - 20:35 | 35 min        | Moving all notes to GitLab and applying changes |
+|  | **Total:** | **13h 44min** | |
