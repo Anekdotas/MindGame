@@ -27,7 +27,7 @@
 
         <ImageView
             android:contentDescription="@string/app_name"
-            android:id="@+id/iv_question"
+            android:id="@+id/iv_question_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -111,6 +111,17 @@
             android:textColorHint="@color/common"
             android:textSize="18sp"
             tools:text="Dragon Fruit" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#303030"
+            android:text="ANSWER"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

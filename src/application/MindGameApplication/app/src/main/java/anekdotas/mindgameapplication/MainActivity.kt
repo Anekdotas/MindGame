@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val btnMenu = findViewById<Button>(R.id.btn_menu)
         val userName = findViewById<AppCompatEditText>(R.id.username)
 
-        //Displays a little pop up at the bottom of the screen
+        //Displays a little pop up at the bottom of the screen (and goes to the question activity)
             btnMenu.setOnClickListener {
                 if(userName.text.toString().isEmpty()) {
                     Toast.makeText(this@MainActivity, "No Username Selected", Toast.LENGTH_SHORT).show()
