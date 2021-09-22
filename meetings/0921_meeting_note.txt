@@ -1,0 +1,12 @@
+16:42 - Meeting start
+18:15 - Break start
+18:30 - Break end
+20:00 - Meeting end
+
+Results:
+	1) Work on documentation file has started
+	2) The most important parts of the documentation have been completed or almost completed
+		2.1) Purpose of the system
+		2.2) High-level overview of the system
+		2.3) Functional requirements
+		2.4) Non-Functional requirements
