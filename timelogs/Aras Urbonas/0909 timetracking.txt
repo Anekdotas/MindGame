@@ -1,0 +1,3 @@
+21:13 - Meeting start
+Discussion the server-client system structure
+22:47 - Meeting end

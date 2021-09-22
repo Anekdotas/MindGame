@@ -1,0 +1,8 @@
+19:00 Meeting start
+19:05 – Level structure
+19:18 – Talking about requirement to set goals for 2-3 weeks (also required for PSE course)
+19:20 – Talking about URI
+19:30 – Talking about PostgREST
+20:00 Meeting end
+
+aprox 1h

@@ -1,0 +1,7 @@
+19:40 Discussion about the name of the app
+Status of name: undecided
+20:30 Once again to connect android app to server, debugging issues
+20:50 Successfully connected the app (client) to the server and made it so the client can send text to server
+21:40 Tested the client-server interacted in different scenarios
+
+total aprox 2h

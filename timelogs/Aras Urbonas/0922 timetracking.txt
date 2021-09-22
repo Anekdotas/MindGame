@@ -1,0 +1,6 @@
+11:00 - 11:30 - spliting work into tasks and goals, assigning them numbers
+12:30 - 16:40 - Set up database and basic api
+17:30 - 18:30 - Made logins for my teammates to access DB
+18:30 - 19:00 - Set up SSH keys for easy access to VM
+
+aprox 6h
