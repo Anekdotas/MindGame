@@ -1,0 +1,2 @@
+14:00-15:00 Learning about how APIs work (REST APIs) 
+16:00-18:00 Continuing reading/learning about REST APIs and Postgrest kotlin client

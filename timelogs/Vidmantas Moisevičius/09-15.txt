@@ -1,0 +1,6 @@
+12:00-12:20 Creating the actual git repository with a basic pregenerated project in source
+12:20-13:05 Reading android app manifest documentation and testing it out on a pregenerated project
+13:15-14:40 Starting to make a very simple local (and hardcoded for now) quiz application for testing purposes (starting with a very basic UI)
+15:00-18:20 Continuing work on the main menu of the application
+19:00-19:30 Working on second activity windows for questions interface (not final version just for testing purposes)
+19:30-20:10 Team discussion regarding the project repository

@@ -1,0 +1,3 @@
+17:00-19:00 Learning git commands, testing the IDE for it
+19:00-19:30 Reading about APIs
+20:00-21:00 Short meeting with the group discussing app connection to a server, tried to test a piece of code- did not work, Testing git on android studio
