@@ -80,6 +80,8 @@
                     android:textColor="#363A43"
                     android:textColorHint="#7A8089"
                     android:maxLength="20"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+                    android:inputType="textFilter"
                      />
 
             </com.google.android.material.textfield.TextInputLayout>

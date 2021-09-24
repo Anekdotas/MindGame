@@ -9,18 +9,15 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-
         //Just some values here for the UI, don't touch unless you want to edit the xmls as well
         val btnMenu = findViewById<Button>(R.id.btn_menu)
         val userName = findViewById<AppCompatEditText>(R.id.username)
-
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
             btnMenu.setOnClickListener {
                 if(userName.text.toString().isEmpty()) {

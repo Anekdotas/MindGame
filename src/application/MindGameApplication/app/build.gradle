@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+
     compileSdk 30
 
     packagingOptions {
