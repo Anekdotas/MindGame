@@ -1,0 +1,6 @@
+20:20 Meeting start
+20:25 Trying connecting git to Android studio and commit/push
+20:50 Successfully connected Android studio to GitLab
+20:55 Sucessfully commited and pushed to repository
+21:10 Short discussion regarding personal time managment
+21:25 Meeting end

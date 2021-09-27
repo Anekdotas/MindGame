@@ -1,0 +1,3 @@
+14:00-17:00  Continuing reading/learning about REST APIs and Postgrest kotlin client
+18:00-18:40  Continuing reading/learning about REST APIs
+19:00-21:00 Team meeting regarding serverside (and testing some clientside code)

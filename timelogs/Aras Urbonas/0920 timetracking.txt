@@ -1,0 +1,7 @@
+18:00 Creating OpenNebula linux VM
+18:30 Installing Intellij on it
+19:00 Portforwarding
+19:30 Running and testing our sockettest code on VU opennebula VM
+19:50 sharing results with teammate
+
+aprox 2h total

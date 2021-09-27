@@ -1,0 +1,2 @@
+18:00-20:10 Playing around in git (mostly with gitignore and git in intelij interface)
+20:20-22:00 Discussing the project with teammates regarding the serverside

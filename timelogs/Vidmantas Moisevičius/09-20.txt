@@ -1,0 +1,2 @@
+13:20-14:00 Starting to implement basic prototype activity and layout for quiz questions (offline)
+15:00-17:15 18:30-20:10 Continuing on implementing basic prototype activity and layout for quiz questions (offline)

@@ -1,0 +1,1 @@
+14:00-16:00 Programming in kotlin minor tests

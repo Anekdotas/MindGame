@@ -1,0 +1,6 @@
+16:40 Meeting start
+16:40 - 18:15 - Writing the documentation, drafted Purpose of the System
+
+18:30 - 20:00 - Writing more documentation, drafted functional, non functional req and high level overview
+
+total aprox: 3h
