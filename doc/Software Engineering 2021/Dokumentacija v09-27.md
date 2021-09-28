@@ -75,6 +75,7 @@ The system will be of a client-server type that contains:
 
 ## 4.3 Security:
 - The database and the server should be in separate Virtual Machines due to security reasons.
+- Store as little non-vital user data as possible
 
 ## 4.4 Performance: 
 - Level loading should be optimized in such a way that on a 3G clients’  internet connection, a level shouldn’t take an unreasonably long time to load. 
