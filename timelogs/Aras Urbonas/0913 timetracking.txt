@@ -1,0 +1,5 @@
+18:30 Started looking into RESTful api for connecting android app to DB
+19:30 Testing Linux server code on ubuntu
+20:30 Meeting start
+App crashes when trying to connect to server, need to understand Android studio better
+21:15 Meeting end
