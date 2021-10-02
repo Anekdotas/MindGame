@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MindGameApplication</string>
+    <string name="progress">progress</string>
+    <string name="question_placeholder">question placeholder</string>
+    <string name="answer">ANSWER</string>
 </resources>
