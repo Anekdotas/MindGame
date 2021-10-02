@@ -8,8 +8,11 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import anekdotas.mindgameapplication.databinding.ActivityMainBinding
+import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 
 class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding : ActivityQuestionsProtoBinding // UI element binding
 
     // Variables to allow user to navigate through the questions
     private var myPosition = 1 //current question position
@@ -18,26 +21,22 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
     private var myCorrectAnswers = 0 // number of questions answered correctly
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_questions_proto)
-        val optionA = findViewById<TextView>(R.id.tv_optionA)
-        val optionB = findViewById<TextView>(R.id.tv_optionB)
-        val optionC = findViewById<TextView>(R.id.tv_optionC)
-        val optionD = findViewById<TextView>(R.id.tv_optionD)
-        val submitButton = findViewById<Button>(R.id.btn_submit)
-        val progressBar = findViewById<ProgressBar>(R.id.ll_progress)
+        binding = ActivityQuestionsProtoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         myQuestionsList = QuestionsObjectConst.getQuestions()
-        progressBar.max=myQuestionsList!!.size
+        binding.llProgress.max=myQuestionsList!!.size
         setQuestion()
 
-        optionA.setOnClickListener(this)
-        optionB.setOnClickListener(this)
-        optionC.setOnClickListener(this)
-        optionD.setOnClickListener(this)
-        submitButton.setOnClickListener(this)
+        binding.tvOptionA.setOnClickListener(this)
+        binding.tvOptionB.setOnClickListener(this)
+        binding.tvOptionC.setOnClickListener(this)
+        binding.tvOptionD.setOnClickListener(this)
+        binding.btnSubmit.setOnClickListener(this)
 
-        // Helpful in logcat for checking the amount of questions in input
+        // Helpful in logcat for checking the amount of questions in input:
         // Log.i("Questions size", questionsList.size.toString())
         }
 
@@ -47,45 +46,30 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         val question = myQuestionsList!![myPosition-1]
         defaultOptionView()
 
-        val submitButton = findViewById<Button>(R.id.btn_submit)
-
         if(myPosition == myQuestionsList!!.size){
-            submitButton.text="FINISH"
+            binding.btnSubmit.text="FINISH"
         }
         else{
-            submitButton.text="SUBMIT"
+            binding.btnSubmit.text="SUBMIT"
         }
 
-        val progressbar=findViewById<ProgressBar>(R.id.ll_progress)
-        val progressText=findViewById<TextView>(R.id.tv_progress)
-        val questionView=findViewById<TextView>(R.id.tv_question)
-        val questionImage=findViewById<ImageView>(R.id.iv_question_image)
-        val optionA = findViewById<TextView>(R.id.tv_optionA)
-        val optionB = findViewById<TextView>(R.id.tv_optionB)
-        val optionC = findViewById<TextView>(R.id.tv_optionC)
-        val optionD = findViewById<TextView>(R.id.tv_optionD)
-
-        progressbar.progress = myPosition
-        progressText.text = "$myPosition" + "/" + myQuestionsList!!.size
-        questionView.text = question!!.question
-        questionImage.setImageResource(question.image)
-        optionA.text = question.optionA
-        optionB.text = question.optionB
-        optionC.text = question.optionC
-        optionD.text = question.optionD
+        binding.llProgress.progress = myPosition
+        binding.tvProgress.text = "$myPosition" + "/" + myQuestionsList!!.size
+        binding.tvQuestion.text = question!!.question
+        binding.ivQuestionImage.setImageResource(question.image)
+        binding.tvOptionA.text = question.optionA
+        binding.tvOptionB.text = question.optionB
+        binding.tvOptionC.text = question.optionC
+        binding.tvOptionD.text = question.optionD
     }
 
     private fun defaultOptionView(){
-        val optionA = findViewById<TextView>(R.id.tv_optionA)
-        val optionB = findViewById<TextView>(R.id.tv_optionB)
-        val optionC = findViewById<TextView>(R.id.tv_optionC)
-        val optionD = findViewById<TextView>(R.id.tv_optionD)
-        val options = ArrayList<TextView>()
-        options.add(0, optionA)
-        options.add(1, optionB)
-        options.add(2, optionC)
-        options.add(3, optionD)
 
+        val options = ArrayList<TextView>()
+        options.add(0, binding.tvOptionA)
+        options.add(1, binding.tvOptionB)
+        options.add(2, binding.tvOptionC)
+        options.add(3, binding.tvOptionD)
 
         for(option in options) {
             option.setTextColor(Color.parseColor("#7A8089")) // changes colour of the option
@@ -98,23 +82,19 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
-        val optionA = findViewById<TextView>(R.id.tv_optionA)
-        val optionB = findViewById<TextView>(R.id.tv_optionB)
-        val optionC = findViewById<TextView>(R.id.tv_optionC)
-        val optionD = findViewById<TextView>(R.id.tv_optionD)
-        val submitButton = findViewById<Button>(R.id.btn_submit)
+
         when(v?.id){
             R.id.tv_optionA-> {
-                selectionView(optionA, 1)
+                selectionView(binding.tvOptionA, 1)
             }
             R.id.tv_optionB-> {
-                selectionView(optionB, 2)
+                selectionView(binding.tvOptionB, 2)
             }
             R.id.tv_optionC-> {
-                selectionView(optionC, 3)
+                selectionView(binding.tvOptionC, 3)
             }
             R.id.tv_optionD-> {
-                selectionView(optionD, 4)
+                selectionView(binding.tvOptionD, 4)
             }
             R.id.btn_submit-> {
                 if(mySelectedPosition == 0){
@@ -125,7 +105,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                             setQuestion()
                         }
                         else -> {
-                            Toast.makeText(this, "Quiz has been complete, congrats boy", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Quiz has been complete, congrats", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -140,10 +120,10 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                     answerView(question.answer, R.drawable.correct_option_bg)
 
                     if(myPosition == myQuestionsList!!.size){
-                        submitButton.text = "FINISH"
+                        binding.btnSubmit.text = "FINISH"
                     }
                     else{
-                        submitButton.text = "NEXT QUESTION"
+                        binding.btnSubmit.text = "NEXT QUESTION"
                     }
                     mySelectedPosition=0
                 }
@@ -163,23 +143,19 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun answerView(answer: Int, drawableView : Int) {
-        val optionA = findViewById<TextView>(R.id.tv_optionA)
-        val optionB = findViewById<TextView>(R.id.tv_optionB)
-        val optionC = findViewById<TextView>(R.id.tv_optionC)
-        val optionD = findViewById<TextView>(R.id.tv_optionD)
 
         when(answer){
             1 -> {
-                optionA.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionA.background = ContextCompat.getDrawable(this, drawableView)
             }
             2 -> {
-                optionB.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionB.background = ContextCompat.getDrawable(this, drawableView)
             }
             3 -> {
-                optionC.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionC.background = ContextCompat.getDrawable(this, drawableView)
             }
             4 -> {
-                optionD.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionD.background = ContextCompat.getDrawable(this, drawableView)
             }
         }
     }
