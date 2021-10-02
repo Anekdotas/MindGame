@@ -11,6 +11,8 @@
         android:theme="@style/Theme.MindGameApplication">
         <activity
             android:name=".ResultsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"
             android:exported="true" />
         <activity
             android:name=".QuestionsProtoActivity"

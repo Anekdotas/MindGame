@@ -15,6 +15,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
     private var myPosition = 1 //current question position
     private var myQuestionsList : ArrayList<Question>? = null //list of questions
     private var mySelectedPosition = 0 //selected position between answers in a specific question
+    private var myCorrectAnswers = 0 // number of questions answered correctly
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,7 +123,8 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                     when {
                         myPosition <= myQuestionsList!!.size ->{
                             setQuestion()
-                        }else -> {
+                        }
+                        else -> {
                             Toast.makeText(this, "Quiz has been complete, congrats boy", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -131,6 +133,9 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                     val question = myQuestionsList?.get(myPosition-1)
                     if(question!!.answer != mySelectedPosition){
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
+                    }
+                    else{
+                        myCorrectAnswers++
                     }
                     answerView(question.answer, R.drawable.correct_option_bg)
 
