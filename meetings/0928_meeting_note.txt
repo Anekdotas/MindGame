@@ -1,0 +1,17 @@
+13:25 - Meeting start
+13:37 - Meeting end
+
+Duration: 12 min
+Purpose: Discussion about repository access
+
+
+17:40 - Second meeting start
+18:39 - Considering moving our tasks to GitLab
+19:18 - Discussion about answer recognition in cases of different dialectal spelling, synonyms, etc.
+19:20 - Second meeting end
+
+Duration: 1h 40min
+Purpose:	1) Look through each others' presentation text and diagrams, find and fix any obvious mistakes/problems
+		2) Quickly re-discuss who talks about who in order to avoid excess repetition or 'holes' in the final presentation
+		3) Discuss the future of our task management: consider moving them to GitLab, consider assigning different notations based on priority
+		4) Discuss answer recognition in cases of different dialectal spelling, synonyms, etc.
