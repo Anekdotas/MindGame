@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
-            if(binding.username.toString().isEmpty()) {
+            if(binding.username.text.toString().isEmpty()) {
                 Toast.makeText(this@MainActivity, "No Username Selected", Toast.LENGTH_SHORT).show()
             }
             else {
