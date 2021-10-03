@@ -1,6 +1,13 @@
 package anekdotas.mindgameapplication
 
 object QuestionsObjectConst{
+
+    //Placeholder values
+    const val USERNAME = "USER_NAME"
+    const val TOTAL_QUESTIONS = "TOTAL_QUESTIONS"
+    const val CORRECT_ANSWERS = "CORRECT_ANSWERS"
+
+    // TODO: 10/3/2021 make all this not hardcoded... 
     fun getQuestions(): ArrayList<Question>{
         val questionList = ArrayList<Question>()
 

@@ -1,6 +1,7 @@
 package anekdotas.mindgameapplication
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -11,6 +12,8 @@ import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 
+// TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
+
 class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding : ActivityQuestionsProtoBinding // UI element binding
 
@@ -19,6 +22,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
     private var myQuestionsList : ArrayList<Question>? = null //list of questions
     private var mySelectedPosition = 0 //selected position between answers in a specific question
     private var myCorrectAnswers = 0 // number of questions answered correctly
+    private var myUserName : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -26,6 +30,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityQuestionsProtoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        myUserName = intent.getStringExtra(QuestionsObjectConst.USERNAME)
         myQuestionsList = QuestionsObjectConst.getQuestions()
         binding.llProgress.max=myQuestionsList!!.size
         setQuestion()
@@ -105,7 +110,11 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                             setQuestion()
                         }
                         else -> {
-                            Toast.makeText(this, "Quiz has been complete, congrats", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, ResultsActivity::class.java)
+                            intent.putExtra(QuestionsObjectConst.USERNAME, myUserName)
+                            intent.putExtra(QuestionsObjectConst.CORRECT_ANSWERS, myCorrectAnswers)
+                            intent.putExtra(QuestionsObjectConst.TOTAL_QUESTIONS, myQuestionsList!!.size)
+                            startActivity(intent)
                         }
                     }
                 }

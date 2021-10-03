@@ -3,12 +3,9 @@ package anekdotas.mindgameapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
-import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatEditText
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, QuestionsProtoActivity::class.java)
+                intent.putExtra(QuestionsObjectConst.USERNAME, binding.username.text.toString()) // sends the username to other activities, delete later
                 startActivity(intent)
                 finish()
             }
