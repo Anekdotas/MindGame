@@ -42,7 +42,7 @@ android {
 dependencies {
     //Retrofit and Moshi (used for client)
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation "com.squareup.moshi:moshi:1.12.0"
+    implementation 'com.squareup.moshi:moshi-kotlin:1.12.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
 
     //Coil allows for loading images from API (retrofit does not support it)
