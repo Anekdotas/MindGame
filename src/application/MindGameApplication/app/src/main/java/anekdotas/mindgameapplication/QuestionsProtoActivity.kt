@@ -141,6 +141,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun selectionView(tv: TextView, selectedOptionNum: Int){
+
         defaultOptionView() // resets to default
         mySelectedPosition = selectedOptionNum
 
