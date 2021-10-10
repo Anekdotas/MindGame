@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 
+
 // TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
 
 class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {

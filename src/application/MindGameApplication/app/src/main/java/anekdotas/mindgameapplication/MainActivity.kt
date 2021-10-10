@@ -3,10 +3,18 @@ package anekdotas.mindgameapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
+import anekdotas.mindgameapplication.network.ApiClient
+import anekdotas.mindgameapplication.network.QuestionModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+//REMINDER! IN ANDROID MANIFEST CLEARTEXT COMM IS ENABLED BUT WORKS ONLY IN API 23 AND ABOVE, NEED TO FIX
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding // UI element binding
@@ -18,6 +26,25 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+
+        //CLIENT TEST
+        val client = ApiClient.apiService.fetchQuestions()
+        client.enqueue(object : Callback<List<QuestionModel>> {
+            override fun onResponse(
+                call: Call<List<QuestionModel>>,
+                response: Response<List<QuestionModel>>
+            ) {
+                if(response.isSuccessful){
+                    Log.d("bruh", ""+response.body())
+                }
+            }
+            override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
+                Log.e("bruh", ""+response.message)
+            }
+        })
+        //END OF CLIENT TEST
+
+
 
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
