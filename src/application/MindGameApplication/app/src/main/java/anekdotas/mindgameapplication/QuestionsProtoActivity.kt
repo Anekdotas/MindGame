@@ -5,13 +5,19 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
+import anekdotas.mindgameapplication.network.ApiClient
+import anekdotas.mindgameapplication.network.QuestionModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+private var anotherQuestionList : MutableList<QuestionModel>? = null
 
 // TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
 
@@ -27,9 +33,13 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        callNetwork()
         super.onCreate(savedInstanceState)
         binding = ActivityQuestionsProtoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Log.d("TesthahaFirst! ", ""+anotherQuestionList)
+
 
         myUserName = intent.getStringExtra(QuestionsObjectConst.USERNAME)
         myQuestionsList = QuestionsObjectConst.getQuestions()
@@ -103,6 +113,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                 selectionView(binding.tvOptionD, 4)
             }
             R.id.btn_submit-> {
+                Log.d("TestButton! ", ""+anotherQuestionList)
                 if(mySelectedPosition == 0){
                     myPosition++
 
@@ -170,4 +181,22 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+    private fun callNetwork(){
+        //CLIENT TEST
+            val client = ApiClient.apiService.fetchQuestions()
+            client.enqueue(object : Callback<List<QuestionModel>> {
+                override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
+                    if(response.isSuccessful){
+                        Log.d("Success! ", ""+response.body())
+                        anotherQuestionList = response.body()?.toMutableList()
+                        Log.d("Testlast! ", ""+anotherQuestionList)
+                    }
+                }
+                override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
+                    Log.e("Something went wrong! ", ""+response.message)
+                }
+            })
+        }
+        //END OF CLIENT TEST
 }

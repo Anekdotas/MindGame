@@ -27,25 +27,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
-        //CLIENT TEST
-        val client = ApiClient.apiService.fetchQuestions()
-        client.enqueue(object : Callback<List<QuestionModel>> {
-            override fun onResponse(
-                call: Call<List<QuestionModel>>,
-                response: Response<List<QuestionModel>>
-            ) {
-                if(response.isSuccessful){
-                    Log.d("bruh", ""+response.body())
-                }
-            }
-            override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
-                Log.e("bruh", ""+response.message)
-            }
-        })
-        //END OF CLIENT TEST
-
-
-
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
             if(binding.username.text.toString().isEmpty()) {

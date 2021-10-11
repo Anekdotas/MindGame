@@ -7,7 +7,7 @@ object QuestionsObjectConst{
     const val TOTAL_QUESTIONS = "TOTAL_QUESTIONS"
     const val CORRECT_ANSWERS = "CORRECT_ANSWERS"
 
-    // TODO: 10/3/2021 make all this not hardcoded... 
+    // TODO: 10/3/2021 make all this not hardcoded...
     fun getQuestions(): ArrayList<Question>{
         val questionList = ArrayList<Question>()
 
@@ -19,7 +19,7 @@ object QuestionsObjectConst{
             "Happiness",
             "42",
             4
-            )
+        )
 
         val que2 = Question(2,
             "Who is Gordon Ramsay?",
@@ -47,6 +47,7 @@ object QuestionsObjectConst{
         questionList.add(que2)
         questionList.add(que3)
         return questionList
+
     }
 
 
