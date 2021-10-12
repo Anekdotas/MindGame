@@ -18,12 +18,10 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding // UI element binding
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
+        callNetwork()
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
@@ -41,4 +39,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun callNetwork() {
+        //ASYNCHRONOUS
+            val client = ApiClient.apiService.fetchQuestions()
+            client.enqueue(object : Callback<List<QuestionModel>> {
+                override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
+                    if(response.isSuccessful){
+                        Log.d("Success! ", ""+response.body())
+                        QuestionsObject.questionList = response.body()
+                        Log.d("Test! ", ""+ QuestionsObject.questionList)
+                    }
+                }
+                override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
+                    Log.e("Something went wrong! ", ""+response.message)
+                }
+            })
+        }
 }
