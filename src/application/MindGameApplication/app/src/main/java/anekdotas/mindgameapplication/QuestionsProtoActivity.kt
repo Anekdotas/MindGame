@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 import anekdotas.mindgameapplication.network.QuestionModel
+import coil.load
 
 // TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
 
@@ -64,7 +65,13 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         binding.llProgress.progress = myPosition
         binding.tvProgress.text = "$myPosition" + "/" + myQuestionsList!!.size
         binding.tvQuestion.text = question!!.question
-        binding.ivQuestionImage.setImageResource(R.drawable.ic_questionmark)
+        //Checks if there is an image otherwise uses default
+        if(question.image!=""){
+            binding.ivQuestionImage.load(question.image)
+        }
+        else {
+            binding.ivQuestionImage.load("https://media.discordapp.net/attachments/883320939666890802/897182017890942996/244661702_397286278572014_2505698586459368395_n.png")
+        }
         binding.tvOptionA.text = question.optionA
         binding.tvOptionB.text = question.optionB
         binding.tvOptionC.text = question.optionC
