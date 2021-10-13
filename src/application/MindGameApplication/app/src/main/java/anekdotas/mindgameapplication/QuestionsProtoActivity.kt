@@ -11,13 +11,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
-import anekdotas.mindgameapplication.network.ApiClient
-import anekdotas.mindgameapplication.network.ApiServices
 import anekdotas.mindgameapplication.network.QuestionModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import kotlin.concurrent.thread
 
 // TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
 
@@ -40,7 +34,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
 
-        myUserName = intent.getStringExtra(QuestionsObjectConst.USERNAME)
+        myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList?.toMutableList()
         binding.llProgress.max = myQuestionsList!!.size
         setQuestion()
@@ -71,10 +65,10 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvProgress.text = "$myPosition" + "/" + myQuestionsList!!.size
         binding.tvQuestion.text = question!!.question
         binding.ivQuestionImage.setImageResource(R.drawable.ic_questionmark)
-        binding.tvOptionA.text = question.optiona
-        binding.tvOptionB.text = question.optionb
-        binding.tvOptionC.text = question.optionc
-        binding.tvOptionD.text = question.optiond
+        binding.tvOptionA.text = question.optionA
+        binding.tvOptionB.text = question.optionB
+        binding.tvOptionC.text = question.optionC
+        binding.tvOptionD.text = question.optionD
     }
 
     private fun defaultOptionView() {
@@ -121,10 +115,10 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         else -> {
                             val intent = Intent(this, ResultsActivity::class.java)
-                            intent.putExtra(QuestionsObjectConst.USERNAME, myUserName)
-                            intent.putExtra(QuestionsObjectConst.CORRECT_ANSWERS, myCorrectAnswers)
+                            intent.putExtra(UserObjectConst.USERNAME, myUserName)
+                            intent.putExtra(UserObjectConst.CORRECT_ANSWERS, myCorrectAnswers)
                             intent.putExtra(
-                                QuestionsObjectConst.TOTAL_QUESTIONS,
+                                UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
                             startActivity(intent)
@@ -181,9 +175,8 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun callNetwork() {
+    /*private fun callNetwork() {
         //ASYNCHRONOUS
-        /*
             val client = ApiClient.apiService.fetchQuestions()
             client.enqueue(object : Callback<List<QuestionModel>> {
                 override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
@@ -206,8 +199,8 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
             val call : Call<List<QuestionModel>> = client.fetchQuestions()
             anotherQuestionList = call.execute().body() as MutableList<QuestionModel>?
             Log.d("Test2!", ""+anotherQuestionList)}
-         */
+
         //SYNCHRONOUS
-    }
+    }*/
 }
 

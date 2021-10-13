@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, QuestionsProtoActivity::class.java)
-                intent.putExtra(QuestionsObjectConst.USERNAME, binding.username.text.toString()) // sends the username to other activities, delete later
+                intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString()) // sends the username to other activities, delete later
                 startActivity(intent)
                 finish()
             }

@@ -5,9 +5,13 @@ data class QuestionModel (
     val id: Int,
     val question: String,
     val image: String,
-    val optiona: String,
-    val optionb: String,
-    val optionc: String,
-    val optiond: String,
+    @Json(name="optiona")
+    val optionA: String,
+    @Json(name="optionb")
+    val optionB: String,
+    @Json(name="optionc")
+    val optionC: String,
+    @Json(name="optiond")
+    val optionD: String,
     val answer: Int
 )
