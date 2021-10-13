@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
 
 // TODO: 10/2/2021  (add a background for the results screen, something that looks proper, right now it uses the
@@ -20,10 +19,10 @@ class ResultsActivity : AppCompatActivity() {
         binding = ActivityResultsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val myUserName = intent.getStringExtra(QuestionsObjectConst.USERNAME)
+        val myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         binding.tvName.text = myUserName
-        val totalQuestions = intent.getIntExtra(QuestionsObjectConst.TOTAL_QUESTIONS, 0)
-        val myCorrectAnswers = intent.getIntExtra(QuestionsObjectConst.CORRECT_ANSWERS, 0 )
+        val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
+        val myCorrectAnswers = intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
 
         binding.btnFinish.setOnClickListener(){
