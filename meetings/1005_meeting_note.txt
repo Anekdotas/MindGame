@@ -1,0 +1,9 @@
+16:00 - 17:25 First group meeting
+	Purpose: Rewriting functional requirements
+	Duration: 1h 25 min
+
+19:00 - 20:05
+	Purpose: Review progress on project report draft
+		Review current progress
+		Discussion about terminology
+	Duration: 1h 5 min

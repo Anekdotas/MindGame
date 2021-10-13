@@ -12,4 +12,4 @@
 |           | 4:48 - 5:18   | 30 min        | Creating JSON to test the app |
 |           | 17:18 - 17:56 | 38 min        | Searching for a way to save JSON in our DB |
 |           | 21:06 - 21:31 | 25 min        | Testing connection to a server and PSQL features |
-|  | **Total:** | **7h 45min** | |
+|  | **Total:** | **8h 45min** | |

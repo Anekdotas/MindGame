@@ -28,6 +28,6 @@ object ApiClient {
 }
 
 interface ApiServices {
-    @GET("/topic")
+    @GET("/topic2")
     fun fetchQuestions(): Call<List<QuestionModel>>
 }
