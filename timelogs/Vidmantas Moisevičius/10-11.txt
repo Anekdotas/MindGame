@@ -1,0 +1,3 @@
+12:00-13:00 14:00-18:00 Working on clientside reading from api using Retrofit (@get request to our api from client, reading Retrofit 2 docs)
+18:30-20:30 Team meeting - Writing SE weekly report, Discussion about content for 1014 presentation, Review of my code (regarding retrofit)
+21:00-22:00 Attempting to fix error with the @get request

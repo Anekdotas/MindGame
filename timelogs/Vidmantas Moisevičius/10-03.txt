@@ -1,0 +1,2 @@
+17:00-18:30 Finish basic xml layout for the result acitivty screen
+19:00-21:00 Finish very basic prototype for the application (result activity screen functionality)

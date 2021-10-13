@@ -1,0 +1,4 @@
+14:00-15:30 Making a properly looking wireframe for the project interface (for presentation)
+16:00-17:30 Making presentation for PBL
+17:30-19:20 Team meeting regarding the presentation, documentation, wireframe and git issues
+20:40-21:40 Continuing working on the PBL project presentation (and making some app interface mock-ups)

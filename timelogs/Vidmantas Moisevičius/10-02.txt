@@ -1,0 +1,2 @@
+17:00-17:40 Short meeting with new team member regarding teams working structure, git repo, etc
+17:50-21:55 Working on question interface implemention for android client
