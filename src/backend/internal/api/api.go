@@ -10,6 +10,12 @@ type Question struct {
 	IncorrectAnswers []string `json:"incorrectAnswers"`
 }
 
+type Topic struct {
+	ID     int    `json:"id,omitempty" query:"id" param:"id"`
+	Name   string `json:"name"`
+	Author string `json:"author"`
+}
+
 type API struct {
 	handlers *handlers
 }

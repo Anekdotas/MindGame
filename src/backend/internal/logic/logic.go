@@ -17,3 +17,7 @@ func New(repo repository.Repository) *Logic {
 func (l *Logic) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdotas.Question, error) {
 	return l.repo.GetQuestionsByTopic(ctx, topic)
 }
+
+func (l *Logic) GetAllTopics(ctx context.Context) ([]*anekdotas.Topic, error) {
+	return l.repo.GetTopics(ctx)
+}

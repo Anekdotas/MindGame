@@ -35,3 +35,18 @@ func (h *handlers) GetQuestions(c echo.Context) error {
 		}
 	}, questions))
 }
+
+func (h *handlers) GetTopics(c echo.Context) error {
+	topics, err := h.logic.GetAllTopics(c.Request().Context())
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	return c.JSON(http.StatusOK, deriveFmapTopics(func(t *anekdotas.Topic) *Topic {
+		return &Topic{
+			ID:     t.ID,
+			Name:   t.Name,
+			Author: t.Author,
+		}
+	}, topics))
+}
