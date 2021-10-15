@@ -1,0 +1,2 @@
+16:00-19:00 Working on clientside reading from api using Retrofit (preparing base client interface)
+20:00-21:00 Short discussion about api JSON format (array vs object)

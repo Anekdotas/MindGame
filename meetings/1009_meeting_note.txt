@@ -1,0 +1,6 @@
+12:00 - Start of the meeting, reviewing Android code written by Vidmantas
+12:45 - Discussing about some problems we face/ we can face
+12:47 - Discussing options of how to get Question sets onto the database
+13:05 - Discussion about centralizing our task system
+13:10 - Creating tasks in Jira
+13:30 - Meeting end

@@ -1,0 +1,2 @@
+13:00-15:00 15:30-18:30 Trying to fix the bug regarding @get request on the client (the data arrives after the interface is innitialized resulting in nullpointer)
+19:00-20:00 Meeting with Aras regarding 1012 presentation, merging a few different branches

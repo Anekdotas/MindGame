@@ -1,0 +1,3 @@
+11:00-12:00 Preparing base layout for client-side
+17:30-20:00 Working on applications client-side networking code
+20:00-21:00 Short discussion about the json format reading from the API (questions)
