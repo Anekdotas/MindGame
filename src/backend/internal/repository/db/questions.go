@@ -27,7 +27,7 @@ func (r *Repo) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdo
 	if err := r.db.SelectContext(ctx, &records, r.db.Rebind(stmt), topic); err != nil {
 		return nil, err
 	}
-	return deriveFmapRecordToModel(func(record *QuestionRecord) *anekdotas.Question {
+	return deriveFmapQRecordToModel(func(record *QuestionRecord) *anekdotas.Question {
 		return &anekdotas.Question{
 			ID:               record.ID,
 			Text:             record.Text,

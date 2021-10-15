@@ -7,3 +7,9 @@ type Question struct {
 	CorrectAnswer    string
 	IncorrectAnswers []string
 }
+
+type Topic struct {
+	ID int
+	Name string
+	Author string
+}

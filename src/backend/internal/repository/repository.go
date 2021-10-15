@@ -7,4 +7,5 @@ import (
 
 type Repository interface {
 	GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdotas.Question, error)
+	GetTopics(ctx context.Context) ([]*anekdotas.Topic, error)
 }

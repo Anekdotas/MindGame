@@ -1,10 +1,13 @@
 package db
 
 import (
+	"anekdotas/internal/repository"
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
+
+var _ repository.Repository = &Repo{}
 
 func NewDB(host string, port int, user, password, dbName string) *sqlx.DB {
 	return sqlx.MustConnect(
