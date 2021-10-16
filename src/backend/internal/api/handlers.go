@@ -27,11 +27,11 @@ func (h *handlers) GetQuestions(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, deriveFmapQuestions(func(q *anekdotas.Question) *Question {
 		return &Question{
-			ID:               q.ID,
-			Text:             q.Text,
-			MediaURL:         q.MediaURL,
-			CorrectAnswer:    q.CorrectAnswer,
-			IncorrectAnswers: q.IncorrectAnswers,
+			ID:            q.ID,
+			Text:          q.Text,
+			MediaURL:      q.MediaURL,
+			CorrectAnswer: q.CorrectAnswer,
+			Answers:       q.Answers,
 		}
 	}, questions))
 }

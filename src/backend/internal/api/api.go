@@ -3,11 +3,11 @@ package api
 import "anekdotas/internal/logic"
 
 type Question struct {
-	ID               int      `json:"id,omitempty" query:"id" param:"id"`
-	Text             string   `json:"text"`
-	MediaURL         string   `json:"mediaUrl,omitempty"`
-	CorrectAnswer    string   `json:"correctAnswer"`
-	IncorrectAnswers []string `json:"incorrectAnswers"`
+	ID            int      `json:"id,omitempty" query:"id" param:"id"`
+	Text          string   `json:"text"`
+	MediaURL      string   `json:"mediaUrl,omitempty"`
+	CorrectAnswer int      `json:"correctAnswer"`
+	Answers       []string `json:"answers"`
 }
 
 type Topic struct {

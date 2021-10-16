@@ -10,12 +10,12 @@ import (
 const QuestionsTableName = "questions"
 
 type QuestionRecord struct {
-	ID               int            `db:"id"`
-	TopicID          int            `db:"topic_id"`
-	Text             string         `db:"text"`
-	MediaURL         string         `db:"media_url"`
-	CorrectAnswer    string         `db:"correct_answer"`
-	IncorrectAnswers pq.StringArray `db:"incorrect_answers"`
+	ID            int            `db:"id"`
+	TopicID       int            `db:"topic_id"`
+	Text          string         `db:"text"`
+	MediaURL      string         `db:"media_url"`
+	CorrectAnswer int            `db:"correct_answer"`
+	Answers       pq.StringArray `db:"answers"`
 }
 
 func (r *Repo) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdotas.Question, error) {
@@ -29,11 +29,11 @@ func (r *Repo) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdo
 	}
 	return deriveFmapQRecordToModel(func(record *QuestionRecord) *anekdotas.Question {
 		return &anekdotas.Question{
-			ID:               record.ID,
-			Text:             record.Text,
-			MediaURL:         record.MediaURL,
-			CorrectAnswer:    record.CorrectAnswer,
-			IncorrectAnswers: record.IncorrectAnswers,
+			ID:            record.ID,
+			Text:          record.Text,
+			MediaURL:      record.MediaURL,
+			CorrectAnswer: record.CorrectAnswer,
+			Answers:       record.Answers,
 		}
 	}, records), nil
 }
