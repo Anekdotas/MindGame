@@ -1,0 +1,51 @@
+1009 timetracking
+12:00 - 13:30 Meeting for reviewing front-end code, discussing problems, centralizing tasks
+16:00 - 17:00
+Looking for ways to automize starting of DB and web server
+
+aprox 3h
+
+1010 timetracking
+16:00 - 17:00:
+Created 'develop' branch, Slight redesign to results screen on android client side app
+20:00 - 21:00
+Short discussion about api JSON format (array vs object
+Reviewing Bogdan's merge request
+21:20 - 23:30
+Implementing reading from api in Android app with postgrest-kt 
+
+aprox 4h
+
+1011 timetracking
+18:30 - 20:30 Meeting:
+ Writing SE weekly report
+ Discussion about content for 1014 presentation
+ Review of Vidmantas' code (retrofit)
+ 20:30 - 22:30 Trying to set up VM for demostarting android app (AN-18)
+
+aprox 4h
+
+1012 timetracking
+18:40 - 19:45
+Reviewing front end progress
+19:45 - 20:30
+Making a draft of the presentation (AN-20)
+21:10 - 22:00
+Creating a new table (topic2) in DB for testing image URL integration (AN-22)
+Populating table topic2 with values
+Testing if topic2 is accessible via the brower (through the api)
+Changing '0' values into null
+22:00 - 23:00
+setting up VM for demonstations (running android emulator)
+Installing Anbox, since Android studio AVD needs vt-x
+Anbox not running, possibly due to GPU driver isseus
+
+aprox 4h
+
+1013 timetracking 
+10:05 - 11:00 - working on presentation draft in jira, reviewing jira tasks. 
+18:00 - 22:45 Meeting with team, working on slides, reviewing slides 
+
+aprox 6h
+
+Total for week aprox 21h
