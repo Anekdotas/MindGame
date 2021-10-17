@@ -16,13 +16,52 @@
         android:textSize="30dp"
         android:textStyle="bold"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chats v1-v3 are deprecated and used only for some tests"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/goChat"
-        android:text="CHAT!"
+        android:text="CHAT! v1"
         android:textSize="20dp"
         android:clickable="true"
+        android:textColor="@color/red"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/goChat2"
+        android:text="CHAT! v2"
+        android:textSize="20dp"
+        android:clickable="true"
+        android:textColor="@color/red"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/goChat3"
+        android:text="CHAT! v3"
+        android:textSize="20dp"
+        android:clickable="true"
+        android:textColor="@color/red"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/goChat4"
+        android:text="CHAT! v4"
+        android:textSize="20dp"
+        android:clickable="true"
+        android:textColor="@color/green"
+        />
+
 
 </LinearLayout>

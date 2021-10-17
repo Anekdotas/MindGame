@@ -10,10 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatInterface2">
         <activity
+            android:name=".ChatActivity4"
+            android:exported="true" />
+        <activity
+            android:name=".ChatActivity3"
+            android:exported="true" />
+        <activity
+            android:name=".ChatActivity2"
+            android:exported="true" />
+        <activity
             android:name=".ChatActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

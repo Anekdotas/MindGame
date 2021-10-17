@@ -15,6 +15,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        goChat2.setOnClickListener {
+            intent = Intent(this, ChatActivity2::class.java)
+            startActivity(intent)
+            finish()
+        }
+        goChat3.setOnClickListener {
+            intent = Intent(this, ChatActivity3::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        goChat4.setOnClickListener {
+            intent = Intent(this, ChatActivity4::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
 

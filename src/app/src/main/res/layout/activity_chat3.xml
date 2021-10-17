@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".ChatActivity2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hola, Amigo!"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_gray"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/message1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                />
+            <TextView
+            android:id="@+id/message2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_gray"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            />
+            <TextView
+                android:id="@+id/message3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                />
+            <TextView
+            android:id="@+id/message4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_gray"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            />
+            <TextView
+                android:id="@+id/message5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                />
+            <TextView
+                android:id="@+id/message6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                />
+            <TextView
+                android:id="@+id/message7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/colorButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="change message colour"
+        android:clickable="true"
+        />
+
+</LinearLayout>
