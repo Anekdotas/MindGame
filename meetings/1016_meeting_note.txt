@@ -1,0 +1,10 @@
+12:00 - Start of the meeting, reviewing requirements for PSE 2nd delivery
+12:25 - Setting-up Sprint 3
+12:45 - Talk of caching implementation
+13:41 - Break
+14:05 - Git structure, dividing PSE documentation tasks
+14:58 - Meeting end
+
+Duration: 2h 58 min
+
+
