@@ -41,7 +41,7 @@ func (r *Repo) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdo
 	}, records), nil
 }
 
-func (r *Repo) CreateQuestion(ctx context.Context, topic string, question anekdotas.Question) (id int64, err error) {
+func (r *Repo) CreateQuestion(ctx context.Context, topic string, question *anekdotas.Question) (id int64, err error) {
 	stmt := fmt.Sprintf(
 		`INSERT INTO %s
 		(topic_id, text, correct_answer, answers)

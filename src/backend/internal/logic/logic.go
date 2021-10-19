@@ -18,7 +18,7 @@ func (l *Logic) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekd
 	return l.repo.GetQuestionsByTopic(ctx, topic)
 }
 
-func (l *Logic) CreateQuestion(ctx context.Context, topic string, question anekdotas.Question) (id int64, err error) {
+func (l *Logic) CreateQuestion(ctx context.Context, topic string, question *anekdotas.Question) (id int64, err error) {
 	return l.repo.CreateQuestion(ctx, topic, question)
 }
 

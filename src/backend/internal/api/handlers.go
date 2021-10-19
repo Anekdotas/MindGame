@@ -42,7 +42,7 @@ func (h *handlers) CreateQuestion(c echo.Context) error {
 		return err
 	}
 	topic := c.Param("topic")
-	id, err := h.logic.CreateQuestion(c.Request().Context(), topic, anekdotas.Question{
+	id, err := h.logic.CreateQuestion(c.Request().Context(), topic, &anekdotas.Question{
 		Text:          question.Text,
 		CorrectAnswer: question.CorrectAnswer,
 		Answers:       question.Answers,
