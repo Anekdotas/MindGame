@@ -26,6 +26,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Topic'
+    post:
+      tags:
+        - topics
+      summary: Create a new topic
+      operationId: createTopic
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Topic name
 
   /topics/{topic}/questions:
     get:
@@ -83,7 +105,6 @@ components:
               id:
                 type: integer
                 format: int64
-                required: true
   schemas:
     Topic:
       type: object
