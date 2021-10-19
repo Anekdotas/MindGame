@@ -16,7 +16,7 @@ func newHandlers(logic *logic.Logic) *handlers {
 }
 
 func (h *handlers) GetQuestions(c echo.Context) error {
-	topic := c.QueryParam("topic")
+	topic := c.Param("topic")
 	if topic == "" {
 		return echo.NewHTTPError(http.StatusBadRequest, "topic is empty")
 	}
