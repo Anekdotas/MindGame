@@ -46,11 +46,11 @@ func (r *Repo) CreateQuestion(ctx context.Context, topic string, question anekdo
 		`INSERT INTO %s
 		(topic_id, text, correct_answer, answers)
 		VALUES (
-			(SELECT id FROM %s WHERE :topic_name),
+			(SELECT id FROM %s WHERE name=:topic_name),
 			:text,
 			:correct_answer,
 			:answers
-		)`,
+		) RETURNING id`,
 		QuestionsTableName,
 		TopicsTableName,
 	)
@@ -60,9 +60,10 @@ func (r *Repo) CreateQuestion(ctx context.Context, topic string, question anekdo
 		Answers:       question.Answers,
 		TopicName:     topic,
 	}
-	res, err := r.db.NamedExecContext(ctx, stmt, record)
+	query, args, err := r.db.BindNamed(stmt, record)
 	if err != nil {
 		return
 	}
-	return res.LastInsertId()
+	err = r.db.GetContext(ctx, &id, query, args...)
+	return
 }
