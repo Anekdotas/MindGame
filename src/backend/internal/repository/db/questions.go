@@ -10,7 +10,7 @@ import (
 const QuestionsTableName = "questions"
 
 type QuestionRecord struct {
-	ID            int            `db:"id"`
+	ID            int64          `db:"id"`
 	TopicID       int            `db:"topic_id"`
 	Text          string         `db:"text"`
 	MediaURL      string         `db:"media_url"`

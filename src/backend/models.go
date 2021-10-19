@@ -1,7 +1,7 @@
 package anekdotas
 
 type Question struct {
-	ID            int
+	ID            int64
 	Text          string
 	MediaURL      string
 	CorrectAnswer int

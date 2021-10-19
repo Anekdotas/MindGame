@@ -3,7 +3,7 @@ package api
 import "anekdotas/internal/logic"
 
 type Question struct {
-	ID            int      `json:"id,omitempty" query:"id" param:"id"`
+	ID            int64    `json:"id,omitempty" query:"id" param:"id"`
 	Text          string   `json:"text"`
 	MediaURL      string   `json:"mediaUrl,omitempty"`
 	CorrectAnswer int      `json:"correctAnswer"`
