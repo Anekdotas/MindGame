@@ -27,7 +27,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Topic'
 
-  /topics/{topic}/question:
+  /topics/{topic}/questions:
     get:
       tags:
         - questions
@@ -39,8 +39,7 @@ paths:
           description: Topic name
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         200:
           description: Success
