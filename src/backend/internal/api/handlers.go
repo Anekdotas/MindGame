@@ -36,6 +36,23 @@ func (h *handlers) GetQuestions(c echo.Context) error {
 	}, questions))
 }
 
+func (h *handlers) CreateQuestion(c echo.Context) error {
+	question := new(Question)
+	if err := c.Bind(question); err != nil {
+		return err
+	}
+	topic := c.Param("topic")
+	id, err := h.logic.CreateQuestion(c.Request().Context(), topic, anekdotas.Question{
+		Text:          question.Text,
+		CorrectAnswer: question.CorrectAnswer,
+		Answers:       question.Answers,
+	})
+	if err != nil {
+		return err
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{"id": id})
+}
+
 func (h *handlers) GetTopics(c echo.Context) error {
 	topics, err := h.logic.GetAllTopics(c.Request().Context())
 	if err != nil {
