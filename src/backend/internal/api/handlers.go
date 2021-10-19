@@ -48,6 +48,7 @@ func (h *handlers) CreateQuestion(c echo.Context) error {
 		Answers:       question.Answers,
 	})
 	if err != nil {
+		c.Logger().Error(err)
 		return err
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{"id": id})
