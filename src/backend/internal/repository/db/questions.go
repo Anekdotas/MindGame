@@ -16,6 +16,9 @@ type QuestionRecord struct {
 	MediaURL      string         `db:"media_url"`
 	CorrectAnswer int            `db:"correct_answer"`
 	Answers       pq.StringArray `db:"answers"`
+
+	// TopicName used only in CTEs
+	TopicName string `db:"topic_name"`
 }
 
 func (r *Repo) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdotas.Question, error) {
@@ -36,4 +39,30 @@ func (r *Repo) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdo
 			Answers:       record.Answers,
 		}
 	}, records), nil
+}
+
+func (r *Repo) CreateQuestion(ctx context.Context, topic string, question anekdotas.Question) (id int64, err error) {
+	stmt := fmt.Sprintf(
+		`INSERT INTO %s
+		(topic_id, text, correct_answer, answers)
+		VALUES (
+			(SELECT id FROM %s WHERE :topic_name),
+			:text,
+			:correct_answer,
+			:answers
+		)`,
+		QuestionsTableName,
+		TopicsTableName,
+	)
+	record := &QuestionRecord{
+		Text:          question.Text,
+		CorrectAnswer: question.CorrectAnswer,
+		Answers:       question.Answers,
+		TopicName:     topic,
+	}
+	res, err := r.db.NamedExecContext(ctx, stmt, record)
+	if err != nil {
+		return
+	}
+	return res.LastInsertId()
 }
