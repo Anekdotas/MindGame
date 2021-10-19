@@ -68,3 +68,20 @@ func (h *handlers) GetTopics(c echo.Context) error {
 		}
 	}, topics))
 }
+
+func (h *handlers) CreateTopic(c echo.Context) error {
+	topic := new(Topic)
+	if err := c.Bind(topic); err != nil {
+		return err
+	}
+	name, err := h.logic.CreateTopic(c.Request().Context(), &anekdotas.Topic{
+		Name:   topic.Name,
+		Author: topic.Author,
+		//TODO: AN-36 - add question_per_game
+	})
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{"name": name})
+}

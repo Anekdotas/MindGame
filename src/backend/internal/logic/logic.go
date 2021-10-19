@@ -25,3 +25,7 @@ func (l *Logic) CreateQuestion(ctx context.Context, topic string, question anekd
 func (l *Logic) GetAllTopics(ctx context.Context) ([]*anekdotas.Topic, error) {
 	return l.repo.GetTopics(ctx)
 }
+
+func (l *Logic) CreateTopic(ctx context.Context, topic *anekdotas.Topic) (name string, err error) {
+	return l.repo.CreateTopic(ctx, topic)
+}
