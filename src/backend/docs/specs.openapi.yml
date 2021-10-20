@@ -1,0 +1,153 @@
+openapi: 3.0.1
+info:
+  title: Anekdotas MindGame
+  description: "Quiz application to advance and/or evaluate players' knowledge in different categories and topics."
+  contact:
+    email: borysej90@gmail.com
+  version: alpha
+tags:
+  - name: topics
+    description: Everything about topics
+  - name: questions
+    description: Everything about questions
+paths:
+  /topics:
+    get:
+      tags:
+        - topics
+      summary: Get all available topics
+      operationId: getTopics
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    post:
+      tags:
+        - topics
+      summary: Create a new topic
+      operationId: createTopic
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Topic name
+
+  /topics/{topic}/questions:
+    get:
+      tags:
+        - questions
+      summary: Get random set of questions for selected topic
+      operationId: getQuestionsByTopic
+      parameters:
+        - name: topic
+          in: path
+          description: Topic name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+    post:
+      tags:
+        - questions
+      summary: Create a new question
+      operationId: createQuestion
+      parameters:
+        - name: topic
+          in: path
+          description: Topic name
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Question'
+      responses:
+        200:
+          $ref: '#/components/responses/ReturnedID'
+components:
+  responses:
+    ReturnedID:
+      description: ID of the created item
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+  schemas:
+    Topic:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+          description: Topic name
+        author:
+          type: string
+          description: User who created the topic
+      required:
+        - name
+        - author
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        text:
+          type: string
+          description: Actual text of the question
+        mediaUrl:
+          type: string
+          format: url
+          description: Path to media that is used in the question
+          nullable: true
+          readOnly: true
+        correctAnswer:
+          type: integer
+          description: Points to correct answer in answers array
+        answers:
+          type: array
+          maxLength: 4
+          items:
+            type: string
+            description: Possible answer
+      required:
+        - text
+        - correctAnswer
+        - answers
