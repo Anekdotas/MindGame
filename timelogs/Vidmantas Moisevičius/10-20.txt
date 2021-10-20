@@ -1,0 +1,3 @@
+13:00-14:00 Refactoring the front-end code to acommodate an updated question model from the api
+16:30-17:30 Working on texting interface for QuestionsActivity
+18:30-20:30 Team meeting regarding the prototype, some minor code adjustments
