@@ -15,7 +15,7 @@ func main() {
 	sqlRepo := db.New(db.NewDB(getDBCredentials()))
 	newAPI := api.New(logic.New(sqlRepo))
 	newAPI.BindQuestionsRoutes(e)
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(":" + mustGetEnvVar("APP_PORT")))
 }
 
 func getDBCredentials() (host string, port int, username, password, dbName string) {
