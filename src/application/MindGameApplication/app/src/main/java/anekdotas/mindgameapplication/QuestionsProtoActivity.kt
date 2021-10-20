@@ -66,12 +66,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvProgress.text = "$myPosition" + "/" + myQuestionsList!!.size
         binding.tvQuestion.text = question!!.question
         //Checks if there is an image otherwise uses default
-        if(question.image!=""){
             binding.ivQuestionImage.load(question.image)
-        }
-        else {
-            binding.ivQuestionImage.load("https://media.discordapp.net/attachments/883320939666890802/897182017890942996/244661702_397286278572014_2505698586459368395_n.png")
-        }
         binding.tvOptionA.text = question.options[0]
         binding.tvOptionB.text = question.options[1]
         binding.tvOptionC.text = question.options[2]

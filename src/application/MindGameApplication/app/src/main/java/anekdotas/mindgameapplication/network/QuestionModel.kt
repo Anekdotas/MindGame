@@ -6,7 +6,8 @@ data class QuestionModel (
     val id: Int,
     @Json(name="text")
     val question: String,
-    val image: String = "https://media.discordapp.net/attachments/883320939666890802/897182017890942996/244661702_397286278572014_2505698586459368395_n.png",
+    @Json(name="mediaUrl")
+    val image: String = "http://193.219.91.103:4850/media1/Cat.png",
     @Json(name="correctAnswer")
     val answer: Int,
     @Json(name="answers")
