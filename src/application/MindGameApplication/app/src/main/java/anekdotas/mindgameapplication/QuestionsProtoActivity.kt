@@ -72,10 +72,10 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         else {
             binding.ivQuestionImage.load("https://media.discordapp.net/attachments/883320939666890802/897182017890942996/244661702_397286278572014_2505698586459368395_n.png")
         }
-        binding.tvOptionA.text = question.optionA
-        binding.tvOptionB.text = question.optionB
-        binding.tvOptionC.text = question.optionC
-        binding.tvOptionD.text = question.optionD
+        binding.tvOptionA.text = question.options[0]
+        binding.tvOptionB.text = question.options[1]
+        binding.tvOptionC.text = question.options[2]
+        binding.tvOptionD.text = question.options[3]
     }
 
     private fun defaultOptionView() {

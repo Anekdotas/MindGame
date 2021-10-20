@@ -42,18 +42,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun callNetwork() {
         //ASYNCHRONOUS
-            val client = ApiClient.apiService.fetchQuestions()
-            client.enqueue(object : Callback<List<QuestionModel>> {
-                override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
-                    if(response.isSuccessful){
-                        Log.d("Success! ", ""+response.body())
-                        QuestionsObject.questionList = response.body()
-                        Log.d("Test! ", ""+ QuestionsObject.questionList)
-                    }
+        val client = ApiClient.apiService.getQuestions()
+        client.enqueue(object : Callback<List<QuestionModel>> {
+            override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
+                if(response.isSuccessful){
+                    Log.d("TestSecond! ", ""+response.body())
+                    QuestionsObject.questionList = response.body()
+                    Log.d("TestBody! ", ""+ QuestionsObject.questionList)
                 }
-                override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
-                    Log.e("Something went wrong! ", ""+response.message)
-                }
-            })
-        }
+            }
+            override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+    }
 }
