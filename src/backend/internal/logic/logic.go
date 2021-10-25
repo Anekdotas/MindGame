@@ -16,8 +16,8 @@ type Logic struct {
 	hostPrefix string
 }
 
-func New(repo repository.Repository) *Logic {
-	return &Logic{repo: repo}
+func New(repo repository.Repository, mediaDir, hostPrefix string) *Logic {
+	return &Logic{repo: repo, mediaDir: mediaDir, hostPrefix: hostPrefix}
 }
 
 func (l *Logic) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdotas.Question, error) {
