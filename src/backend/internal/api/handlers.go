@@ -5,6 +5,7 @@ import (
 	"anekdotas/internal/logic"
 	"github.com/labstack/echo/v4"
 	"net/http"
+	"strconv"
 )
 
 type handlers struct {
@@ -52,6 +53,30 @@ func (h *handlers) CreateQuestion(c echo.Context) error {
 		return err
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{"id": id})
+}
+
+func (h *handlers) UploadMedia(c echo.Context) error {
+	questionID, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	file, err := c.FormFile("media")
+	if err != nil {
+		c.Logger().Error()
+		return err
+	}
+	src, err := file.Open()
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	defer src.Close()
+	if err = h.logic.SaveMediaFile(c.Request().Context(), int64(questionID), file.Filename, src); err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	return nil
 }
 
 func (h *handlers) GetTopics(c echo.Context) error {
