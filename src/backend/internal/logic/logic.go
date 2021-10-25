@@ -48,6 +48,7 @@ func (l *Logic) SaveMediaFile(ctx context.Context, questionID int64, filename st
 			return err
 		}
 	}
+	// TODO: AN-58 - Implement storing raw mediaURL in repository and add prefix to it only when sending to a client
 	mediaURL := strings.TrimPrefix(dst.Name(), l.mediaDir)
 	mediaURL = fmt.Sprintf("%s/media%s", l.hostPrefix, mediaURL)
 	return l.repo.UpdateMediaURL(ctx, questionID, mediaURL)
