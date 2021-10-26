@@ -12,10 +12,20 @@ import (
 
 func main() {
 	e := echo.New()
+
+	// Media storage initialization
+	mediaDir := mustGetEnvVar("MEDIA_PATH")
+	mediaURLPrefix := mustGetEnvVar("HOST_PREFIX")
+	e.Static("/media", mediaDir)
+
+	// HTTP API initialization
 	sqlRepo := db.New(db.NewDB(getDBCredentials()))
-	newAPI := api.New(logic.New(sqlRepo))
-	newAPI.BindQuestionsRoutes(e)
-	e.Logger.Fatal(e.Start(":" + mustGetEnvVar("APP_PORT")))
+	newAPI := api.New(logic.New(sqlRepo, mediaDir, mediaURLPrefix))
+	newAPI.BindApiRoutes(e)
+
+	if err := e.Start(":" + mustGetEnvVar("APP_PORT")); err != nil {
+		e.Logger.Fatal(err)
+	}
 }
 
 func getDBCredentials() (host string, port int, username, password, dbName string) {

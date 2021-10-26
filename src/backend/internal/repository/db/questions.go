@@ -67,3 +67,9 @@ func (r *Repo) CreateQuestion(ctx context.Context, topic string, question *anekd
 	err = r.db.GetContext(ctx, &id, query, args...)
 	return
 }
+
+func (r *Repo) UpdateMediaURL(ctx context.Context, questionID int64, mediaURL string) error {
+	stmt := fmt.Sprintf("UPDATE %s SET media_url = ? WHERE id = ?", QuestionsTableName)
+	_, err := r.db.ExecContext(ctx, r.db.Rebind(stmt), mediaURL, questionID)
+	return err
+}
