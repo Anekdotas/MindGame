@@ -10,6 +10,10 @@ import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.QuestionModel
+import anekdotas.mindgameapplication.network.TopicModel
+import anekdotas.mindgameapplication.objects.QuestionsObject
+import anekdotas.mindgameapplication.objects.TopicsObject
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         callNetwork()
+        callNetworkTopics()
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
@@ -52,6 +57,23 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+    }
+
+    private fun callNetworkTopics() {
+        //ASYNCHRONOUS
+        val client = ApiClient.apiService.getTopics()
+        client.enqueue(object : Callback<List<TopicModel>> {
+            override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
+                if(response.isSuccessful){
+                    Log.d("TestTopics! ", ""+response.body())
+                    TopicsObject.topicList = response.body()
+                    Log.d("TestTopicBody! ", ""+ TopicsObject.topicList)
+                }
+            }
+            override fun onFailure(call: Call<List<TopicModel>>, response: Throwable) {
                 Log.e("Something went wrong! ", ""+response.message)
             }
         })

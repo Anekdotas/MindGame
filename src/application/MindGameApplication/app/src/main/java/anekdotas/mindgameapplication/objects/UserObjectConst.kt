@@ -1,4 +1,4 @@
-package anekdotas.mindgameapplication
+package anekdotas.mindgameapplication.objects
 
 object UserObjectConst{
 

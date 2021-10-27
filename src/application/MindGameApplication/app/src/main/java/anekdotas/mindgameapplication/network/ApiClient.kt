@@ -8,7 +8,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 object ApiClient {
-    private const val BASE_URL = "http://193.219.91.103:15730/" //change to path if question location would change
+    private const val BASE_URL = "http://193.219.91.103:7537/" //change to path if question location would change
 
     private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
@@ -28,4 +28,6 @@ object ApiClient {
 interface ApiServices {
     @GET("/topics/Games/questions")
     fun getQuestions(): Call<List<QuestionModel>>
+    @GET("/topics")
+    fun getTopics(): Call<List<TopicModel>>
 }
