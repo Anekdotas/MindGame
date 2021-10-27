@@ -43,6 +43,11 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+        binding.btnMenu2.setOnClickListener{
+            val intent2 = Intent(this, ListTopicsActivity::class.java)
+            startActivity(intent2)
+            finish()
+        }
     }
 
     private fun callNetwork() {
