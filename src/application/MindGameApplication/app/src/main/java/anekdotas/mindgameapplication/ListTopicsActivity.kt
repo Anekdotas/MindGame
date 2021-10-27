@@ -2,10 +2,22 @@ package anekdotas.mindgameapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import anekdotas.mindgameapplication.adapters.TopicsAdapter
+import anekdotas.mindgameapplication.databinding.ActivityListTopicsBinding
+import anekdotas.mindgameapplication.databinding.ActivityMainBinding
+import anekdotas.mindgameapplication.objects.TopicsObject
 
 class ListTopicsActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityListTopicsBinding // UI element binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_topics)
+        binding = ActivityListTopicsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val topicListAdapter = TopicsAdapter(TopicsObject.topicList)
+        binding.rvTopicRecycler.adapter = topicListAdapter
+        binding.rvTopicRecycler.layoutManager = LinearLayoutManager(this)
+
     }
 }

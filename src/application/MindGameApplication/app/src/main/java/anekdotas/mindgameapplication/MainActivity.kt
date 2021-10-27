@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.widget.Toast
+import anekdotas.mindgameapplication.adapters.TopicsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.QuestionModel
