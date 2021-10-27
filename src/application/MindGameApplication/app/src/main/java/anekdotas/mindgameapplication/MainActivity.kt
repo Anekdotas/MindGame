@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun callNetwork() {
-        //ASYNCHRONOUS
         val client = ApiClient.apiService.getQuestions()
         client.enqueue(object : Callback<List<QuestionModel>> {
             override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
@@ -68,7 +67,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun callNetworkTopics() {
-        //ASYNCHRONOUS
         val client = ApiClient.apiService.getTopics()
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
