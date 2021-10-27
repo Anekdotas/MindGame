@@ -82,8 +82,7 @@ paths:
           description: Topic name
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         required: true
         content:
@@ -93,6 +92,39 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/ReturnedID'
+  /topics/{topic}/questions/{questionId}/media:
+    post:
+      tags:
+        - questions
+      summary: Upload media for an existing question
+      operationId: uploadMedia
+      parameters:
+        - name: topic
+          in: path
+          description: Topic name
+          required: true
+          schema:
+            type: string
+        - name: questionId
+          in: path
+          description: Question ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                media:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Success
 components:
   responses:
     ReturnedID:
