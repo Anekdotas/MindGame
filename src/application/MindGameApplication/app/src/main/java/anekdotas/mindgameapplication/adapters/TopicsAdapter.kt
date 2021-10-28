@@ -37,13 +37,7 @@ class TopicsAdapter (var topics: List<TopicModel>? = TopicsObject.topicList) : R
             button.setOnClickListener{Log.d("Buttons", "ButtonClicked")
                 TopicsObject.selectedTopic = topics!![position]
                 callNetwork(TopicsObject.selectedTopic!!.topicName)
-                Log.d("url4", ""+QuestionsObject.questionList.toString())
-                Log.d("ButtonsChangedTopic", "ButtonClicked"+TopicsObject.selectedTopic.toString())
-                var g =0
-                while(g<100000000)
-                {
-                    g++
-                }
+                Thread.sleep(100)
                 context.startActivity(Intent(context, QuestionsProtoActivity::class.java))
             }
         }

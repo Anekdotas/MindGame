@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, QuestionsProtoActivity::class.java)
                 intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString()) // sends the username to other activities, delete later
+                Thread.sleep(25)
                 startActivity(intent)
                 finish()
             }
@@ -48,22 +49,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent2)
             finish()
         }
-    }
-
-    private fun callNetwork() {
-        val client = ApiClient.apiService.getQuestions()
-        client.enqueue(object : Callback<List<QuestionModel>> {
-            override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
-                if(response.isSuccessful){
-                    Log.d("TestSecond! ", ""+response.body())
-                    QuestionsObject.questionList = response.body()
-                    Log.d("TestBody! ", ""+ QuestionsObject.questionList)
-                }
-            }
-            override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
-                Log.e("Something went wrong! ", ""+response.message)
-            }
-        })
     }
 
     private fun callNetworkTopics() {
