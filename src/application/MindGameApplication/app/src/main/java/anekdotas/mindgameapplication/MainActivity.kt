@@ -37,17 +37,12 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, QuestionsProtoActivity::class.java)
+                val intent = Intent(this, ListTopicsActivity::class.java)
                 intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString()) // sends the username to other activities, delete later
                 Thread.sleep(25)
                 startActivity(intent)
                 finish()
             }
-        }
-        binding.btnMenu2.setOnClickListener{
-            val intent2 = Intent(this, ListTopicsActivity::class.java)
-            startActivity(intent2)
-            finish()
         }
     }
 
