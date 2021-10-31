@@ -4,25 +4,25 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
 import androidx.core.content.ContextCompat
+import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
+import anekdotas.mindgameapplication.java.ChatAdapter
+import anekdotas.mindgameapplication.java.Message
 import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import coil.load
+import kotlin.random.Random
 
-// TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
-
-class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
-
-
-    private lateinit var binding: ActivityQuestionsProtoBinding // UI element binding
-
+class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding: ActivityQuestionsBinding
+    var messageList =  ArrayList<Message>()
     // Variables to allow user to navigate through the questions
     private var myPosition = 1 //current question position
     private var myQuestionsList: MutableList<QuestionModel>? = null //list of questions
@@ -31,15 +31,13 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
     private var myUserName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("Test2! ", ""+ QuestionsObject.questionList)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         super.onCreate(savedInstanceState)
-        binding = ActivityQuestionsProtoBinding.inflate(layoutInflater)
+        binding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList?.toMutableList()
-        binding.llProgress.max = myQuestionsList!!.size
         setQuestion()
 
         binding.tvOptionA.setOnClickListener(this)
@@ -48,9 +46,10 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionD.setOnClickListener(this)
         binding.btnSubmit.setOnClickListener(this)
 
-        // Helpful in logcat for checking the amount of questions in input:
-        // Log.i("Questions size", questionsList.size.toString())
+        //======================================
+
     }
+
 
     @SuppressLint("SetTextI18n")
     private fun setQuestion() {
@@ -64,15 +63,20 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnSubmit.text = "SUBMIT"
         }
 
-        binding.llProgress.progress = myPosition
-        binding.tvProgress.text = "$myPosition" + "/" + myQuestionsList!!.size
-        binding.tvQuestion.text = question!!.question
-        //Checks if there is an image otherwise uses default
-            binding.ivQuestionImage.load(question.image)
+        val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
+        binding.ListView.adapter = adapter
+        messageList.add(Message("Professor Lazgov", question.question, R.drawable.bred))
+
+
+
         binding.tvOptionA.text = question.options[0]
         binding.tvOptionB.text = question.options[1]
         binding.tvOptionC.text = question.options[2]
         binding.tvOptionD.text = question.options[3]
+        binding.tvOptionA.isClickable=true
+        binding.tvOptionB.isClickable=true
+        binding.tvOptionC.isClickable=true
+        binding.tvOptionD.isClickable=true
     }
 
     private fun defaultOptionView() {
@@ -93,9 +97,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
-
         when (v?.id) {
             R.id.tv_optionA -> {
                 selectionView(binding.tvOptionA, 1)
@@ -111,11 +113,10 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mySelectedPosition == 0) {
-                    myPosition++
-
+                    myPosition++ // SKIPS ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
-                            setQuestion()
+                            setQuestion() // STARTS NEW QUESTION
                         }
                         else -> {
                             val intent = Intent(this, ResultsActivity::class.java)
@@ -125,23 +126,43 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
-                            startActivity(intent)
+                            startActivity(intent) // ENDS THE QUIZ
                         }
                     }
                 } else {
                     val question = myQuestionsList?.get(myPosition - 1)
+
+                    val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
+                    binding.ListView.adapter = adapter
+                    when (mySelectedPosition){
+                        1 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionA.text.toString(), R.drawable.chuvas_cropped))
+                        2 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionB.text.toString(), R.drawable.chuvas_cropped))
+                        3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), R.drawable.chuvas_cropped))
+                        4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
+                    } //WRITES USER SELECTED ANSWER
+
+                    binding.tvOptionA.isClickable=false
+                    binding.tvOptionB.isClickable=false
+                    binding.tvOptionC.isClickable=false
+                    binding.tvOptionD.isClickable=false
+
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
-                    } else {
+                        messageList.add(Message("Professor Lazgov", "You stoopid?", R.drawable.bred))
+                    } // CHECKS IF ANSWER WAS INCORRECT
+
+                    else {
                         myCorrectAnswers++
-                    }
-                    answerView(question.answer, R.drawable.correct_option_bg)
+                        messageList.add(Message("Professor Lazgov", "Well...done?", R.drawable.bred))
+                    } //IF THE ANSWER WAS CORRECT
+
+                    answerView(question.answer, R.drawable.correct_option_bg) //COLORS THE CORRECT
 
                     if (myPosition == myQuestionsList!!.size) {
                         binding.btnSubmit.text = "FINISH"
                     } else {
                         binding.btnSubmit.text = "NEXT QUESTION"
-                    }
+                    } // CHANGES TEXT IF LAST QUESTION
                     mySelectedPosition = 0
                 }
             }
@@ -179,4 +200,3 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 }
-

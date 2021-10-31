@@ -1,5 +1,6 @@
 package anekdotas.mindgameapplication
 
+import android.R.attr
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,9 @@ import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.R.attr.password
+
+import android.content.SharedPreferences
 
 //REMINDER! IN ANDROID MANIFEST CLEARTEXT COMM IS ENABLED BUT WORKS ONLY IN API 23 AND ABOVE, NEED TO FIX
 
@@ -30,15 +34,32 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
+        binding.tvRegistration.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
             if(binding.username.text.toString().isEmpty()) {
                 Toast.makeText(this@MainActivity, "No Username Selected", Toast.LENGTH_SHORT).show()
             }
+            else if(binding.password.text.toString().isEmpty()){
+                Toast.makeText(this@MainActivity, "No Password Selected", Toast.LENGTH_SHORT).show()
+            }
             else {
+                val prefs = getSharedPreferences("UserData", MODE_PRIVATE)
+                val editor = prefs.edit()
+                editor.putString("username", binding.username.text.toString())
+                editor.putString("password", binding.password.text.toString())
+                editor.apply()
+
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ListTopicsActivity::class.java)
-                intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString()) // sends the username to other activities, delete later
+                UserObjectConst.USERNAME = binding.username.text.toString()
+                intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
+                intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later
                 Thread.sleep(25)
                 startActivity(intent)
                 finish()
@@ -51,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){
-                    Log.d("TestTopics! ", ""+response.body())
+                    Log.d("TestTopics! ", ""+ response.body())
                     TopicsObject.topicList = response.body()
                     Log.d("TestTopicBody! ", ""+ TopicsObject.topicList)
                 }
