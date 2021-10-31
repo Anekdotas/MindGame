@@ -109,10 +109,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mySelectedPosition == 0) {
-                    myPosition++
+                    myPosition++ // SKIPS ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
-                            setQuestion()
+                            setQuestion() // STARTS NEW QUESTION
                         }
                         else -> {
                             val intent = Intent(this, ResultsActivity::class.java)
@@ -122,12 +122,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
-                            startActivity(intent)
+                            startActivity(intent) // ENDS THE QUIZ
                         }
                     }
                 } else {
                     val question = myQuestionsList?.get(myPosition - 1)
-
 
                     val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
                     binding.ListView.adapter = adapter
@@ -136,20 +135,23 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         2 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionB.text.toString(), R.drawable.chuvas_cropped))
                         3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), R.drawable.chuvas_cropped))
                         4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
-                    }
+                    } //WRITES USER SELECTED ANSWER
 
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
-                    } else {
+                    } // CHECKS IF ANSWER WAS INCORRECT
+
+                    else {
                         myCorrectAnswers++
-                    }
-                    answerView(question.answer, R.drawable.correct_option_bg)
+                    } //IF THE ANSWER WAS CORRECT
+
+                    answerView(question.answer, R.drawable.correct_option_bg) //COLORS THE CORRECT
 
                     if (myPosition == myQuestionsList!!.size) {
                         binding.btnSubmit.text = "FINISH"
                     } else {
                         binding.btnSubmit.text = "NEXT QUESTION"
-                    }
+                    } // CHANGES TEXT IF LAST QUESTION
                     mySelectedPosition = 0
                 }
             }
