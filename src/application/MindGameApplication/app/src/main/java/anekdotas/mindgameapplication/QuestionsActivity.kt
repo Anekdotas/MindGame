@@ -63,8 +63,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnSubmit.text = "SUBMIT"
         }
 
-        binding.tvQuestion.text = question!!.question
-
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
         messageList.add(Message("Professor Lazgov", question.question, R.drawable.bred))
@@ -112,7 +110,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_submit -> {
                 if (mySelectedPosition == 0) {
                     myPosition++
-
                     when {
                         myPosition <= myQuestionsList!!.size -> {
                             setQuestion()
@@ -130,6 +127,17 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 } else {
                     val question = myQuestionsList?.get(myPosition - 1)
+
+
+                    val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
+                    binding.ListView.adapter = adapter
+                    when (mySelectedPosition){
+                        1 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionA.text.toString(), R.drawable.chuvas_cropped))
+                        2 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionB.text.toString(), R.drawable.chuvas_cropped))
+                        3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), R.drawable.chuvas_cropped))
+                        4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
+                    }
+
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
                     } else {

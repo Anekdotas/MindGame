@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".QuestionsActivity"
-            android:theme="@style/Theme.Design.NoActionBar"
+            android:theme="@style/NoActionBarTheme"
             android:exported="true" />
         <activity
             android:name=".ListTopicsActivity"
