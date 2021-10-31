@@ -23,9 +23,6 @@ import android.R.attr.password
 
 import android.content.SharedPreferences
 
-
-
-
 //REMINDER! IN ANDROID MANIFEST CLEARTEXT COMM IS ENABLED BUT WORKS ONLY IN API 23 AND ABOVE, NEED TO FIX
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +33,12 @@ class MainActivity : AppCompatActivity() {
         callNetworkTopics()
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+
+        binding.tvRegistration.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {

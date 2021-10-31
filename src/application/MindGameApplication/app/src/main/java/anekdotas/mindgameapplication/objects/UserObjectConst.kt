@@ -7,4 +7,8 @@ object UserObjectConst{
     const val PASSWORD = "PASSWORD"
     const val TOTAL_QUESTIONS = "TOTAL_QUESTIONS"
     const val CORRECT_ANSWERS = "CORRECT_ANSWERS"
+
+    // VALUES FOR REGISTRATION
+    var usernameRegister = "User_Name"
+    var passwordRegister = "password"
 }
