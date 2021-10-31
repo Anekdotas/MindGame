@@ -13,9 +13,13 @@
         android:theme="@style/Theme.MindGameApplication"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ListTopicsActivity"
-            android:theme="@style/NoActionBarTheme"
+            android:name=".QuestionsActivity"
+            android:theme="@style/Theme.Design.NoActionBar"
             android:exported="true" />
+        <activity
+            android:name=".ListTopicsActivity"
+            android:exported="true"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".ResultsActivity"
             android:exported="true"
