@@ -73,6 +73,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionB.text = question.options[1]
         binding.tvOptionC.text = question.options[2]
         binding.tvOptionD.text = question.options[3]
+        binding.tvOptionA.isClickable=true
+        binding.tvOptionB.isClickable=true
+        binding.tvOptionC.isClickable=true
+        binding.tvOptionD.isClickable=true
     }
 
     private fun defaultOptionView() {
@@ -137,12 +141,19 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
                     } //WRITES USER SELECTED ANSWER
 
+                    binding.tvOptionA.isClickable=false
+                    binding.tvOptionB.isClickable=false
+                    binding.tvOptionC.isClickable=false
+                    binding.tvOptionD.isClickable=false
+
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
+                        messageList.add(Message("Professor Lazgov", "You stoopid?", R.drawable.bred))
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
+                        messageList.add(Message("Professor Lazgov", "Well...done?", R.drawable.bred))
                     } //IF THE ANSWER WAS CORRECT
 
                     answerView(question.answer, R.drawable.correct_option_bg) //COLORS THE CORRECT
