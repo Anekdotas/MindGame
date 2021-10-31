@@ -22,7 +22,7 @@ import kotlin.random.Random
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuestionsBinding
-
+    var messageList =  ArrayList<Message>()
     // Variables to allow user to navigate through the questions
     private var myPosition = 1 //current question position
     private var myQuestionsList: MutableList<QuestionModel>? = null //list of questions
@@ -47,14 +47,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnSubmit.setOnClickListener(this)
 
         //======================================
-        var messageList =  ArrayList<Message>()
-
-        val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
-        binding.ListView.adapter = adapter
-        binding.btnSubmit.setOnClickListener {
-            messageList.add(Message("Professor Lazgov", "blah blah", R.drawable.bred))
-            binding.ListView.adapter = adapter
-        }
 
     }
 
@@ -72,7 +64,13 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         binding.tvQuestion.text = question!!.question
-        //Checks if there is an image otherwise uses default
+
+        val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
+        binding.ListView.adapter = adapter
+        messageList.add(Message("Professor Lazgov", question.question, R.drawable.bred))
+
+
+
         binding.tvOptionA.text = question.options[0]
         binding.tvOptionB.text = question.options[1]
         binding.tvOptionC.text = question.options[2]
