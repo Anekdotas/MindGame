@@ -35,10 +35,14 @@ class MainActivity : AppCompatActivity() {
             if(binding.username.text.toString().isEmpty()) {
                 Toast.makeText(this@MainActivity, "No Username Selected", Toast.LENGTH_SHORT).show()
             }
+            else if(binding.password.text.toString().isEmpty()){
+                Toast.makeText(this@MainActivity, "No Password Selected", Toast.LENGTH_SHORT).show()
+            }
             else {
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ListTopicsActivity::class.java)
-                intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString()) // sends the username to other activities, delete later
+                intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
+                intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later
                 Thread.sleep(25)
                 startActivity(intent)
                 finish()
@@ -51,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){
-                    Log.d("TestTopics! ", ""+response.body())
+                    Log.d("TestTopics! ", ""+ response.body())
                     TopicsObject.topicList = response.body()
                     Log.d("TestTopicBody! ", ""+ TopicsObject.topicList)
                 }

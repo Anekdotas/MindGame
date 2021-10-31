@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
+import anekdotas.mindgameapplication.QuestionsActivity
 import anekdotas.mindgameapplication.QuestionsProtoActivity
 import anekdotas.mindgameapplication.R
 import anekdotas.mindgameapplication.network.ApiClient
@@ -38,7 +39,7 @@ class TopicsAdapter (var topics: List<TopicModel>? = TopicsObject.topicList) : R
                 TopicsObject.selectedTopic = topics!![position]
                 callNetwork(TopicsObject.selectedTopic!!.topicName)
                 Thread.sleep(100)
-                context.startActivity(Intent(context, QuestionsProtoActivity::class.java))
+                context.startActivity(Intent(context, QuestionsActivity::class.java))
             }
         }
     }

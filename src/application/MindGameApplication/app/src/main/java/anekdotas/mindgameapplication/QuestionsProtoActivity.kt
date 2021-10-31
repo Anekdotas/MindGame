@@ -178,33 +178,5 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
-    /*private fun callNetwork() {
-        //ASYNCHRONOUS
-            val client = ApiClient.apiService.fetchQuestions()
-            client.enqueue(object : Callback<List<QuestionModel>> {
-                override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
-                    if(response.isSuccessful){
-                        Log.d("Success! ", ""+response.body())
-                        anotherQuestionList = response.body()?.toMutableList()
-                        Log.d("Testlast! ", ""+anotherQuestionList)
-                    }
-                }
-                override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
-                    Log.e("Something went wrong! ", ""+response.message)
-                }
-            })
-        }*/
-        //ASYNCHRONOUS
-
-        //SYNCHRONOUS
-        /*
-        thread{val client = ApiClient.apiService
-            val call : Call<List<QuestionModel>> = client.fetchQuestions()
-            anotherQuestionList = call.execute().body() as MutableList<QuestionModel>?
-            Log.d("Test2!", ""+anotherQuestionList)}
-
-        //SYNCHRONOUS
-    }*/
 }
 
