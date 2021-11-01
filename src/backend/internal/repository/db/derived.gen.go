@@ -6,6 +6,15 @@ import (
 	"anekdotas"
 )
 
+// deriveFmapCRecordToModel returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapCRecordToModel(f func(*CategoryRecord) *anekdotas.Category, list []*CategoryRecord) []*anekdotas.Category {
+	out := make([]*anekdotas.Category, len(list))
+	for i, elem := range list {
+		out[i] = f(elem)
+	}
+	return out
+}
+
 // deriveFmapQRecordToModel returns a list where each element of the input list has been morphed by the input function.
 func deriveFmapQRecordToModel(f func(*QuestionRecord) *anekdotas.Question, list []*QuestionRecord) []*anekdotas.Question {
 	out := make([]*anekdotas.Question, len(list))

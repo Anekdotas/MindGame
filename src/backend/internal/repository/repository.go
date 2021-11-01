@@ -11,4 +11,5 @@ type Repository interface {
 	UpdateMediaURL(ctx context.Context, questionID int64, mediaURL string) error
 	GetTopics(ctx context.Context) ([]*anekdotas.Topic, error)
 	CreateTopic(ctx context.Context, topic *anekdotas.Topic) (name string, err error)
+	GetCategories(ctx context.Context) ([]*anekdotas.Category, error)
 }
