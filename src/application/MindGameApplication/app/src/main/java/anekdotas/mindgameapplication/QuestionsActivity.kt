@@ -6,19 +6,15 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
-import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 import anekdotas.mindgameapplication.java.ChatAdapter
 import anekdotas.mindgameapplication.java.Message
 import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
-import coil.load
-import kotlin.random.Random
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuestionsBinding

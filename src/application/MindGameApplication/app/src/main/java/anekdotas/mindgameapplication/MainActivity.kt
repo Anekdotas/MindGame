@@ -1,6 +1,5 @@
 package anekdotas.mindgameapplication
 
-import android.R.attr
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,20 +7,12 @@ import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.widget.Toast
-import anekdotas.mindgameapplication.adapters.TopicsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.network.ApiClient
-import anekdotas.mindgameapplication.network.QuestionModel
-import anekdotas.mindgameapplication.network.TopicModel
-import anekdotas.mindgameapplication.objects.QuestionsObject
-import anekdotas.mindgameapplication.objects.TopicsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.R.attr.password
-
-import android.content.SharedPreferences
 import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
 

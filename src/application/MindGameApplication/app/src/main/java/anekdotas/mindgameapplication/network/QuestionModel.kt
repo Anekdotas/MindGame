@@ -1,5 +1,4 @@
 package anekdotas.mindgameapplication.network
-import anekdotas.mindgameapplication.R
 import com.squareup.moshi.Json
 
 data class QuestionModel (

@@ -1,6 +1,5 @@
 package anekdotas.mindgameapplication.objects
 
-import androidx.lifecycle.MutableLiveData
 import anekdotas.mindgameapplication.network.TopicModel
 
 object TopicsObject {

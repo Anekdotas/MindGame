@@ -8,15 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import anekdotas.mindgameapplication.ListTopicsActivity
-import anekdotas.mindgameapplication.QuestionsActivity
-import anekdotas.mindgameapplication.QuestionsProtoActivity
 import anekdotas.mindgameapplication.R
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
-import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.network.TopicModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
-import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.TopicsObject
 import retrofit2.Call
 import retrofit2.Callback

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import anekdotas.mindgameapplication.QuestionsActivity
-import anekdotas.mindgameapplication.QuestionsProtoActivity
 import anekdotas.mindgameapplication.R
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.QuestionModel

@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import anekdotas.mindgameapplication.adapters.CategoriesAdapter
-import anekdotas.mindgameapplication.adapters.TopicsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityListCategoriesBinding
-import anekdotas.mindgameapplication.databinding.ActivityListTopicsBinding
 import anekdotas.mindgameapplication.objects.CategoriesObject
-import anekdotas.mindgameapplication.objects.TopicsObject
 
 class ListCategoriesActivity : AppCompatActivity() {
     private lateinit var binding : ActivityListCategoriesBinding // UI element binding
