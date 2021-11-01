@@ -18,8 +18,8 @@ class ListCategoriesActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
-        val topicListAdapter = TopicsAdapter(TopicsObject.topicList)
-        binding.rvCategoryRecycler.adapter = categoriesListAdapter
+        val categoryListAdapter = TopicsAdapter(TopicsObject.topicList)
+        binding.rvCategoryRecycler.adapter = categoryListAdapter
         binding.rvCategoryRecycler.layoutManager = LinearLayoutManager(this)
 
 

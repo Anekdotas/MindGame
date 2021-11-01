@@ -22,6 +22,8 @@ import retrofit2.Response
 import android.R.attr.password
 
 import android.content.SharedPreferences
+import anekdotas.mindgameapplication.network.CategoryModel
+import anekdotas.mindgameapplication.objects.CategoriesObject
 
 //REMINDER! IN ANDROID MANIFEST CLEARTEXT COMM IS ENABLED BUT WORKS ONLY IN API 23 AND ABOVE, NEED TO FIX
 
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        callNetworkTopics()
+        callNetworkCategories()
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
@@ -61,17 +63,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun callNetworkTopics() {
-        val client = ApiClient.apiService.getTopics()
-        client.enqueue(object : Callback<List<TopicModel>> {
-            override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
+
+
+    private fun callNetworkCategories() {
+        val client = ApiClient.apiService.getCategories()
+        client.enqueue(object : Callback<List<CategoryModel>> {
+            override fun onResponse(call: Call<List<CategoryModel>>, response: Response<List<CategoryModel>>) {
                 if(response.isSuccessful){
-                    Log.d("TestTopics! ", ""+ response.body())
-                    TopicsObject.topicList = response.body()
-                    Log.d("TestTopicBody! ", ""+ TopicsObject.topicList)
+                    Log.d("TestCategories! ", ""+ response.body())
+                    CategoriesObject.categoryList = response.body()
+                    Log.d("TestCategoryBody! ", ""+ CategoriesObject.categoryList)
                 }
             }
-            override fun onFailure(call: Call<List<TopicModel>>, response: Throwable) {
+            override fun onFailure(call: Call<List<CategoryModel>>, response: Throwable) {
                 Log.e("Something went wrong! ", ""+response.message)
             }
         })
