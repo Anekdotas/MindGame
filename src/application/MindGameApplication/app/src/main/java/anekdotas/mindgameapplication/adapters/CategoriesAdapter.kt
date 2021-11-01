@@ -39,7 +39,7 @@ class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.
             val button = findViewById<Button>(R.id.btn_topic_selection)
             button.text =  categories!![position].categoryName
             button.setOnClickListener{Log.d("Buttons", "ButtonClicked")
-                //TopicsObject.selectedTopic = topics!![position]
+                CategoriesObject.selectedCategory = categories!![position]
                 callNetworkTopics(CategoriesObject.selectedCategory!!.id)
                 Thread.sleep(100)
                 context.startActivity(Intent(context, ListTopicsActivity::class.java))
@@ -48,7 +48,8 @@ class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.
     }
 
     private fun callNetworkTopics(id : Int) {
-        val client = ApiClient.apiService.getTopics("http://193.219.91.103:7537/topics/${CategoriesObject.selectedCategory!!.id}/topics")
+        Log.d("Testurl! ", ""+ "http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory!!.id}/topics")
+        val client = ApiClient.apiService.getTopics("http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory!!.id}/topics")
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){
