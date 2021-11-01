@@ -46,10 +46,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionD.setOnClickListener(this)
         binding.btnSubmit.setOnClickListener(this)
 
-        //======================================
-
     }
-
 
     @SuppressLint("SetTextI18n")
     private fun setQuestion() {
@@ -66,8 +63,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
         messageList.add(Message("Professor Lazgov", question.question, R.drawable.bred))
-
-
 
         binding.tvOptionA.text = question.options[0]
         binding.tvOptionB.text = question.options[1]

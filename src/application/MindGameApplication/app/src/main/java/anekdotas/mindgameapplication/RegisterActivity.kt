@@ -32,10 +32,10 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 val intent = Intent(this, ListTopicsActivity::class.java)
-                UserObjectConst.USERNAME = binding.username.text.toString()
+                UserObjectConst.usernameRegister = binding.username.text.toString()
                 intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
                 intent.putExtra(
-                    UserObjectConst.PASSWORD,
+                    UserObjectConst.passwordRegister,
                     binding.password.text.toString()
                 )// sends the username/password to other activities, delete later
                 Thread.sleep(25)
