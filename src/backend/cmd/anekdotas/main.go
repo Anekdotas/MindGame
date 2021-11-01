@@ -1,13 +1,14 @@
 package main
 
 import (
-	"anekdotas/internal/api"
-	"anekdotas/internal/logic"
-	"anekdotas/internal/repository/db"
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"os"
 	"strconv"
+
+	"anekdotas/internal/api"
+	"anekdotas/internal/logic"
+	"anekdotas/internal/repository/db"
 )
 
 func main() {
@@ -23,7 +24,9 @@ func main() {
 	newAPI := api.New(logic.New(sqlRepo, mediaDir, mediaURLPrefix))
 	newAPI.BindApiRoutes(e)
 
-	if err := e.Start(":" + mustGetEnvVar("APP_PORT")); err != nil {
+	if err := e.StartTLS(
+		":"+mustGetEnvVar("APP_PORT"), "certs/mindgame.crt", "certs/mindgame.key",
+	); err != nil {
 		e.Logger.Fatal(err)
 	}
 }

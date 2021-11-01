@@ -10,5 +10,6 @@ RUN CGO_ENABLED=0 go build -o /app.bin ./cmd/anekdotas/main.go
 FROM alpine:latest
 
 COPY --from=build /app.bin /app.bin
+COPY certs/ /certs/
 
 ENTRYPOINT ["/app.bin"]
