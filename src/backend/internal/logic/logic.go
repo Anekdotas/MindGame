@@ -54,12 +54,12 @@ func (l *Logic) SaveMediaFile(ctx context.Context, questionID int64, filename st
 	return l.repo.UpdateMediaURL(ctx, questionID, mediaURL)
 }
 
-func (l *Logic) GetAllTopics(ctx context.Context) ([]*anekdotas.Topic, error) {
-	return l.repo.GetTopics(ctx)
+func (l *Logic) GetTopicsByCategory(ctx context.Context, categoryID int64) ([]*anekdotas.Topic, error) {
+	return l.repo.GetTopicsByCategoryID(ctx, categoryID)
 }
 
-func (l *Logic) CreateTopic(ctx context.Context, topic *anekdotas.Topic) (name string, err error) {
-	return l.repo.CreateTopic(ctx, topic)
+func (l *Logic) CreateTopic(ctx context.Context, categoryID int64, topic *anekdotas.Topic) (name string, err error) {
+	return l.repo.CreateTopic(ctx, categoryID, topic)
 }
 
 func (l *Logic) GetAllCategories(ctx context.Context) ([]*anekdotas.Category, error) {

@@ -80,7 +80,11 @@ func (h *handlers) UploadMedia(c echo.Context) error {
 }
 
 func (h *handlers) GetTopics(c echo.Context) error {
-	topics, err := h.logic.GetAllTopics(c.Request().Context())
+	categoryID, err := strconv.Atoi(c.Param("category"))
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Invalid Category ID")
+	}
+	topics, err := h.logic.GetTopicsByCategory(c.Request().Context(), int64(categoryID))
 	if err != nil {
 		c.Logger().Error(err)
 		return err
@@ -95,11 +99,15 @@ func (h *handlers) GetTopics(c echo.Context) error {
 }
 
 func (h *handlers) CreateTopic(c echo.Context) error {
+	categoryID, err := strconv.Atoi(c.Param("category"))
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Invalid Category ID")
+	}
 	topic := new(Topic)
 	if err := c.Bind(topic); err != nil {
 		return err
 	}
-	name, err := h.logic.CreateTopic(c.Request().Context(), &anekdotas.Topic{
+	name, err := h.logic.CreateTopic(c.Request().Context(), int64(categoryID), &anekdotas.Topic{
 		Name:   topic.Name,
 		Author: topic.Author,
 		// TODO: AN-36 - add question_per_game
