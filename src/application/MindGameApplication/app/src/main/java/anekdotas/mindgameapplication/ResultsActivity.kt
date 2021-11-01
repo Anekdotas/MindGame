@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
-import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 
 // TODO: 10/2/2021  (add a background for the results screen, something that looks proper, right now it uses the

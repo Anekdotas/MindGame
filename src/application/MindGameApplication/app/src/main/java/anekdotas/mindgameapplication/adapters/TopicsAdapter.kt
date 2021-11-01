@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import anekdotas.mindgameapplication.QuestionsActivity
-import anekdotas.mindgameapplication.QuestionsProtoActivity
 import anekdotas.mindgameapplication.R
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.network.TopicModel
+import anekdotas.mindgameapplication.objects.CategoriesObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.TopicsObject
 import retrofit2.Call
@@ -45,8 +45,7 @@ class TopicsAdapter (var topics: List<TopicModel>? = TopicsObject.topicList) : R
     }
 
     private fun callNetwork(name : String) {
-        Log.d("url", "http://193.219.91.103:7537/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
-        val client = ApiClient.apiService.getProperQuestions("http://193.219.91.103:7537/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
+        val client = ApiClient.apiService.getProperQuestions("http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
         client.enqueue(object : Callback<List<QuestionModel>> {
             override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
                 if(response.isSuccessful){

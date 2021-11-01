@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.databinding.ActivityRegisterBinding
 import anekdotas.mindgameapplication.objects.UserObjectConst
 
@@ -31,11 +30,11 @@ class RegisterActivity : AppCompatActivity() {
                     "Welcome ${binding.username.text.toString()}",
                     Toast.LENGTH_SHORT
                 ).show()
-                val intent = Intent(this, ListTopicsActivity::class.java)
-                UserObjectConst.USERNAME = binding.username.text.toString()
+                val intent = Intent(this, ListCategoriesActivity::class.java)
+                UserObjectConst.usernameRegister = binding.username.text.toString()
                 intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
                 intent.putExtra(
-                    UserObjectConst.PASSWORD,
+                    UserObjectConst.passwordRegister,
                     binding.password.text.toString()
                 )// sends the username/password to other activities, delete later
                 Thread.sleep(25)
