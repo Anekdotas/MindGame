@@ -11,9 +11,14 @@ type Question struct {
 }
 
 type Topic struct {
-	ID     int    `json:"id,omitempty" query:"id" param:"id"`
+	ID     int64  `json:"id,omitempty" query:"id" param:"id"`
 	Name   string `json:"name"`
 	Author string `json:"author"`
+}
+
+type Category struct {
+	ID   int64  `json:"id,omitempty" query:"id" param:"id"`
+	Name string `json:"name"`
 }
 
 type API struct {

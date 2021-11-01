@@ -11,7 +11,7 @@ import (
 )
 
 type Logic struct {
-	repo           repository.Repository
+	repo       repository.Repository
 	mediaDir   string
 	hostPrefix string
 }
@@ -60,4 +60,8 @@ func (l *Logic) GetAllTopics(ctx context.Context) ([]*anekdotas.Topic, error) {
 
 func (l *Logic) CreateTopic(ctx context.Context, topic *anekdotas.Topic) (name string, err error) {
 	return l.repo.CreateTopic(ctx, topic)
+}
+
+func (l *Logic) GetAllCategories(ctx context.Context) ([]*anekdotas.Category, error) {
+	return l.repo.GetCategories(ctx)
 }

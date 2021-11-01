@@ -6,9 +6,9 @@ import (
 	"anekdotas"
 )
 
-// deriveFmapTopics returns a list where each element of the input list has been morphed by the input function.
-func deriveFmapTopics(f func(*anekdotas.Topic) *Topic, list []*anekdotas.Topic) []*Topic {
-	out := make([]*Topic, len(list))
+// deriveFmapCategories returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapCategories(f func(*anekdotas.Category) *Category, list []*anekdotas.Category) []*Category {
+	out := make([]*Category, len(list))
 	for i, elem := range list {
 		out[i] = f(elem)
 	}
@@ -18,6 +18,15 @@ func deriveFmapTopics(f func(*anekdotas.Topic) *Topic, list []*anekdotas.Topic) 
 // deriveFmapQuestions returns a list where each element of the input list has been morphed by the input function.
 func deriveFmapQuestions(f func(*anekdotas.Question) *Question, list []*anekdotas.Question) []*Question {
 	out := make([]*Question, len(list))
+	for i, elem := range list {
+		out[i] = f(elem)
+	}
+	return out
+}
+
+// deriveFmapTopics returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapTopics(f func(*anekdotas.Topic) *Topic, list []*anekdotas.Topic) []*Topic {
+	out := make([]*Topic, len(list))
 	for i, elem := range list {
 		out[i] = f(elem)
 	}

@@ -102,11 +102,25 @@ func (h *handlers) CreateTopic(c echo.Context) error {
 	name, err := h.logic.CreateTopic(c.Request().Context(), &anekdotas.Topic{
 		Name:   topic.Name,
 		Author: topic.Author,
-		//TODO: AN-36 - add question_per_game
+		// TODO: AN-36 - add question_per_game
 	})
 	if err != nil {
 		c.Logger().Error(err)
 		return err
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{"name": name})
+}
+
+func (h *handlers) GetCategories(c echo.Context) error {
+	categories, err := h.logic.GetAllCategories(c.Request().Context())
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	return c.JSON(http.StatusOK, deriveFmapCategories(func(cat *anekdotas.Category) *Category {
+		return &Category{
+			ID:   cat.ID,
+			Name: cat.Name,
+		}
+	}, categories))
 }
