@@ -9,7 +9,12 @@ type Question struct {
 }
 
 type Topic struct {
-	ID     int
+	ID     int64
 	Name   string
 	Author string
+}
+
+type Category struct {
+	ID   int64
+	Name string
 }

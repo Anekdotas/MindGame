@@ -3,6 +3,7 @@ package db
 import (
 	"anekdotas"
 	"context"
+	"database/sql"
 	"fmt"
 	"github.com/lib/pq"
 )
@@ -13,7 +14,7 @@ type QuestionRecord struct {
 	ID            int64          `db:"id"`
 	TopicID       int            `db:"topic_id"`
 	Text          string         `db:"text"`
-	MediaURL      string         `db:"media_url"`
+	MediaURL      sql.NullString `db:"media_url"`
 	CorrectAnswer int            `db:"correct_answer"`
 	Answers       pq.StringArray `db:"answers"`
 
@@ -34,7 +35,7 @@ func (r *Repo) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdo
 		return &anekdotas.Question{
 			ID:            record.ID,
 			Text:          record.Text,
-			MediaURL:      record.MediaURL,
+			MediaURL:      record.MediaURL.String,
 			CorrectAnswer: record.CorrectAnswer,
 			Answers:       record.Answers,
 		}

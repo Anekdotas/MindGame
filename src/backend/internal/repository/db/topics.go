@@ -7,42 +7,46 @@ import (
 )
 
 type TopicRecord struct {
-	ID               int    `db:"id"`
+	ID               int64  `db:"id"`
 	Name             string `db:"name"`
+	CategoryID       int64  `db:"category_id"`
 	Author           string `db:"author"`
 	QuestionsPerGame int    `db:"questions_per_game"`
 }
 
 const TopicsTableName = "topics"
 
-func (r *Repo) GetTopics(ctx context.Context) ([]*anekdotas.Topic, error) {
-	stmt := fmt.Sprintf("SELECT id, name FROM %s", TopicsTableName)
+func (r *Repo) GetTopicsByCategoryID(ctx context.Context, categoryID int64) ([]*anekdotas.Topic, error) {
+	stmt := fmt.Sprintf("SELECT id, name, author FROM %s WHERE category_id = ?", TopicsTableName)
 	records := make([]*TopicRecord, 0)
-	if err := r.db.SelectContext(ctx, &records, stmt); err != nil {
+	if err := r.db.SelectContext(ctx, &records, r.db.Rebind(stmt), categoryID); err != nil {
 		return nil, err
 	}
 	return deriveFmapTRecordToModel(func(record *TopicRecord) *anekdotas.Topic {
 		return &anekdotas.Topic{
 			ID:     record.ID,
 			Name:   record.Name,
+			Author: record.Author,
 		}
 	}, records), nil
 }
 
-func (r *Repo) CreateTopic(ctx context.Context, topic *anekdotas.Topic) (name string, err error) {
+func (r *Repo) CreateTopic(ctx context.Context, categoryID int64, topic *anekdotas.Topic) (name string, err error) {
 	stmt := fmt.Sprintf(
 		`INSERT INTO %s
-		(name, author, questions_per_game)
+		(name, author, category_id, questions_per_game)
 		VALUES (
 			:name,
 			:author,
+			:category_id,
 			:questions_per_game
 		) RETURNING name`,
 		TopicsTableName,
 	)
 	record := &TopicRecord{
-		Name:             topic.Name,
-		Author:           topic.Author,
+		Name:       topic.Name,
+		Author:     topic.Author,
+		CategoryID: categoryID,
 		// TODO: AN-36 - use actual questions_per_game
 		QuestionsPerGame: 10,
 	}
