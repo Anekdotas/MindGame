@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
                     "Welcome ${binding.username.text.toString()}",
                     Toast.LENGTH_SHORT
                 ).show()
-                val intent = Intent(this, ListTopicsActivity::class.java)
+                val intent = Intent(this, ListCategoriesActivity::class.java)
                 UserObjectConst.usernameRegister = binding.username.text.toString()
                 intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
                 intent.putExtra(

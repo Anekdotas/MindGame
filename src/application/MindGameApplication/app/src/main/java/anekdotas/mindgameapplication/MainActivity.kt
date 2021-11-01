@@ -49,14 +49,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "No Password Selected", Toast.LENGTH_SHORT).show()
             }
             else {
-                val prefs = getSharedPreferences("UserData", MODE_PRIVATE)
-                val editor = prefs.edit()
-                editor.putString("username", binding.username.text.toString())
-                editor.putString("password", binding.password.text.toString())
-                editor.apply()
-
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, ListTopicsActivity::class.java)
+                val intent = Intent(this, ListCategoriesActivity::class.java)
                 UserObjectConst.USERNAME = binding.username.text.toString()
                 intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
                 intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later

@@ -27,6 +27,8 @@ object ApiClient {
 }
 
 interface ApiServices {
+    @GET("/categories")
+    fun getCategories(): Call<List<CategoryModel>>
     @GET("/topics")
     fun getTopics(): Call<List<TopicModel>>
     @GET

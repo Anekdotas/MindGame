@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
+import anekdotas.mindgameapplication.ListTopicsActivity
 import anekdotas.mindgameapplication.QuestionsActivity
 import anekdotas.mindgameapplication.QuestionsProtoActivity
 import anekdotas.mindgameapplication.R
@@ -22,42 +23,41 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class CategoriesAdapter(var topics: List<CategoryModel>? = CategoriesObject.categoryList) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.categoryList) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.topic_button, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_button, parent, false)
         return CategoryViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return topics!!.size
+        return categories!!.size
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.itemView.apply{
             val button = findViewById<Button>(R.id.btn_topic_selection)
-            button.text =  topics!![position].topicName
+            button.text =  categories!![position].categoryName
             button.setOnClickListener{Log.d("Buttons", "ButtonClicked")
                 //TopicsObject.selectedTopic = topics!![position]
-                callNetwork(TopicsObject.selectedTopic!!.topicName)
+                callNetworkTopics(CategoriesObject.selectedCategory!!.id)
                 Thread.sleep(100)
-                context.startActivity(Intent(context, QuestionsActivity::class.java))
+                context.startActivity(Intent(context, ListTopicsActivity::class.java))
             }
         }
     }
 
-    private fun callNetwork(name : String) {
-        Log.d("url", "http://193.219.91.103:7537/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
-        val client = ApiClient.apiService.getProperQuestions("http://193.219.91.103:7537/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
-        client.enqueue(object : Callback<List<QuestionModel>> {
-            override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
+    private fun callNetworkTopics(id : Int) {
+        val client = ApiClient.apiService.getProperQuestions("http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory.id}/topics")
+        client.enqueue(object : Callback<List<TopicModel>> {
+            override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){
-                    QuestionsObject.questionList = response.body()
-                    Log.d("url2", ""+response.body())
-                    Log.d("url3", ""+QuestionsObject.questionList.toString())
+                    Log.d("TestTopics! ", ""+ response.body())
+                    TopicsObject.topicList = response.body()
+                    Log.d("TestTopicBody! ", ""+ TopicsObject.topicList)
                 }
             }
-            override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
+            override fun onFailure(call: Call<List<TopicModel>>, response: Throwable) {
                 Log.e("Something went wrong! ", ""+response.message)
             }
         })
