@@ -10,4 +10,7 @@ object RandomGen {
     fun giveRandomGood(): Int {
         return Random.nextInt(0, HostObject.host.goodAnswers.size)
     }
+    fun chancer(chance : Int) : Boolean {  //chance has to be from 0 to 100
+        return Random.nextInt(0, 100)<chance
+    }
 }

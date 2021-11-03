@@ -8,6 +8,7 @@ import android.view.View
 import android.view.View.*
 import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
+import anekdotas.mindgameapplication.helpers.RandomGen
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
