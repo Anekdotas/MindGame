@@ -10,9 +10,11 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
+import anekdotas.mindgameapplication.helpers.RandomGen
 import anekdotas.mindgameapplication.java.ChatAdapter
 import anekdotas.mindgameapplication.java.Message
 import anekdotas.mindgameapplication.network.QuestionModel
+import anekdotas.mindgameapplication.objects.HostObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 
@@ -139,12 +141,12 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
-                        messageList.add(Message("Professor Lazgov", "You stoopid?", R.drawable.bred))
+                        messageList.add(Message(HostObject.host.hostName, HostObject.host.badAnswers[RandomGen.giveRandomBad()], R.drawable.bred))
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
-                        messageList.add(Message("Professor Lazgov", "Well...done?", R.drawable.bred))
+                        messageList.add(Message(HostObject.host.hostName, HostObject.host.goodAnswers[RandomGen.giveRandomGood()], R.drawable.bred))
                     } //IF THE ANSWER WAS CORRECT
 
                     answerView(question.answer, R.drawable.correct_option_bg) //COLORS THE CORRECT
