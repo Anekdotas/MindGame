@@ -6,7 +6,7 @@ object HostObject {
     val host = HostModel("Professor Lazgov", //Hostname
 
         //Good Answers
-        listOf("good",
+        listOf("${UserObjectConst.USERNAME} you make me happy",
             "acceptable",
             "nice"),
 
@@ -16,10 +16,9 @@ object HostObject {
             "This answer is really emotional but it makes no sense to me",
             "I’ll never forget the first time we met. But I’ll keep trying.",
             "You know you remind me of my 2 year old son. You both have the same level of brain capacity",
-            "Hold still. I’m trying to imagine you with a brain.",
+            "Hold still. I’m trying to imagine you with a brain",
             "You are stupid. Oh come one please do not be mad, I’m not insulting you, I’m describing you",
             "Wrong!",
-            "Don’t worry about me. Worry about your eyebrows. Oh wait I supposed to insult your answer",
             "Wrong again... Don’t get bitter, just get better",
             "Somewhere out there is a tree tirelessly producing oxygen for you. You owe it an apology",
             "Can't answer anything correctly? Well that sounds like a you problem",

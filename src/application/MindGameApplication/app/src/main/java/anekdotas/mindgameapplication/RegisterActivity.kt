@@ -18,28 +18,32 @@ class RegisterActivity : AppCompatActivity() {
 
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
-            if (binding.username.text.toString().isEmpty()) {
-                Toast.makeText(this@RegisterActivity, "No Username Selected", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (binding.password.text.toString().isEmpty()) {
-                Toast.makeText(this@RegisterActivity, "No Password Selected", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "Welcome ${binding.username.text.toString()}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                val intent = Intent(this, ListCategoriesActivity::class.java)
-                UserObjectConst.usernameRegister = binding.username.text.toString()
-                intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
-                intent.putExtra(
-                    UserObjectConst.passwordRegister,
-                    binding.password.text.toString()
-                )// sends the username/password to other activities, delete later
-                Thread.sleep(25)
-                startActivity(intent)
-                finish()
+            when {
+                binding.username.text.toString().isEmpty() -> {
+                    Toast.makeText(this@RegisterActivity, "No Username Selected", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                binding.password.text.toString().isEmpty() -> {
+                    Toast.makeText(this@RegisterActivity, "No Password Selected", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                else -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Welcome ${binding.username.text.toString()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val intent = Intent(this, ListCategoriesActivity::class.java)
+                    UserObjectConst.usernameRegister = binding.username.text.toString()
+                    intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
+                    intent.putExtra(
+                        UserObjectConst.passwordRegister,
+                        binding.password.text.toString()
+                    )// sends the username/password to other activities, delete later
+                    Thread.sleep(25)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
     }

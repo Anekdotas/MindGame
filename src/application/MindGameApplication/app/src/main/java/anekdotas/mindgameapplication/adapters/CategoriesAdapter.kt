@@ -19,7 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.categoryList) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+class CategoriesAdapter(private var categories: List<CategoryModel>? = CategoriesObject.categoryList) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.category_button, parent, false)
@@ -36,15 +36,15 @@ class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.
             button.text =  categories!![position].categoryName
             button.setOnClickListener{Log.d("Buttons", "ButtonClicked")
                 CategoriesObject.selectedCategory = categories!![position]
-                callNetworkTopics(CategoriesObject.selectedCategory!!.id)
+                callNetworkTopics()
                 Thread.sleep(100)
                 context.startActivity(Intent(context, ListTopicsActivity::class.java))
             }
         }
     }
 
-    private fun callNetworkTopics(id : Int) {
-        Log.d("Testurl! ", ""+ "http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory!!.id}/topics")
+    private fun callNetworkTopics() {
+        Log.d("TestUrl! ", ""+ "http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory!!.id}/topics")
         val client = ApiClient.apiService.getTopics("http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory!!.id}/topics")
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {

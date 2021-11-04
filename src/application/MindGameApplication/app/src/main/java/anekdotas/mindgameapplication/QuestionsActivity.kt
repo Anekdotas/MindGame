@@ -20,7 +20,7 @@ import anekdotas.mindgameapplication.objects.UserObjectConst
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuestionsBinding
-    var messageList =  ArrayList<Message>()
+    private var messageList =  ArrayList<Message>()
     // Variables to allow user to navigate through the questions
     private var myPosition = 1 //current question position
     private var myQuestionsList: MutableList<QuestionModel>? = null //list of questions
@@ -90,6 +90,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_optionA -> {

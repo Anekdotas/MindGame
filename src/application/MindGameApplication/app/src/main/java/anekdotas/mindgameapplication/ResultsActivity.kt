@@ -26,7 +26,7 @@ class ResultsActivity : AppCompatActivity() {
         val myCorrectAnswers = intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
 
-        binding.btnFinish.setOnClickListener(){
+        binding.btnFinish.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

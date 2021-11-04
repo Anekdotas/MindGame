@@ -20,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class TopicsAdapter (var topics: List<TopicModel>? = TopicsObject.topicList) : RecyclerView.Adapter<TopicsAdapter.TopicViewHolder>() {
+class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicList) : RecyclerView.Adapter<TopicsAdapter.TopicViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.topic_button, parent, false)
@@ -37,14 +37,14 @@ class TopicsAdapter (var topics: List<TopicModel>? = TopicsObject.topicList) : R
             button.text =  topics!![position].topicName
             button.setOnClickListener{Log.d("Buttons", "ButtonClicked")
                 TopicsObject.selectedTopic = topics!![position]
-                callNetwork(TopicsObject.selectedTopic!!.topicName)
+                callNetwork()
                 Thread.sleep(100)
                 context.startActivity(Intent(context, QuestionsActivity::class.java))
             }
         }
     }
 
-    private fun callNetwork(name : String) {
+    private fun callNetwork() {
         val client = ApiClient.apiService.getProperQuestions("http://193.219.91.103:7537/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
         client.enqueue(object : Callback<List<QuestionModel>> {
             override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {

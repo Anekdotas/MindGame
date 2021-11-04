@@ -66,7 +66,7 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.llProgress.progress = myPosition
         binding.tvProgress.text = "$myPosition" + "/" + myQuestionsList!!.size
-        binding.tvQuestion.text = question!!.question
+        binding.tvQuestion.text = question.question
         //Checks if there is an image otherwise uses default
             binding.ivQuestionImage.load(question.image)
         binding.tvOptionA.text = question.options[0]
