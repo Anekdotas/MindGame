@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<CategoryModel>>, response: Response<List<CategoryModel>>) {
                 if(response.isSuccessful){
                     Log.d("TestCategories! ", ""+ response.body())
-                    CategoriesObject.categoryList = response.body()
+                    CategoriesObject.categoryList = response.body()!!
                     Log.d("TestCategoryBody! ", ""+ CategoriesObject.categoryList)
                 }
             }

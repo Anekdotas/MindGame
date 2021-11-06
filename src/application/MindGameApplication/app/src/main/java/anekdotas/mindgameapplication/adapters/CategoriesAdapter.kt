@@ -50,7 +50,7 @@ class CategoriesAdapter(private var categories: List<CategoryModel>? = Categorie
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){
                     Log.d("TestTopics! ", ""+ response.body())
-                    TopicsObject.topicList = response.body()
+                    TopicsObject.topicList = response.body()!!
                     Log.d("TestTopicBody! ", ""+ TopicsObject.topicList)
                 }
             }
