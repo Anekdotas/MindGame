@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         callNetworkCategories()
         setContentView(binding.root)
         window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
+        val networkOnline = isNetworkAvailable(this)
 
         binding.tvRegistration.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)
@@ -33,8 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
-            if(isNetworkAvailable(this)){
-                callNetworkCategories()
+            if(networkOnline){
                 when {
                     binding.username.text.toString().isEmpty() -> {
                         Toast.makeText(this@MainActivity, "No Username Selected", Toast.LENGTH_SHORT).show()
