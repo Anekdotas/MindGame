@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context=".ListCategoriesActivity">
+
+    <include layout="@layout/action_bar"
+        android:id="@+id/action_bar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategoryRecycler"
@@ -14,6 +17,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/action_bar"
+        android:padding="10dp" />
+
+    <!--
+    In rvCategoryRecycler
+    'layout_height="wrap_content"' might be the reason why
+    it cuts some options, it can be tested only if there is
+    more topics. If that happens - change it back to 0dp
+ -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

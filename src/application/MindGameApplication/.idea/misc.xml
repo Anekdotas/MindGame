@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/custom_button.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/default_option_bg.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.246875" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/ic_profile.xml" value="0.4" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/ic_shop.xml" value="0.3177083333333333" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/selected_option_bg.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/action_bar.xml" value="0.36820652173913043" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_list_categories.xml" value="0.328804347826087" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_list_topics.xml" value="0.28894927536231885" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_main.xml" value="0.26856884057971014" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_main_menu.xml" value="0.3938106796116505" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_questions.xml" value="0.264" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_questions_proto.xml" value="0.26856884057971014" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_register.xml" value="0.328804347826087" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_results.xml" value="0.3026565464895636" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/category_button.xml" value="0.536" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/test_layout.xml" value="0.28177083333333336" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/topic_button.xml" value="0.29322916666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK" />
+</project>
