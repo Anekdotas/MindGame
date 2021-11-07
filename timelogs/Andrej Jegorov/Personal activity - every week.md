@@ -158,3 +158,44 @@
 |           | 16:04 - 16:12   | 08 min        | Formatting SE 2nd delivery document    |
 |  | **Total:** | **16h 13min** | |
 
+
+## Week 9 (Oct. 25 - Oct. 31)
+
+| **Date**  | **Time**      | **Duration**  | **Activity** |
+| --------  | ------------- | ------------  | ------------ |
+|  Oct. 25 | 17:14 - 19:02 | 108 min |  AN-12 creating message object  | 
+|   | 19:00 - 19:39 | 39 min |  Group meeting  | 
+|   | 21:42 - 21:51 | 9 min |  SE weekly report  | 
+|   | 21:51 - 22:29 | 38 min |  Structuring weekly notes and pushing them to GitLab  | 
+|  Oct. 26 | 18:27 - 19:17 | 50 min |  AN-12 Trying to display custom ListView element  | 
+|   | 19:38 - 19:48 | 11 min |  AN-12 Trying to display custom ListView element  | 
+|   | 19:49 - 20:03 | 13 min |  AN-12 modifying custom ListView element  | 
+|   | 20:05 - 20:16 | 11 min |  Showing ChatInterface progress  | 
+|  Oct. 27 | 12:07 - 12:33 | 26 min |  AN-12 modifying custom ListView element  | 
+|   | 19:02 - 20:13 | 71 min |  AN-12 modifying custom ListView element  | 
+|  Oct. 30 | 15:01 - 16:25 | 84 min |  AN-12 implementing the way to display custom profile pictures  | 
+|   | 16:29 - 17:01 | 32 min |  Working on the contents of the Chat-interface branch  | 
+| 	    |		    |		    | `Deleting old project, including only needed files` |
+|   | 18:32 - 20:07 | 96 min |  Group meeting  | 
+|  | **Total:** | **9h 48min** | |
+
+## Week 10 (Nov. 1 - Nov. 7)
+
+| **Date**  | **Time**      | **Duration**  | **Activity** |
+| --------  | ------------- | ------------  | ------------ |
+|  Nov. 03 | 09:17 - 09:24 | 7 min |  Preparing for work  | 
+|   | 09:24 - 10:52 | 88 min |  AN-72 Creating MainMenu activity  | 
+|   | 10:53 - 11:09 | 16 min |  AN-73 Researching and designing  | 
+|   | 11:23 - 11:53 | 30 min |  AN-73 Researching and designing  | 
+|   | 12:35 - 14:36 | 121 min |  AN-73 Designing solving copyright issues"  | 
+|   | 14:36 - 15:40 | 63 min |  AN-73 Improving Results/Listing activity interface  | 
+|   | 16:06 - 18:29 | 143 min |  AN-73 Improving Results/Listing activity interface  | 
+|   | 18:30 - 20:01 | 91 min |  Group meeting  | 
+|  Nov. 05 | 08:31 - 11:06 | 155 min |  AN-72 Making MainMenu activity auto scalable  | 
+|   | 11:06 - 11:58 | 53 min |  AN-72 Making text auto scalable  | 
+|   | 15:07 - 15:40 | 33 min |  API and performance issues  | 
+|    | 15:41 - 16:22 | 41 min |  AN-71  | 
+| Nov. 06 | 17:27 - 18:53 | 86 min |  AN-71  | 
+|   | 18:53 - 20:42 | 109 min |  AN-73 Modifying buttons  | 
+|   | 21:01 - 21:13 | 12 min |  "Writing down changes; creating merge request"  | 
+|  | **Total:** | **17h 28min** | |
