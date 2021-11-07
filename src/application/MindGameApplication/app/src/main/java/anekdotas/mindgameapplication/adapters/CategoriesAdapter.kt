@@ -39,6 +39,12 @@ class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.
                 callNetworkTopics(CategoriesObject.selectedCategory!!.id)
                 Thread.sleep(100)
                 context.startActivity(Intent(context, ListTopicsActivity::class.java))
+                //TODO (same for "TopicsAdapter")
+                // We need to finish() this activity after we
+                // open "ListTopicsActivity" as otherwise this activity
+                // stays alive and user can return to it by pressing "back"
+                // button (the Android default one - which is triangle)
+                // P. S. but now user can return back by pressing "back" button
             }
         }
     }

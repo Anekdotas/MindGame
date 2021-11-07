@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, ListCategoriesActivity::class.java)
+//                val intent = Intent(this, ListCategoriesActivity::class.java)     //this intent was used before MainMenu is created, delete if there is no issues found
+                val intent = Intent(this, MainMenu::class.java)                       //new intent
                 UserObjectConst.USERNAME = binding.username.text.toString()
                 intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
                 intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later
