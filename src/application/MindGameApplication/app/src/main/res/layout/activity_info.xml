@@ -88,7 +88,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_difficulty"
-        android:layout_width="350dp"
+        app:cardUseCompatPadding="true"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:cardCornerRadius="8dp"
@@ -112,7 +113,7 @@
                 android:padding="5dp"
                 android:text="Moderate"
                 android:textColor="#363A43"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

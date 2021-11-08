@@ -1,6 +1,7 @@
 package anekdotas.mindgameapplication
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import anekdotas.mindgameapplication.databinding.ActivityInfoBinding
@@ -18,6 +19,22 @@ class InfoActivity : AppCompatActivity() {
         binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
         binding.tvDesc.text = TopicsObject.selectedTopic.description
         binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
+
+        when (TopicsObject.selectedTopic.difficulty) {
+            0 -> {
+                binding.cvDifficulty.setCardBackgroundColor(Color.rgb(119,221,119))
+                binding.tvDifficulty.text = "Easy"
+            }
+            1 -> {
+                binding.cvDifficulty.setCardBackgroundColor(Color.rgb(253, 253, 150))
+                binding.tvDifficulty.text = "Moderate"
+            }
+            2 -> {
+                binding.cvDifficulty.setCardBackgroundColor(Color.rgb(255, 105, 97))
+                binding.tvDifficulty.text = "Hard"
+            }
+        }
+
 
         binding.btnPlay.setOnClickListener {
             val intent = Intent(this, QuestionsActivity::class.java)
