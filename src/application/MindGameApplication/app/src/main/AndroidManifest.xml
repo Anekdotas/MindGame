@@ -15,10 +15,12 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".InfoActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".CreatorActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".ListCategoriesActivity"
             android:exported="true"

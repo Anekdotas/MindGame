@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import anekdotas.mindgameapplication.InfoActivity
 import anekdotas.mindgameapplication.MainActivity
 import anekdotas.mindgameapplication.QuestionsActivity
 import anekdotas.mindgameapplication.R
@@ -43,7 +44,7 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
                     TopicsObject.selectedTopic = topics!![position]
                     callNetwork()
                     Thread.sleep(100)
-                    context.startActivity(Intent(context, QuestionsActivity::class.java))
+                    context.startActivity(Intent(context, InfoActivity::class.java))
                 }
                 else{
                     Toast.makeText(context, "No Internet Connection\nPlease restart the application with internet connection", Toast.LENGTH_LONG).show()

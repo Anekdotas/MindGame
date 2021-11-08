@@ -1,5 +1,6 @@
 package anekdotas.mindgameapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import anekdotas.mindgameapplication.databinding.ActivityInfoBinding
@@ -17,5 +18,10 @@ class InfoActivity : AppCompatActivity() {
         binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
         binding.tvDesc.text = TopicsObject.selectedTopic.description
 
+        binding.btnPlay.setOnClickListener {
+            val intent = Intent(this, QuestionsActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

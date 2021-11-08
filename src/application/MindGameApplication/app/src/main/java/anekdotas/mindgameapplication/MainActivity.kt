@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val networkOnline = isNetworkAvailable(this)
 
         binding.tvRegistration.setOnClickListener{
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, CreatorActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later
                         Thread.sleep(100)
                         startActivity(intent)
-                        finish()
                     }
                 }
             }

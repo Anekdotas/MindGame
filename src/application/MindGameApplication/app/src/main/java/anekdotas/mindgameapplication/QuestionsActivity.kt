@@ -120,7 +120,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
-                            startActivity(intent) // ENDS THE QUIZ
+                            startActivity(intent)
+                            finish()// ENDS THE QUIZ
                         }
                     }
                 } else {
