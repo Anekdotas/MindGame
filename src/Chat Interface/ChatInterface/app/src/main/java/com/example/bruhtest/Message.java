@@ -4,15 +4,25 @@ public class Message {
     private String author;
     private String text;
     private int profPicSource;
+    private int questionPicture;
 
-    public Message(String author, String text, int profPicSource) {
+    public Message(String author, String text, int profPicSource, int questionPicture) {
         this.author = author;
         this.text = text;
         this.profPicSource = profPicSource;
+        this.questionPicture = questionPicture;
     }
 
     public String getAuthor() {
         return author;
+    }
+
+    public int getQuestionPicture() {
+        return questionPicture;
+    }
+
+    public void setQuestionPicture(int questionPicture) {
+        this.questionPicture = questionPicture;
     }
 
     public void setAuthor(String author) {

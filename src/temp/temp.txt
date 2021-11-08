@@ -1,2 +1,0 @@
-temp file for project generation
-remove when serverside will be started to be made
