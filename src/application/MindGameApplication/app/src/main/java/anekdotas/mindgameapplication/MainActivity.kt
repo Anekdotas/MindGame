@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnTest.setOnClickListener{
-            val intent = Intent(this, CreatorActivity::class.java)
+            val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
             finish()
         }

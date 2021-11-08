@@ -14,6 +14,9 @@
         android:theme="@style/Theme.MindGameApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".InfoActivity"
+            android:exported="true" />
+        <activity
             android:name=".CreatorActivity"
             android:exported="true" />
         <activity

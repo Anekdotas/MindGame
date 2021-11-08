@@ -10,5 +10,5 @@ data class TopicModel (
     val author: String,
     var rating: Double = 3.5,
     val description: String = "let's say Andrej, God forbid, you kill someone",
-    val imageUrl: String = "https://media.discordapp.net/attachments/335798016860487682/907228802202083328/Custom.png"
+    val imageUrl: String = "https://cdn.discordapp.com/attachments/335798016860487682/907239394807791676/download.jpg"
 )
