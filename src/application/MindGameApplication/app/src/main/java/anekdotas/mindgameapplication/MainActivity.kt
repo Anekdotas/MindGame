@@ -32,6 +32,12 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.btnTest.setOnClickListener{
+            val intent = Intent(this, CreatorActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
             if(networkOnline){

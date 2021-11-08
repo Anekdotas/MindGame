@@ -45,7 +45,7 @@ class CategoriesAdapter(private var categories: List<CategoryModel>? = Categorie
                     Thread.sleep(100)
                     context.startActivity(Intent(context, ListTopicsActivity::class.java))
                 }
-                else{
+                else {
                     Toast.makeText(context, "No Internet Connection\nPlease restart the application with internet connection", Toast.LENGTH_LONG).show()
                 }
             }

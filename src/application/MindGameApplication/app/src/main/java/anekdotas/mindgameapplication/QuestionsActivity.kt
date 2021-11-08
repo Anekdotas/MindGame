@@ -35,7 +35,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
-        myQuestionsList = QuestionsObject.questionList?.toMutableList()
+        myQuestionsList = QuestionsObject.questionList.toMutableList()
         setQuestion()
 
         binding.tvOptionA.setOnClickListener(this)
