@@ -11,5 +11,5 @@ data class TopicModel (
     var rating: Double = 3.5,
     val description: String = "let's say Andrej, God forbid, you kill someone",
     val imageUrl: String = "https://cdn.discordapp.com/attachments/335798016860487682/907239394807791676/download.jpg",
-    val difficulty: Int = 0
+    val difficulty: Int = 1
 )
