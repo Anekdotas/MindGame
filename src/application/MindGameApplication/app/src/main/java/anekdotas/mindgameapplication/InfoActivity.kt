@@ -17,6 +17,7 @@ class InfoActivity : AppCompatActivity() {
         binding.tvTopicName.text = TopicsObject.selectedTopic.topicName
         binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
         binding.tvDesc.text = TopicsObject.selectedTopic.description
+        binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
 
         binding.btnPlay.setOnClickListener {
             val intent = Intent(this, QuestionsActivity::class.java)
