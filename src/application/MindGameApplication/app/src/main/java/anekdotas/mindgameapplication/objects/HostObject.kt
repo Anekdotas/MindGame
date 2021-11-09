@@ -22,5 +22,8 @@ object HostObject {
             "Wrong again... Don’t get bitter, just get better",
             "Somewhere out there is a tree tirelessly producing oxygen for you. You owe it an apology",
             "Can't answer anything correctly? Well that sounds like a you problem",
-            "You have an entire life to be an idiot. Why not take today off?"))
+            "You have an entire life to be an idiot. Why not take today off?"),
+
+        listOf("The motherfucker took all the cake")
+        )
 }
