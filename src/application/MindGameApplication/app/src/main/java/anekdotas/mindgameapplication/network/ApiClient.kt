@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 object ApiClient {
-    private const val BASE_URL = "http://193.219.91.103:7537/" //change to path if question location would change
+    private const val BASE_URL = "https://193.219.91.103:6524/" //change to path if question location would change
 
     private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
