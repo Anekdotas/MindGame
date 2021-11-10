@@ -24,6 +24,8 @@ object HostObject {
             "Can't answer anything correctly? Well that sounds like a you problem",
             "You have an entire life to be an idiot. Why not take today off?"),
 
-        listOf("The motherfucker took all the cake")
+        listOf("Took all the cake",
+            "Test Test",
+            "Ok then moving on...")
         )
 }
