@@ -1,6 +1,9 @@
 package api
 
-import "anekdotas/internal/logic"
+import (
+	"anekdotas/internal/api/handlers"
+	"anekdotas/internal/logic"
+)
 
 type Question struct {
 	ID            int64    `json:"id,omitempty" query:"id" param:"id"`
@@ -22,11 +25,11 @@ type Category struct {
 }
 
 type API struct {
-	handlers *handlers
+	handlers *handlers.Handlers
 }
 
 func New(logic *logic.Logic) *API {
 	return &API{
-		handlers: newHandlers(logic),
+		handlers: handlers.New(logic),
 	}
 }
