@@ -3,30 +3,41 @@ package db
 import (
 	"anekdotas"
 	"context"
+	"database/sql"
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 type TopicRecord struct {
-	ID               int64  `db:"id"`
-	Name             string `db:"name"`
-	CategoryID       int64  `db:"category_id"`
-	Author           string `db:"author"`
-	QuestionsPerGame int    `db:"questions_per_game"`
+	ID               int64          `db:"id"`
+	Name             string         `db:"name"`
+	Description      string         `db:"description"`
+	CategoryID       int64          `db:"category_id"`
+	Author           string         `db:"author"`
+	QuestionsPerGame int            `db:"questions_per_game"`
+	ImageURL         sql.NullString `db:"image_url"`
+	Difficulty       int            `db:"difficulty"`
 }
 
 const TopicsTableName = "topics"
 
 func (r *Repo) GetTopicsByCategoryID(ctx context.Context, categoryID int64) ([]*anekdotas.Topic, error) {
-	stmt := fmt.Sprintf("SELECT id, name, author FROM %s WHERE category_id = ?", TopicsTableName)
+	stmt := fmt.Sprintf("SELECT id, name, description, author, image_url, difficulty FROM %s WHERE category_id = ?", TopicsTableName)
 	records := make([]*TopicRecord, 0)
 	if err := r.db.SelectContext(ctx, &records, r.db.Rebind(stmt), categoryID); err != nil {
 		return nil, err
 	}
+	rand.Seed(time.Now().Unix())
 	return deriveFmapTRecordToModel(func(record *TopicRecord) *anekdotas.Topic {
 		return &anekdotas.Topic{
-			ID:     record.ID,
-			Name:   record.Name,
-			Author: record.Author,
+			ID:          record.ID,
+			Name:        record.Name,
+			Description: record.Description,
+			Author:      record.Author,
+			Rating:      rand.Float32() * 5,
+			ImageURL:    record.ImageURL.String,
+			Difficulty:  record.Difficulty,
 		}
 	}, records), nil
 }
@@ -34,21 +45,33 @@ func (r *Repo) GetTopicsByCategoryID(ctx context.Context, categoryID int64) ([]*
 func (r *Repo) CreateTopic(ctx context.Context, categoryID int64, topic *anekdotas.Topic) (name string, err error) {
 	stmt := fmt.Sprintf(
 		`INSERT INTO %s
-		(name, author, category_id, questions_per_game)
+		(name, author, description, category_id, questions_per_game, image_url, difficulty)
 		VALUES (
 			:name,
 			:author,
+			:description,
 			:category_id,
 			:questions_per_game
+			:image_url,
+			:difficulty
 		) RETURNING name`,
 		TopicsTableName,
 	)
+	imageURL := sql.NullString{}
+	if topic.ImageURL != "" {
+		imageURL.String = topic.ImageURL
+		imageURL.Valid = true
+	}
 	record := &TopicRecord{
-		Name:       topic.Name,
-		Author:     topic.Author,
-		CategoryID: categoryID,
+		Name:        topic.Name,
+		Author:      topic.Author,
+		Description: topic.Description,
+		CategoryID:  categoryID,
 		// TODO: AN-36 - use actual questions_per_game
 		QuestionsPerGame: 10,
+		ImageURL:         imageURL,
+		// TODO: check for default value
+		Difficulty: topic.Difficulty,
 	}
 	if _, err = r.db.NamedExecContext(ctx, stmt, record); err != nil {
 		return
