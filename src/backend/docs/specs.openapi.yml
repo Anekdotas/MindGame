@@ -214,9 +214,26 @@ components:
         name:
           type: string
           description: Topic name
+        description:
+          type: string
+          description: Topic description
         author:
           type: string
           description: User who created the topic
+        rating:
+          type: number
+          format: float
+          readOnly: true
+        imageUrl:
+          type: string
+          description: Link to topic image
+          readOnly: true
+        difficulty:
+          type: integer
+          minimum: 0
+          maximum: 2
+          default: 1
+          description: 0 - Easy, 1 - Medium, 2 - Hard
       required:
         - name
         - author
