@@ -2,11 +2,20 @@ package handlers
 
 import (
 	"anekdotas"
-	"anekdotas/internal/api"
 	"github.com/labstack/echo/v4"
 	"net/http"
 	"strconv"
 )
+
+type Topic struct {
+	ID          int64   `json:"id,omitempty" query:"id" param:"id"`
+	Name        string  `json:"name"`
+	Description string  `json:"description"`
+	Author      string  `json:"author"`
+	Rating      float32 `json:"rating"`
+	ImageURL    string  `json:"image_url,omitempty"`
+	Difficulty  int     `json:"difficulty"`
+}
 
 func (h *Handlers) GetTopics(c echo.Context) error {
 	categoryID, err := strconv.Atoi(c.Param("category"))
@@ -18,8 +27,8 @@ func (h *Handlers) GetTopics(c echo.Context) error {
 		c.Logger().Error(err)
 		return err
 	}
-	return c.JSON(http.StatusOK, deriveFmapTopics(func(t *anekdotas.Topic) *api.Topic {
-		return &api.Topic{
+	return c.JSON(http.StatusOK, deriveFmapTopics(func(t *anekdotas.Topic) *Topic {
+		return &Topic{
 			ID:     t.ID,
 			Name:   t.Name,
 			Author: t.Author,
@@ -32,7 +41,7 @@ func (h *Handlers) CreateTopic(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusBadRequest, "Invalid Category ID")
 	}
-	topic := new(api.Topic)
+	topic := new(Topic)
 	if err := c.Bind(topic); err != nil {
 		return err
 	}

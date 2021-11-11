@@ -2,11 +2,18 @@ package handlers
 
 import (
 	"anekdotas"
-	"anekdotas/internal/api"
 	"github.com/labstack/echo/v4"
 	"net/http"
 	"strconv"
 )
+
+type Question struct {
+	ID            int64    `json:"id,omitempty" query:"id" param:"id"`
+	Text          string   `json:"text"`
+	MediaURL      string   `json:"mediaUrl,omitempty"`
+	CorrectAnswer int      `json:"correctAnswer"`
+	Answers       []string `json:"answers"`
+}
 
 func (h *Handlers) GetQuestions(c echo.Context) error {
 	topic := c.Param("topic")
@@ -18,8 +25,8 @@ func (h *Handlers) GetQuestions(c echo.Context) error {
 		c.Logger().Error(err)
 		return err
 	}
-	return c.JSON(http.StatusOK, deriveFmapQuestions(func(q *anekdotas.Question) *api.Question {
-		return &api.Question{
+	return c.JSON(http.StatusOK, deriveFmapQuestions(func(q *anekdotas.Question) *Question {
+		return &Question{
 			ID:            q.ID,
 			Text:          q.Text,
 			MediaURL:      q.MediaURL,
@@ -30,7 +37,7 @@ func (h *Handlers) GetQuestions(c echo.Context) error {
 }
 
 func (h *Handlers) CreateQuestion(c echo.Context) error {
-	question := new(api.Question)
+	question := new(Question)
 	if err := c.Bind(question); err != nil {
 		return err
 	}
