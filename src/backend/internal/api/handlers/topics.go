@@ -13,7 +13,7 @@ type Topic struct {
 	Description string  `json:"description"`
 	Author      string  `json:"author"`
 	Rating      float32 `json:"rating"`
-	ImageURL    string  `json:"image_url,omitempty"`
+	ImageURL    string  `json:"imageUrl,omitempty"`
 	Difficulty  int     `json:"difficulty"`
 }
 
@@ -29,9 +29,12 @@ func (h *Handlers) GetTopics(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, deriveFmapTopics(func(t *anekdotas.Topic) *Topic {
 		return &Topic{
-			ID:     t.ID,
-			Name:   t.Name,
-			Author: t.Author,
+			ID:          t.ID,
+			Name:        t.Name,
+			Description: t.Description,
+			Author:      t.Author,
+			ImageURL:    t.ImageURL,
+			Difficulty:  t.Difficulty,
 		}
 	}, topics))
 }
@@ -46,8 +49,10 @@ func (h *Handlers) CreateTopic(c echo.Context) error {
 		return err
 	}
 	name, err := h.logic.CreateTopic(c.Request().Context(), int64(categoryID), &anekdotas.Topic{
-		Name:   topic.Name,
-		Author: topic.Author,
+		Name:        topic.Name,
+		Description: topic.Description,
+		Author:      topic.Author,
+		Difficulty:  topic.Difficulty,
 		// TODO: AN-36 - add question_per_game
 	})
 	if err != nil {
