@@ -1,0 +1,3 @@
+19:00 - Start of the meeting, reviewing Android code
+	Discussing overall status
+19:36 - Meeting end
