@@ -28,6 +28,10 @@ func New(db *sqlx.DB) *Repo {
 	return &Repo{db: db}
 }
 
+func (r *Repo) Close() error {
+	return r.db.Close()
+}
+
 // errNoRowsToNotFound returns anekdotas.ErrNotFound if sql.ErrNoRows was passed. Otherwise, original
 // error returned.
 func errNoRowsToNotFound(err error) error {

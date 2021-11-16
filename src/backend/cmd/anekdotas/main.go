@@ -22,6 +22,7 @@ func main() {
 	e.Static("/media", mediaDir)
 
 	sqlRepo := db.New(db.NewDB(getDBCredentials()))
+	defer sqlRepo.Close()
 	authProvider := auth.NewJWTAuth(mustGetEnvVar("SECRET_KEY"))
 	newLogic := logic.New(sqlRepo, authProvider, mediaDir, mediaURLPrefix)
 
