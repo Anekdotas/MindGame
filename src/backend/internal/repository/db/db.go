@@ -1,8 +1,12 @@
 package db
 
 import (
+	"anekdotas"
 	"anekdotas/internal/repository"
+	"database/sql"
+	"errors"
 	"fmt"
+
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
@@ -22,4 +26,13 @@ type Repo struct {
 
 func New(db *sqlx.DB) *Repo {
 	return &Repo{db: db}
+}
+
+// errNoRowsToNotFound returns anekdotas.ErrNotFound if sql.ErrNoRows was passed. Otherwise, original
+// error returned.
+func errNoRowsToNotFound(err error) error {
+	if errors.Is(err, sql.ErrNoRows) {
+		return anekdotas.ErrNotFound
+	}
+	return err
 }
