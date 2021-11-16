@@ -9,4 +9,6 @@ func (a *API) BindApiRoutes(e *echo.Echo) {
 	e.GET("/categories/:category/topics/:topic/questions", a.handlers.GetQuestions)
 	e.POST("/categories/:category/topics/:topic/questions", a.handlers.CreateQuestion)
 	e.POST("/categories/:category/topics/:topic/questions/:id/media", a.handlers.UploadMedia)
+
+	e.POST("/auth/login", a.handlers.Login)
 }
