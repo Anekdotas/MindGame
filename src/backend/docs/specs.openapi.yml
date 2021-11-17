@@ -6,17 +6,42 @@ info:
     email: borysej90@gmail.com
   version: alpha
 tags:
+  - name: categories
+    description: Everything about categories
   - name: topics
     description: Everything about topics
   - name: questions
     description: Everything about questions
 paths:
-  /topics:
+  /categories:
+    get:
+      tags:
+        - categories
+      summary: Get all categories
+      operationId: getCategories
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+  /categories/{categoryId}/topics:
     get:
       tags:
         - topics
       summary: Get all available topics
       operationId: getTopics
+      parameters:
+        - name: categoryId
+          description: Category ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
           description: Success
@@ -31,6 +56,14 @@ paths:
         - topics
       summary: Create a new topic
       operationId: createTopic
+      parameters:
+        - name: categoryId
+          description: Category ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         required: true
         content:
@@ -49,13 +82,20 @@ paths:
                     type: string
                     description: Topic name
 
-  /topics/{topic}/questions:
+  /categories/{categoryId}/topics/{topic}/questions:
     get:
       tags:
         - questions
       summary: Get random set of questions for selected topic
       operationId: getQuestionsByTopic
       parameters:
+        - name: categoryId
+          description: Category ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
         - name: topic
           in: path
           description: Topic name
@@ -77,13 +117,19 @@ paths:
       summary: Create a new question
       operationId: createQuestion
       parameters:
+        - name: categoryId
+          description: Category ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
         - name: topic
           in: path
           description: Topic name
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         required: true
         content:
@@ -93,6 +139,46 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/ReturnedID'
+  /categories/{categoryId}/topics/{topic}/questions/{questionId}/media:
+    post:
+      tags:
+        - questions
+      summary: Upload media for an existing question
+      operationId: uploadMedia
+      parameters:
+        - name: categoryId
+          description: Category ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: topic
+          in: path
+          description: Topic name
+          required: true
+          schema:
+            type: string
+        - name: questionId
+          in: path
+          description: Question ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                media:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Success
 components:
   responses:
     ReturnedID:
@@ -106,6 +192,18 @@ components:
                 type: integer
                 format: int64
   schemas:
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+          description: Category name
+      required:
+        - name
     Topic:
       type: object
       properties:
@@ -116,9 +214,26 @@ components:
         name:
           type: string
           description: Topic name
+        description:
+          type: string
+          description: Topic description
         author:
           type: string
           description: User who created the topic
+        rating:
+          type: number
+          format: float
+          readOnly: true
+        imageUrl:
+          type: string
+          description: Link to topic image
+          readOnly: true
+        difficulty:
+          type: integer
+          minimum: 0
+          maximum: 2
+          default: 1
+          description: 0 - Easy, 1 - Medium, 2 - Hard
       required:
         - name
         - author

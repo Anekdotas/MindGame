@@ -1,21 +1,34 @@
 package main
 
 import (
-	"anekdotas/internal/api"
-	"anekdotas/internal/logic"
-	"anekdotas/internal/repository/db"
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"os"
 	"strconv"
+
+	"anekdotas/internal/api"
+	"anekdotas/internal/logic"
+	"anekdotas/internal/repository/db"
 )
 
 func main() {
 	e := echo.New()
+
+	// Media storage initialization
+	mediaDir := mustGetEnvVar("MEDIA_PATH")
+	mediaURLPrefix := mustGetEnvVar("HOST_PREFIX")
+	e.Static("/media", mediaDir)
+
+	// HTTP API initialization
 	sqlRepo := db.New(db.NewDB(getDBCredentials()))
-	newAPI := api.New(logic.New(sqlRepo))
-	newAPI.BindQuestionsRoutes(e)
-	e.Logger.Fatal(e.Start(":" + mustGetEnvVar("APP_PORT")))
+	newAPI := api.New(logic.New(sqlRepo, mediaDir, mediaURLPrefix))
+	newAPI.BindApiRoutes(e)
+
+	if err := e.StartTLS(
+		":"+mustGetEnvVar("APP_PORT"), "certs/mindgame.crt", "certs/mindgame.key",
+	); err != nil {
+		e.Logger.Fatal(err)
+	}
 }
 
 func getDBCredentials() (host string, port int, username, password, dbName string) {

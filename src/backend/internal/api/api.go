@@ -1,27 +1,16 @@
 package api
 
-import "anekdotas/internal/logic"
-
-type Question struct {
-	ID            int64    `json:"id,omitempty" query:"id" param:"id"`
-	Text          string   `json:"text"`
-	MediaURL      string   `json:"mediaUrl,omitempty"`
-	CorrectAnswer int      `json:"correctAnswer"`
-	Answers       []string `json:"answers"`
-}
-
-type Topic struct {
-	ID     int    `json:"id,omitempty" query:"id" param:"id"`
-	Name   string `json:"name"`
-	Author string `json:"author"`
-}
+import (
+	"anekdotas/internal/api/handlers"
+	"anekdotas/internal/logic"
+)
 
 type API struct {
-	handlers *handlers
+	handlers *handlers.Handlers
 }
 
 func New(logic *logic.Logic) *API {
 	return &API{
-		handlers: newHandlers(logic),
+		handlers: handlers.New(logic),
 	}
 }

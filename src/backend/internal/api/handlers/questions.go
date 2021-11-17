@@ -1,21 +1,21 @@
-package api
+package handlers
 
 import (
 	"anekdotas"
-	"anekdotas/internal/logic"
 	"github.com/labstack/echo/v4"
 	"net/http"
+	"strconv"
 )
 
-type handlers struct {
-	logic *logic.Logic
+type Question struct {
+	ID            int64    `json:"id,omitempty" query:"id" param:"id"`
+	Text          string   `json:"text"`
+	MediaURL      string   `json:"mediaUrl,omitempty"`
+	CorrectAnswer int      `json:"correctAnswer"`
+	Answers       []string `json:"answers"`
 }
 
-func newHandlers(logic *logic.Logic) *handlers {
-	return &handlers{logic: logic}
-}
-
-func (h *handlers) GetQuestions(c echo.Context) error {
+func (h *Handlers) GetQuestions(c echo.Context) error {
 	topic := c.Param("topic")
 	if topic == "" {
 		return echo.NewHTTPError(http.StatusBadRequest, "topic is empty")
@@ -36,7 +36,7 @@ func (h *handlers) GetQuestions(c echo.Context) error {
 	}, questions))
 }
 
-func (h *handlers) CreateQuestion(c echo.Context) error {
+func (h *Handlers) CreateQuestion(c echo.Context) error {
 	question := new(Question)
 	if err := c.Bind(question); err != nil {
 		return err
@@ -54,34 +54,26 @@ func (h *handlers) CreateQuestion(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{"id": id})
 }
 
-func (h *handlers) GetTopics(c echo.Context) error {
-	topics, err := h.logic.GetAllTopics(c.Request().Context())
+func (h *Handlers) UploadMedia(c echo.Context) error {
+	questionID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.Logger().Error(err)
 		return err
 	}
-	return c.JSON(http.StatusOK, deriveFmapTopics(func(t *anekdotas.Topic) *Topic {
-		return &Topic{
-			ID:     t.ID,
-			Name:   t.Name,
-			Author: t.Author,
-		}
-	}, topics))
-}
-
-func (h *handlers) CreateTopic(c echo.Context) error {
-	topic := new(Topic)
-	if err := c.Bind(topic); err != nil {
+	file, err := c.FormFile("media")
+	if err != nil {
+		c.Logger().Error()
 		return err
 	}
-	name, err := h.logic.CreateTopic(c.Request().Context(), &anekdotas.Topic{
-		Name:   topic.Name,
-		Author: topic.Author,
-		//TODO: AN-36 - add question_per_game
-	})
+	src, err := file.Open()
 	if err != nil {
 		c.Logger().Error(err)
 		return err
 	}
-	return c.JSON(http.StatusOK, map[string]interface{}{"name": name})
+	defer src.Close()
+	if err = h.logic.SaveMediaFile(c.Request().Context(), int64(questionID), file.Filename, src); err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	return nil
 }
