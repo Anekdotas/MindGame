@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
 import anekdotas.mindgameapplication.helpers.RandomGen
+import anekdotas.mindgameapplication.helpers.Time
 import anekdotas.mindgameapplication.java.ChatAdapter
 import anekdotas.mindgameapplication.java.Message
 import anekdotas.mindgameapplication.network.QuestionModel
@@ -39,6 +40,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Timer().scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                UserObjectConst.sessionTimeSeconds++
+            }
+        }, 0, 1000)
 
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList.toMutableList()
@@ -122,6 +128,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             setQuestion() // STARTS NEW QUESTION
                         }
                         else -> {
+                            Time.formatTime(UserObjectConst.sessionTimeSeconds)
                             val intent = Intent(this, ResultsActivity::class.java)
                             intent.putExtra(UserObjectConst.USERNAME, myUserName)
                             intent.putExtra(UserObjectConst.CORRECT_ANSWERS, myCorrectAnswers)
@@ -129,6 +136,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
+                            Log.d("time", "Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec")
 
                             startActivity(intent)
                             finish()// ENDS THE QUIZ

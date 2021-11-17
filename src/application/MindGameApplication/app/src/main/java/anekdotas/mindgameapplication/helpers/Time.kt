@@ -7,6 +7,5 @@ object Time {
     fun formatTime(s : Long){
         UserObjectConst.sessionTimeHours = TimeUnit.SECONDS.toHours(s)
         UserObjectConst.sessionTimeMinutes =TimeUnit.SECONDS.toMinutes(s)
-        UserObjectConst.sessionTimeHours = TimeUnit.SECONDS.toSeconds(s)
     }
 }
