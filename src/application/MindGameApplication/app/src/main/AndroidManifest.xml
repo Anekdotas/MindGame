@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MindGameApplication"
         android:usesCleartextTraffic="false">
         <activity
-            android:name=".MainMenu"
+            android:name=".MainMenuActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
@@ -33,7 +33,7 @@
             android:name=".ListCategoriesActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainMenu"
+            android:parentActivityName=".MainMenuActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".ListTopicsActivity"

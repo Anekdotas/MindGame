@@ -7,7 +7,7 @@ import android.view.View
 import androidx.activity.result.ActivityResult
 import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
 
-class MainMenu : AppCompatActivity() {
+class MainMenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
 import anekdotas.mindgameapplication.objects.UserObjectConst
@@ -30,7 +29,7 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
 
         binding.btnFinish.setOnClickListener(){
-            startActivity(Intent(this, MainMenu::class.java))
+            startActivity(Intent(this, MainMenuActivity::class.java))
             finish()
         }
     }

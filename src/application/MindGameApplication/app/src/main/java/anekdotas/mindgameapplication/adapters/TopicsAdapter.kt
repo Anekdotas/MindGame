@@ -53,7 +53,7 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
         }
     }
 
-    private fun callNetwork(name : String) {
+    private fun callNetwork() {
         val client = ApiClient.apiService.getProperQuestions("https://193.219.91.103:6524/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
         client.enqueue(object : Callback<List<QuestionModel>> {
             override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {

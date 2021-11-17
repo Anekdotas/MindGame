@@ -20,7 +20,7 @@ class ListCategoriesActivity : AppCompatActivity() {
 
         //ActionBar setup
         binding.actionBar.actionBarBackArrow.setOnClickListener{
-            val intent = Intent(this, MainMenu::class.java)
+            val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)
             finish()
         }
