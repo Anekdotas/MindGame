@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -18,6 +19,8 @@ import anekdotas.mindgameapplication.objects.HostObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import org.apache.hc.core5.net.Host
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
@@ -35,6 +38,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList.toMutableList()
@@ -125,6 +129,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
+
                             startActivity(intent)
                             finish()// ENDS THE QUIZ
                         }
