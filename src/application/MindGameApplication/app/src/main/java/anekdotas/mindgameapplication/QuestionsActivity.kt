@@ -10,15 +10,19 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
+import anekdotas.mindgameapplication.helpers.RandomGen
 import anekdotas.mindgameapplication.java.ChatAdapter
 import anekdotas.mindgameapplication.java.Message
 import anekdotas.mindgameapplication.network.QuestionModel
+import anekdotas.mindgameapplication.objects.HostObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
+import org.apache.hc.core5.net.Host
+import kotlin.random.Random
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuestionsBinding
-    var messageList =  ArrayList<Message>()
+    private var messageList =  ArrayList<Message>()
     // Variables to allow user to navigate through the questions
     private var myPosition = 1 //current question position
     private var myQuestionsList: MutableList<QuestionModel>? = null //list of questions
@@ -33,7 +37,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
-        myQuestionsList = QuestionsObject.questionList?.toMutableList()
+        myQuestionsList = QuestionsObject.questionList.toMutableList()
         setQuestion()
 
         binding.tvOptionA.setOnClickListener(this)
@@ -58,6 +62,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
+        if(RandomGen.chance(25)){
+            messageList.add(Message("Professor Lazgov", HostObject.host.randomAnswers[RandomGen.giveRandomRandom()], R.drawable.bred))
+        }
         messageList.add(Message("Professor Lazgov", question.question, R.drawable.bred))
 
         binding.tvOptionA.text = question.options[0]
@@ -88,6 +95,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_optionA -> {
@@ -117,8 +125,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
-                            startActivity(intent) // ENDS THE QUIZ
-                            finish()
+                            startActivity(intent)
+                            finish()// ENDS THE QUIZ
                         }
                     }
                 } else {
@@ -140,12 +148,12 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
-                        messageList.add(Message("Professor Lazgov", "You stoopid?", R.drawable.bred))
+                        messageList.add(Message(HostObject.host.hostName, HostObject.host.badAnswers[RandomGen.giveRandomBad()], R.drawable.bred))
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
-                        messageList.add(Message("Professor Lazgov", "Well...done?", R.drawable.bred))
+                        messageList.add(Message(HostObject.host.hostName, HostObject.host.goodAnswers[RandomGen.giveRandomGood()], R.drawable.bred))
                     } //IF THE ANSWER WAS CORRECT
 
                     answerView(question.answer, R.drawable.correct_option_bg) //COLORS THE CORRECT

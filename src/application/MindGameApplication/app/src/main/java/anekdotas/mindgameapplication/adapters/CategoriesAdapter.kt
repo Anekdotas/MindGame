@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import anekdotas.mindgameapplication.ListTopicsActivity
 import anekdotas.mindgameapplication.R
+import anekdotas.mindgameapplication.helpers.NetworkChecker
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.network.TopicModel
@@ -19,7 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.categoryList) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+class CategoriesAdapter(private var categories: List<CategoryModel>? = CategoriesObject.categoryList) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.category_button, parent, false)
@@ -35,16 +37,17 @@ class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.
             val button = findViewById<Button>(R.id.btn_topic_selection)
             button.text =  categories!![position].categoryName
             button.setOnClickListener{Log.d("Buttons", "ButtonClicked")
-                CategoriesObject.selectedCategory = categories!![position]
-                callNetworkTopics(CategoriesObject.selectedCategory!!.id)
-                Thread.sleep(100)
-                context.startActivity(Intent(context, ListTopicsActivity::class.java))
-                //TODO (same for "TopicsAdapter")
-                // We need to finish() this activity after we
-                // open "ListTopicsActivity" as otherwise this activity
-                // stays alive and user can return to it by pressing "back"
-                // button (the Android default one - which is triangle)
-                // P. S. but now user can return back by pressing "back" button
+                Log.d("connectionCheck: ", "${NetworkChecker.isNetworkAvailable(context)}")
+
+                if(NetworkChecker.isNetworkAvailable(context)) {
+                    CategoriesObject.selectedCategory = categories!![position]
+                    callNetworkTopics()
+                    Thread.sleep(100)
+                    context.startActivity(Intent(context, ListTopicsActivity::class.java))
+                }
+                else {
+                    Toast.makeText(context, "No Internet Connection\nPlease restart the application with internet connection", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
@@ -56,7 +59,7 @@ class CategoriesAdapter(var categories: List<CategoryModel>? = CategoriesObject.
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){
                     Log.d("TestTopics! ", ""+ response.body())
-                    TopicsObject.topicList = response.body()
+                    TopicsObject.topicList = response.body()!!
                     Log.d("TestTopicBody! ", ""+ TopicsObject.topicList)
                 }
             }

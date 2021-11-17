@@ -3,6 +3,6 @@ package anekdotas.mindgameapplication.objects
 import anekdotas.mindgameapplication.network.TopicModel
 
 object TopicsObject {
-    var topicList : List<TopicModel>? = null
-    var selectedTopic : TopicModel? = null
+    var topicList = listOf(TopicModel(0,"No Internet", "No Internet"))
+    var selectedTopic = TopicModel(0,"No Internet", "No Internet")
 }

@@ -17,4 +17,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="topic">Topic</string>
+    <string name="play">Play</string>
+    <string name="topicname">TopicName</string>
+    <string name="topicdesc">topicdesc</string>
 </resources>
