@@ -26,6 +26,7 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvName.text = myUserName
         val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
         val myCorrectAnswers = intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )
+        binding.tvTime.text = "Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec"
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
 
         binding.btnFinish.setOnClickListener(){

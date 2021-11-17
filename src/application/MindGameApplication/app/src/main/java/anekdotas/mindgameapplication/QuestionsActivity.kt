@@ -136,8 +136,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
-                            Log.d("time", "Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec")
-
                             startActivity(intent)
                             finish()// ENDS THE QUIZ
                         }

@@ -46,6 +46,15 @@
         tools:text="Username" />
 
     <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
+        tools:text="Time spent: 24h" />
+
+    <TextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
