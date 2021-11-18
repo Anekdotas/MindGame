@@ -8,8 +8,15 @@ import android.util.Log
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
 import anekdotas.mindgameapplication.helpers.Time
+import anekdotas.mindgameapplication.objects.TopicsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import kotlin.random.Random
+import android.widget.RatingBar
+
+import android.widget.RatingBar.OnRatingBarChangeListener
+
+
+
 
 class ResultsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityResultsBinding
@@ -19,7 +26,6 @@ class ResultsActivity : AppCompatActivity() {
         binding = ActivityResultsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
-
         val myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         binding.tvName.text = myUserName
         val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
@@ -34,8 +40,21 @@ class ResultsActivity : AppCompatActivity() {
             finish()
         }
 
-
+        if(TopicsObject.selectedTopic.id in UserObjectConst.ratedTopicsId){
             binding.rbRating.isFocusable = false
             binding.rbRating.setIsIndicator(true)
+        }
+        else{
+            binding.rbRating.onRatingBarChangeListener =
+                OnRatingBarChangeListener { ratingBar, rating, _ -> if (rating < 1.0f) ratingBar.rating = 1.0f
+                    var x=binding.rbRating.rating.toDouble()
+                    UserObjectConst.ratedTopicsId.add(TopicsObject.selectedTopic.id)
+                    Log.d("rating", "${UserObjectConst.ratedTopicsId}")
+                    binding.rbRating.isFocusable = false
+                    binding.rbRating.setIsIndicator(true)
+                }
+        }
+        Log.d("rating2", "${UserObjectConst.ratedTopicsId}")
+
     }
 }
