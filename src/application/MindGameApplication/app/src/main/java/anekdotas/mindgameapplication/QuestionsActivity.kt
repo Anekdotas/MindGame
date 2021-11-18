@@ -1,11 +1,13 @@
 package anekdotas.mindgameapplication
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -33,6 +35,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mySelectedPosition = 0 //selected position between answers in a specific question
     private var myCorrectAnswers = 0 // number of questions answered correctly
     private var myUserName: String? = null
+    val T = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -40,15 +43,19 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Timer().scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                UserObjectConst.sessionTimeSeconds++
-            }
-        }, 0, 1000)
 
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList.toMutableList()
         setQuestion()
+
+        Time.resetTime()
+        T.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                runOnUiThread {
+                    UserObjectConst.sessionTimeSeconds++
+                }
+            }
+        }, 1000, 1000)
 
         binding.tvOptionA.setOnClickListener(this)
         binding.tvOptionB.setOnClickListener(this)
@@ -136,6 +143,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
                             )
+                            T.cancel()
                             startActivity(intent)
                             finish()// ENDS THE QUIZ
                         }

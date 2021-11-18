@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
+import anekdotas.mindgameapplication.helpers.Time
 import anekdotas.mindgameapplication.objects.UserObjectConst
 
 // TODO: 10/2/2021  (add a background for the results screen, something that looks proper, right now it uses the

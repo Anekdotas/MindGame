@@ -5,7 +5,15 @@ import java.util.concurrent.TimeUnit
 
 object Time {
     fun formatTime(s : Long){
+        UserObjectConst.sessionTimeSeconds = TimeUnit.SECONDS.toSeconds(s) % 60
+        UserObjectConst.sessionTimeMinutes = TimeUnit.SECONDS.toMinutes(s) % 60
         UserObjectConst.sessionTimeHours = TimeUnit.SECONDS.toHours(s)
-        UserObjectConst.sessionTimeMinutes = TimeUnit.SECONDS.toMinutes(s)
+        println("Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec")
+    }
+
+    fun resetTime(){
+        UserObjectConst.sessionTimeHours = 0
+        UserObjectConst.sessionTimeMinutes = 0
+        UserObjectConst.sessionTimeSeconds = 0
     }
 }
