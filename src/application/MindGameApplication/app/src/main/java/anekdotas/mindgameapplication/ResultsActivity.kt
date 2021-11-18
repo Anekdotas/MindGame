@@ -31,6 +31,7 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
 
         binding.btnFinish.setOnClickListener(){
+            Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent(this, MainMenuActivity::class.java))
             finish()
         }

@@ -20,21 +20,18 @@ class MainMenuActivity : AppCompatActivity() {
         binding.playBtn.setOnClickListener {
             val intent = Intent(this, ListCategoriesActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         //SHOP BUTTON logic
         binding.shopBtn.setOnClickListener {
             val intent = Intent(this, ResultsActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         //PROFILE BUTTON logic
         binding.personalStatisticsBtn.setOnClickListener {
             val intent = Intent(this, ResultsActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         //EXIT BUTTON logic

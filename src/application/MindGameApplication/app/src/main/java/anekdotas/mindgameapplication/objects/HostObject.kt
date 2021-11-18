@@ -25,7 +25,6 @@ object HostObject {
             "You have an entire life to be an idiot. Why not take today off?"),
 
         listOf("Took all the cake",
-            "Test Test",
             "Ok then moving on...")
         )
 }

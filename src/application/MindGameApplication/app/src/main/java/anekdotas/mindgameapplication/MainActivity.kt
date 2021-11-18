@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later
                         Thread.sleep(100)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }
