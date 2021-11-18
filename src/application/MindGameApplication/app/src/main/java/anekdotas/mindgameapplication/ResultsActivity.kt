@@ -4,15 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
 import anekdotas.mindgameapplication.helpers.Time
 import anekdotas.mindgameapplication.objects.UserObjectConst
-
-// TODO: 10/2/2021  (add a background for the results screen, something that looks proper, right now it uses the
-//  menu bg that does no fit well with design)
-
-// TODO: 10/2/2021 (add an original asset for trophy if possible) ; not high priority but would be nice
+import kotlin.random.Random
 
 class ResultsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityResultsBinding
@@ -29,11 +26,16 @@ class ResultsActivity : AppCompatActivity() {
         val myCorrectAnswers = intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )
         binding.tvTime.text = "Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec"
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
+        binding.tvRatingInfo.text = "Please rate this quiz!"
 
-        binding.btnFinish.setOnClickListener(){
+        binding.btnFinish.setOnClickListener{
             Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent(this, MainMenuActivity::class.java))
             finish()
         }
+
+
+            binding.rbRating.isFocusable = false
+            binding.rbRating.setIsIndicator(true)
     }
 }

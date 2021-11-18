@@ -15,4 +15,5 @@ object UserObjectConst{
     var sessionTimeSeconds : Long = 0
     var sessionTimeMinutes : Long = 0
     var sessionTimeHours : Long = 0
+    var playedTopicsId = {0}
 }

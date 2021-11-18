@@ -63,6 +63,23 @@
         android:textSize="20sp"
         tools:text="Your Score is absolutely terrible" />
 
+    <TextView
+        android:id="@+id/tv_rating_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
+        tools:text="Rate this quiz" />
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/rb_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:isIndicator="false"
+        android:stepSize="0.5"/>
+
     <Button
         android:id="@+id/btn_finish"
         android:layout_width="match_parent"
