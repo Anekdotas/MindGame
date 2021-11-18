@@ -43,18 +43,18 @@ class ResultsActivity : AppCompatActivity() {
         if(TopicsObject.selectedTopic.id in UserObjectConst.ratedTopicsId){
             binding.rbRating.isFocusable = false
             binding.rbRating.setIsIndicator(true)
+            binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
+            binding.tvRatingInfo.text=""
         }
         else{
             binding.rbRating.onRatingBarChangeListener =
                 OnRatingBarChangeListener { ratingBar, rating, _ -> if (rating < 1.0f) ratingBar.rating = 1.0f
-                    var x=binding.rbRating.rating.toDouble()
+                    var x=binding.rbRating.rating
+                    binding.tvRatingInfo.text="Thank you for rating!"
                     UserObjectConst.ratedTopicsId.add(TopicsObject.selectedTopic.id)
-                    Log.d("rating", "${UserObjectConst.ratedTopicsId}")
                     binding.rbRating.isFocusable = false
                     binding.rbRating.setIsIndicator(true)
                 }
         }
-        Log.d("rating2", "${UserObjectConst.ratedTopicsId}")
-
     }
 }
