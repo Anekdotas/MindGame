@@ -1,6 +1,8 @@
 package anekdotas.mindgameapplication.objects
 
 import anekdotas.mindgameapplication.network.HostModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 object HostObject {
     val host = HostModel("Professor Lazgov", //Hostname
@@ -33,8 +35,11 @@ object HostObject {
         listOf("Wow you are doing quite well here! Let's hope you will not fail on this question..."),
 
         //Bad Streak Answers
-        listOf("You are doing terribly!")
-        )
+        listOf("You are doing terribly!"),
 
-
+        //Greetings
+        listOf("Oh, another quiz?? Maybe go outside like a normal person",
+        "Yes, yes... We already know the procedure. My name is Lazgov I will be your host blah blah get on with it",
+        "It is ${SimpleDateFormat.getTimeInstance().format(Date())}, maybe go to sleep or something instead?")
+    )
 }

@@ -27,4 +27,7 @@ object HostTalk {
     fun giveRandomGood(): String {
         return HostObject.host.goodAnswers[Random.nextInt(0, HostObject.host.goodAnswers.size)]
     }
+    fun giveRandomGreeting(): String {
+        return HostObject.host.greetings[Random.nextInt(0, HostObject.host.greetings.size)]
+    }
 }

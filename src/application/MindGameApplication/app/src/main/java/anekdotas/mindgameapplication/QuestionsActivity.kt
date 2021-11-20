@@ -45,7 +45,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGreeting(), R.drawable.bred))
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList.toMutableList()
         setQuestion()
