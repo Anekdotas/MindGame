@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 import anekdotas.mindgameapplication.network.QuestionModel
+import anekdotas.mindgameapplication.objects.QuestionsObject
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import coil.load
 
 // TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
@@ -64,18 +66,13 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.llProgress.progress = myPosition
         binding.tvProgress.text = "$myPosition" + "/" + myQuestionsList!!.size
-        binding.tvQuestion.text = question!!.question
+        binding.tvQuestion.text = question.question
         //Checks if there is an image otherwise uses default
-        if(question.image!=""){
             binding.ivQuestionImage.load(question.image)
-        }
-        else {
-            binding.ivQuestionImage.load("https://media.discordapp.net/attachments/883320939666890802/897182017890942996/244661702_397286278572014_2505698586459368395_n.png")
-        }
-        binding.tvOptionA.text = question.optionA
-        binding.tvOptionB.text = question.optionB
-        binding.tvOptionC.text = question.optionC
-        binding.tvOptionD.text = question.optionD
+        binding.tvOptionA.text = question.options[0]
+        binding.tvOptionB.text = question.options[1]
+        binding.tvOptionC.text = question.options[2]
+        binding.tvOptionD.text = question.options[3]
     }
 
     private fun defaultOptionView() {
@@ -181,33 +178,5 @@ class QuestionsProtoActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
-    /*private fun callNetwork() {
-        //ASYNCHRONOUS
-            val client = ApiClient.apiService.fetchQuestions()
-            client.enqueue(object : Callback<List<QuestionModel>> {
-                override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
-                    if(response.isSuccessful){
-                        Log.d("Success! ", ""+response.body())
-                        anotherQuestionList = response.body()?.toMutableList()
-                        Log.d("Testlast! ", ""+anotherQuestionList)
-                    }
-                }
-                override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
-                    Log.e("Something went wrong! ", ""+response.message)
-                }
-            })
-        }*/
-        //ASYNCHRONOUS
-
-        //SYNCHRONOUS
-        /*
-        thread{val client = ApiClient.apiService
-            val call : Call<List<QuestionModel>> = client.fetchQuestions()
-            anotherQuestionList = call.execute().body() as MutableList<QuestionModel>?
-            Log.d("Test2!", ""+anotherQuestionList)}
-
-        //SYNCHRONOUS
-    }*/
 }
 

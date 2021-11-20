@@ -5,12 +5,13 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
+import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.POST
+import retrofit2.http.Url
 
 object ApiClient {
-    private const val BASE_URL = "http://193.219.91.103:7576/" //change to path if question location would change
+    private const val BASE_URL = "https://193.219.91.103:6524/" //change to path if question location would change
 
     private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
@@ -28,6 +29,18 @@ object ApiClient {
 }
 
 interface ApiServices {
-    @GET("/topic2")
-    fun fetchQuestions(): Call<List<QuestionModel>>
+
+    @GET("/categories")
+    fun getCategories(): Call<List<CategoryModel>>
+
+    @GET
+    fun getTopics(@Url url: String?): Call<List<TopicModel>>
+
+    @GET
+    fun getProperQuestions(@Url url: String?): Call<List<QuestionModel>>
+
+    @POST("/auth/login")
+    fun pushPost(
+        @Body post: UserModelTest
+    ): Call<JwtTestModel>
 }
