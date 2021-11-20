@@ -51,7 +51,7 @@ func (r *Repo) CreateTopic(ctx context.Context, categoryID int64, topic *anekdot
 			:author,
 			:description,
 			:category_id,
-			:questions_per_game
+			:questions_per_game,
 			:image_url,
 			:difficulty
 		) RETURNING name`,
