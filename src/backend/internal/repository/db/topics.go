@@ -57,10 +57,9 @@ func (r *Repo) CreateTopic(ctx context.Context, categoryID int64, topic *anekdot
 		) RETURNING name`,
 		TopicsTableName,
 	)
-	imageURL := sql.NullString{}
-	if topic.ImageURL != "" {
-		imageURL.String = topic.ImageURL
-		imageURL.Valid = true
+	var imageURL sql.NullString
+	if err = imageURL.Scan(topic.ImageURL); err != nil {
+		return
 	}
 	record := &TopicRecord{
 		Name:        topic.Name,
