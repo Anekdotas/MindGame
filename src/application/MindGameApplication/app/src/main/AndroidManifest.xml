@@ -2,62 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="anekdotas.mindgameapplication">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="MindGame"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MindGameApplication"
-        android:usesCleartextTraffic="false">
-        <activity
-            android:name=".MainMenuActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            />
-        <activity
-            android:name=".InfoActivity"
-            android:exported="true"
-            android:theme="@style/NoActionBarTheme"/>
-        <activity
-            android:name=".CreatorActivity"
-            android:exported="true"
-            android:theme="@style/NoActionBarTheme"/>
-        <activity
-            android:name=".ListCategoriesActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainMenuActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity
-            android:name=".ListTopicsActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ListCategoriesActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".QuestionsActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        android:theme="@style/Theme.MindGameApplication">
         <activity
             android:name=".ResultsActivity"
-            android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/NoActionBarTheme"
+            android:exported="true" />
         <activity
             android:name=".QuestionsProtoActivity"
             android:screenOrientation="portrait"

@@ -61,7 +61,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
               android:gravity="center"
-               android:text="Please connect to your account"
+               android:text="What is your name?"
               android:textColor="#434343"
               android:textSize="15sp"
                 />
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:hint="Username"
+                    android:hint="Name"
                     android:textColor="#363A43"
                     android:textColorHint="#7A8089"
                     android:maxLength="20"
@@ -86,53 +86,16 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                >
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:hint="Password"
-                android:textColor="#363A43"
-                android:textColorHint="#7A8089"
-                android:maxLength="20"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
-                android:inputType="textPassword"
-                />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/white"
                 android:text="Play"/>
 
-            <Button
-                android:id="@+id/btn_test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:text="Test"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Don't have an account?"
-                android:textColor="#434343"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:id="@+id/tv_registration"/>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 </LinearLayout>
 
