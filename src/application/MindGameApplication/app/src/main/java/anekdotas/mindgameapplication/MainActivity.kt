@@ -54,8 +54,10 @@ class MainActivity : AppCompatActivity() {
                     else -> {
                         Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainMenuActivity::class.java)
-                        UserObjectConst.USERNAME = binding.username.text.toString()
-                        UserObjectConst.PASSWORD = binding.password.text.toString()
+                        UserObjectConst.USERNAME = binding.username.text.toString() //delete later
+                        UserObjectConst.PASSWORD = binding.password.text.toString() //delete later
+                        UserObjectConstTest.currentUser.username = binding.username.text.toString()
+                        UserObjectConstTest.currentUser.password = binding.password.text.toString()
                         //intent.putExtra(UserObjectConst.username, binding.username.text.toString())
                         //intent.putExtra(UserObjectConst.password, binding.password.text.toString())
                         // sends the username/password to other activities, delete later
@@ -90,21 +92,20 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-private fun callNetworkPOST() {
-    val clientPOST = ApiClient.apiService.pushPost(UserModelTest("user","password"))
-    Log.d("callNetworkPOST", "has been called")
-    clientPOST.enqueue(object : Callback<JwtTestModel> {
-        override fun onResponse(call: Call<JwtTestModel>, response: Response<JwtTestModel>) {
-            if(response.isSuccessful){
-                Log.d("POST response is", ""+ response.body())
-                //  TopicsObject.topicList = response.body()
-               // Log.d("TestTopicBody! ", ""+ PostObject)
+    private fun callNetworkPOST() {
+        val clientPOST = ApiClient.apiService.pushPost(UserObjectConstTest.currentUser)
+        Log.d("callNetworkPOST", "has been called")
+        clientPOST.enqueue(object : Callback<JwtTestModel> {
+            override fun onResponse(call: Call<JwtTestModel>, response: Response<JwtTestModel>) {
+                if(response.isSuccessful){
+                    Log.d("POST response is", ""+ response.body())
+                }
+                else Log.d("POST did not respond", ""+ response.body())
             }
-            else Log.d("POST did not respond", ""+ response.body())
-        }
-        override fun onFailure(call: Call<JwtTestModel>, response: Throwable) {
-            Log.e("Something went wrong! ", ""+response.message)
-        }
-    })
-}
+            override fun onFailure(call: Call<JwtTestModel>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+    }
+
 }

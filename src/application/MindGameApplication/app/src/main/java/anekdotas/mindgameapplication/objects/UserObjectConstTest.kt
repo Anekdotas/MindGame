@@ -1,8 +1,8 @@
 package anekdotas.mindgameapplication.objects
 
+import anekdotas.mindgameapplication.network.UserModelTest
 
 
 object UserObjectConstTest{
-    var username = "user"
-    var password = "password"
+    var currentUser = UserModelTest("user","password")
 }
