@@ -22,6 +22,7 @@ import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.objects.HostObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
+import anekdotas.mindgameapplication.objects.UserStatsObject
 import org.apache.hc.core5.net.Host
 import java.util.*
 import kotlin.collections.ArrayList
@@ -174,6 +175,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     else {
                         myCorrectAnswers++
                         messageList.add(Message(HostObject.host.hostName, HostObject.host.goodAnswers[RandomGen.giveRandomGood()], R.drawable.bred))
+                        UserStatsObject.sessionStreak++
                     } //IF THE ANSWER WAS CORRECT
 
                     answerView(question.answer, R.drawable.correct_option_bg) //COLORS THE CORRECT
