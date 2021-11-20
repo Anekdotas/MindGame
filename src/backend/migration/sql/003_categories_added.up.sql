@@ -1,9 +1,0 @@
-CREATE TABLE IF NOT EXISTS categories
-(
-    id SERIAL UNIQUE PRIMARY KEY,
-    name VARCHAR NOT NULL UNIQUE
-);
-
-INSERT INTO categories (name) VALUES ('Custom');
-
-ALTER TABLE topics ADD COLUMN category_id INT NOT NULL REFERENCES categories DEFAULT 1;

@@ -1,5 +1,4 @@
-#.idea/
-#.vscode/
+.idea/
+.vscode/
 
 bin/
-certs/

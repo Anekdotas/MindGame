@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MindGame Application</string>
+    <string name="app_name">MindGameApplication</string>
     <string name="progress">progress</string>
     <string name="question_placeholder">question placeholder</string>
     <string name="answer">ANSWER</string>
@@ -7,17 +7,4 @@
     <string name="congrats">Congrats!</string>
     <string name="image">image</string>
     <string name="result">Result</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="topic">Topic</string>
-    <string name="play">Play</string>
-    <string name="topicname">TopicName</string>
-    <string name="topicdesc">topicdesc</string>
 </resources>
