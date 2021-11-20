@@ -14,6 +14,6 @@ object RandomGen {
         return Random.nextInt(0, HostObject.host.randomAnswers.size)
     }
     fun chance(chance : Int) : Boolean {  //chance has to be from 0 to 100
-        return Random.nextInt(0, 100)<chance
+        return Random.nextInt(1, 100)<=chance
     }
 }

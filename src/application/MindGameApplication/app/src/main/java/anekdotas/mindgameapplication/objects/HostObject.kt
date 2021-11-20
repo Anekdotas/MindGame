@@ -24,7 +24,17 @@ object HostObject {
             "Can't answer anything correctly? Well that sounds like a you problem",
             "You have an entire life to be an idiot. Why not take today off?"),
 
+        //Random Answers
         listOf("Took all the cake",
-            "Ok then moving on...")
+            "Ok then moving on..."),
+
+
+        //Good Streak Answers
+        listOf("Wow you are doing quite well here! Let's hope you will not fail on this question..."),
+
+        //Bad Streak Answers
+        listOf("You are doing terribly!")
         )
+
+
 }
