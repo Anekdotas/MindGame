@@ -170,6 +170,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
                         messageList.add(Message(HostObject.host.hostName, HostObject.host.badAnswers[RandomGen.giveRandomBad()], R.drawable.bred))
+                        UserStatsObject.sessionStreak=0
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
