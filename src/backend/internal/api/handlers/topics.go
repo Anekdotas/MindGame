@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"anekdotas"
-	"github.com/labstack/echo/v4"
 	"net/http"
 	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
 
 type Topic struct {
@@ -18,7 +19,7 @@ type Topic struct {
 }
 
 func (h *Handlers) GetTopics(c echo.Context) error {
-	categoryID, err := strconv.Atoi(c.Param("category"))
+	categoryID, err := strconv.Atoi(c.Param("categoryId"))
 	if err != nil {
 		return c.String(http.StatusBadRequest, "Invalid Category ID")
 	}
@@ -40,7 +41,7 @@ func (h *Handlers) GetTopics(c echo.Context) error {
 }
 
 func (h *Handlers) CreateTopic(c echo.Context) error {
-	categoryID, err := strconv.Atoi(c.Param("category"))
+	categoryID, err := strconv.Atoi(c.Param("categoryId"))
 	if err != nil {
 		return c.String(http.StatusBadRequest, "Invalid Category ID")
 	}

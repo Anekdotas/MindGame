@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"anekdotas"
-	"github.com/labstack/echo/v4"
 	"net/http"
 	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
 
 type Question struct {
@@ -55,7 +56,7 @@ func (h *Handlers) CreateQuestion(c echo.Context) error {
 }
 
 func (h *Handlers) UploadMedia(c echo.Context) error {
-	questionID, err := strconv.Atoi(c.Param("id"))
+	questionID, err := strconv.Atoi(c.Param("questionId"))
 	if err != nil {
 		c.Logger().Error(err)
 		return err

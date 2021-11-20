@@ -3,12 +3,19 @@ package api
 import "github.com/labstack/echo/v4"
 
 func (a *API) BindApiRoutes(e *echo.Echo) {
-	e.GET("/categories", a.handlers.GetCategories)
-	e.GET("/categories/:category/topics", a.handlers.GetTopics)
-	e.POST("/categories/:category/topics", a.handlers.CreateTopic)
-	e.GET("/categories/:category/topics/:topic/questions", a.handlers.GetQuestions)
-	e.POST("/categories/:category/topics/:topic/questions", a.handlers.CreateQuestion)
-	e.POST("/categories/:category/topics/:topic/questions/:id/media", a.handlers.UploadMedia)
+	categories := e.Group("/categories")
+	categories.GET("", a.handlers.GetCategories)
 
-	e.POST("/auth/login", a.handlers.Login)
+	topics := categories.Group("/:categoryId/topics")
+	topics.GET("", a.handlers.GetTopics)
+	topics.POST("", a.handlers.CreateTopic)
+
+	questions := topics.Group("/:topic/questions")
+	questions.GET("", a.handlers.GetQuestions)
+	questions.POST("", a.handlers.CreateQuestion)
+	questions.POST("/:questionId/media", a.handlers.UploadMedia)
+
+	authGroup := e.Group("/auth")
+	authGroup.POST("/register", a.handlers.RegisterUser)
+	authGroup.POST("/login", a.handlers.Login)
 }
