@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
+import anekdotas.mindgameapplication.helpers.HostTalk
 import anekdotas.mindgameapplication.helpers.RandomGen
 import anekdotas.mindgameapplication.helpers.Time
 import anekdotas.mindgameapplication.java.ChatAdapter
@@ -79,10 +80,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
-        if(RandomGen.chance(25)){
-            messageList.add(Message("Professor Lazgov", HostObject.host.randomAnswers[RandomGen.giveRandomRandom()], R.drawable.bred))
+        if(RandomGen.chance(25) && myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.bred))
         }
-        messageList.add(Message("Professor Lazgov", question.question, R.drawable.bred))
+        messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.bred))
 
         binding.tvOptionA.text = question.options[0]
         binding.tvOptionB.text = question.options[1]

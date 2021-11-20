@@ -6,7 +6,7 @@ import kotlin.random.Random
 
 object HostTalk {
     fun saySomething() : String {
-        return when(Random.nextInt(0,1)){
+        return when(Random.nextInt(0,2)){
             0 -> HostObject.host.randomAnswers[Random.nextInt(0, HostObject.host.randomAnswers.size)]
             1 -> streak()
             else -> "Moving on..."
