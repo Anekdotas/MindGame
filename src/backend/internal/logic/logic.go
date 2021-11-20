@@ -76,6 +76,14 @@ func (l *Logic) GetAllCategories(ctx context.Context) ([]*anekdotas.Category, er
 	return l.repo.GetCategories(ctx)
 }
 
+func (l *Logic) RegisterUser(ctx context.Context, user *anekdotas.User, password string) (int64, error) {
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return 0, err
+	}
+	return l.repo.CreateUser(ctx, user, hash)
+}
+
 func (l *Logic) AuthenticateUser(ctx context.Context, user *anekdotas.User, password string) (token string, err error) {
 	userID, hashedPassword, err := l.repo.GetUserPasswordHash(ctx, user.Username)
 	if err != nil {

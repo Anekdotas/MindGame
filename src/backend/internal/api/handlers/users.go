@@ -9,10 +9,31 @@ import (
 )
 
 type User struct {
-	ID       int64  `json:"id,omitempty" query:"id" param:"id"`
-	Username string `json:"username"`
-	Email    string `json:"email"`
-	Password string `json:"password,omitempty"`
+	ID             int64  `json:"id,omitempty" query:"id" param:"id"`
+	Username       string `json:"username"`
+	Email          string `json:"email"`
+	Password       string `json:"password,omitempty"`
+	RepeatPassword string `json:"repeat_password,omitempty"`
+}
+
+func (h *Handlers) RegisterUser(e echo.Context) error {
+	user := new(User)
+	if err := e.Bind(user); err != nil {
+		return err
+	}
+	if user.Password != user.RepeatPassword {
+		return e.String(http.StatusBadRequest, "Fields password and repeat_password do not match")
+	}
+	id, err := h.logic.RegisterUser(e.Request().Context(), &anekdotas.User{
+		Username: user.Username,
+		Email:    user.Email,
+	}, user.Password)
+	if err != nil {
+		return err
+	}
+	return e.JSON(http.StatusCreated, echo.Map{
+		"id": id,
+	})
 }
 
 func (h *Handlers) Login(e echo.Context) error {
