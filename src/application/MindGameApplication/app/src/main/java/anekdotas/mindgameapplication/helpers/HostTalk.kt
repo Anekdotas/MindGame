@@ -20,4 +20,11 @@ object HostTalk {
             HostObject.host.badStreak[Random.nextInt(0, HostObject.host.badStreak.size)]
         }
     }
+
+    fun giveRandomBad(): Int {
+        return Random.nextInt(0, HostObject.host.badAnswers.size)
+    }
+    fun giveRandomGood(): Int {
+        return Random.nextInt(0, HostObject.host.goodAnswers.size)
+    }
 }
