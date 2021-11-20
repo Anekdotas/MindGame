@@ -10,8 +10,11 @@ import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.helpers.NetworkChecker.isNetworkAvailable
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
+import anekdotas.mindgameapplication.network.JwtTestModel
+import anekdotas.mindgameapplication.network.UserModelTest
 import anekdotas.mindgameapplication.objects.CategoriesObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
+import anekdotas.mindgameapplication.objects.UserObjectConstTest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,9 +55,12 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainMenuActivity::class.java)
                         UserObjectConst.USERNAME = binding.username.text.toString()
-                        intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
-                        intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later
+                        UserObjectConst.PASSWORD = binding.password.text.toString()
+                        //intent.putExtra(UserObjectConst.username, binding.username.text.toString())
+                        //intent.putExtra(UserObjectConst.password, binding.password.text.toString())
+                        // sends the username/password to other activities, delete later
                         Thread.sleep(100)
+                        callNetworkPOST()
                         startActivity(intent)
                     }
                 }
@@ -82,4 +88,23 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+
+private fun callNetworkPOST() {
+    val clientPOST = ApiClient.apiService.pushPost(UserModelTest("user","password"))
+    Log.d("callNetworkPOST", "has been called")
+    clientPOST.enqueue(object : Callback<JwtTestModel> {
+        override fun onResponse(call: Call<JwtTestModel>, response: Response<JwtTestModel>) {
+            if(response.isSuccessful){
+                Log.d("POST response is", ""+ response.body())
+                //  TopicsObject.topicList = response.body()
+               // Log.d("TestTopicBody! ", ""+ PostObject)
+            }
+            else Log.d("POST did not respond", ""+ response.body())
+        }
+        override fun onFailure(call: Call<JwtTestModel>, response: Throwable) {
+            Log.e("Something went wrong! ", ""+response.message)
+        }
+    })
+}
 }

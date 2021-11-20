@@ -5,7 +5,9 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Url
 
 object ApiClient {
@@ -36,4 +38,9 @@ interface ApiServices {
 
     @GET
     fun getProperQuestions(@Url url: String?): Call<List<QuestionModel>>
+
+    @POST("/auth/login")
+    fun pushPost(
+        @Body post: UserModelTest
+    ): Call<JwtTestModel>
 }

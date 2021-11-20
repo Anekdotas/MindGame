@@ -17,8 +17,6 @@ import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.objects.HostObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
-import org.apache.hc.core5.net.Host
-import kotlin.random.Random
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuestionsBinding
@@ -124,7 +122,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             intent.putExtra(
                                 UserObjectConst.TOTAL_QUESTIONS,
                                 myQuestionsList!!.size
-                            )
+                              )
                             startActivity(intent)
                             finish()// ENDS THE QUIZ
                         }
