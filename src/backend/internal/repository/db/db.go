@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	"github.com/jmoiron/sqlx"
+	"github.com/lib/pq"
 	_ "github.com/lib/pq"
 )
 
@@ -37,6 +38,18 @@ func (r *Repo) Close() error {
 func errNoRowsToNotFound(err error) error {
 	if errors.Is(err, sql.ErrNoRows) {
 		return anekdotas.ErrNotFound
+	}
+	return err
+}
+
+func translateDBError(err error) error {
+	pqErr, ok := err.(*pq.Error)
+	if !ok {
+		return err
+	}
+	switch pqErr.Code {
+	case "23505":
+		return anekdotas.ErrAlreadyExists
 	}
 	return err
 }

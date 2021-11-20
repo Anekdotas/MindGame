@@ -37,7 +37,7 @@ func (r *Repo) CreateUser(ctx context.Context, user *anekdotas.User, passwordHas
 		return
 	}
 	err = r.db.GetContext(ctx, &id, query, args...)
-	return
+	return id, translateDBError(err)
 }
 
 func (r *Repo) GetUserPasswordHash(ctx context.Context, username string) (int64, []byte, error) {

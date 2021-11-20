@@ -13,12 +13,13 @@ type User struct {
 	Username       string `json:"username"`
 	Email          string `json:"email"`
 	Password       string `json:"password,omitempty"`
-	RepeatPassword string `json:"repeat_password,omitempty"`
+	RepeatPassword string `json:"repeatPassword,omitempty"`
 }
 
 func (h *Handlers) RegisterUser(e echo.Context) error {
 	user := new(User)
 	if err := e.Bind(user); err != nil {
+		e.Logger().Error(err)
 		return err
 	}
 	if user.Password != user.RepeatPassword {
@@ -29,6 +30,10 @@ func (h *Handlers) RegisterUser(e echo.Context) error {
 		Email:    user.Email,
 	}, user.Password)
 	if err != nil {
+		if errors.Is(err, anekdotas.ErrAlreadyExists) {
+			return e.String(http.StatusBadRequest, "User with that username already exists")
+		}
+		e.Logger().Error(err)
 		return err
 	}
 	return e.JSON(http.StatusCreated, echo.Map{
@@ -39,6 +44,7 @@ func (h *Handlers) RegisterUser(e echo.Context) error {
 func (h *Handlers) Login(e echo.Context) error {
 	user := new(User)
 	if err := e.Bind(user); err != nil {
+		e.Logger().Error(err)
 		return err
 	}
 	token, err := h.logic.AuthenticateUser(e.Request().Context(), &anekdotas.User{
