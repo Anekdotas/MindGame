@@ -35,6 +35,6 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         //EXIT BUTTON logic
-        binding.exitBtn.setOnClickListener { finish() }     //simply exits the game
+        binding.exitBtn.setOnClickListener { this.finishAffinity(); }     //simply exits the game
     }
 }
