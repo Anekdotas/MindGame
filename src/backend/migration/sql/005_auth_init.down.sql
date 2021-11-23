@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS users;
+
+ALTER TABLE topics
+    DROP COLUMN author_id,
+    ADD COLUMN author VARCHAR NOT NULL DEFAULT 'Team Anekdotas';
+
+ALTER TABLE author ALTER COLUMN author DROP DEFAULT;
