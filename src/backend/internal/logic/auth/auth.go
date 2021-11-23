@@ -44,3 +44,19 @@ func (a *JWTAuth) ParseJWT(tokenStr string, c echo.Context) (interface{}, error)
 	}
 	return token, nil
 }
+
+func GetUserIDFromToken(t interface{}) (int64, error) {
+	token, ok := t.(*jwt.Token)
+	if !ok {
+		return 0, errors.New("invalid token type")
+	}
+	var subject string
+	switch token.Claims.(type) {
+	case jwt.MapClaims:
+		subject = token.Claims.(jwt.MapClaims)["sub"].(string)
+	case jwt.StandardClaims:
+		subject = token.Claims.(jwt.StandardClaims).Subject
+	}
+	userID, err := strconv.Atoi(subject)
+	return int64(userID), err
+}

@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"anekdotas"
+	"anekdotas/internal/logic/auth"
 	"net/http"
 	"strconv"
 
@@ -49,10 +50,13 @@ func (h *Handlers) CreateTopic(c echo.Context) error {
 	if err := c.Bind(topic); err != nil {
 		return err
 	}
-	name, err := h.logic.CreateTopic(c.Request().Context(), int64(categoryID), &anekdotas.Topic{
+	userID, err := auth.GetUserIDFromToken(c.Get("user"))
+	if err != nil {
+		return err
+	}
+	name, err := h.logic.CreateTopic(c.Request().Context(), int64(categoryID), userID, &anekdotas.Topic{
 		Name:        topic.Name,
 		Description: topic.Description,
-		Author:      topic.Author,
 		Difficulty:  topic.Difficulty,
 		// TODO: AN-36 - add question_per_game
 	})

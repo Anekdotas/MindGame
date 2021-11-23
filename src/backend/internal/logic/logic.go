@@ -68,8 +68,8 @@ func (l *Logic) GetTopicsByCategory(ctx context.Context, categoryID int64) ([]*a
 	return l.repo.GetTopicsByCategoryID(ctx, categoryID)
 }
 
-func (l *Logic) CreateTopic(ctx context.Context, categoryID int64, topic *anekdotas.Topic) (name string, err error) {
-	return l.repo.CreateTopic(ctx, categoryID, topic)
+func (l *Logic) CreateTopic(ctx context.Context, categoryID int64, authorID int64, topic *anekdotas.Topic) (name string, err error) {
+	return l.repo.CreateTopic(ctx, categoryID, authorID, topic)
 }
 
 func (l *Logic) GetAllCategories(ctx context.Context) ([]*anekdotas.Category, error) {
