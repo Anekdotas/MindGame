@@ -12,6 +12,8 @@ tags:
     description: Everything about topics
   - name: questions
     description: Everything about questions
+  - name: users
+    description: Everything about users authentication
 paths:
   /categories:
     get:
@@ -70,6 +72,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Topic'
+      security:
+        - oAuth2: []
       responses:
         200:
           description: Success
@@ -81,6 +85,8 @@ paths:
                   name:
                     type: string
                     description: Topic name
+        401:
+          $ref: '#/components/responses/Unauthorized'
 
   /categories/{categoryId}/topics/{topic}/questions:
     get:
@@ -136,9 +142,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Question'
+      security:
+        - oAuth2: []
       responses:
         200:
           $ref: '#/components/responses/ReturnedID'
+        401:
+          $ref: '#/components/responses/Unauthorized'
   /categories/{categoryId}/topics/{topic}/questions/{questionId}/media:
     post:
       tags:
@@ -176,10 +186,68 @@ paths:
                 media:
                   type: string
                   format: binary
+      security:
+        - oAuth2: []
       responses:
         200:
           description: Success
+        401:
+          $ref: '#/components/responses/Unauthorized'
+  /auth/register:
+    post:
+      tags:
+        - users
+      summary: User registration
+      operationId: userRegister
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/User'
+                - type: object
+                  properties:
+                    repeatPassword:
+                      type: string
+                      description: Password confirmation
+                      writeOnly: true
+                  required:
+                    - repeatPassword
+      responses:
+        201:
+          $ref: '#/components/responses/ReturnedID'
+  /auth/login:
+    post:
+      tags:
+        - users
+      summary: User authentication for token retrieval
+      operationId: userLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Access token
+
+
 components:
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /auth/login
+          scopes: {}
   responses:
     ReturnedID:
       description: ID of the created item
@@ -191,6 +259,8 @@ components:
               id:
                 type: integer
                 format: int64
+    Unauthorized:
+      description: User does not have permission to access the endpoint
   schemas:
     Category:
       type: object
@@ -220,6 +290,7 @@ components:
         author:
           type: string
           description: User who created the topic
+          readOnly: true
         rating:
           type: number
           format: float
@@ -236,7 +307,6 @@ components:
           description: 0 - Easy, 1 - Medium, 2 - Hard
       required:
         - name
-        - author
     Question:
       type: object
       properties:
@@ -266,3 +336,20 @@ components:
         - text
         - correctAnswer
         - answers
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+      required:
+        - username
+        - password

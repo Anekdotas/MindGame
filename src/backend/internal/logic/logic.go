@@ -2,22 +2,32 @@ package logic
 
 import (
 	"anekdotas"
+	"anekdotas/internal/logic/auth"
 	"anekdotas/internal/repository"
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"os"
 	"strings"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type Logic struct {
 	repo       repository.Repository
+	auth       auth.AuthProvider
 	mediaDir   string
 	hostPrefix string
 }
 
-func New(repo repository.Repository, mediaDir, hostPrefix string) *Logic {
-	return &Logic{repo: repo, mediaDir: mediaDir, hostPrefix: hostPrefix}
+func New(repo repository.Repository, authProvider auth.AuthProvider, mediaDir, hostPrefix string) *Logic {
+	return &Logic{
+		repo:       repo,
+		auth:       authProvider,
+		mediaDir:   mediaDir,
+		hostPrefix: hostPrefix,
+	}
 }
 
 func (l *Logic) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdotas.Question, error) {
@@ -58,10 +68,31 @@ func (l *Logic) GetTopicsByCategory(ctx context.Context, categoryID int64) ([]*a
 	return l.repo.GetTopicsByCategoryID(ctx, categoryID)
 }
 
-func (l *Logic) CreateTopic(ctx context.Context, categoryID int64, topic *anekdotas.Topic) (name string, err error) {
-	return l.repo.CreateTopic(ctx, categoryID, topic)
+func (l *Logic) CreateTopic(ctx context.Context, categoryID int64, authorID int64, topic *anekdotas.Topic) (name string, err error) {
+	return l.repo.CreateTopic(ctx, categoryID, authorID, topic)
 }
 
 func (l *Logic) GetAllCategories(ctx context.Context) ([]*anekdotas.Category, error) {
 	return l.repo.GetCategories(ctx)
+}
+
+func (l *Logic) RegisterUser(ctx context.Context, user *anekdotas.User, password string) (int64, error) {
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return 0, err
+	}
+	return l.repo.CreateUser(ctx, user, hash)
+}
+
+func (l *Logic) AuthenticateUser(ctx context.Context, user *anekdotas.User, password string) (token string, err error) {
+	userID, hashedPassword, err := l.repo.GetUserPasswordHash(ctx, user.Username)
+	if err != nil {
+		return "", err
+	}
+	if err = bcrypt.CompareHashAndPassword(hashedPassword, []byte(password)); errors.Is(err, bcrypt.ErrMismatchedHashAndPassword) {
+		return "", anekdotas.ErrIncorrectPassword
+	} else if err != nil {
+		return "", err
+	}
+	return l.auth.NewToken(userID)
 }
