@@ -3,10 +3,19 @@ package anekdotas.mindgameapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityRegisterBinding
+import anekdotas.mindgameapplication.network.ApiClient
+import anekdotas.mindgameapplication.network.JwtTestModel
+import anekdotas.mindgameapplication.network.RegistrationModel
+import anekdotas.mindgameapplication.objects.JwtObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
+import anekdotas.mindgameapplication.objects.UserObjectConstTest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding // UI element binding
@@ -28,23 +37,37 @@ class RegisterActivity : AppCompatActivity() {
                         .show()
                 }
                 else -> {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Welcome ${binding.username.text.toString()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    val intent = Intent(this, MainMenuActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     UserObjectConst.usernameRegister = binding.username.text.toString()
                     intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
-                    intent.putExtra(
-                        UserObjectConst.passwordRegister,
-                        binding.password.text.toString()
-                    )// sends the username/password to other activities, delete later
                     Thread.sleep(25)
-                    startActivity(intent)
-                    finish()
+                    callNetworkSignup()
+                    //startActivity(intent)
+                    //finish()
                 }
             }
         }
+    }
+    private fun callNetworkSignup() {
+        val clientPOST = ApiClient.apiService.pushPostSignup(RegistrationModel(UserObjectConst.usernameRegister,
+            "placeholder2@anekdotas.llc", UserObjectConst.passwordRegister,UserObjectConst.passwordRegister,))
+        Log.d("callNetworkLogin", "has been called")
+        clientPOST.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.d("POST response code is", ""+ response.code())
+                    Toast.makeText(this@RegisterActivity, "Glad to have you ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }
+                else {
+                    Log.d("POST for signup did not succeed", "" + response.code())
+                    Toast.makeText(this@RegisterActivity, "Registration details incorrect, please try again", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<Void>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+
     }
 }
