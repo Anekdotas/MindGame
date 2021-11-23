@@ -7,6 +7,8 @@ import java.util.*
 object HostObject {
     val host = HostModel("Professor Lazgov", //Hostname
 
+        "https://media.discordapp.net/attachments/883320939666890802/912748283078803526/Lasgov.png?width=474&height=671",
+
         //Good Answers
         listOf("${UserObjectConst.USERNAME} you make me happy",
             "acceptable",
@@ -28,7 +30,8 @@ object HostObject {
 
         //Random Answers
         listOf("Took all the cake",
-            "Ok then moving on..."),
+            "Ok then moving on...",
+            "You know some people spell my name as Lazgov and some people spell my name as Lasgov. I hate both of them equally."),
 
 
         //Good Streak Answers
