@@ -11,7 +11,6 @@ import anekdotas.mindgameapplication.helpers.NetworkChecker.isNetworkAvailable
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.network.JwtTestModel
-import anekdotas.mindgameapplication.network.UserModelTest
 import anekdotas.mindgameapplication.objects.CategoriesObject
 import anekdotas.mindgameapplication.objects.JwtObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val networkOnline = isNetworkAvailable(this)
 
         binding.tvRegistration.setOnClickListener{
-            val intent = Intent(this, CreatorActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -92,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun callNetworkLogin() {
         val intent = Intent(this, MainMenuActivity::class.java)
-        val clientPOST = ApiClient.apiService.pushPost(UserObjectConstTest.currentUser)
+        val clientPOST = ApiClient.apiService.pushPostLogin(UserObjectConstTest.currentUser)
         Log.d("callNetworkPOST", "has been called")
         clientPOST.enqueue(object : Callback<JwtTestModel> {
             override fun onResponse(call: Call<JwtTestModel>, response: Response<JwtTestModel>) {
@@ -104,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else {
-                    Log.d("POST did not respond", "" + response.body())
+                    Log.d("POST did not succeed", "" + response.body())
                     Toast.makeText(this@MainActivity, "Login details incorrect, please try again", Toast.LENGTH_SHORT).show()
                 }
             }

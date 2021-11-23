@@ -40,7 +40,13 @@ interface ApiServices {
     fun getProperQuestions(@Url url: String?): Call<List<QuestionModel>>
 
     @POST("/auth/login")
-    fun pushPost(
+    fun pushPostLogin(
         @Body post: UserModelTest
     ): Call<JwtTestModel>
+
+    @POST("/auth/register")
+    fun pushPostSignup(
+        @Body post: RegistrationModel
+    ): Call<Void>
+
 }
