@@ -5,7 +5,9 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 
 	"anekdotas/internal/api"
 	"anekdotas/internal/logic"
@@ -28,7 +30,11 @@ func main() {
 
 	// HTTP API initialization
 	newAPI := api.New(newLogic)
-	newAPI.BindApiRoutes(e)
+	jwtMiddleware := middleware.JWTWithConfig(middleware.JWTConfig{
+		ParseTokenFunc: authProvider.ParseJWT,
+		Claims:         &jwt.StandardClaims{},
+	})
+	newAPI.BindApiRoutes(e, jwtMiddleware)
 
 	if err := e.StartTLS(
 		":"+mustGetEnvVar("APP_PORT"), "certs/mindgame.crt", "certs/mindgame.key",
