@@ -11,4 +11,6 @@ object UserObjectConst{
      //VALUES FOR REGISTRATION
     var usernameRegister = "User_Name"
     var passwordRegister = "password"
+    var passwordRepeatRegister = "password again"
+    var emailRegister = "example@register.kt"
 }

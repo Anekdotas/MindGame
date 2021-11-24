@@ -28,6 +28,10 @@ class RegisterActivity : AppCompatActivity() {
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
             when {
+                binding.email.text.toString().isEmpty() -> {
+                    Toast.makeText(this@RegisterActivity, "No Email Selected", Toast.LENGTH_SHORT)
+                        .show()
+                }
                 binding.username.text.toString().isEmpty() -> {
                     Toast.makeText(this@RegisterActivity, "No Username Selected", Toast.LENGTH_SHORT)
                         .show()
@@ -36,10 +40,15 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this@RegisterActivity, "No Password Selected", Toast.LENGTH_SHORT)
                         .show()
                 }
+                binding.passwordRepeat.text.toString().isEmpty() -> {
+                    Toast.makeText(this@RegisterActivity, "No Password Repeat Selected", Toast.LENGTH_SHORT)
+                        .show()
+                }
                 else -> {
-                    val intent = Intent(this, MainActivity::class.java)
                     UserObjectConst.usernameRegister = binding.username.text.toString()
-                    intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
+                    UserObjectConst.passwordRegister = binding.password.text.toString()
+                    UserObjectConst.passwordRepeatRegister = binding.passwordRepeat.text.toString()
+                    UserObjectConst.emailRegister = binding.email.text.toString()
                     Thread.sleep(25)
                     callNetworkSignup()
                     //startActivity(intent)
@@ -49,8 +58,9 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     private fun callNetworkSignup() {
+        val intent = Intent(this, MainActivity::class.java)
         val clientPOST = ApiClient.apiService.pushPostSignup(RegistrationModel(UserObjectConst.usernameRegister,
-            "placeholder2@anekdotas.llc", UserObjectConst.passwordRegister,UserObjectConst.passwordRegister,))
+            UserObjectConst.emailRegister, UserObjectConst.passwordRegister,UserObjectConst.passwordRepeatRegister,))
         Log.d("callNetworkLogin", "has been called")
         clientPOST.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
