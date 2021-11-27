@@ -5,11 +5,13 @@ import android.app.Application
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
@@ -39,13 +41,17 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var myUserName: String? = null
     val T = Timer()
 
+    var isMessageAudioSet = false
+    lateinit var messageAudio: MediaPlayer
+    var setAudioMessagesID: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         super.onCreate(savedInstanceState)
         binding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGreeting(), R.drawable.bred))
+        messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGreeting(), R.drawable.lasgov))
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList.toMutableList()
         setQuestion()
@@ -64,8 +70,49 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionC.setOnClickListener(this)
         binding.tvOptionD.setOnClickListener(this)
         binding.btnSubmit.setOnClickListener(this)
+        // - - - - - AUDIO PLAY - - - - -
+        var isAudioPaused = true
+        binding.ListView.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
 
-    }
+//            Log.d("|+| ", i.toString())
+//            Log.d("|+| ", "Author: " + messageList.get(i).author)
+//            Log.d("|+|", "audio ID: " + messageList.get(i).audio)
+
+//          - - - - - RELEASE PLAYER IF DIFFERENT MESSAGE IS SELECTED - - - - -
+            if ((isMessageAudioSet && (setAudioMessagesID != i || setAudioMessagesID == null)) && messageList[i].audio != 0) {
+//                isMessageAudioSet = false
+                messageAudio.release()
+            }
+
+//          - - - - - PLAY OR PAUSE AUDIO BY CLICKING ON THE SAME MESSAGE - - - - -
+            if (isMessageAudioSet && setAudioMessagesID == i && messageList[i].audio != 0)
+                when (isAudioPaused) {
+                    true -> {
+                        messageAudio.start()
+                        isAudioPaused = false
+                    }
+                    false -> {
+                        messageAudio.pause()
+                        isAudioPaused = true
+                    }
+                }
+
+//          - - - - - SET NEW AUDIO IF DIFFERENT MESSAGE IS SELECTED - - - - -
+            if (messageList.get(i).audio != 0 && setAudioMessagesID != i) {
+                messageAudio = MediaPlayer.create(this, messageList.get(i).audio)
+                messageAudio.start()
+                isAudioPaused = false
+                isMessageAudioSet = true
+                setAudioMessagesID = i
+            } else {
+                Log.d(
+                    "|+|",
+                    "Status: This message is without audio OR this audio is already being played"
+                )
+            }
+        })
+    } // Fix this mess
+
 
     @SuppressLint("SetTextI18n")
     private fun setQuestion() {
@@ -82,9 +129,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
         if(RandomGen.chance(25) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.bred))
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
         }
-        messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.bred))
+        messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
 
         binding.tvOptionA.text = question.options[0]
         binding.tvOptionB.text = question.options[1]
@@ -169,13 +216,13 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.wrong_option_bg)
-                        messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.bred))
+                        messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak=0
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
-                        messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.bred))
+                        messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak++
                     } //IF THE ANSWER WAS CORRECT
 
@@ -221,5 +268,12 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 binding.tvOptionD.background = ContextCompat.getDrawable(this, drawableView)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainMenuActivity::class.java)
+        T.cancel()
+        startActivity(intent)
+        finish()
     }
 }

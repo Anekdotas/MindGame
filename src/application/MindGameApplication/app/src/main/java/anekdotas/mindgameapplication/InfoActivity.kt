@@ -16,7 +16,7 @@ class InfoActivity : AppCompatActivity() {
         binding = ActivityInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.tvTopicName.text = TopicsObject.selectedTopic.topicName
-        binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
+        binding.ivTopic.load(R.drawable.lasgov)
         binding.tvDesc.text = TopicsObject.selectedTopic.description
         binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
 
