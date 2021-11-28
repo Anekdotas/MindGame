@@ -6,7 +6,7 @@ public class Message {
     private String text;
     private int profPicSource;
     private String questionPicture;
-    private int audio;
+    private String audio;
 
     public Message(String author, String text, int profPicSource, String questionPicture) {
         this.author = author;
@@ -24,7 +24,7 @@ public class Message {
         this.profPicSource = profPicSource;
     }
 
-    public Message(String author, String text, int profPicSource, String questionPicture, int audio) {
+    public Message(String author, String text, int profPicSource, String questionPicture, String audio) {
         this.author = author;
         this.text = text;
         this.profPicSource = profPicSource;
@@ -64,11 +64,11 @@ public class Message {
         this.questionPicture = questionPicture;
     }
 
-    public int getAudio() {
+    public String getAudio() {
         return audio;
     }
 
-    public void setAudio(int audio) {
+    public void setAudio(String audio) {
         this.audio = audio;
     }
 }

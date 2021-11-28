@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
 import anekdotas.mindgameapplication.helpers.HostTalk
 import anekdotas.mindgameapplication.helpers.RandomGen
@@ -19,10 +20,7 @@ import anekdotas.mindgameapplication.helpers.Time
 import anekdotas.mindgameapplication.java.ChatAdapter
 import anekdotas.mindgameapplication.java.Message
 import anekdotas.mindgameapplication.network.QuestionModel
-import anekdotas.mindgameapplication.objects.HostObject
-import anekdotas.mindgameapplication.objects.QuestionsObject
-import anekdotas.mindgameapplication.objects.UserObjectConst
-import anekdotas.mindgameapplication.objects.UserStatsObject
+import anekdotas.mindgameapplication.objects.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -38,8 +36,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     val T = Timer()
 
     var isMessageAudioSet = false
-    lateinit var messageAudio: MediaPlayer
+    var messageAudio: MediaPlayer? = null
     var setAudioMessagesID: Int? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -71,45 +70,51 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         //FIX THIS MESS
         // - - - - - AUDIO PLAY - - - - -
         var isAudioPaused = true
-        binding.ListView.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
+        binding.ListView.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, i, _ ->
 
-//            Log.d("|+| ", i.toString())
-//            Log.d("|+| ", "Author: " + messageList.get(i).author)
-//            Log.d("|+|", "audio ID: " + messageList.get(i).audio)
+    //            Log.d("|+| ", i.toString())
+    //            Log.d("|+| ", "Author: " + messageList.get(i).author)
+    //            Log.d("|+|", "audio ID: " + messageList.get(i).audio)
 
-//          - - - - - RELEASE PLAYER IF DIFFERENT MESSAGE IS SELECTED - - - - -
-            if ((isMessageAudioSet && (setAudioMessagesID != i || setAudioMessagesID == null)) && messageList[i].audio != 0) {
-//                isMessageAudioSet = false
-                messageAudio.release()
-            }
-
-//          - - - - - PLAY OR PAUSE AUDIO BY CLICKING ON THE SAME MESSAGE - - - - -
-            if (isMessageAudioSet && setAudioMessagesID == i && messageList[i].audio != 0)
-                when (isAudioPaused) {
-                    true -> {
-                        messageAudio.start()
-                        isAudioPaused = false
-                    }
-                    false -> {
-                        messageAudio.pause()
-                        isAudioPaused = true
-                    }
+    //          - - - - - RELEASE PLAYER IF DIFFERENT MESSAGE IS SELECTED - - - - -
+                if ((isMessageAudioSet && (setAudioMessagesID != i || setAudioMessagesID == null)) && messageList[i].audio != null) {
+    //                isMessageAudioSet = false
+                    messageAudio?.release()
                 }
 
-//          - - - - - SET NEW AUDIO IF DIFFERENT MESSAGE IS SELECTED - - - - -
-            if (messageList.get(i).audio != 0 && setAudioMessagesID != i) {
-                messageAudio = MediaPlayer.create(this, messageList.get(i).audio)
-                messageAudio.start()
-                isAudioPaused = false
-                isMessageAudioSet = true
-                setAudioMessagesID = i
-            } else {
-                Log.d(
-                    "|+|",
-                    "Status: This message is without audio OR this audio is already being played"
-                )
+    //          - - - - - PLAY OR PAUSE AUDIO BY CLICKING ON THE SAME MESSAGE - - - - -
+                if (isMessageAudioSet && setAudioMessagesID == i && messageList[i].audio != null)
+                    isAudioPaused = when (isAudioPaused) {
+                        true -> {
+                            messageAudio?.start()
+                            false
+                        }
+                        false -> {
+                            messageAudio?.pause()
+                            true
+                        }
+                    }
+
+    //          - - - - - SET NEW AUDIO IF DIFFERENT MESSAGE IS SELECTED - - - - -
+                if (messageList.get(i).audio != null && setAudioMessagesID != i) {
+                    messageAudio = MediaPlayer.create(this, "https://193.219.91.103:6524/media/1694181857.mp3".toUri())
+                    messageAudio?.start()
+                    isAudioPaused = false
+                    isMessageAudioSet = true
+                    setAudioMessagesID = i
+                    Log.d(
+                        "|+|",
+                        "there is audio"
+                    )
+                } else {
+                    Log.d(
+                        "|+|",
+                        "Status: This message is without audio OR this audio is already being played"
+                    )
+                }
+
             }
-        })
     }
 
 
@@ -128,7 +133,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
         if(RandomGen.chance(100) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov, "https://193.219.91.103:6524/media/3238849391.jpg"))
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov, "", "https://193.219.91.103:6524/media/1694181857.mp3"))
         }
         messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
 
