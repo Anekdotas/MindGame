@@ -47,6 +47,7 @@ dependencies {
 
     //Coil allows for loading images from API (retrofit does not support it)
     implementation "io.coil-kt:coil:1.4.0"
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'     //is used to display profile pictures
     implementation 'com.android.support:support-v4:27.0.2'  //is used for automatically scaling text

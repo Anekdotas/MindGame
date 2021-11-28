@@ -2,6 +2,7 @@ package anekdotas.mindgameapplication.java;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,16 @@ import java.util.ArrayList;
 
 import anekdotas.mindgameapplication.R;
 import anekdotas.mindgameapplication.java.Message;
+import coil.Coil;
+import coil.ImageLoader;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChatAdapter extends ArrayAdapter<Message> {
+public class ChatAdapter2 extends ArrayAdapter<Message> {
     //    private static final Tag
     private final Context myContext;
     int myResource;
 
-    public ChatAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Message> objects) {
+    public ChatAdapter2(@NonNull Context context, int resource, @NonNull ArrayList<Message> objects) {
         super(context, resource, objects);
 //        this.myContext = myContext;
         myContext = context;
@@ -38,7 +41,7 @@ public class ChatAdapter extends ArrayAdapter<Message> {
         String author = getItem(position).getAuthor();
         String messageText = getItem(position).getText();
         int profilePicSource = getItem(position).getProfPicSource();
-        int questionPicture = getItem(position).getQuestionPicture();
+
 
         //Creating message with the information
 //        com.example.bruhtest.Message message = new com.example.bruhtest.Message(author, messageText, profilePicSource);
@@ -55,7 +58,7 @@ public class ChatAdapter extends ArrayAdapter<Message> {
         tvAuthor.setText(author);
         tvMessage.setText(messageText);
         tvImage.setImageResource(profilePicSource);
-        tvQuestionPicture.setImageResource(questionPicture);
+
 
 
         return convertView;

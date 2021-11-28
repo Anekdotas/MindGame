@@ -1,14 +1,12 @@
 package anekdotas.mindgameapplication
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -25,10 +23,8 @@ import anekdotas.mindgameapplication.objects.HostObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import anekdotas.mindgameapplication.objects.UserStatsObject
-import org.apache.hc.core5.net.Host
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuestionsBinding
@@ -70,6 +66,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionC.setOnClickListener(this)
         binding.tvOptionD.setOnClickListener(this)
         binding.btnSubmit.setOnClickListener(this)
+
+
+        //FIX THIS MESS
         // - - - - - AUDIO PLAY - - - - -
         var isAudioPaused = true
         binding.ListView.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
@@ -111,7 +110,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 )
             }
         })
-    } // Fix this mess
+    }
 
 
     @SuppressLint("SetTextI18n")
@@ -128,8 +127,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
-        if(RandomGen.chance(25) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
+        if(RandomGen.chance(100) && myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov, "https://193.219.91.103:6524/media/3238849391.jpg"))
         }
         messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
 
