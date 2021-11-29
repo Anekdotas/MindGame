@@ -20,4 +20,5 @@
 | Nov. 06 | 17:27 - 18:53 | 86 min |  AN-71  | 
 |   | 18:53 - 20:42 | 109 min |  AN-73 Modifying buttons  | 
 |   | 21:01 - 21:13 | 12 min |  "Writing down changes; creating merge request"  | 
-|  | **Total:** | **17h 28min** | |
+|  Nov. 07 | 21:56 - 01:12 | 197 min |  Structuring weekly notes and pushing them to GitLab  | 
+|  | **Total:** | **20h 45min** | |

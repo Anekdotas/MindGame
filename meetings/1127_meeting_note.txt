@@ -1,0 +1,8 @@
+15:00 - Meeting start, talk about new ER model
+15:08 - Chat Interface minor issues
+15:15 - QuestionActivity code review
+15:28 - Prioritising
+15:31 - Closing or expanding old tasks 
+15:35 - Topic creator
+15:54 - Documentation
+15:59 - Meeting end
