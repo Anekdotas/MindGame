@@ -6,7 +6,7 @@ data class QuestionModel (
     @Json(name="text")
     val question: String,
     @Json(name="mediaUrl")
-    val media: String = "empty",
+    val media: String? = null,
     @Json(name="correctAnswer")
     val answer: Int,
     @Json(name="answers")

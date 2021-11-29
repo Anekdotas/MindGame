@@ -98,7 +98,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     //          - - - - - SET NEW AUDIO IF DIFFERENT MESSAGE IS SELECTED - - - - -
                 if (messageList.get(i).audio != null && setAudioMessagesID != i) {
-                    messageAudio = MediaPlayer.create(this, "https://193.219.91.103:6524/media/1694181857.mp3".toUri())
+                    messageAudio = MediaPlayer.create(this, messageList.get(i).audio.toUri())
                     messageAudio?.start()
                     isAudioPaused = false
                     isMessageAudioSet = true
@@ -132,10 +132,23 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
-        if(RandomGen.chance(100) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov, "", "https://193.219.91.103:6524/media/1694181857.mp3"))
+
+        if(RandomGen.chance(25) && myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
         }
-        messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
+        if(question.media==null){
+            messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
+        }
+        else if(question.media.endsWith(".jpg")){
+            messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
+        }
+        else if(question.media.endsWith(".mp3")){
+            messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, "", question.media))
+        }
+        else{
+            Log.e("Media", "Wrong media type!")
+        }
+
 
         binding.tvOptionA.text = question.options[0]
         binding.tvOptionB.text = question.options[1]

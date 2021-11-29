@@ -64,3 +64,4 @@ public class ChatAdapter2 extends ArrayAdapter<Message> {
         return convertView;
     }
 }
+//This is useless now
