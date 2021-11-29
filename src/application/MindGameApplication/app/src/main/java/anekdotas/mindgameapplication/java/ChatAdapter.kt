@@ -38,7 +38,6 @@ class ChatAdapter(
         tvAuthor.text = author
         tvMessage.text = messageText
         tvImage.setImageResource(profilePicSource)
-        Log.d("debug", "$questionPicture")
         tvQuestionPicture.load(questionPicture)
 
         return convertView
