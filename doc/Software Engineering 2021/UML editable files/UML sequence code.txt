@@ -1,0 +1,40 @@
+link - https://www.websequencediagrams.com
+
+title UML Sequence Diagram
+
+opt login
+    Application ->+ Web Server: login + password
+    Web Server -->- Application: JWT token
+end
+
+
+opt Get list of categories
+    Application ->+ Web Server: Request list of categories
+        Web Server ->+ Database: Request list of categories 
+        Database -->- Web Server: Return list of categories 
+    Web Server -->- Application: Return list of categories in JSON format
+end
+
+
+opt Get list of topics
+    Application ->+ Web Server: Request list of topics
+        Web Server ->+ Database: Request list of topics
+        Database -->- Web Server: Return list of topics
+    Web Server -->- Application: Return list of topics in JSON format
+end
+
+
+opt Get questions of selected topic
+    Application ->+ Web Server: Request list of questions of a selected topic
+        Web Server ->+ Database: Request list of questions of a selected topic 
+        Database -->- Web Server: Return list of questions
+    Web Server -->- Application: Return list of questions in JSON format
+end
+
+
+opt Sending statistics
+    Application ->+ Web Server: Send statistics
+        Web Server ->+ Database: Send statistics
+        Database -->- Web Server: Return analitics
+    Web Server -->- Application: Return analitics
+end
