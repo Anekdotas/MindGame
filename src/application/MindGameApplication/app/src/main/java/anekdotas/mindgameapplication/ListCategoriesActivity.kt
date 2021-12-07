@@ -18,12 +18,6 @@ class ListCategoriesActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
-        //ActionBar setup
-        binding.actionBar.actionBarBackArrow.setOnClickListener{
-            val intent = Intent(this, MainMenuActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
 
 
         val categoryListAdapter = CategoriesAdapter(CategoriesObject.categoryList)
