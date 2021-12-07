@@ -11,9 +11,12 @@ object UserObjectConst{
      //VALUES FOR REGISTRATION
     var usernameRegister = "User_Name"
     var passwordRegister = "password"
+    var passwordRepeatRegister = "password again"
+    var emailRegister = "example@register.kt"
 
     var sessionTimeSeconds : Long = 0
     var sessionTimeMinutes : Long = 0
     var sessionTimeHours : Long = 0
     var ratedTopicsId = mutableListOf(0)
+
 }
