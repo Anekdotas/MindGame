@@ -1,18 +1,15 @@
 package anekdotas.mindgameapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import anekdotas.mindgameapplication.databinding.ActivityRegisterBinding
 import anekdotas.mindgameapplication.network.ApiClient
-import anekdotas.mindgameapplication.network.JwtTestModel
 import anekdotas.mindgameapplication.network.RegistrationModel
-import anekdotas.mindgameapplication.objects.JwtObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
-import anekdotas.mindgameapplication.objects.UserObjectConstTest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,8 +48,6 @@ class RegisterActivity : AppCompatActivity() {
                     UserObjectConst.emailRegister = binding.email.text.toString()
                     Thread.sleep(25)
                     callNetworkSignup()
-                    //startActivity(intent)
-                    //finish()
                 }
             }
         }
