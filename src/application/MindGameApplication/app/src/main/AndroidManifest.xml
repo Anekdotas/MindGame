@@ -52,7 +52,7 @@
             android:name=".QuestionsActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".ResultsActivity"
             android:exported="true"

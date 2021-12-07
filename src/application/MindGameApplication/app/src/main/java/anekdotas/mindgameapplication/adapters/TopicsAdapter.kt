@@ -68,6 +68,6 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
             }
         })
     }
-
+    
     inner class TopicViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView)
 }

@@ -18,6 +18,7 @@ import anekdotas.mindgameapplication.objects.UserObjectConstTest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -69,8 +70,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
 
     private fun callNetworkCategories() {
         val client = ApiClient.apiService.getCategories()
