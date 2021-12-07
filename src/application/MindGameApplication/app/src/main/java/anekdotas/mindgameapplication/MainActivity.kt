@@ -10,12 +10,16 @@ import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.helpers.NetworkChecker.isNetworkAvailable
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
+import anekdotas.mindgameapplication.network.JwtTestModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
+import anekdotas.mindgameapplication.objects.JwtObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
+import anekdotas.mindgameapplication.objects.UserObjectConstTest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding // UI element binding
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val networkOnline = isNetworkAvailable(this)
 
         binding.tvRegistration.setOnClickListener{
-            val intent = Intent(this, CreatorActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -50,14 +54,14 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, "No Password Selected", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
-                        Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainMenuActivity::class.java)
-                        UserObjectConst.USERNAME = binding.username.text.toString()
-                        intent.putExtra(UserObjectConst.USERNAME, binding.username.text.toString())
-                        intent.putExtra(UserObjectConst.PASSWORD, binding.password.text.toString())// sends the username/password to other activities, delete later
+                        UserObjectConst.USERNAME = binding.username.text.toString() //delete later
+                        UserObjectConst.PASSWORD = binding.password.text.toString() //delete later
+                        UserObjectConstTest.currentUser.username = binding.username.text.toString()
+                        UserObjectConstTest.currentUser.password = binding.password.text.toString()
+
+                        callNetworkLogin()
                         Thread.sleep(100)
-                        startActivity(intent)
-                        finish()
+
                     }
                 }
             }
@@ -82,4 +86,31 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+
+    private fun callNetworkLogin() {
+        val intent = Intent(this, MainMenuActivity::class.java)
+        val clientPOST = ApiClient.apiService.pushPostLogin(UserObjectConstTest.currentUser)
+        Log.d("callNetworkPOST", "has been called")
+        clientPOST.enqueue(object : Callback<JwtTestModel> {
+            override fun onResponse(call: Call<JwtTestModel>, response: Response<JwtTestModel>) {
+                if(response.isSuccessful){
+                    Log.d("POST response is", ""+ response.body())
+                    JwtObject.userJwt = response.body()!!
+                    Log.d("JWT stored in memory is", ""+ JwtObject.userJwt)
+                    Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }
+                else {
+                    Log.d("POST did not succeed", "" + response.body())
+                    Toast.makeText(this@MainActivity, "Login details incorrect, please try again", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<JwtTestModel>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+
+    }
+
 }

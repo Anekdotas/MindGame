@@ -2,12 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/labstack/echo/v4"
 	"os"
 	"strconv"
 
+	"github.com/golang-jwt/jwt"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+
 	"anekdotas/internal/api"
 	"anekdotas/internal/logic"
+	"anekdotas/internal/logic/auth"
 	"anekdotas/internal/repository/db"
 )
 
@@ -19,10 +23,18 @@ func main() {
 	mediaURLPrefix := mustGetEnvVar("HOST_PREFIX")
 	e.Static("/media", mediaDir)
 
-	// HTTP API initialization
 	sqlRepo := db.New(db.NewDB(getDBCredentials()))
-	newAPI := api.New(logic.New(sqlRepo, mediaDir, mediaURLPrefix))
-	newAPI.BindApiRoutes(e)
+	defer sqlRepo.Close()
+	authProvider := auth.NewJWTAuth(mustGetEnvVar("SECRET_KEY"))
+	newLogic := logic.New(sqlRepo, authProvider, mediaDir, mediaURLPrefix)
+
+	// HTTP API initialization
+	newAPI := api.New(newLogic)
+	jwtMiddleware := middleware.JWTWithConfig(middleware.JWTConfig{
+		ParseTokenFunc: authProvider.ParseJWT,
+		Claims:         &jwt.StandardClaims{},
+	})
+	newAPI.BindApiRoutes(e, jwtMiddleware)
 
 	if err := e.StartTLS(
 		":"+mustGetEnvVar("APP_PORT"), "certs/mindgame.crt", "certs/mindgame.key",
