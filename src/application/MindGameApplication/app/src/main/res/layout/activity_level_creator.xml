@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LevelCreatorActivity"
+    android:gravity="start"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar"
+        android:id="@+id/action_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center" >
+
+
+        <include
+            android:id="@+id/obj_question_element"
+            layout="@layout/lvl_creator_question_element" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_SaveQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lvl_creator_save_question"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_PreviousQuestion"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Previous Question"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_UpdateQuestion"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Update question"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_NextQuestion"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Next Question"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_Play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lvl_creator_upload_topic_to_the_server"/>
+    </LinearLayout>
+</LinearLayout>

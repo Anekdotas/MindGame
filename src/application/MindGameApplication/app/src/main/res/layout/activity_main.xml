@@ -113,14 +113,6 @@
                 android:background="@color/white"
                 android:text="Play"/>
 
-            <Button
-                android:id="@+id/btn_test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:text="Test"/>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
