@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
         android:text="topic"
-        android:textColor="#84C9FB"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="sans"

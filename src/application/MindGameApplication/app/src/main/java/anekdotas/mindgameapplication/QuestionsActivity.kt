@@ -136,17 +136,20 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         if(RandomGen.chance(25) && myPosition!=1){
             messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
         }
-        if(question.media==null){
-            messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
-        }
-        else if(question.media.endsWith(".jpg")){
-            messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
-        }
-        else if(question.media.endsWith(".mp3")){
-            messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, "", question.media))
-        }
-        else{
-            Log.e("Media", "Wrong media type!")
+
+        when {
+            question.media==null -> {
+                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
+            }
+            question.media.endsWith(".jpg") -> {
+                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
+            }
+            question.media.endsWith(".mp3") -> {
+                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, "", question.media))
+            }
+            else -> {
+                Log.e("Media", "Wrong media type!")
+            }
         }
 
 
@@ -169,11 +172,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         options.add(3, binding.tvOptionD)
 
         for (option in options) {
-            option.setTextColor(Color.parseColor("#7A8089")) // changes colour of the option
+            option.setTextColor(Color.parseColor("#F2F3F5")) // changes colour of the option
             option.typeface = Typeface.DEFAULT // changes color back to default
             option.background = ContextCompat.getDrawable(
                 this,
-                R.drawable.default_option_bg
+                R.drawable.button_design_other
             )
         }
     }
@@ -232,7 +235,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     binding.tvOptionD.isClickable=false
 
                     if (question!!.answer != mySelectedPosition) {
-                        answerView(mySelectedPosition, R.drawable.wrong_option_bg)
+                        answerView(mySelectedPosition, R.drawable.custom_wrong_btn)
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak=0
                     } // CHECKS IF ANSWER WAS INCORRECT
@@ -243,7 +246,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         UserStatsObject.sessionStreak++
                     } //IF THE ANSWER WAS CORRECT
 
-                    answerView(question.answer, R.drawable.correct_option_bg) //COLORS THE CORRECT
+                    answerView(question.answer, R.drawable.custom_correct_btn) //COLORS THE CORRECT
 
                     if (myPosition == myQuestionsList!!.size) {
                         binding.btnSubmit.text = "FINISH"
@@ -261,11 +264,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         defaultOptionView() // resets to default
         mySelectedPosition = selectedOptionNum
 
-        tv.setTextColor(Color.parseColor("#000000")) // changes colour of the option
+        tv.setTextColor(Color.parseColor("#FFFFFF")) // changes colour of the option
         tv.setTypeface(tv.typeface, Typeface.BOLD)
         tv.background = ContextCompat.getDrawable(
             this,
-            R.drawable.selected_option_bg
+            R.drawable.custom_button
         )
     }
 
