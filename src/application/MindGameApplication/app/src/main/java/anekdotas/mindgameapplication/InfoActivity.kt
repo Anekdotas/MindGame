@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityInfoBinding
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.objects.TopicsObject
@@ -23,15 +24,15 @@ class InfoActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         when (TopicsObject.selectedTopic.difficulty) {
             0 -> {
-                binding.cvDifficulty.setCardBackgroundColor(Color.parseColor("#70efde"))
+                binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_green))
                 binding.tvDifficulty.text = "Easy"
             }
             1 -> {
-                binding.cvDifficulty.setCardBackgroundColor(Color.parseColor("#01a299"))
+                binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_yellow))
                 binding.tvDifficulty.text = "Moderate"
             }
             2 -> {
-                binding.cvDifficulty.setCardBackgroundColor(Color.parseColor("#005457"))
+                binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_red))
                 binding.tvDifficulty.text = "Hard"
             }
         }
