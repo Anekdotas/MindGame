@@ -22,7 +22,6 @@ class LevelCreatorActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
-        binding.actionBar.tvActionText.text = resources.getString(R.string.level_creator_title)
         binding.actionBar.actionBarBackArrow.setOnClickListener {
             var intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
             startActivity(intent)

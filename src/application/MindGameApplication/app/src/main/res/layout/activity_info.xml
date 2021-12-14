@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/topicname"
+                android:text="@string/topic"
                 android:textColor="@color/good_blue"
                 android:textSize="35sp"
                 android:textStyle="bold" />
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/topicdesc"
+                android:text="desc"
                 android:textColor="#21B6A8"
                 android:textSize="20sp" />
         </LinearLayout>

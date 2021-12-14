@@ -24,8 +24,6 @@ class LevelCreatorTitlePageActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         callNetworkTopics()
 
-        configureActionBar()
-
 //        /* Function for testing */ fillRequiredData()
 
         binding.btnContinue.setOnClickListener {
@@ -59,14 +57,6 @@ class LevelCreatorTitlePageActivity : AppCompatActivity() {
         }
     }
 
-    private fun configureActionBar() {
-        binding.actionBar.tvActionText.text = resources.getString(R.string.level_creator_title)
-        binding.actionBar.actionBarBackArrow.setOnClickListener {
-            var intent = Intent(this, MainMenuActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
 
     private fun callNetworkTopics() {
         val client = ApiClient.apiService.getTopics("https://193.219.91.103:6524/categories/1/topics")
