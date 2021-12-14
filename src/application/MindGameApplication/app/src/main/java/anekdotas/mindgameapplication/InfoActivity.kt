@@ -18,7 +18,7 @@ class InfoActivity : AppCompatActivity() {
         binding = ActivityInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.tvTopicName.text = TopicsObject.selectedTopic.topicName
-        binding.ivTopic.load("https://193.219.91.103:6524/media/3238849391.jpg")
+        binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
         binding.tvDesc.text = TopicsObject.selectedTopic.description
         binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN

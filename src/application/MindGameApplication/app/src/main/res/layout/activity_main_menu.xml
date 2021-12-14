@@ -7,7 +7,7 @@
     tools:context=".MainMenuActivity"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/main_menu_bg">
+    android:background="@drawable/simple_background">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -23,6 +23,7 @@
             android:orientation="vertical"
             android:padding="10dp"
             android:gravity="center"
+            android:background="@color/secondary_dark_blue_background"
             >
 
             <TextView
@@ -37,7 +38,7 @@
                 android:autoSizeMaxTextSize="190sp"
                 android:autoSizeMinTextSize="30sp"
                 android:autoSizeStepGranularity="5sp"
-                android:textColor="@color/light_gray"
+                android:textColor="@color/white"
                 android:layout_marginBottom="10dp"
                 />
             <LinearLayout
@@ -68,6 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:text="Play"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-black"
                         android:textStyle="bold"
@@ -100,6 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:text="Shop"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-black"
                         android:textStyle="bold"
@@ -140,6 +143,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:text="Profile"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-black"
                         android:textStyle="bold"
@@ -173,6 +177,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:text="Exit"
+                        android:textColor="@color/white"
                         android:fontFamily="sans-serif-black"
                         android:textSize="20sp"
                         android:textStyle="bold"
