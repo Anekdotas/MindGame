@@ -38,7 +38,7 @@
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Apple"
-            android:padding="5dp"
+            android:padding="7dp"
             />
 
         <TextView
@@ -51,7 +51,7 @@
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Banana"
-            android:padding="5dp"
+            android:padding="7dp"
             />
 
         <TextView
@@ -64,7 +64,7 @@
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Cherry"
-            android:padding="5dp"
+            android:padding="7dp"
             />
 
         <TextView
@@ -78,7 +78,7 @@
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Dragon Fruit"
-            android:padding="5dp"
+            android:padding="7dp"
             />
     </LinearLayout>
 

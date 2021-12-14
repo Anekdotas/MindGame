@@ -14,7 +14,7 @@
         android:layout_height="275dp"
         android:layout_gravity="center"
         android:padding="15dp"
-        app:civ_border_color="#84C9FB"
+        app:civ_border_color="@color/good_blue"
         app:civ_border_width="3dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:id="@+id/cardView"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:background="#21B6A8"
+        android:background="@color/green_blue"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_play"
@@ -47,7 +47,7 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/topicname"
-                android:textColor="#21B6A8"
+                android:textColor="@color/good_blue"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
