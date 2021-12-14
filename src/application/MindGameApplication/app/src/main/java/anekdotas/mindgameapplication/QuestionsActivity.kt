@@ -133,6 +133,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
 
+        if(myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.giveMoveOn(), R.drawable.lasgov))
+        }
         if(RandomGen.chance(25) && myPosition!=1){
             messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
         }
@@ -145,7 +148,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
             }
             question.media.endsWith(".mp3") -> {
-                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, "", question.media))
+                messageList.add(Message(HostObject.host.hostName, question.question+"\n CLICK TO PLAY \uD83D\uDD0A", R.drawable.lasgov, "", question.media))
             }
             else -> {
                 Log.e("Media", "Wrong media type!")

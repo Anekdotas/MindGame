@@ -35,7 +35,7 @@ object HostTalk {
     fun giveMoveOn(): String {
         return HostObject.host.moveOn[Random.nextInt(0, HostObject.host.moveOn.size)]
     }
-    fun giveRandomJoke(): String{
+    private fun giveRandomJoke(): String{
         return HostObject.host.randomJokes[Random.nextInt(0, HostObject.host.randomJokes.size)]
     }
 }
