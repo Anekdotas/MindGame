@@ -18,6 +18,23 @@
     <string name="login_failed">"Login failed"</string>
     <string name="topic">Topic</string>
     <string name="play">Play</string>
-    <string name="topicname">TopicName</string>
-    <string name="topicdesc">topicdesc</string>
+
+<!--    Topic creator section   -->
+    <string name="level_creator_title">Topic Creator</string>
+    <string-array name="lvl_creator_correct_answers">
+        <item>-</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="lvl_creator_spinner">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string name="lvl_creator_save_question">save question</string>
+    <string name="lvl_creator_upload_topic_to_the_server">upload</string>
 </resources>

@@ -1,12 +1,12 @@
 package auth
 
 import (
-	"errors"
 	"strconv"
 	"time"
 
 	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
+	"github.com/pkg/errors"
 )
 
 type AuthProvider interface {

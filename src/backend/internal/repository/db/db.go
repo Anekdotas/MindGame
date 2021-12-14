@@ -4,12 +4,12 @@ import (
 	"anekdotas"
 	"anekdotas/internal/repository"
 	"database/sql"
-	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/jmoiron/sqlx"
 	"github.com/lib/pq"
-	_ "github.com/lib/pq"
+	"github.com/pkg/errors"
 )
 
 var _ repository.Repository = &Repo{}
@@ -33,23 +33,41 @@ func (r *Repo) Close() error {
 	return r.db.Close()
 }
 
-// errNoRowsToNotFound returns anekdotas.ErrNotFound if sql.ErrNoRows was passed. Otherwise, original
-// error returned.
-func errNoRowsToNotFound(err error) error {
+// translateDBError returns corresponding anekdotas error to the passed DB error.
+//
+// Current translations:
+//  sql.ErrNoRows -> anekdotas.ErrNotFound
+//  PostgreSQL Error Code 23505 -> anekdotas.ErrAlreadyExists
+//  Unknown error -> original error
+func translateDBError(err error) error {
+	if err == nil {
+		return nil
+	}
 	if errors.Is(err, sql.ErrNoRows) {
 		return anekdotas.ErrNotFound
 	}
-	return err
-}
-
-func translateDBError(err error) error {
 	pqErr, ok := err.(*pq.Error)
 	if !ok {
 		return err
 	}
 	switch pqErr.Code {
-	case "23505":
+	case "23503": // foreign-key violation
+		return anekdotas.ErrNotFound
+	case "23505": // unique violation
 		return anekdotas.ErrAlreadyExists
+	case "23514": // check violation
+		return anekdotas.ErrQuestionsAndAnswersMismatch
 	}
 	return err
+}
+
+// generateBindvars generates string with (numOfElements * elementSize) bindvars separated
+// into groups by elementSize bindvars in each group.
+//
+// Example:
+//  generateBindvars(2, 3) -> "(?, ?, ?), (?, ?, ?)"
+//  generateBindvars(3, 2) -> "(?, ?), (?, ?), (?, ?)"
+func generateBindvars(numOfElements int, elementSize int) string {
+	element := "(" + strings.TrimSuffix(strings.Repeat("?, ", elementSize), ", ") + "), "
+	return strings.TrimSuffix(strings.Repeat(element, numOfElements), ", ")
 }

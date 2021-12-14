@@ -17,6 +17,8 @@ class InfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        
         binding.tvTopicName.text = TopicsObject.selectedTopic.topicName
         binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
         binding.tvDesc.text = TopicsObject.selectedTopic.description

@@ -22,7 +22,6 @@
     'layout_height="wrap_content"' might be the reason why
     it cuts some options, it can be tested only if there is
     more topics. If that happens - change it back to 0dp
-    //TODO Ask Bohdan to add empty topics for tests
  -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

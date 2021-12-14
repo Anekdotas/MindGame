@@ -6,18 +6,36 @@ import (
 	"anekdotas"
 )
 
-// deriveFmapCRecordToModel returns a list where each element of the input list has been morphed by the input function.
-func deriveFmapCRecordToModel(f func(*CategoryRecord) *anekdotas.Category, list []*CategoryRecord) []*anekdotas.Category {
-	out := make([]*anekdotas.Category, len(list))
+// deriveFmapARecordToModel returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapARecordToModel(f func(*AnswerRecord) *anekdotas.Answer, list []*AnswerRecord) []*anekdotas.Answer {
+	out := make([]*anekdotas.Answer, len(list))
 	for i, elem := range list {
 		out[i] = f(elem)
 	}
 	return out
 }
 
-// deriveFmapQRecordToModel returns a list where each element of the input list has been morphed by the input function.
-func deriveFmapQRecordToModel(f func(*QuestionRecord) *anekdotas.Question, list []*QuestionRecord) []*anekdotas.Question {
-	out := make([]*anekdotas.Question, len(list))
+// deriveFmapAnswersTextToInterface returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapAnswersTextToInterface(f func(*AnswerRecord) interface{}, list []*AnswerRecord) []interface{} {
+	out := make([]interface{}, len(list))
+	for i, elem := range list {
+		out[i] = f(elem)
+	}
+	return out
+}
+
+// deriveFmapAModelToRecord returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapAModelToRecord(f func(*anekdotas.Answer) *AnswerRecord, list []*anekdotas.Answer) []*AnswerRecord {
+	out := make([]*AnswerRecord, len(list))
+	for i, elem := range list {
+		out[i] = f(elem)
+	}
+	return out
+}
+
+// deriveFmapCRecordToModel returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapCRecordToModel(f func(*CategoryRecord) *anekdotas.Category, list []*CategoryRecord) []*anekdotas.Category {
+	out := make([]*anekdotas.Category, len(list))
 	for i, elem := range list {
 		out[i] = f(elem)
 	}

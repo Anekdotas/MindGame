@@ -5,7 +5,9 @@ import (
 )
 
 var (
-	ErrIncorrectPassword = errors.New("incorrect password")
-	ErrNotFound          = errors.New("not found")
-	ErrAlreadyExists     = errors.New("already exists")
+	ErrIncorrectPassword           = errors.New("incorrect password")
+	ErrNotFound                    = errors.New("not found")
+	ErrAlreadyExists               = errors.New("already exists")
+	ErrQuestionsAndAnswersMismatch = errors.New("questions and answers mismatch")
+	ErrGameSessionAlreadyFinished  = errors.New("game session already finished")
 )

@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"anekdotas"
+	"anekdotas/internal/logic/auth"
 	"net/http"
 	"strconv"
 
@@ -9,11 +10,11 @@ import (
 )
 
 type Question struct {
-	ID            int64    `json:"id,omitempty" query:"id" param:"id"`
-	Text          string   `json:"text"`
-	MediaURL      string   `json:"mediaUrl,omitempty"`
-	CorrectAnswer int      `json:"correctAnswer"`
-	Answers       []string `json:"answers"`
+	ID            int64     `json:"id,omitempty" query:"id"`
+	Text          string    `json:"text"`
+	MediaURL      string    `json:"mediaUrl,omitempty"`
+	CorrectAnswer int64     `json:"correctAnswer"`
+	Answers       []*Answer `json:"answers"`
 }
 
 func (h *Handlers) GetQuestions(c echo.Context) error {
@@ -21,20 +22,33 @@ func (h *Handlers) GetQuestions(c echo.Context) error {
 	if topic == "" {
 		return echo.NewHTTPError(http.StatusBadRequest, "topic is empty")
 	}
-	questions, err := h.logic.GetQuestionsByTopic(c.Request().Context(), topic)
+	userID, err := auth.GetUserIDFromToken(c.Get("user"))
 	if err != nil {
 		c.Logger().Error(err)
 		return err
 	}
-	return c.JSON(http.StatusOK, deriveFmapQuestions(func(q *anekdotas.Question) *Question {
-		return &Question{
-			ID:            q.ID,
-			Text:          q.Text,
-			MediaURL:      q.MediaURL,
-			CorrectAnswer: q.CorrectAnswer,
-			Answers:       q.Answers,
-		}
-	}, questions))
+	gameSessionID, questions, err := h.logic.GetQuestionsByTopic(c.Request().Context(), topic, userID)
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	return c.JSON(http.StatusOK, echo.Map{
+		"gameSessionId": gameSessionID,
+		"questions": deriveFmapQuestions(func(q *anekdotas.Question) *Question {
+			return &Question{
+				ID:            q.ID,
+				Text:          q.Text,
+				MediaURL:      q.MediaURL,
+				CorrectAnswer: q.CorrectAnswerID,
+				Answers: deriveFmapAnswers(func(a *anekdotas.Answer) *Answer {
+					return &Answer{
+						ID:   a.ID,
+						Text: a.Text,
+					}
+				}, q.Answers),
+			}
+		}, questions),
+	})
 }
 
 func (h *Handlers) CreateQuestion(c echo.Context) error {
@@ -43,11 +57,19 @@ func (h *Handlers) CreateQuestion(c echo.Context) error {
 		return err
 	}
 	topic := c.Param("topic")
-	id, err := h.logic.CreateQuestion(c.Request().Context(), topic, &anekdotas.Question{
-		Text:          question.Text,
-		CorrectAnswer: question.CorrectAnswer,
-		Answers:       question.Answers,
-	})
+	id, err := h.logic.CreateQuestionWithAnswers(
+		c.Request().Context(),
+		topic,
+		&anekdotas.Question{
+			Text:            question.Text,
+			CorrectAnswerID: question.CorrectAnswer,
+		},
+		deriveFmapAnswersReverse(func(a *Answer) *anekdotas.Answer {
+			return &anekdotas.Answer{
+				Text: a.Text,
+			}
+		}, question.Answers),
+	)
 	if err != nil {
 		c.Logger().Error(err)
 		return err

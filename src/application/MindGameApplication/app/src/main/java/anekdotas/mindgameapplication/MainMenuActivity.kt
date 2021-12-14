@@ -36,5 +36,12 @@ class MainMenuActivity : AppCompatActivity() {
 
         //EXIT BUTTON logic
         binding.exitBtn.setOnClickListener { this.finishAffinity(); }     //simply exits the game
+
+        //LEVEL CREATOR button logic
+        binding.btnLevelCreator.setOnClickListener {
+            val intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

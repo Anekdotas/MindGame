@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_questionNr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New question"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/input_et_Question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input your question"
+        />
+
+    <include layout="@layout/lvl_creator_answer_element"
+        android:id="@+id/Answer1"/>
+    <include layout="@layout/lvl_creator_answer_element"
+        android:id="@+id/Answer2"/>
+    <include layout="@layout/lvl_creator_answer_element"
+        android:id="@+id/Answer3"/>
+    <include layout="@layout/lvl_creator_answer_element"
+        android:id="@+id/Answer4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Select correct answer's number: "
+            android:textSize="20sp"
+            android:layout_weight="3"
+            android:gravity="center"/>
+        <Spinner
+            android:id="@+id/sp_correctAnswerID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:entries="@array/lvl_creator_correct_answers"
+            android:layout_weight="1"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>

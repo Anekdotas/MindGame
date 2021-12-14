@@ -5,10 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Url
+import retrofit2.http.*
 
 object ApiClient {
     private const val BASE_URL = "https://193.219.91.103:6524/" //change to path if question location would change
@@ -47,6 +44,19 @@ interface ApiServices {
     @POST("/auth/register")
     fun pushPostSignup(
         @Body post: RegistrationModel
+    ): Call<Void>
+
+    @POST("/categories/1/topics")
+    fun pushPostTopic(
+        @Header("Authorization") Bearer: String,
+        @Body post: TopicPostModel
+    ): Call<Void>
+
+    @POST
+    fun pushPostQuestions(
+        @Url url: String?,
+        @Header("Authorization") Bearer: String,
+        @Body post: QuestionModel
     ): Call<Void>
 
 }

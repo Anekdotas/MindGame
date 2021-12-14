@@ -20,7 +20,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:padding="10dp"
             android:layout_toEndOf="@id/action_bar_back_arrow"
             android:textColor="@color/white"
             android:textStyle="bold"
