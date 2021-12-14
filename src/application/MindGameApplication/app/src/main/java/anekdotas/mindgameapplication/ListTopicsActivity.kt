@@ -25,6 +25,5 @@ class ListTopicsActivity : AppCompatActivity() {
         binding.rvTopicRecycler.layoutManager = LinearLayoutManager(this)
 
 
-
     }
 }

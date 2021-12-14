@@ -42,6 +42,7 @@ class InfoActivity : AppCompatActivity() {
 
         binding.btnPlay.setOnClickListener {
             val intent = Intent(this, QuestionsActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             finish()
         }

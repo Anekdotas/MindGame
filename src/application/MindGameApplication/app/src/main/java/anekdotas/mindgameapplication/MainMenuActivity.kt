@@ -41,7 +41,6 @@ class MainMenuActivity : AppCompatActivity() {
         binding.btnLevelCreator.setOnClickListener {
             val intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

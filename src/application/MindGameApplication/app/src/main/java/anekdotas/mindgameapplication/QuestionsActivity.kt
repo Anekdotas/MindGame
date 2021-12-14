@@ -216,6 +216,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 myQuestionsList!!.size
                             )
                             T.cancel()
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             finish()// ENDS THE QUIZ
                         }
