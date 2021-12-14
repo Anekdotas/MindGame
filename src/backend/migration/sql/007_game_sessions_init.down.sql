@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS choosed_answers;
+DROP TABLE IF EXISTS chosen_answers;
+
+DROP FUNCTION ValidateQuestionAndAnswerInSession;
 
 DROP TABLE IF EXISTS questions_sessions;
 

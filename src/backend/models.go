@@ -1,11 +1,18 @@
 package anekdotas
 
+import "time"
+
+type Answer struct {
+	ID   int64
+	Text string
+}
+
 type Question struct {
-	ID            int64
-	Text          string
-	MediaURL      string
-	CorrectAnswer int
-	Answers       []string
+	ID              int64
+	Text            string
+	MediaURL        string
+	CorrectAnswerID int64
+	Answers         []*Answer
 }
 
 type Topic struct {
@@ -27,4 +34,16 @@ type User struct {
 	ID       int64
 	Username string
 	Email    string
+}
+
+type Choice struct {
+	QuestionID int64
+	AnswerID   int64
+}
+
+type Statistics struct {
+	GameSessionID int64
+	Choices       []*Choice
+	TimeSpent     time.Duration
+	Streak        uint
 }
