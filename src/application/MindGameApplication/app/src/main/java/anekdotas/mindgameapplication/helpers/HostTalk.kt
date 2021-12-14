@@ -2,13 +2,15 @@ package anekdotas.mindgameapplication.helpers
 
 import anekdotas.mindgameapplication.objects.HostObject
 import anekdotas.mindgameapplication.objects.UserStatsObject
+import org.apache.hc.core5.net.Host
 import kotlin.random.Random
 
 object HostTalk {
     fun saySomething() : String {
-        return when(Random.nextInt(0,2)){
+        return when(Random.nextInt(0,3)){
             0 -> HostObject.host.randomAnswers[Random.nextInt(0, HostObject.host.randomAnswers.size)]
             1 -> streak()
+            2 -> giveRandomJoke()
             else -> "Moving on..."
         }
     }
@@ -29,5 +31,11 @@ object HostTalk {
     }
     fun giveRandomGreeting(): String {
         return HostObject.host.greetings[Random.nextInt(0, HostObject.host.greetings.size)]
+    }
+    fun giveMoveOn(): String {
+        return HostObject.host.moveOn[Random.nextInt(0, HostObject.host.moveOn.size)]
+    }
+    private fun giveRandomJoke(): String{
+        return HostObject.host.randomJokes[Random.nextInt(0, HostObject.host.randomJokes.size)]
     }
 }

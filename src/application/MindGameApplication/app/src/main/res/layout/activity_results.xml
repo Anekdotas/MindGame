@@ -3,20 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Lavender"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#18242B"
     android:orientation="vertical"
-    android:gravity="center"
-    >
-
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:text="@string/result"
-        android:textColor="@color/Black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/iv_trophy"
@@ -25,22 +15,28 @@
         android:contentDescription="@string/image"
         android:src="@drawable/cup_lowres" />
 
-    <TextView
-        android:id="@+id/tv_congratulations"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/congrats"
-        android:textColor="@color/Black"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:background="#21B6A8"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1a2832"
+            android:padding="16dp">
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@color/Black"
+        android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
         tools:text="Username" />
@@ -50,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/Black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         tools:text="Time spent: 24h" />
 
@@ -59,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/Black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         tools:text="Your Score is absolutely terrible" />
 
@@ -68,9 +64,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/Black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         tools:text="Rate this quiz" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/rb_rating"
@@ -78,7 +76,7 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:isIndicator="false"
-        android:stepSize="0.5"/>
+        android:stepSize="0.5" />
 
     <Button
         android:id="@+id/btn_finish"
@@ -87,9 +85,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@android:color/white"
+        android:background="@drawable/custom_button"
         android:text="FINISH"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
 </LinearLayout>

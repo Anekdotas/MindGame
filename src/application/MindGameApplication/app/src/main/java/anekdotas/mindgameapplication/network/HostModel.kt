@@ -6,7 +6,9 @@ data class HostModel (
     val goodAnswers: List<String>,
     val badAnswers : List<String>,
     val randomAnswers : List<String>,
+    val randomJokes : List<String>,
     val goodStreak : List<String>,
     val badStreak : List<String>,
-    val greetings : List<String>
+    val greetings : List<String>,
+    val moveOn : List<String>
 )

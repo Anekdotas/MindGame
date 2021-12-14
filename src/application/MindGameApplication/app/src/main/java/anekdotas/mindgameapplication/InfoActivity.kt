@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityInfoBinding
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.objects.TopicsObject
@@ -19,21 +20,21 @@ class InfoActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         
         binding.tvTopicName.text = TopicsObject.selectedTopic.topicName
-        binding.ivTopic.load("https://193.219.91.103:6524/media/3238849391.jpg")
+        binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
         binding.tvDesc.text = TopicsObject.selectedTopic.description
         binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
-
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         when (TopicsObject.selectedTopic.difficulty) {
             0 -> {
-                binding.cvDifficulty.setCardBackgroundColor(Color.rgb(119,221,119))
+                binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_green))
                 binding.tvDifficulty.text = "Easy"
             }
             1 -> {
-                binding.cvDifficulty.setCardBackgroundColor(Color.rgb(253, 253, 150))
+                binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_yellow))
                 binding.tvDifficulty.text = "Moderate"
             }
             2 -> {
-                binding.cvDifficulty.setCardBackgroundColor(Color.rgb(255, 105, 97))
+                binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_red))
                 binding.tvDifficulty.text = "Hard"
             }
         }

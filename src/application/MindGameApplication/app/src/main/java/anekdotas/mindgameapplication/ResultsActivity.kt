@@ -15,6 +15,7 @@ import kotlin.random.Random
 import android.widget.RatingBar
 
 import android.widget.RatingBar.OnRatingBarChangeListener
+import anekdotas.mindgameapplication.objects.UserObjectConstTest
 
 class ResultsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityResultsBinding
@@ -24,8 +25,8 @@ class ResultsActivity : AppCompatActivity() {
         binding = ActivityResultsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
-        val myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
-        binding.tvName.text = myUserName
+
+        binding.tvName.text = UserObjectConstTest.currentUser.username
         val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
         val myCorrectAnswers = intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )
         binding.tvTime.text = "Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec"

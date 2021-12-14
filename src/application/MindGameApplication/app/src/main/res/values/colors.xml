@@ -17,7 +17,6 @@
     <color name="blue">#2196F3</color>
     <color name="common">#363A43</color>
 
-
     <!--    - - - GRAY - - -        -->
     <color name="light_gray">#D6D6D6</color>            <!-- This color is used as text color instead of white on dark backgrounds -->
     <color name="lighter_gray">#ACACAC</color>
@@ -28,4 +27,13 @@
 
     <!--    -V-V-V-     UNUSED COLORS       -V-V-V-       -->
     <color name="red">#FF1100</color>
+
+    <!--    - - - GOOD COLORS - - -        -->
+    <color name="good_blue">#84C9FB</color>
+    <color name="green_blue">#21B6A8</color>
+    <color name="primary_dark_blue_background">#18242B</color>
+    <color name="secondary_dark_blue_background">#1a2832</color>
+    <color name="good_green">#77DD77</color>
+    <color name="good_red">#FF0266</color>
+    <color name="good_yellow">#fdfd96</color>
 </resources>

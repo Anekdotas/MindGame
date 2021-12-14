@@ -16,6 +16,8 @@
         android:src="@drawable/chuvas_cropped"
         android:scaleType="centerCrop"
         android:layout_marginTop="10dp"
+        app:civ_border_color="#84C9FB"
+        app:civ_border_width="1dp"
         />
 
     <androidx.cardview.widget.CardView
@@ -39,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HOST:"
+                android:textStyle="bold"
                 android:textSize="10dp"
                 android:layout_margin="5dp"
                 />
