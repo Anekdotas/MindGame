@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#18242B"
     android:orientation="vertical"
-    android:gravity="center"
-    >
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/iv_trophy"
@@ -15,15 +15,22 @@
         android:contentDescription="@string/image"
         android:src="@drawable/cup_lowres" />
 
-    <TextView
-        android:id="@+id/tv_congratulations"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/congrats"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:background="#21B6A8"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1a2832"
+            android:padding="16dp">
+
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
@@ -60,6 +67,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         tools:text="Rate this quiz" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/rb_rating"
