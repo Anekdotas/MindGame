@@ -15,7 +15,8 @@ object HostObject {
             "Correct! Finally some good answers!",
             "Was this question difficult? Obviously not if you managed to answer it. But congratulations anyway!",
             "Correct!",
-            "Hmm perhaps I have been a bit too harsh, you answered this question correctly"
+            "Hmm perhaps I have been a bit too harsh, you answered this question correctly",
+            "Did you look this up?"
             ),
 
         //Bad Answers
@@ -44,9 +45,9 @@ object HostObject {
         listOf( "Once I saw a student wiping the floor with a cake and when I asked him why he said because it is a sponge cake and started laughing. I decided to fail this him on the course right then and there.",
             "This might be out of nowhere but... One day when I am old I want to die peacefully in my sleep, like my grandfather… Not screaming and yelling like those passengers in his car.",
             "Don’t you hate it when someone answers their own questions? I do.",
-            "I know they say that money talks, but all mine says is ‘Goodbye. Hell I am working as a host for a terribly designed quiz application and I got a doctorate degree!",
+            "I know they say that money talks, but all mine says is ‘Goodbye. Hell I am working as a host for a terribly designed quiz application",
             "You know I burned 2,000 calories in just one day yesterday! That’s the last time I leave cake in the oven while I nap.",
-            "You know how they say 'give a man for a fish and he will eat for a today but teach a man a man to fish and he will eat for his life?' I recently came up with a better one - Build a man a fire and he’ll be warm for a day. Set a man on fire and he’ll be warm for the rest of his life.",
+            "You know how they say 'give a man for a fish and he will eat for a today but teach a man to fish and he will eat for his life?' I recently came up with a better one - Build a man a fire and he’ll be warm for a day. Set a man on fire and he’ll be warm for the rest of his life.",
             "Today a man knocked on my door and asked for a small donation towards the local swimming pool. I gave him a glass of water and told him to get the hell out of my property.",
             "Want to hear a joke? Actually I do not care this is my show I will tell it anyway. Four fonts walk into a bar. The bartender says, ‘Hey! We don’t want your type in here! That is how this applications visual design was born.’",
             "I always had a fascination with magic shows. Once I was in a show in Mexico city and the Mexican magician told the audience he will disappear on the count of three. He said, ‘Uno, dos…” and poof! He disappeared without a tres Absolutely fascinating.",
@@ -66,8 +67,7 @@ object HostObject {
         listOf("You are doing terribly but I am not surprised!",
             "When life gives you melons, you might be dyslexic.",
             "Be gentle with yourself. You’re doing the best you can! Or that is what your parents would say, I say that you need to try much harder",
-            "Life is hard. After all, it kills you. So in essence, you are my life because you are killing me too with these incorrect answers",
-            ""),
+            "Life is hard. After all, it kills you. So in essence, you are my life because you are killing me too with these incorrect answers",),
 
         //Greetings
         listOf("Oh, another quiz?? Maybe go outside like a normal person",
@@ -85,6 +85,13 @@ object HostObject {
         "Let us move on to the next question",
         "Anyway let us move to the next question",
         "Next question! And they said ${QuestionsObject.questionList.size} questions would be quick",
-        "")
+        "Well let us go to the next question, shall we?",
+        "Let us move on to the next question. I would say we are near the end of this quiz but the developers forgot to allow me to know how many questions there are left, those lazy baffoons.",
+        "I am tired let us get this over with, next question!,",
+        "Well it does not matter now, we just got a new question!",
+        "Anyway...",
+        "Anyway, it does not matter anymore, next question",
+        "Well lookie here I think I got a question for you that you won't be able to answer for sure",
+        "Alright allow me to give you an easy question now")
     )
 }
