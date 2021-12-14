@@ -5,12 +5,12 @@ import (
 	"anekdotas/internal/logic/auth"
 	"anekdotas/internal/repository"
 	"context"
-	"errors"
 	"fmt"
 	"io"
 	"os"
 	"strings"
 
+	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -30,12 +30,12 @@ func New(repo repository.Repository, authProvider auth.AuthProvider, mediaDir, h
 	}
 }
 
-func (l *Logic) GetQuestionsByTopic(ctx context.Context, topic string) ([]*anekdotas.Question, error) {
-	return l.repo.GetQuestionsByTopic(ctx, topic)
+func (l *Logic) GetQuestionsByTopic(ctx context.Context, topic string, userID int64) (int64, []*anekdotas.Question, error) {
+	return l.repo.GetQuestionsByTopic(ctx, topic, userID)
 }
 
-func (l *Logic) CreateQuestion(ctx context.Context, topic string, question *anekdotas.Question) (id int64, err error) {
-	return l.repo.CreateQuestion(ctx, topic, question)
+func (l *Logic) CreateQuestionWithAnswers(ctx context.Context, topic string, question *anekdotas.Question, answers []*anekdotas.Answer) (id int64, err error) {
+	return l.repo.CreateQuestionWithAnswers(ctx, topic, question, answers)
 }
 
 func (l *Logic) SaveMediaFile(ctx context.Context, questionID int64, filename string, src io.Reader) error {
@@ -95,4 +95,8 @@ func (l *Logic) AuthenticateUser(ctx context.Context, user *anekdotas.User, pass
 		return "", err
 	}
 	return l.auth.NewToken(userID)
+}
+
+func (l *Logic) FinishGameSession(ctx context.Context, userID int64, statistics *anekdotas.Statistics) error {
+	return l.repo.UpdateStatistics(ctx, userID, statistics)
 }

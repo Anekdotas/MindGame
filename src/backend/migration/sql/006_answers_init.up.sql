@@ -28,4 +28,5 @@ WHERE q.id = sub.q_id;
 
 ALTER TABLE questions
 ADD CONSTRAINT fk_questions_answers FOREIGN KEY (correct_answer) REFERENCES answers,
+ALTER COLUMN correct_answer DROP NOT NULL,
 DROP COLUMN answers;

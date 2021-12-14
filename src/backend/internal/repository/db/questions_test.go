@@ -4,16 +4,16 @@ import (
 	"anekdotas"
 	"context"
 	"fmt"
-	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/lib/pq"
-	"github.com/stretchr/testify/assert"
-	"strings"
 	"testing"
+
+	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/stretchr/testify/assert"
 )
 
 var ctx = context.Background()
 
 func TestRepo_CreateQuestion(t *testing.T) {
+	t.Fatal("FIX ME")
 	repo, mock := newRepoWithMockDB(t)
 	defer repo.Close()
 
@@ -30,9 +30,8 @@ func TestRepo_CreateQuestion(t *testing.T) {
 			name:  "DB returns error",
 			topic: "t1",
 			question: &anekdotas.Question{
-				Text:          "q1+",
-				CorrectAnswer: 2,
-				Answers:       []string{"a1", "a2"},
+				Text:            "q1+",
+				CorrectAnswerID: 2,
 			},
 			dbErr:          assert.AnError,
 			wantErr:        true,
@@ -42,9 +41,8 @@ func TestRepo_CreateQuestion(t *testing.T) {
 			name:  "insertion executed",
 			topic: "t1",
 			question: &anekdotas.Question{
-				Text:          "q1",
-				CorrectAnswer: 2,
-				Answers:       []string{"a1", "a2"},
+				Text:            "q1",
+				CorrectAnswerID: 2,
 			},
 			wantErr: false,
 		},
@@ -52,7 +50,6 @@ func TestRepo_CreateQuestion(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			var stringArray pq.StringArray = tc.question.Answers
 			stmt := fmt.Sprintf(
 				`INSERT INTO %s
 		(topic_id, text, correct_answer, answers)
@@ -68,21 +65,21 @@ func TestRepo_CreateQuestion(t *testing.T) {
 			query := mock.ExpectQuery(stmt).WithArgs(
 				tc.topic,
 				tc.question.Text,
-				tc.question.CorrectAnswer,
-				stringArray,
+				tc.question.CorrectAnswerID,
 			)
 			if tc.dbErr != nil {
 				query.WillReturnError(tc.dbErr)
 			} else {
 				query.WillReturnRows(sqlmock.NewRows([]string{"id"}).AddRow(1))
 			}
-			_, err := repo.CreateQuestion(ctx, tc.topic, tc.question)
-			assertErrorExpectations(t, err, tc.wantErr, tc.expectedErrMsg)
+			// _, err := repo.CreateQuestionWithAnswers(ctx, tc.topic, tc.question)
+			// assertErrorExpectations(t, err, tc.wantErr, tc.expectedErrMsg)
 		})
 	}
 }
 
 func TestRepo_GetQuestionsByTopic(t *testing.T) {
+	t.Fatal("FIX ME")
 	repo, mock := newRepoWithMockDB(t)
 	defer repo.Close()
 
@@ -106,8 +103,8 @@ func TestRepo_GetQuestionsByTopic(t *testing.T) {
 			name:  "select executed",
 			topic: "t1",
 			questions: []*anekdotas.Question{
-				{ID: 1, Text: "q1", CorrectAnswer: 2, Answers: []string{"a1", "a2"}},
-				{ID: 2, Text: "q2", CorrectAnswer: 1, Answers: []string{"a1", "a2", "a3"}},
+				{ID: 1, Text: "q1", CorrectAnswerID: 2},
+				{ID: 2, Text: "q2", CorrectAnswerID: 1},
 			},
 			wantErr: false,
 		},
@@ -122,20 +119,19 @@ func TestRepo_GetQuestionsByTopic(t *testing.T) {
 			if tc.dbError != nil {
 				query.WillReturnError(tc.dbError)
 			} else {
-				rows := sqlmock.NewRows([]string{"id", "text", "media_url", "correct_answer", "answers"})
+				rows := sqlmock.NewRows([]string{"id", "text", "media_url", "correct_answer"})
 				for _, q := range tc.questions {
-					rows.AddRow(q.ID, q.Text, q.MediaURL, q.CorrectAnswer, "{"+strings.Join(q.Answers, ",")+"}")
+					rows.AddRow(q.ID, q.Text, q.MediaURL, q.CorrectAnswerID)
 				}
 				query.WillReturnRows(rows)
 			}
-			questions, err := repo.GetQuestionsByTopic(ctx, tc.topic)
+			_, questions, err := repo.GetQuestionsByTopic(ctx, tc.topic, 0)
 			assertErrorExpectations(t, err, tc.wantErr, tc.expectedErrMsg)
 			for i, question := range questions {
 				assert.Equal(t, tc.questions[i].ID, question.ID)
 				assert.Equal(t, tc.questions[i].Text, question.Text)
 				assert.Equal(t, tc.questions[i].MediaURL, question.MediaURL)
-				assert.Equal(t, tc.questions[i].CorrectAnswer, question.CorrectAnswer)
-				assert.Equal(t, tc.questions[i].Answers, question.Answers)
+				assert.Equal(t, tc.questions[i].CorrectAnswerID, question.CorrectAnswerID)
 			}
 		})
 	}
@@ -162,10 +158,10 @@ func TestRepo_UpdateMediaURL(t *testing.T) {
 			expectedErrMsg: assert.AnError.Error(),
 		},
 		{
-			name: "update executed",
+			name:       "update executed",
 			questionID: 1,
-			mediaURL: "https://example.test/image",
-			wantErr: false,
+			mediaURL:   "https://example.test/image",
+			wantErr:    false,
 		},
 	}
 	for _, tc := range testCases {

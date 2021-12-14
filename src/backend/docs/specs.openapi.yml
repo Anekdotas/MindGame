@@ -14,6 +14,8 @@ tags:
     description: Everything about questions
   - name: users
     description: Everything about users authentication
+  - name: game sessions
+    description: Everything about statistics and game sessions
 paths:
   /categories:
     get:
@@ -114,9 +116,16 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Question'
+                type: object
+                properties:
+                  gameSessionId:
+                    type: integer
+                    format: int64
+                    description: ID of the newly created Game Session for the User
+                  questions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Question'
     post:
       tags:
         - questions
@@ -238,6 +247,52 @@ paths:
                   token:
                     type: string
                     description: Access token
+  /sessions/finish:
+    post:
+      tags:
+        - game sessions
+      summary: Finishes game session and saves User's result
+      operationId: finishGameSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  description: Game Session ID
+                choices:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      questionId:
+                        type: integer
+                        format: int64
+                        description: Question which User answered
+                      answerId:
+                        type: integer
+                        format: int64
+                        description: Answer which User chose
+                timeSpent:
+                  type: integer
+                  description: Time User spent on a game session (in seconds)
+                streak:
+                  type: integer
+                  description: Maximum number of questions User has answered correctly in a row
+      responses:
+        200:
+          description: Success
+        400:
+          description: Invalid or missing Question/Answer IDs
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          description: Game Session not found or User does not have such game session
+      security:
+        - oAuth2: []
 
 
 components:
@@ -330,12 +385,21 @@ components:
           type: array
           maxLength: 4
           items:
-            type: string
-            description: Possible answer
+            $ref: '#/components/schemas/Answer'
       required:
         - text
         - correctAnswer
         - answers
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        text:
+          type: string
+          description: Text of the answer
     User:
       type: object
       properties:
