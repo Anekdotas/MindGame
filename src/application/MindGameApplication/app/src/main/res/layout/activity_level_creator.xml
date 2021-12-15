@@ -30,6 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lvl_creator_save_question"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:background="@drawable/custom_button_green"/>
 
         <LinearLayout
@@ -43,6 +45,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="Previous Question"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:background="@drawable/custom_button"
                 android:padding="5dp"/>
@@ -53,6 +57,8 @@
                 android:layout_height="match_parent"
                 android:text="Update question"
                 android:layout_weight="1"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:background="@drawable/custom_button"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -64,6 +70,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="Next Question"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_marginEnd="5dp"
                 android:padding="5dp"
@@ -75,6 +83,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lvl_creator_upload_topic_to_the_server"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:background="@drawable/custom_button"
             android:layout_marginTop="5dp"/>
     </LinearLayout>

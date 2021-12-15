@@ -14,15 +14,15 @@
         android:text="New question"
         android:gravity="center"
         android:textSize="25sp"
-        android:fontFamily="sans-serif-black"
         android:textStyle="bold"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/input_et_Question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:hint="@string/lvl_creator_enter_your_question" />
+        android:hint="Input your question"
+        android:maxLength="127"
+        />
 
     <include layout="@layout/lvl_creator_answer_element"
         android:id="@+id/Answer1"/>
@@ -42,7 +42,6 @@
             android:layout_height="wrap_content"
             android:text="Select correct answer's number: "
             android:textSize="20sp"
-            android:fontFamily="sans-serif-black"
             android:layout_weight="3"
             android:gravity="center"/>
         <Spinner

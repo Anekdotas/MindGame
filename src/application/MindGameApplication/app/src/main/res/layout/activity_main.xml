@@ -79,7 +79,7 @@
                     android:hint="Username"
                     android:textColor="#363A43"
                     android:textColorHint="#7A8089"
-                    android:maxLength="20"
+                    android:maxLength="40"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
                     android:inputType="textFilter"
                      />
