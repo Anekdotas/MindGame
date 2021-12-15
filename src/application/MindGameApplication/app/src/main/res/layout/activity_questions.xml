@@ -17,13 +17,14 @@
         android:divider="@android:color/transparent"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
-        android:layout_weight="10"
+        android:layout_weight="1"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
         >
@@ -32,53 +33,60 @@
             android:id="@+id/tv_optionA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
             android:background="@drawable/custom_button"
             android:gravity="center"
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Apple"
-            android:padding="7dp"
+            android:padding="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             />
 
         <TextView
             android:id="@+id/tv_optionB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
             android:background="@drawable/custom_button"
             android:gravity="center"
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Banana"
-            android:padding="7dp"
+            android:padding="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             />
 
         <TextView
             android:id="@+id/tv_optionC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
             android:background="@drawable/custom_button"
             android:gravity="center"
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Cherry"
-            android:padding="7dp"
+            android:padding="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             />
 
         <TextView
             android:id="@+id/tv_optionD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_marginTop="12dp"
+            android:layout_margin="5dp"
             android:background="@drawable/custom_button"
             android:gravity="center"
             android:textColorHint="@color/black"
             android:textSize="20sp"
             tools:text="Dragon Fruit"
-            android:padding="7dp"
+            android:padding="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             />
     </LinearLayout>
 
@@ -86,7 +94,7 @@
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:background="@drawable/custom_button"
         android:text="answer"
         android:textColor="@color/white"
