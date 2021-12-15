@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
 import anekdotas.mindgameapplication.network.ApiClient
@@ -33,16 +34,18 @@ class MainMenuActivity : AppCompatActivity() {
 
         //SHOP BUTTON logic
         binding.shopBtn.setOnClickListener {
-            val intent = Intent(this, ResultsActivity::class.java)
-            Thread.sleep(100)
-            startActivity(intent)
+//            val intent = Intent(this, ResultsActivity::class.java)
+//            Thread.sleep(100)
+//            startActivity(intent)
+            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
         }
 
         //PROFILE BUTTON logic
         binding.personalStatisticsBtn.setOnClickListener {
-            val intent = Intent(this, ResultsActivity::class.java)
-            Thread.sleep(100)
-            startActivity(intent)
+//            val intent = Intent(this, ResultsActivity::class.java)
+//            Thread.sleep(100)
+//            startActivity(intent)
+            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
         }
 
         //EXIT BUTTON logic
