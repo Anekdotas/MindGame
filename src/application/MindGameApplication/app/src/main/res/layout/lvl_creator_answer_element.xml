@@ -9,6 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Answer: "
+        android:fontFamily="sans-serif-black"
+
         android:textSize="20dp"
         />
 
@@ -18,5 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="50sp"
         android:hint="Input your answer option"
+        android:fontFamily="sans-serif-black"
+
         />
 </LinearLayout>

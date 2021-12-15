@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gray">
+    android:background="@color/secondary_dark_blue_background">
 
         <ImageView
             android:id="@+id/action_bar_back_arrow"
@@ -16,12 +16,12 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:background="#18242B"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/action_bar_back_arrow"
-            android:textColor="@color/white"
+            android:textColor="@color/good_blue"
             android:textStyle="bold"
             android:textSize="20sp"/>
 

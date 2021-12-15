@@ -35,10 +35,6 @@
             android:exported="true"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".CreatorActivity"
-            android:exported="true"
-            android:theme="@style/NoActionBarTheme" />
-        <activity
             android:name=".ListCategoriesActivity"
             android:exported="true"
             android:parentActivityName=".MainMenuActivity"
