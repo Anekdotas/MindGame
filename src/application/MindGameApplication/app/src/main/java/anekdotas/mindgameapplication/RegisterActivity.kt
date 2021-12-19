@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import anekdotas.mindgameapplication.databinding.ActivityRegisterBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.RegistrationModel
+import anekdotas.mindgameapplication.objects.RegistrationUtil
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,12 +43,14 @@ class RegisterActivity : AppCompatActivity() {
                         .show()
                 }
                 else -> {
-                    UserObjectConst.usernameRegister = binding.username.text.toString()
-                    UserObjectConst.passwordRegister = binding.password.text.toString()
-                    UserObjectConst.passwordRepeatRegister = binding.passwordRepeat.text.toString()
-                    UserObjectConst.emailRegister = binding.email.text.toString()
-                    Thread.sleep(25)
-                    callNetworkSignup()
+                    if(RegistrationUtil.validateRegistrationInput(binding.username.text.toString(), binding.password.text.toString(), binding.passwordRepeat.text.toString(), binding.email.text.toString())){
+                        UserObjectConst.usernameRegister = binding.username.text.toString()
+                        UserObjectConst.passwordRegister = binding.password.text.toString()
+                        UserObjectConst.passwordRepeatRegister = binding.passwordRepeat.text.toString()
+                        UserObjectConst.emailRegister = binding.email.text.toString()
+                        Thread.sleep(25)
+                        callNetworkSignup()
+                    }
                 }
             }
         }

@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Input your question"
+        android:inputType="text"
         android:maxLength="127"
         />
 
