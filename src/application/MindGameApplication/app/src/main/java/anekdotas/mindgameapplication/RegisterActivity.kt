@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import anekdotas.mindgameapplication.databinding.ActivityRegisterBinding
+import anekdotas.mindgameapplication.helpers.NetworkChecker
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.RegistrationModel
 import anekdotas.mindgameapplication.objects.RegistrationUtil
@@ -22,36 +23,65 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        val networkOnline = NetworkChecker.isNetworkAvailable(this)
 
         //Displays a little pop up at the bottom of the screen (and goes to the question activity)
         binding.btnMenu.setOnClickListener {
-            when {
-                binding.email.text.toString().isEmpty() -> {
-                    Toast.makeText(this@RegisterActivity, "No Email Selected", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                binding.username.text.toString().isEmpty() -> {
-                    Toast.makeText(this@RegisterActivity, "No Username Selected", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                binding.password.text.toString().isEmpty() -> {
-                    Toast.makeText(this@RegisterActivity, "No Password Selected", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                binding.passwordRepeat.text.toString().isEmpty() -> {
-                    Toast.makeText(this@RegisterActivity, "No Password Repeat Selected", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                else -> {
-                    if(RegistrationUtil.validateRegistrationInput(binding.username.text.toString(), binding.password.text.toString(), binding.passwordRepeat.text.toString(), binding.email.text.toString())){
-                        UserObjectConst.usernameRegister = binding.username.text.toString()
-                        UserObjectConst.passwordRegister = binding.password.text.toString()
-                        UserObjectConst.passwordRepeatRegister = binding.passwordRepeat.text.toString()
-                        UserObjectConst.emailRegister = binding.email.text.toString()
-                        Thread.sleep(25)
-                        callNetworkSignup()
+            if(networkOnline) {
+                when {
+                    binding.email.text.toString().isEmpty() -> {
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            "No Email Selected",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                    binding.username.text.toString().isEmpty() -> {
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            "No Username Selected",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                    binding.password.text.toString().isEmpty() -> {
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            "No Password Selected",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                    binding.passwordRepeat.text.toString().isEmpty() -> {
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            "No Password Repeat Selected",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                    else -> {
+                        if (RegistrationUtil.validateRegistrationInput(
+                                binding.username.text.toString(),
+                                binding.password.text.toString(),
+                                binding.passwordRepeat.text.toString(),
+                                binding.email.text.toString()
+                            )
+                        ) {
+                            UserObjectConst.usernameRegister = binding.username.text.toString()
+                            UserObjectConst.passwordRegister = binding.password.text.toString()
+                            UserObjectConst.passwordRepeatRegister =
+                                binding.passwordRepeat.text.toString()
+                            UserObjectConst.emailRegister = binding.email.text.toString()
+                            Thread.sleep(25)
+                            callNetworkSignup()
+                        }
                     }
                 }
+            }
+            else{
+
             }
         }
     }
