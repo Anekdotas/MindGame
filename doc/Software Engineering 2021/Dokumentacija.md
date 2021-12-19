@@ -46,7 +46,7 @@ The system will be of a client-server type that contains:
 ## 3.1 High Priority
 - As a “Mind Game” app player, I want to select a set of questions by choosing a topic, so I can select  topics based on my knowledge.
 - As a “Mind Game” app player, I want to see my statistics: number of topics completed, percentage of correct answers, time spent on question. This way I can track my progress.
-- As a “Mind Game” app player, I want my progress to be saved every time I finish a set of questions, so that I can track my achievements.
+- As a “Mind Game” app player, I want my progress to be saved every time I finish a set of questions, so that my statistics are always up to date when I see them.
 - As a developer of the “Mind Game” app, I would like to easily add new sets of questions without the need of editing the client-side (mobile) application code.
 
 ## 3.2 Medium Priority
