@@ -1,13 +1,16 @@
 package anekdotas.mindgameapplication.objects
 
+import android.text.TextUtils
+import android.util.Patterns
+
 object RegistrationUtil {
     fun validateRegistrationInput(username : String, password : String, repeatedPassword : String, email : String): Boolean{
         if(password != repeatedPassword){
             return false
         }
-        else if(password.count()<=20){
-            return true
+        if(!(email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex()))){
+            return false
         }
-        return true
+    return true
     }
 }

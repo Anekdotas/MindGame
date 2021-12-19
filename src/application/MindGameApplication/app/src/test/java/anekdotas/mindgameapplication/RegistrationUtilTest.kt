@@ -16,4 +16,27 @@ class RegistrationUtilTest {
         )
         assertThat(result).isFalse()
     }
+
+    @Test
+    fun `invalid email format test returns false`(){
+        val result = RegistrationUtil.validateRegistrationInput(
+            "Josh",
+            "asd123",
+            "asd123",
+            "asd123"
+        )
+        assertThat(result).isFalse()
+    }
+
+    @Test
+    fun `valid password limit test returns true`(){
+        val result = RegistrationUtil.validateRegistrationInput(
+            "Josh",
+            "asd123",
+            "asd123",
+            "Josh@gmail.com"
+        )
+        assertThat(result).isTrue()
+    }
+
 }
