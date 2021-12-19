@@ -4,9 +4,7 @@
 
 The client-side Android app is made in *Android studio* using the **Kotlin** programming language. To facilitate communication between the client-side app and the web server **Retrofit** REST client is used. In order to de-serialize JSON format data that is read from the API **Moshi** JSON library is used. The **Coil** toolset is used for loading images from a URL. 
 
-The web server is programmed using **GoLang** programming language, using the *JetBrains GoLand* IDE. To run it, *Docker* is being used inside of a Linux virtual machine. It is running a REST API, which enables sending and receiving data from the client-side app. It currently communicates with the client-side over HTTP, though the eventual plan is to use HTTPS.
-
-For the media server, currently *Apache* web server is being used. The eventual plan is to integrate media hosting functionality into the custom GoLang web server.
+The web server is programmed using **GoLang** programming language, using the *JetBrains GoLand* IDE. To run it, *Docker* is being used inside of a Linux virtual machine. It is running a REST API, which enables sending and receiving data from the client-side app. It is also responsible for hosting media files. The web server securely communicates with the client-side over HTTPS.
 
 For the database part, **PostgreSQL** relational database management system is used. It is running inside of a Linux virtual machine.
 ## UML Diagrams that explain the system internals:
