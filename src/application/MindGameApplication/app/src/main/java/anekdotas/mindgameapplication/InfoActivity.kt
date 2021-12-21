@@ -41,7 +41,7 @@ class InfoActivity : AppCompatActivity() {
 
 
         binding.btnPlay.setOnClickListener {
-            val intent = Intent(this, QuestionsActivity::class.java)
+            //val intent = Intent(this, QuestionsActivity::class.java)
             startActivity(intent)
             finish()
         }

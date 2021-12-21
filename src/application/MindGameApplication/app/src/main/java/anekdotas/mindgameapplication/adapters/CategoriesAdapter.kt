@@ -53,8 +53,8 @@ class CategoriesAdapter(private var categories: List<CategoryModel>? = Categorie
     }
 
     private fun callNetworkTopics() {
-        Log.d("Testurl! ", ""+ "https://193.219.91.103:6524/categories/${CategoriesObject.selectedCategory!!.id}/topics")
-        val client = ApiClient.apiService.getTopics("https://193.219.91.103:6524/categories/${CategoriesObject.selectedCategory!!.id}/topics")
+        Log.d("Testurl! ", ""+ "https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics")
+        val client = ApiClient.apiService.getTopics("https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics")
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){

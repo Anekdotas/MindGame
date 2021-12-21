@@ -15,9 +15,11 @@ import anekdotas.mindgameapplication.R
 import anekdotas.mindgameapplication.helpers.NetworkChecker
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.QuestionModel
+import anekdotas.mindgameapplication.network.QuestionModelWithGameSessionId
 import anekdotas.mindgameapplication.network.TopicModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
 import anekdotas.mindgameapplication.objects.QuestionsObject
+import anekdotas.mindgameapplication.objects.QuestionsObjectWithGameSessionId
 import anekdotas.mindgameapplication.objects.TopicsObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,16 +56,16 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
     }
 
     private fun callNetwork() {
-        val client = ApiClient.apiService.getProperQuestions("https://193.219.91.103:6524/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
-        client.enqueue(object : Callback<List<QuestionModel>> {
-            override fun onResponse(call: Call<List<QuestionModel>>, response: Response<List<QuestionModel>>) {
+        val client = ApiClient.apiService.getProperQuestions("https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
+        client.enqueue(object : Callback<QuestionModelWithGameSessionId> {
+            override fun onResponse(call: Call<QuestionModelWithGameSessionId>, response: Response<QuestionModelWithGameSessionId>) {
                 if(response.isSuccessful){
-                    QuestionsObject.questionList = response.body()!!
+                    QuestionsObjectWithGameSessionId.questionsWithGsId = response.body()!!
                     Log.d("url2", ""+response.body())
                     Log.d("url3", ""+QuestionsObject.questionList.toString())
                 }
             }
-            override fun onFailure(call: Call<List<QuestionModel>>, response: Throwable) {
+            override fun onFailure(call: Call<QuestionModelWithGameSessionId>, response: Throwable) {
                 Log.e("Something went wrong! ", ""+response.message)
             }
         })

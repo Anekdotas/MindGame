@@ -59,7 +59,7 @@ class LevelCreatorTitlePageActivity : AppCompatActivity() {
 
 
     private fun callNetworkTopics() {
-        val client = ApiClient.apiService.getTopics("https://193.219.91.103:6524/categories/1/topics")
+        val client = ApiClient.apiService.getTopics("https://193.219.91.103:14656/categories/1/topics")
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){

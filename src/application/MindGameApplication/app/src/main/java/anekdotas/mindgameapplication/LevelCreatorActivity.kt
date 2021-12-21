@@ -31,7 +31,7 @@ class LevelCreatorActivity : AppCompatActivity() {
         setAnswerNumbers()  //used to have answers in "Answer 1, Answer 2..." format instead of "Answer, Answer, Answer, Answer"
 
 
-        var myCustomQuestions = ArrayList<QuestionModel>()
+        var myCustomQuestions = ArrayList<QuestionModelForLevelCreator>()
         var currentQuestionNr = 1
 
         setQuestionNr(currentQuestionNr)
@@ -102,7 +102,7 @@ class LevelCreatorActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadTopic(myCustomQuestions: ArrayList<QuestionModel>) {
+    private fun uploadTopic(myCustomQuestions: ArrayList<QuestionModelForLevelCreator>) {
         callNetworkUploadTopic()
         callNetworkUploadQuestions(myCustomQuestions)
         intent = Intent(this, ListCategoriesActivity::class.java)
@@ -110,14 +110,14 @@ class LevelCreatorActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun playTopic(myCustomQuestions: ArrayList<QuestionModel>) {
+ /*   private fun playTopic(myCustomQuestions: ArrayList<QuestionModel>) {
                 QuestionsObject.questionList = myCustomQuestions
                 intent = Intent(this, QuestionsActivity::class.java)
                 startActivity(intent)
                 finish()
-    }
+    } */
 
-    private fun updateQuestion(currentQuestionNr: Int, myCustomQuestions: ArrayList<QuestionModel>) {
+    private fun updateQuestion(currentQuestionNr: Int, myCustomQuestions: ArrayList<QuestionModelForLevelCreator>) {
         Toast.makeText(this, "Current question: " + currentQuestionNr, Toast.LENGTH_SHORT).show()
 
         val question = binding.objQuestionElement.inputEtQuestion.text.toString()
@@ -129,7 +129,7 @@ class LevelCreatorActivity : AppCompatActivity() {
 
         var answersList = listOf<String>(answer1, answer2, answer3, answer4)
 
-        val updatedQuestion = QuestionModel(1, question, "", correctAnswerInt, answersList)
+        val updatedQuestion = QuestionModelForLevelCreator(1, question, "", correctAnswerInt, answersList)
 
         myCustomQuestions[currentQuestionNr - 1] = updatedQuestion
     }
@@ -153,7 +153,7 @@ class LevelCreatorActivity : AppCompatActivity() {
         Log.d("|x|", "\t answer Int: $correctAnswerInt")
     }
 
-    private fun saveQuestion(myCustomQuestions: ArrayList<QuestionModel>) {
+    private fun saveQuestion(myCustomQuestions: ArrayList<QuestionModelForLevelCreator>) {
         val question = binding.objQuestionElement.inputEtQuestion.text.toString()
         val answer1 = binding.objQuestionElement.Answer1.etAnswer.text.toString()
         val answer2 = binding.objQuestionElement.Answer2.etAnswer.text.toString()
@@ -163,14 +163,14 @@ class LevelCreatorActivity : AppCompatActivity() {
 
         var answersList = listOf<String>(answer1, answer2, answer3, answer4)
 
-        myCustomQuestions.add(QuestionModel(1, question, "", correctAnswerInt, answersList))
+        myCustomQuestions.add(QuestionModelForLevelCreator(1, question, "", correctAnswerInt, answersList))
     }
 
     private fun setQuestionNr(questionNr: Int) {
         binding.objQuestionElement.tvQuestionNr.setText("Question #" + questionNr)
     }
 
-    private fun loadQuestion(myCustomQuestions: ArrayList<QuestionModel>, questionNr: Int) {
+    private fun loadQuestion(myCustomQuestions: ArrayList<QuestionModelForLevelCreator>, questionNr: Int) {
         binding.objQuestionElement.inputEtQuestion.setText(myCustomQuestions[questionNr].question)
         binding.objQuestionElement.Answer1.etAnswer.setText(myCustomQuestions[questionNr].options[0])
         binding.objQuestionElement.Answer2.etAnswer.setText(myCustomQuestions[questionNr].options[1])
@@ -257,10 +257,10 @@ class LevelCreatorActivity : AppCompatActivity() {
         })
     }
 
-    private fun callNetworkUploadQuestions(myCustomQuestions: ArrayList<QuestionModel>) {
+    private fun callNetworkUploadQuestions(myCustomQuestions: ArrayList<QuestionModelForLevelCreator>) {
         val topicName = intent.getStringExtra("topicName").toString()
         for (item in myCustomQuestions) {
-            val clientPOST = ApiClient.apiService.pushPostQuestions("https://193.219.91.103:6524/categories/1/topics/$topicName/questions","Bearer " + JwtObject.userJwt.token, item)
+            val clientPOST = ApiClient.apiService.pushPostQuestions("https://193.219.91.103:14656/categories/1/topics/$topicName/questions","Bearer " + JwtObject.userJwt.token, item)
             Log.d("callNetworkUploadTopic", "has been called")
             clientPOST.enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {

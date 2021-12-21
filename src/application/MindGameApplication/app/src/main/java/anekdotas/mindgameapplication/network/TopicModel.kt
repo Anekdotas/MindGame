@@ -10,6 +10,6 @@ data class TopicModel(
     val author: String,
     var rating: Double = 3.5,
     val description: String = "let's say Andrej, God forbid, you kill someone",
-    val imageUrl: String = "https://193.219.91.103:6524/media/3238849391.jpg",
+    val imageUrl: String = "https://193.219.91.103:14656/media/3238849391.jpg",
     val difficulty: Int = 1
 )

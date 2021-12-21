@@ -299,4 +299,5 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
         finish()
     }
+
 }
