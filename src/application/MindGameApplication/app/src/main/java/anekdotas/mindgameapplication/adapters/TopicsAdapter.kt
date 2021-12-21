@@ -17,10 +17,7 @@ import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.network.QuestionModelWithGameSessionId
 import anekdotas.mindgameapplication.network.TopicModel
-import anekdotas.mindgameapplication.objects.CategoriesObject
-import anekdotas.mindgameapplication.objects.QuestionsObject
-import anekdotas.mindgameapplication.objects.QuestionsObjectWithGameSessionId
-import anekdotas.mindgameapplication.objects.TopicsObject
+import anekdotas.mindgameapplication.objects.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +53,7 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
     }
 
     private fun callNetwork() {
-        val client = ApiClient.apiService.getProperQuestions("https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions")
+        val client = ApiClient.apiService.getProperQuestions("https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions", "Bearer " + JwtObject.userJwt.token)
         client.enqueue(object : Callback<QuestionModelWithGameSessionId> {
             override fun onResponse(call: Call<QuestionModelWithGameSessionId>, response: Response<QuestionModelWithGameSessionId>) {
                 if(response.isSuccessful){
