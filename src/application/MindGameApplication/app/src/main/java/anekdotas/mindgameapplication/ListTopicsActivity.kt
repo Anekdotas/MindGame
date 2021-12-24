@@ -19,11 +19,18 @@ class ListTopicsActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
+        //ActionBar setup
+        binding.actionBar.title.setText("Topics")
+        binding.actionBar.actionBarBackArrow.setOnClickListener{
+            val intent = Intent(this, ListCategoriesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         val topicListAdapter = TopicsAdapter(TopicsObject.topicList)
         binding.rvTopicRecycler.adapter = topicListAdapter
         binding.rvTopicRecycler.layoutManager = LinearLayoutManager(this)
-
 
 
     }

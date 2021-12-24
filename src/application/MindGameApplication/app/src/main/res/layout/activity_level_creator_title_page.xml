@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="start"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/test_bg"
     tools:context=".LevelCreatorTitlePageActivity">
 
     <include layout="@layout/action_bar"
@@ -13,17 +14,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center" >
+        android:background="@color/secondary_dark_blue_background"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionBar">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Topic name: " />
+                android:fontFamily="sans-serif-black"
+                android:text="Topic name: "
+                android:textColor="@color/good_green"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_TopicName"
@@ -31,18 +46,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Name"
+                android:inputType="text"
                 />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Topic description: "
-                />
+                android:fontFamily="sans-serif-black"
+                android:textStyle="bold"
+                android:textColor="@color/good_green" />
 
             <EditText
                 android:id="@+id/et_TopicDescription"
@@ -50,33 +72,45 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Description"
+                android:inputType="text"
                 />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Topic difficulty: " />
+                android:text="Topic difficulty: "
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/good_green"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/sp_Difficulty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:entries="@array/lvl_creator_spinner"
-                />
+                android:entries="@array/lvl_creator_spinner" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_Continue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
             android:text="continue"
-            />
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

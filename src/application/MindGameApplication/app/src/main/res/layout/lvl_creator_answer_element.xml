@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Answer: "
-        android:textSize="20dp"
+        android:textSize="20sp"
         />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -18,5 +18,7 @@
         android:layout_width="0dp"
         android:layout_height="50sp"
         android:hint="Input your answer option"
+        android:maxLength="63"
+        android:inputType="text"
         />
 </LinearLayout>

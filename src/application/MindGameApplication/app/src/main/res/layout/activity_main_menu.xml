@@ -15,7 +15,6 @@
         app:cardCornerRadius="25dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -194,7 +193,11 @@
                 android:id="@+id/btn_levelCreator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/level_creator_title"/>
+                android:text="@string/level_creator_title"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:background="@drawable/custom_button"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

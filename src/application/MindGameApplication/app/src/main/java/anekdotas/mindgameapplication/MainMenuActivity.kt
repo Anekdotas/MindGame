@@ -3,9 +3,17 @@ package anekdotas.mindgameapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
+import anekdotas.mindgameapplication.network.ApiClient
+import anekdotas.mindgameapplication.network.CategoryModel
+import anekdotas.mindgameapplication.objects.CategoriesObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainMenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainMenuBinding
@@ -14,24 +22,30 @@ class MainMenuActivity : AppCompatActivity() {
         binding = ActivityMainMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        callNetworkCategories()
 
 
         //PLAY BUTTON logic
         binding.playBtn.setOnClickListener {
             val intent = Intent(this, ListCategoriesActivity::class.java)
+            Thread.sleep(100)
             startActivity(intent)
         }
 
         //SHOP BUTTON logic
         binding.shopBtn.setOnClickListener {
-            val intent = Intent(this, ResultsActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, ResultsActivity::class.java)
+//            Thread.sleep(100)
+//            startActivity(intent)
+            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
         }
 
         //PROFILE BUTTON logic
         binding.personalStatisticsBtn.setOnClickListener {
-            val intent = Intent(this, ResultsActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, ResultsActivity::class.java)
+//            Thread.sleep(100)
+//            startActivity(intent)
+            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
         }
 
         //EXIT BUTTON logic
@@ -40,8 +54,24 @@ class MainMenuActivity : AppCompatActivity() {
         //LEVEL CREATOR button logic
         binding.btnLevelCreator.setOnClickListener {
             val intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
+            Thread.sleep(100)
             startActivity(intent)
-            finish()
         }
+    }
+
+    private fun callNetworkCategories() {
+        val client = ApiClient.apiService.getCategories()
+        client.enqueue(object : Callback<List<CategoryModel>> {
+            override fun onResponse(call: Call<List<CategoryModel>>, response: Response<List<CategoryModel>>) {
+                if(response.isSuccessful){
+                    Log.d("TestCategories! ", ""+ response.body())
+                    CategoriesObject.categoryList = response.body()!!
+                    Log.d("TestCategoryBody! ", ""+ CategoriesObject.categoryList)
+                }
+            }
+            override fun onFailure(call: Call<List<CategoryModel>>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
     }
 }
