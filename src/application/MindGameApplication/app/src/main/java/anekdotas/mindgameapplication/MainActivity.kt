@@ -2,6 +2,7 @@ package anekdotas.mindgameapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View.*
 import android.widget.Toast
@@ -13,6 +14,7 @@ import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.network.JwtTestModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
 import anekdotas.mindgameapplication.objects.JwtObject
+
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import anekdotas.mindgameapplication.objects.UserObjectConstTest
 import retrofit2.Call
@@ -22,6 +24,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding : ActivityMainBinding // UI element binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
         val networkOnline = isNetworkAvailable(this)
-
         binding.tvRegistration.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)

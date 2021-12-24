@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Name"
+                android:inputType="text"
                 />
         </LinearLayout>
 
@@ -71,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Description"
+                android:inputType="text"
                 />
         </LinearLayout>
 
