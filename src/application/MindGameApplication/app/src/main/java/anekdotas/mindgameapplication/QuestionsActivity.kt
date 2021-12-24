@@ -156,10 +156,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
 
 
-        binding.tvOptionA.text = question.options[0]
-        binding.tvOptionB.text = question.options[1]
-        binding.tvOptionC.text = question.options[2]
-        binding.tvOptionD.text = question.options[3]
+        binding.tvOptionA.text = question.options[0].text
+        binding.tvOptionB.text = question.options[1].text
+        binding.tvOptionC.text = question.options[2].text
+        binding.tvOptionD.text = question.options[3].text
         binding.tvOptionA.isClickable=true
         binding.tvOptionB.isClickable=true
         binding.tvOptionC.isClickable=true

@@ -58,6 +58,7 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
             override fun onResponse(call: Call<QuestionModelWithGameSessionId>, response: Response<QuestionModelWithGameSessionId>) {
                 if(response.isSuccessful){
                     QuestionsObjectWithGameSessionId.questionsWithGsId = response.body()!!
+                    QuestionsObject.questionList = QuestionsObjectWithGameSessionId.questionsWithGsId.questions
                     Log.d("url2", ""+response.body())
                     Log.d("url3", ""+QuestionsObject.questionList.toString())
                 }
