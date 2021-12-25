@@ -19,7 +19,7 @@
     <string name="topic">Topic</string>
     <string name="play">Play</string>
 
-<!--    Topic creator section   -->
+    <!--    Topic creator section   -->
     <string name="level_creator_title">Topic Creator</string>
     <string-array name="lvl_creator_correct_answers">
         <item>-</item>
