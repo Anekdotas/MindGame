@@ -14,6 +14,7 @@ class HostsAdapter(private val hostList: List<Host>)
                     binding.tvHostDesc.text = host.desc
                     binding.tvHostName.text = host.hostName
                     binding.ivHostImage.setImageResource(host.photo)
+                    binding.tvPrice.text = "Price: " + host.price
                 }
             }
 

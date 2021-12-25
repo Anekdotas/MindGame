@@ -3,7 +3,10 @@ package anekdotas.mindgameapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import anekdotas.mindgameapplication.adapters.HostsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityShopBinding
@@ -48,6 +51,12 @@ class ShopActivity : AppCompatActivity() {
         }
 
         setupViewPager(binding!!)
+
+        binding.btnBuy.setOnClickListener {
+            Toast.makeText(this, "Selected host: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+//            Log.d("Purchase item:", "\tPosition: " + binding.vp2HostPictures.currentItem)
+//            Log.d("Purchase item:", "\tName: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName)
+        }
     }
 
     //ViewPager2 setup

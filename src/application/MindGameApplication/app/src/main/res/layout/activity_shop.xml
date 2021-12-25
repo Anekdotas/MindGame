@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ShopActivity">
+    tools:context=".ShopActivity"
+    android:background="@color/primary_dark_blue_background">
 
     <include layout="@layout/action_bar" android:id="@+id/actionBar" />
 
@@ -18,9 +19,9 @@
         android:gravity="center">
 
         <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2_HostPictures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/vp2_HostPictures"
             />
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -35,6 +36,15 @@
             app:selectedDotColor="@color/good_red"
             app:progressMode="true"
             android:layout_marginTop="16dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="purchase"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_button"
             />
 
 
