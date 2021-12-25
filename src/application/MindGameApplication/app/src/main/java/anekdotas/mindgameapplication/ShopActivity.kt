@@ -47,7 +47,6 @@ class ShopActivity : AppCompatActivity() {
             finish()
         }
 
-        //
         setupViewPager(binding!!)
     }
 

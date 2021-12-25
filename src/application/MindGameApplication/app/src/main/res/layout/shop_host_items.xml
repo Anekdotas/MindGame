@@ -38,6 +38,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_HostName" />
 
+    <TextView
+        android:id="@+id/tv_Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Price: IT'S OVER 9000!"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_HostDesc"
+        app:layout_constraintStart_toStartOf="@+id/tv_HostDesc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_HostDesc" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
