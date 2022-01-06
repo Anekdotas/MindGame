@@ -314,3 +314,11 @@
 |  Dec. 25 | 21:27 - 22:25 | 58 min |  AN-143 Implementation of some logic for further implementations  | 
 |  | **Total:** | **6h 14min** | |
 
+## Week 18 (Dec. 27 - Jan. 02)
+
+| **Date**  | **Time**      | **Duration**  | **Activity** |
+| --------  | ------------- | ------------  | ------------ |
+|  Dec. 27 | 15:48 - 15:54 | 6 min |  Structuring weekly notes and pushing them to GitLab  | 
+|  | **Total:** | **0h 6min** | |
+
+
