@@ -199,7 +199,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     } //WRITES USER SELECTED ANSWER
                     nonClickable()
 
-                    if (question!!.answer != mySelectedPosition) {
+                    if (question!!.answer != QuestionsObject.questionList[myPosition-1].options[mySelectedPosition-1].id) {
                         answerView(mySelectedPosition, R.drawable.custom_wrong_btn)
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak=0
@@ -214,7 +214,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
                     } //IF THE ANSWER WAS CORRECT
 
-                    answerView(question.answer, R.drawable.custom_correct_btn) //COLORS THE CORRECT
+                    answerView(findCorrectIndex(), R.drawable.custom_correct_btn) //COLORS THE CORRECT
 
                     checkLast()
                     mySelectedPosition = 0
@@ -312,5 +312,24 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionB.isClickable=false
         binding.tvOptionC.isClickable=false
         binding.tvOptionD.isClickable=false
+    }
+
+    private fun findCorrectIndex() : Int{
+        var x=0
+        when {
+            QuestionsObject.questionList[myPosition-1].options[0].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=1
+            }
+            QuestionsObject.questionList[myPosition-1].options[1].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=2
+            }
+            QuestionsObject.questionList[myPosition-1].options[2].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=3
+            }
+            QuestionsObject.questionList[myPosition-1].options[3].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=4
+            }
+        }
+        return x
     }
 }
