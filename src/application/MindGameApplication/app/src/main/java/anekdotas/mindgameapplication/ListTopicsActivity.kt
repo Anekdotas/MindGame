@@ -15,25 +15,23 @@ class ListTopicsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivityListTopicsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-
-        //ActionBar setup
-        binding.abTopic.title.text = "Topics"
-        binding.abTopic.actionBarTopic.setOnClickListener{
-            val intent = Intent(this, ListCategoriesActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-
+        actionBarSetup()
 
         val topicListAdapter = TopicsAdapter(TopicsObject.topicList)
         binding.rvTopicRecycler.adapter = topicListAdapter
         binding.rvTopicRecycler.layoutManager = LinearLayoutManager(this)
 
 
+    }
+    private fun actionBarSetup(){
+        binding.abTopic.title.text = "Topics"
+        binding.abTopic.actionBarTopic.setOnClickListener{
+            val intent = Intent(this, ListCategoriesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

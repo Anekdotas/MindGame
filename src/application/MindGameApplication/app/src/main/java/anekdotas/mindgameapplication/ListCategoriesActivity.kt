@@ -17,20 +17,19 @@ class ListCategoriesActivity : AppCompatActivity() {
         binding = ActivityListCategoriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBarSetup()
 
-        //ActionBar setup
+        val categoryListAdapter = CategoriesAdapter(CategoriesObject.categoryList)
+        binding.rvCategoryRecycler.adapter = categoryListAdapter
+        binding.rvCategoryRecycler.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun actionBarSetup(){
         binding.actionBar.title.setText("Categories")
         binding.actionBar.actionBarBackArrow.setOnClickListener{
             val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)
             finish()
         }
-
-
-
-
-        val categoryListAdapter = CategoriesAdapter(CategoriesObject.categoryList)
-        binding.rvCategoryRecycler.adapter = categoryListAdapter
-        binding.rvCategoryRecycler.layoutManager = LinearLayoutManager(this)
     }
 }
