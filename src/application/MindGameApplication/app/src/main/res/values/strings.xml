@@ -39,6 +39,7 @@
         <item>SortBy</item>
         <item>Name</item>
         <item>Rating</item>
+        <item>Difficulty</item>
     </string-array>
 
     <string name="lvl_creator_save_question">save question</string>

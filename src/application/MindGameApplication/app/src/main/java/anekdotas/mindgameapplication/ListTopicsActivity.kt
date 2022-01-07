@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import anekdotas.mindgameapplication.adapters.TopicsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityListTopicsBinding
 import anekdotas.mindgameapplication.objects.TopicsObject
+import android.widget.AdapterView
+
+
+
 
 
 class ListTopicsActivity : AppCompatActivity() {
@@ -25,7 +29,30 @@ class ListTopicsActivity : AppCompatActivity() {
         binding.rvTopicRecycler.layoutManager = LinearLayoutManager(this)
 
 
-    }
+        binding.abTopic.spSort.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(binding.abTopic.spSort.selectedItemPosition==1){
+                    TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.topicName }
+                    finish()
+                    startActivity(intent)
+                }
+                else if(binding.abTopic.spSort.selectedItemPosition==2){
+                    TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.rating }
+                    finish()
+                    startActivity(intent)
+                }
+                else if(binding.abTopic.spSort.selectedItemPosition==3){
+                    TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.difficulty }
+                    finish()
+                    startActivity(intent)
+                }
+            }
+
+        }
+
+   }
+
     private fun actionBarSetup(){
         binding.abTopic.title.text = "Topics"
         binding.abTopic.actionBarTopic.setOnClickListener{
