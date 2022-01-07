@@ -50,15 +50,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList.toMutableList()
         setQuestion()
-
-        Time.resetTime()
-        T.scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                runOnUiThread {
-                    UserObjectConst.sessionTimeSeconds++
-                }
-            }
-        }, 1000, 1000)
+        timerfun()
 
         binding.tvOptionA.setOnClickListener(this)
         binding.tvOptionB.setOnClickListener(this)
@@ -72,10 +64,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         var isAudioPaused = true
         binding.ListView.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, i, _ ->
-
-    //            Log.d("|+| ", i.toString())
-    //            Log.d("|+| ", "Author: " + messageList.get(i).author)
-    //            Log.d("|+|", "audio ID: " + messageList.get(i).audio)
 
     //          - - - - - RELEASE PLAYER IF DIFFERENT MESSAGE IS SELECTED - - - - -
                 if ((isMessageAudioSet && (setAudioMessagesID != i || setAudioMessagesID == null)) && messageList[i].audio != null) {
@@ -123,12 +111,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         val question = myQuestionsList!![myPosition - 1]
         defaultOptionView()
-
-        if (myPosition == myQuestionsList!!.size) {
-            binding.btnSubmit.text = "FINISH"
-        } else {
-            binding.btnSubmit.text = "SUBMIT"
-        }
+        checkLast()
 
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
@@ -165,6 +148,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionC.isClickable=true
         binding.tvOptionD.isClickable=true
     }
+    
 
     private fun defaultOptionView() {
 
@@ -252,11 +236,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
                     answerView(question.answer, R.drawable.custom_correct_btn) //COLORS THE CORRECT
 
-                    if (myPosition == myQuestionsList!!.size) {
-                        binding.btnSubmit.text = "FINISH"
-                    } else {
-                        binding.btnSubmit.text = "NEXT QUESTION"
-                    } // CHANGES TEXT IF LAST QUESTION
+                    checkLast()
                     mySelectedPosition = 0
                 }
             }
@@ -299,6 +279,25 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         T.cancel()
         startActivity(intent)
         finish()
+    }
+
+    private fun checkLast(){
+        if (myPosition == myQuestionsList!!.size) {
+            binding.btnSubmit.text = "FINISH"
+        } else {
+            binding.btnSubmit.text = "SUBMIT"
+        }
+    }
+    
+    private fun timerfun(){
+        Time.resetTime()
+        T.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                runOnUiThread {
+                    UserObjectConst.sessionTimeSeconds++
+                }
+            }
+        }, 1000, 1000)
     }
 
 }
