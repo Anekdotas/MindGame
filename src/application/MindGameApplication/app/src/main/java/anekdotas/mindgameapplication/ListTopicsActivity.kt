@@ -32,20 +32,28 @@ class ListTopicsActivity : AppCompatActivity() {
         binding.abTopic.spSort.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(binding.abTopic.spSort.selectedItemPosition==1){
-                    TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.topicName }
-                    finish()
-                    startActivity(intent)
-                }
-                else if(binding.abTopic.spSort.selectedItemPosition==2){
-                    TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.rating }
-                    finish()
-                    startActivity(intent)
-                }
-                else if(binding.abTopic.spSort.selectedItemPosition==3){
-                    TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.difficulty }
-                    finish()
-                    startActivity(intent)
+                when (binding.abTopic.spSort.selectedItemPosition) {
+                    1 -> {
+                        TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.topicName }
+                        overridePendingTransition(0, 0);
+                        finish()
+                        overridePendingTransition(0, 0);
+                        startActivity(intent)
+                    }
+                    2 -> {
+                        TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.rating }
+                        overridePendingTransition(0, 0);
+                        finish()
+                        overridePendingTransition(0, 0);
+                        startActivity(intent)
+                    }
+                    3 -> {
+                        TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.difficulty }
+                        overridePendingTransition(0, 0);
+                        finish()
+                        overridePendingTransition(0, 0);
+                        startActivity(intent)
+                    }
                 }
             }
 
