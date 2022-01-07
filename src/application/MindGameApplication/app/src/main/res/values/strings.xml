@@ -35,6 +35,12 @@
         <item>Hard</item>
     </string-array>
 
+    <string-array name="topic_spinner">
+        <item>SortBy</item>
+        <item>Name</item>
+        <item>Rating</item>
+    </string-array>
+
     <string name="lvl_creator_save_question">save question</string>
     <string name="lvl_creator_upload_topic_to_the_server">upload to the server</string>
     <string name="lvl_creator_enter_your_question">Input your question</string>
