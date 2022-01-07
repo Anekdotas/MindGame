@@ -19,6 +19,7 @@ import anekdotas.mindgameapplication.helpers.RandomGen
 import anekdotas.mindgameapplication.helpers.Time
 import anekdotas.mindgameapplication.java.ChatAdapter
 import anekdotas.mindgameapplication.java.Message
+import anekdotas.mindgameapplication.network.ChoiceModel
 import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.objects.*
 import java.util.*
@@ -34,10 +35,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var myCorrectAnswers = 0 // number of questions answered correctly
     private var myUserName: String? = null
     val T = Timer()
-
     var isMessageAudioSet = false
     var messageAudio: MediaPlayer? = null
     var setAudioMessagesID: Int? = null
+    var x = 0 // increment regarding answered questions
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,31 +113,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val question = myQuestionsList!![myPosition - 1]
         defaultOptionView()
         checkLast()
-
-        val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
-        binding.ListView.adapter = adapter
-
-        if(myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.giveMoveOn(), R.drawable.lasgov))
-        }
-        if(RandomGen.chance(25) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
-        }
-
-        when {
-            question.media==null -> {
-                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
-            }
-            question.media.endsWith(".jpg") -> {
-                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
-            }
-            question.media.endsWith(".mp3") -> {
-                messageList.add(Message(HostObject.host.hostName, question.question+"\n CLICK TO PLAY \uD83D\uDD0A", R.drawable.lasgov, "", question.media))
-            }
-            else -> {
-                Log.e("Media", "Wrong media type!")
-            }
-        }
+        setHostResponse(question)
 
 
         binding.tvOptionA.text = question.options[0].text
@@ -184,6 +161,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 selectionView(binding.tvOptionD, 4)
             }
             R.id.btn_submit -> {
+                //Add answering values to stat object
                 if (mySelectedPosition == 0) {
                     myPosition++ // SKIPS ANSWERING
                     when {
@@ -191,6 +169,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             setQuestion() // STARTS NEW QUESTION
                         }
                         else -> {
+                            //add time spent to stat object
                             Time.formatTime(UserObjectConst.sessionTimeSeconds)
                             val intent = Intent(this, ResultsActivity::class.java)
                             intent.putExtra(UserObjectConst.USERNAME, myUserName)
@@ -200,6 +179,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 myQuestionsList!!.size
                             )
                             T.cancel()
+
+
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             finish()// ENDS THE QUIZ
@@ -216,22 +197,21 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), R.drawable.chuvas_cropped))
                         4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
                     } //WRITES USER SELECTED ANSWER
-
-                    binding.tvOptionA.isClickable=false
-                    binding.tvOptionB.isClickable=false
-                    binding.tvOptionC.isClickable=false
-                    binding.tvOptionD.isClickable=false
+                    nonClickable()
 
                     if (question!!.answer != mySelectedPosition) {
                         answerView(mySelectedPosition, R.drawable.custom_wrong_btn)
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak=0
+
+
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak++
+
                     } //IF THE ANSWER WAS CORRECT
 
                     answerView(question.answer, R.drawable.custom_correct_btn) //COLORS THE CORRECT
@@ -300,4 +280,37 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }, 1000, 1000)
     }
 
+    private fun setHostResponse(question : QuestionModel){
+        val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
+        binding.ListView.adapter = adapter
+
+        if(myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.giveMoveOn(), R.drawable.lasgov))
+        }
+        if(RandomGen.chance(25) && myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
+        }
+
+        when {
+            question.media==null -> {
+                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
+            }
+            question.media.endsWith(".jpg") -> {
+                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
+            }
+            question.media.endsWith(".mp3") -> {
+                messageList.add(Message(HostObject.host.hostName, question.question+"\n CLICK TO PLAY \uD83D\uDD0A", R.drawable.lasgov, "", question.media))
+            }
+            else -> {
+                Log.e("Media", "Wrong media type!")
+            }
+        }
+    }
+
+    private fun nonClickable(){
+        binding.tvOptionA.isClickable=false
+        binding.tvOptionB.isClickable=false
+        binding.tvOptionC.isClickable=false
+        binding.tvOptionD.isClickable=false
+    }
 }

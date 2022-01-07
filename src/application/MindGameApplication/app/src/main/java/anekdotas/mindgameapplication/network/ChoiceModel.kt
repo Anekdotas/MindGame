@@ -1,6 +1,6 @@
 package anekdotas.mindgameapplication.network
 
 class ChoiceModel {
-    val questionId: Int = 0
-    val answerId: Int = 0
+    var questionId: Int = 0
+    var answerId: Int = 0
 }
