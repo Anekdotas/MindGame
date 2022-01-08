@@ -162,8 +162,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 selectionView(binding.tvOptionD, 4)
             }
             R.id.btn_submit -> {
-                //Add answering values to stat object
-                println(x)
 
                 if(mySelectedPosition!=0){
                     StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, QuestionsObject.questionList[x].options[mySelectedPosition-1].id))

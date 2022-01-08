@@ -8,12 +8,14 @@ import android.util.Log
 import android.view.View
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
-import anekdotas.mindgameapplication.helpers.Time
-import kotlin.random.Random
-import android.widget.RatingBar
 
 import android.widget.RatingBar.OnRatingBarChangeListener
+import android.widget.Toast
+import anekdotas.mindgameapplication.network.*
 import anekdotas.mindgameapplication.objects.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ResultsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityResultsBinding
@@ -59,5 +61,29 @@ class ResultsActivity : AppCompatActivity() {
                     binding.rbRating.setIsIndicator(true)
                 }
         }
+
+        callNetworkUploadStats()
+    }
+
+    private fun callNetworkUploadStats() {
+
+            val clientPOST = ApiClient.apiService.postStats("https://193.219.91.103:14656/sessions/finish","Bearer " + JwtObject.userJwt.token,
+                StatModel(StatObject.stats.id, StatObject.stats.choices, StatObject.stats.secondsSpent, StatObject.stats.streak))
+            Log.d("callNetworkUploadStats", "has been called")
+            Log.d("ChoiceModel", StatObject.stats.choices.toString())
+            clientPOST.enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if(response.isSuccessful){
+                        Log.d("StatPost Done! Woohoo!", ""+ response.code())
+                        startActivity(intent)
+                    }
+                    else {
+                        Log.d("StatPost failed. Bruh", "" + response.code())
+                    }
+                }
+                override fun onFailure(call: Call<Void>, response: Throwable) {
+                    Log.e("Something went wrong! ", ""+response.message)
+                }
+            })
     }
 }

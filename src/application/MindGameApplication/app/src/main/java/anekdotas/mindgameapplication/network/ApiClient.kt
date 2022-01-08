@@ -60,4 +60,11 @@ interface ApiServices {
         @Body post: QuestionModelForLevelCreator
     ): Call<Void>
 
+    @POST
+    fun postStats(
+        @Url url: String?,
+        @Header("Authorization") Bearer: String,
+        @Body post: StatModel
+    ): Call<Void>
+
 }
