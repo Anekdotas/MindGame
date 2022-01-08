@@ -4,11 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/action_bar_back_arrow.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/button_design_other.xml" value="0.4203125" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/custom_button.xml" value="0.4203125" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/custom_button_green.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/custom_correct_btn.xml" value="0.4203125" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/custom_cv.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/custom_wrong_btn.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.4203125" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/ic_profile.xml" value="0.4203125" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/drawable/vect_play_in_message.xml" value="0.2630208333333333" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/action_bar.xml" value="0.35280797101449274" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_info.xml" value="0.38179347826086957" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_level_creator.xml" value="0.35280797101449274" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_level_creator_title_page.xml" value="0.536" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_list_categories.xml" value="0.35280797101449274" />
@@ -16,13 +22,14 @@
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_main.xml" value="0.246875" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_main_menu.xml" value="0.35280797101449274" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/activity_questions.xml" value="0.35280797101449274" />
+        <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/category_button.xml" value="0.307518115942029" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/lvl_creator_answer_element.xml" value="0.35280797101449274" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/lvl_creator_question_element.xml" value="0.35280797101449274" />
         <entry key="..\:/Shool folder/GIT folder/Mind Game Project/src/application/MindGameApplication/app/src/main/res/layout/topic_button.xml" value="0.35280797101449274" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

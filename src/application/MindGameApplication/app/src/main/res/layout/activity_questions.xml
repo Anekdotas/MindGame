@@ -26,79 +26,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        >
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/tv_optionA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/custom_button"
-            android:gravity="center"
-            android:textColorHint="@color/black"
-            android:textSize="20sp"
-            tools:text="Apple"
-            android:padding="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            />
+            style="@style/AnswerOption"
+            tools:text="Apple" />
 
         <TextView
             android:id="@+id/tv_optionB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/custom_button"
-            android:gravity="center"
-            android:textColorHint="@color/black"
-            android:textSize="20sp"
+            style="@style/AnswerOption"
             tools:text="Banana"
-            android:padding="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             />
 
         <TextView
             android:id="@+id/tv_optionC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/custom_button"
-            android:gravity="center"
-            android:textColorHint="@color/black"
-            android:textSize="20sp"
+            style="@style/AnswerOption"
             tools:text="Cherry"
-            android:padding="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             />
 
         <TextView
             android:id="@+id/tv_optionD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/custom_button"
-            android:gravity="center"
-            android:textColorHint="@color/black"
-            android:textSize="20sp"
+            style="@style/AnswerOption"
             tools:text="Dragon Fruit"
-            android:padding="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             />
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/custom_button"
-        android:text="answer"
+        style="@style/AnswerOption"
         android:textColor="@color/white"
         android:textSize="25sp"
+        android:text="answer"
         android:textStyle="bold"
         />
 

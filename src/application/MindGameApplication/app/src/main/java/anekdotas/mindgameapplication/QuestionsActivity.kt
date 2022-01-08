@@ -28,16 +28,17 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuestionsBinding
     private var messageList =  ArrayList<Message>()
     // Variables to allow user to navigate through the questions
-    private var myPosition = 1 //current question position
-    private var myQuestionsList: MutableList<QuestionModel>? = null //list of questions
-    private var mySelectedPosition = 0 //selected position between answers in a specific question
-    private var myCorrectAnswers = 0 // number of questions answered correctly
+    private var myPosition = 1      //current question position
+    private var myQuestionsList: MutableList<QuestionModel>? = null     //list of questions
+    private var mySelectedPosition = 0  //selected position between answers in a specific question
+    private var myCorrectAnswers = 0    // number of questions answered correctly
     private var myUserName: String? = null
     val T = Timer()
 
-    var isMessageAudioSet = false
-    var messageAudio: MediaPlayer? = null
-    var setAudioMessagesID: Int? = null
+    private var isMessageAudioSet = false
+    private var messageAudio: MediaPlayer? = null
+    private var setAudioMessagesID: Int? = null
+    private var isAudioPaused = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,54 +68,57 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnSubmit.setOnClickListener(this)
 
 
-        //FIX THIS MESS
         // - - - - - AUDIO PLAY - - - - -
-        var isAudioPaused = true
         binding.ListView.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, i, _ ->
-
-    //            Log.d("|+| ", i.toString())
-    //            Log.d("|+| ", "Author: " + messageList.get(i).author)
-    //            Log.d("|+|", "audio ID: " + messageList.get(i).audio)
-
-    //          - - - - - RELEASE PLAYER IF DIFFERENT MESSAGE IS SELECTED - - - - -
-                if ((isMessageAudioSet && (setAudioMessagesID != i || setAudioMessagesID == null)) && messageList[i].audio != null) {
-    //                isMessageAudioSet = false
+//          - - - - - RELEASE PLAYER IF DIFFERENT MESSAGE IS SELECTED - - - - -
+                if (isDifferentMessageSelected(i)) {
                     messageAudio?.release()
                 }
 
-    //          - - - - - PLAY OR PAUSE AUDIO BY CLICKING ON THE SAME MESSAGE - - - - -
-                if (isMessageAudioSet && setAudioMessagesID == i && messageList[i].audio != null)
-                    isAudioPaused = when (isAudioPaused) {
-                        true -> {
-                            messageAudio?.start()
-                            false
-                        }
-                        false -> {
-                            messageAudio?.pause()
-                            true
-                        }
-                    }
+//          - - - - - PLAY OR PAUSE AUDIO BY CLICKING ON THE SAME MESSAGE - - - - -
+                playOrPauseAudio(i)
 
-    //          - - - - - SET NEW AUDIO IF DIFFERENT MESSAGE IS SELECTED - - - - -
-                if (messageList.get(i).audio != null && setAudioMessagesID != i) {
-                    messageAudio = MediaPlayer.create(this, messageList.get(i).audio.toUri())
-                    messageAudio?.start()
-                    isAudioPaused = false
-                    isMessageAudioSet = true
-                    setAudioMessagesID = i
-                    Log.d(
-                        "|+|",
-                        "there is audio"
-                    )
-                } else {
-                    Log.d(
-                        "|+|",
-                        "Status: This message is without audio OR this audio is already being played"
-                    )
-                }
-
+//          - - - - - SET NEW AUDIO IF DIFFERENT MESSAGE IS SELECTED - - - - -
+                setNewAudio(i)
             }
+    }
+
+    private fun setNewAudio(i: Int) {
+        if (messageList.get(i).audio != null && setAudioMessagesID != i) {
+            messageAudio = MediaPlayer.create(this, messageList.get(i).audio.toUri())
+            messageAudio?.start()
+            isAudioPaused = false
+            isMessageAudioSet = true
+            setAudioMessagesID = i
+            Log.d(
+                "|+|",
+                "there is audio"
+            )
+        } else {
+            Log.d(
+                "|+|",
+                "Status: This message is without audio OR this audio is already being played"
+            )
+        }
+    }
+
+    private fun playOrPauseAudio(i: Int) {
+        if (isMessageAudioSet && setAudioMessagesID == i && messageList[i].audio != null)
+            isAudioPaused = when (isAudioPaused) {
+                true -> {
+                    messageAudio?.start()
+                    false
+                }
+                false -> {
+                    messageAudio?.pause()
+                    true
+                }
+            }
+    }
+
+    private fun isDifferentMessageSelected(i: Int): Boolean {
+        return (isMessageAudioSet && (setAudioMessagesID != i || setAudioMessagesID == null)) && messageList[i].audio != null
     }
 
 
