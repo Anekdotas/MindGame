@@ -57,28 +57,17 @@
                     android:layout_weight="10">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:scaleType="centerInside"
-                        android:adjustViewBounds="true"
-                        android:layout_weight="4"
                         android:src="@drawable/ic_vector_play"
+                        style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
                         android:text="Play"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:fontFamily="sans-serif-black"
-                        android:textStyle="bold"
-                        android:gravity="center"
+                        style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
                         android:autoSizeMinTextSize="12sp"
                         android:autoSizeStepGranularity="5sp"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="10dp"/>
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -90,28 +79,16 @@
                     android:layout_weight="10">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:scaleType="centerInside"
-                        android:adjustViewBounds="true"
-                        android:layout_weight="4"
                         android:src="@drawable/ic_shop"
+                        style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
                         android:text="Shop"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:fontFamily="sans-serif-black"
-                        android:textStyle="bold"
-                        android:gravity="center"
+                        style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
                         android:autoSizeMinTextSize="12sp"
-                        android:autoSizeStepGranularity="5sp"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="10dp"/>
+                        android:autoSizeStepGranularity="5sp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -131,28 +108,16 @@
                     android:gravity="center"
                     android:layout_weight="10">
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:scaleType="centerInside"
-                        android:adjustViewBounds="true"
-                        android:layout_weight="4"
                         android:src="@drawable/ic_profile"
+                        style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
                         android:text="Profile"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:fontFamily="sans-serif-black"
-                        android:textStyle="bold"
-                        android:gravity="center"
+                        style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
                         android:autoSizeMinTextSize="12sp"
-                        android:autoSizeStepGranularity="5sp"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="10dp"/>
+                        android:autoSizeStepGranularity="5sp"/>
 
                 </LinearLayout>
 
@@ -165,28 +130,16 @@
                     android:layout_weight="10">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:scaleType="centerInside"
-                        android:adjustViewBounds="true"
-                        android:layout_weight="4"
                         android:src="@drawable/ic_vector_exit"
+                        style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
                         android:text="Exit"
-                        android:textColor="@color/white"
-                        android:fontFamily="sans-serif-black"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:gravity="center"
+                        style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
                         android:autoSizeMinTextSize="12sp"
-                        android:autoSizeStepGranularity="5sp"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="10dp"/>
+                        android:autoSizeStepGranularity="5sp"/>
                 </LinearLayout>
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
