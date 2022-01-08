@@ -30,7 +30,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="Main Menu"
+                android:text="@string/mainmenu_activity_title"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:autoSizeTextType="uniform"
@@ -61,7 +61,7 @@
                         style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:text="Play"
+                        android:text="@string/play"
                         style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
@@ -83,7 +83,7 @@
                         style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:text="Shop"
+                        android:text="@string/mainmenu_activity_shop"
                         style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
@@ -112,7 +112,7 @@
                         style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:text="Profile"
+                        android:text="@string/mainmenu_activity_profile"
                         style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
@@ -134,7 +134,7 @@
                         style="@style/MainMenuIcons"
                         tools:ignore="ContentDescription"/>
                     <TextView
-                        android:text="Exit"
+                        android:text="@string/mainmenu_activity_exit"
                         style="@style/MainMenuButtons"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="70sp"
@@ -146,7 +146,7 @@
                 android:id="@+id/btn_levelCreator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/level_creator_title"
+                android:text="@string/lvl_creator_title"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"

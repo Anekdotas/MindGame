@@ -9,7 +9,6 @@ import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityLevelCreatorTitlePageBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.TopicModel
-import anekdotas.mindgameapplication.objects.CategoriesObject
 import anekdotas.mindgameapplication.objects.TopicsObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +24,7 @@ class LevelCreatorTitlePageActivity : AppCompatActivity() {
         callNetworkTopics()
 
         //ActionBar setup
-        binding.actionBar.title.setText(R.string.level_creator_title)
+        binding.actionBar.title.setText(R.string.lvl_creator_title)
         binding.actionBar.actionBarBackArrow.setOnClickListener{
             val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)

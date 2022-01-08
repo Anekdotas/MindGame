@@ -23,7 +23,7 @@ class LevelCreatorActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         //ActionBar setup
-        binding.actionBar.title.setText(R.string.level_creator_title)
+        binding.actionBar.title.setText(R.string.lvl_creator_title)
         binding.actionBar.actionBarBackArrow.setOnClickListener {
             var intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
             startActivity(intent)

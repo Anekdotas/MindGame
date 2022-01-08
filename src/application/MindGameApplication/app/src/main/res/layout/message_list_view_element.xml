@@ -40,7 +40,7 @@
                 android:id="@+id/messageAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HOST:"
+                android:text="@string/host"
                 android:textStyle="bold"
                 android:textSize="10dp"
                 android:layout_margin="5dp"

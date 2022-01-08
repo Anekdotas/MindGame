@@ -57,7 +57,7 @@
         style="@style/AnswerOption"
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:text="answer"
+        android:text="@string/answer"
         android:textStyle="bold"
         />
 
