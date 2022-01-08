@@ -46,7 +46,7 @@ class LevelCreatorActivity : AppCompatActivity() {
 
             displayQuestionLogs()
 
-            if (questionTests()) {   //in other words if all fields are filled correctly
+            if (questionTests()) {   //test if all fields are filled correctly
                 saveQuestion(myCustomQuestions)
 
                 Toast.makeText(this, "Question saved", Toast.LENGTH_SHORT).show()
@@ -57,7 +57,7 @@ class LevelCreatorActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnPlay.setOnClickListener {        //This button can be used for uploading or for testing created topic
+        binding.btnPlay.setOnClickListener {        //This button is used for uploading created topic
             if (myCustomQuestions.size > 0) {
                 //Actions to play created topic
 //                    playTopic(myCustomQuestions)
@@ -106,6 +106,7 @@ class LevelCreatorActivity : AppCompatActivity() {
 
     private fun uploadTopic(myCustomQuestions: ArrayList<QuestionModel>) {
         callNetworkUploadTopic()
+        Thread.sleep(100)
         callNetworkUploadQuestions(myCustomQuestions)
         intent = Intent(this, ListCategoriesActivity::class.java)
         startActivity(intent)
@@ -268,12 +269,12 @@ class LevelCreatorActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if(response.isSuccessful){
                         Log.d("POST response code for question upload is", ""+ response.code())
-                        Toast.makeText(this@LevelCreatorActivity, "Topic uploaded successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LevelCreatorActivity, "Questions uploaded successfully", Toast.LENGTH_SHORT).show()
                         startActivity(intent)
                     }
                     else {
                         Log.d("POST for question upload did not succeed", "" + response.code())
-                        Toast.makeText(this@LevelCreatorActivity, "Topic upload failed, please try again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LevelCreatorActivity, "Question upload failed, please try again", Toast.LENGTH_SHORT).show()
                     }
                 }
                 override fun onFailure(call: Call<Void>, response: Throwable) {
