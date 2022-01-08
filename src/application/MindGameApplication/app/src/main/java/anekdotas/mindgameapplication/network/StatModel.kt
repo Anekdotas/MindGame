@@ -3,9 +3,9 @@ package anekdotas.mindgameapplication.network
 import com.squareup.moshi.Json
 
 data class StatModel(
-    val id : Int,
-    val choices : List<ChoiceModel>,
+    var id : Int = 0,
+    val choices : MutableList<ChoiceModel>,
     @Json(name="timeSpent")
-    var secondsSpent : Int,
+    var secondsSpent : Int = 0,
     var streak : Int = 0
 )

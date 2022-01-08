@@ -9,13 +9,11 @@ import android.view.View
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
 import anekdotas.mindgameapplication.helpers.Time
-import anekdotas.mindgameapplication.objects.TopicsObject
-import anekdotas.mindgameapplication.objects.UserObjectConst
 import kotlin.random.Random
 import android.widget.RatingBar
 
 import android.widget.RatingBar.OnRatingBarChangeListener
-import anekdotas.mindgameapplication.objects.UserObjectConstTest
+import anekdotas.mindgameapplication.objects.*
 
 class ResultsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityResultsBinding
@@ -32,6 +30,11 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvTime.text = "Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec"
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
         binding.tvRatingInfo.text = "Please rate this quiz!"
+
+        StatObject.stats.choices.removeAt(0)
+        StatObject.stats.id=QuestionsObjectWithGameSessionId.questionsWithGsId.gameSessionId
+        Log.d("statscheckcorrect", QuestionsObject.questionList.toString())
+        Log.d("stats", StatObject.stats.toString())
 
         binding.btnFinish.setOnClickListener{
             Intent.FLAG_ACTIVITY_NEW_TASK

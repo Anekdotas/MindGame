@@ -5,12 +5,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
@@ -38,7 +38,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     var isMessageAudioSet = false
     var messageAudio: MediaPlayer? = null
     var setAudioMessagesID: Int? = null
-    var x = 0 // increment regarding answered questions
+    var x=0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,6 +147,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
+        var select = false
         when (v?.id) {
             R.id.tv_optionA -> {
                 selectionView(binding.tvOptionA, 1)
@@ -162,14 +163,25 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 //Add answering values to stat object
+                println(x)
+
+                if(mySelectedPosition!=0){
+                    StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, QuestionsObject.questionList[x].options[mySelectedPosition-1].id))
+                    select = true//didnt skip
+                }
+
                 if (mySelectedPosition == 0) {
-                    myPosition++ // SKIPS ANSWERING
+                    if(!select)
+                        StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, 0))
+                    myPosition++ // COULD SKIP ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
                             setQuestion() // STARTS NEW QUESTION
+                            x++
                         }
                         else -> {
                             //add time spent to stat object
+                            StatObject.stats!!.secondsSpent=UserObjectConst.sessionTimeSeconds.toInt()
                             Time.formatTime(UserObjectConst.sessionTimeSeconds)
                             val intent = Intent(this, ResultsActivity::class.java)
                             intent.putExtra(UserObjectConst.USERNAME, myUserName)
@@ -203,14 +215,15 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         answerView(mySelectedPosition, R.drawable.custom_wrong_btn)
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak=0
-
-
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak++
+                        if(UserStatsObject.sessionStreak> StatObject.stats!!.streak) {
+                            StatObject.stats!!.streak=UserStatsObject.sessionStreak
+                        }
 
                     } //IF THE ANSWER WAS CORRECT
 
