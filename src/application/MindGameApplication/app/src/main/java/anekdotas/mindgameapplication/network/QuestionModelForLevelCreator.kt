@@ -1,7 +1,7 @@
 package anekdotas.mindgameapplication.network
 import com.squareup.moshi.Json
 
-data class QuestionModel (
+data class QuestionModelForLevelCreator (
     val id: Int,
     @Json(name="text")
     val question: String,
@@ -10,5 +10,5 @@ data class QuestionModel (
     @Json(name="correctAnswer")
     val answer: Int,
     @Json(name="answers")
-    val options: List<AnswerModel>,
+    val options: List<String>,
 )

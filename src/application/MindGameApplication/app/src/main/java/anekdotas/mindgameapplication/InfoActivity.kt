@@ -1,13 +1,11 @@
 package anekdotas.mindgameapplication
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityInfoBinding
-import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.objects.TopicsObject
 import coil.load
 

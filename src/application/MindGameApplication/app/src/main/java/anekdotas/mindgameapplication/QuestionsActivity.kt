@@ -5,12 +5,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import anekdotas.mindgameapplication.databinding.ActivityQuestionsBinding
@@ -19,6 +19,7 @@ import anekdotas.mindgameapplication.helpers.RandomGen
 import anekdotas.mindgameapplication.helpers.Time
 import anekdotas.mindgameapplication.java.ChatAdapter
 import anekdotas.mindgameapplication.java.Message
+import anekdotas.mindgameapplication.network.ChoiceModel
 import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.objects.*
 import java.util.*
@@ -51,15 +52,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         myUserName = intent.getStringExtra(UserObjectConst.USERNAME)
         myQuestionsList = QuestionsObject.questionList.toMutableList()
         setQuestion()
-
-        Time.resetTime()
-        T.scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                runOnUiThread {
-                    UserObjectConst.sessionTimeSeconds++
-                }
-            }
-        }, 1000, 1000)
+        timerfun()
 
         binding.tvOptionA.setOnClickListener(this)
         binding.tvOptionB.setOnClickListener(this)
@@ -127,48 +120,20 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         val question = myQuestionsList!![myPosition - 1]
         defaultOptionView()
-
-        if (myPosition == myQuestionsList!!.size) {
-            binding.btnSubmit.text = "FINISH"
-        } else {
-            binding.btnSubmit.text = "SUBMIT"
-        }
-
-        val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
-        binding.ListView.adapter = adapter
-
-        if(myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.giveMoveOn(), R.drawable.lasgov))
-        }
-        if(RandomGen.chance(25) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
-        }
-
-        when {
-            question.media==null -> {
-                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
-            }
-            question.media.endsWith(".jpg") -> {
-                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
-            }
-            question.media.endsWith(".mp3") -> {
-                messageList.add(Message(HostObject.host.hostName, question.question+"\n CLICK TO PLAY \uD83D\uDD0A", R.drawable.lasgov, "", question.media))
-            }
-            else -> {
-                Log.e("Media", "Wrong media type!")
-            }
-        }
+        checkLast()
+        setHostResponse(question)
 
 
-        binding.tvOptionA.text = question.options[0]
-        binding.tvOptionB.text = question.options[1]
-        binding.tvOptionC.text = question.options[2]
-        binding.tvOptionD.text = question.options[3]
+        binding.tvOptionA.text = question.options[0].text
+        binding.tvOptionB.text = question.options[1].text
+        binding.tvOptionC.text = question.options[2].text
+        binding.tvOptionD.text = question.options[3].text
         binding.tvOptionA.isClickable=true
         binding.tvOptionB.isClickable=true
         binding.tvOptionC.isClickable=true
         binding.tvOptionD.isClickable=true
     }
+    
 
     private fun defaultOptionView() {
 
@@ -190,6 +155,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
+        var select = false
         when (v?.id) {
             R.id.tv_optionA -> {
                 selectionView(binding.tvOptionA, 1)
@@ -204,13 +170,24 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 selectionView(binding.tvOptionD, 4)
             }
             R.id.btn_submit -> {
+
+                if(mySelectedPosition!=0){
+                    StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, QuestionsObject.questionList[x].options[mySelectedPosition-1].id))
+                    select = true//didnt skip
+                }
+
                 if (mySelectedPosition == 0) {
-                    myPosition++ // SKIPS ANSWERING
+                    if(!select)
+                        StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, 0))
+                    myPosition++ // COULD SKIP ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
                             setQuestion() // STARTS NEW QUESTION
+                            x++
                         }
                         else -> {
+                            //add time spent to stat object
+                            StatObject.stats!!.secondsSpent=UserObjectConst.sessionTimeSeconds.toInt()
                             Time.formatTime(UserObjectConst.sessionTimeSeconds)
                             val intent = Intent(this, ResultsActivity::class.java)
                             intent.putExtra(UserObjectConst.USERNAME, myUserName)
@@ -220,6 +197,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 myQuestionsList!!.size
                             )
                             T.cancel()
+
+
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             finish()// ENDS THE QUIZ
@@ -236,13 +215,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), R.drawable.chuvas_cropped))
                         4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
                     } //WRITES USER SELECTED ANSWER
+                    nonClickable()
 
-                    binding.tvOptionA.isClickable=false
-                    binding.tvOptionB.isClickable=false
-                    binding.tvOptionC.isClickable=false
-                    binding.tvOptionD.isClickable=false
-
-                    if (question!!.answer != mySelectedPosition) {
+                    if (question!!.answer != QuestionsObject.questionList[myPosition-1].options[mySelectedPosition-1].id) {
                         answerView(mySelectedPosition, R.drawable.custom_wrong_btn)
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak=0
@@ -252,15 +227,15 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         myCorrectAnswers++
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.lasgov))
                         UserStatsObject.sessionStreak++
+                        if(UserStatsObject.sessionStreak> StatObject.stats!!.streak) {
+                            StatObject.stats!!.streak=UserStatsObject.sessionStreak
+                        }
+
                     } //IF THE ANSWER WAS CORRECT
 
-                    answerView(question.answer, R.drawable.custom_correct_btn) //COLORS THE CORRECT
+                    answerView(findCorrectIndex(), R.drawable.custom_correct_btn) //COLORS THE CORRECT
 
-                    if (myPosition == myQuestionsList!!.size) {
-                        binding.btnSubmit.text = "FINISH"
-                    } else {
-                        binding.btnSubmit.text = "NEXT QUESTION"
-                    } // CHANGES TEXT IF LAST QUESTION
+                    checkLast()
                     mySelectedPosition = 0
                 }
             }
@@ -303,5 +278,77 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         T.cancel()
         startActivity(intent)
         finish()
+    }
+
+    private fun checkLast(){
+        if (myPosition == myQuestionsList!!.size) {
+            binding.btnSubmit.text = "FINISH"
+        } else {
+            binding.btnSubmit.text = "SUBMIT"
+        }
+    }
+    
+    private fun timerfun(){
+        Time.resetTime()
+        T.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                runOnUiThread {
+                    UserObjectConst.sessionTimeSeconds++
+                }
+            }
+        }, 1000, 1000)
+    }
+
+    private fun setHostResponse(question : QuestionModel){
+        val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
+        binding.ListView.adapter = adapter
+
+        if(myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.giveMoveOn(), R.drawable.lasgov))
+        }
+        if(RandomGen.chance(25) && myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
+        }
+
+        when {
+            question.media==null -> {
+                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov))
+            }
+            question.media.endsWith(".jpg") -> {
+                messageList.add(Message(HostObject.host.hostName, question.question, R.drawable.lasgov, question.media))
+            }
+            question.media.endsWith(".mp3") -> {
+                messageList.add(Message(HostObject.host.hostName, question.question+"\n CLICK TO PLAY \uD83D\uDD0A", R.drawable.lasgov, "", question.media))
+            }
+            else -> {
+                Log.e("Media", "Wrong media type!")
+            }
+        }
+    }
+
+    private fun nonClickable(){
+        binding.tvOptionA.isClickable=false
+        binding.tvOptionB.isClickable=false
+        binding.tvOptionC.isClickable=false
+        binding.tvOptionD.isClickable=false
+    }
+
+    private fun findCorrectIndex() : Int{
+        var x=0
+        when {
+            QuestionsObject.questionList[myPosition-1].options[0].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=1
+            }
+            QuestionsObject.questionList[myPosition-1].options[1].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=2
+            }
+            QuestionsObject.questionList[myPosition-1].options[2].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=3
+            }
+            QuestionsObject.questionList[myPosition-1].options[3].id==QuestionsObject.questionList[myPosition-1].answer -> {
+                x=4
+            }
+        }
+        return x
     }
 }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ListTopicsActivity">
 
-    <include layout="@layout/action_bar" android:id="@+id/actionBar"
+    <include layout="@layout/topic_bar" android:id="@+id/ab_topic"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/actionBar" />
+        app:layout_constraintTop_toBottomOf="@id/ab_topic" />
 <!--
     in rvTopicRecycler
     'layout_height="wrap_content"' might be the reason why
