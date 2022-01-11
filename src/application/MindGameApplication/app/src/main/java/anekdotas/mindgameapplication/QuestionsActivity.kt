@@ -40,6 +40,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var messageAudio: MediaPlayer? = null
     private var setAudioMessagesID: Int? = null
     private var isAudioPaused = true
+    private var x = 0
+    private var select = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -155,7 +157,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
-        var select = false
         when (v?.id) {
             R.id.tv_optionA -> {
                 selectionView(binding.tvOptionA, 1)
@@ -170,19 +171,17 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 selectionView(binding.tvOptionD, 4)
             }
             R.id.btn_submit -> {
-
-                if(mySelectedPosition!=0){
-                    StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, QuestionsObject.questionList[x].options[mySelectedPosition-1].id))
-                    select = true//didnt skip
-                }
-
                 if (mySelectedPosition == 0) {
-                    if(!select)
+
+                    if(!select){
                         StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, 0))
+                    }
+
                     myPosition++ // COULD SKIP ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
                             setQuestion() // STARTS NEW QUESTION
+                            select = false
                             x++
                         }
                         else -> {
@@ -205,6 +204,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 } else {
+
+                    println("printed!")
+                    StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, QuestionsObject.questionList[x].options[mySelectedPosition-1].id))
+                    select = true //didnt skip
+
                     val question = myQuestionsList?.get(myPosition - 1)
 
                     val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)

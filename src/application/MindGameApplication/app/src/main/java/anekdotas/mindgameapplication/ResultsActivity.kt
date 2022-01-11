@@ -33,7 +33,8 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
         binding.tvRatingInfo.text = "Please rate this quiz!"
 
-        StatObject.stats.choices.removeAt(0)
+
+        if(StatObject.stats.choices[0].questionId==0){StatObject.stats.choices.removeAt(0)}
         StatObject.stats.id=QuestionsObjectWithGameSessionId.questionsWithGsId.gameSessionId
         Log.d("statscheckcorrect", QuestionsObject.questionList.toString())
         Log.d("stats", StatObject.stats.toString())
@@ -85,5 +86,9 @@ class ResultsActivity : AppCompatActivity() {
                     Log.e("Something went wrong! ", ""+response.message)
                 }
             })
+        StatObject.stats.choices.clear()
+        StatObject.stats.id=0
+        StatObject.stats.secondsSpent=0
+        StatObject.stats.streak=0
     }
 }
