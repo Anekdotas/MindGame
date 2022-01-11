@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">MindGame Application</string>
+    <string name="app_name_short">MindGame</string>
     <string name="progress">progress</string>
     <string name="question_placeholder">question placeholder</string>
     <string name="answer">ANSWER</string>
+    <string name="finish">FINISH</string>
     <string name="quizapp">QuizApp</string>
     <string name="congrats">Congrats!</string>
     <string name="image">image</string>
     <string name="result">Result</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="hint_username">Username</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -17,10 +20,27 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="topic">Topic</string>
+    <string name="category">category</string>
     <string name="play">Play</string>
+    <string name="built_by">Built by Team Anekdotas</string>
+    <string name="name">Name</string>
+    <string name="host">HOST:</string>
 
 <!--    Topic creator section   -->
-    <string name="level_creator_title">Topic Creator</string>
+    <string name="lvl_creator_topicname">Topic name: </string>
+    <string name="lvl_creator_topicdesc">Topic description: </string>
+    <string name="lvl_creator_desc">Description</string>
+    <string name="lvl_creator_difficulty">Topic difficulty: </string>
+    <string name="lvl_creator_continue">continue</string>
+    <string name="lvl_creator_title">Topic Creator</string>
+    <string name="lvl_creator_prev_question">Previous Question</string>
+    <string name="lvl_creator_next_question">Next Question</string>
+    <string name="lvl_creator_update_question">Update Question</string>
+    <string name="lvl_creator_new_question">New question</string>
+    <string name="lvl_creator_answer_element">Answer: </string>
+    <string name="lvl_creator_answer_prompt">Input your answer option</string>
+    <string name="lvl_creator_question_prompt">Input your question</string>
+    <string name="lvl_creator_answernum_prompt">Select correct answer\'s number: </string>
     <string-array name="lvl_creator_correct_answers">
         <item>-</item>
         <item>1</item>
@@ -43,6 +63,20 @@
     </string-array>
 
     <string name="lvl_creator_save_question">save question</string>
-    <string name="lvl_creator_upload_topic_to_the_server">upload to the server</string>
+    <string name="lvl_creator_upload_topic_to_the_server">upload topic</string>
     <string name="lvl_creator_enter_your_question">Input your question</string>
+    <!--    Registration section   -->
+    <string name="reg_activity_create_acc_prompt">Please create an account</string>
+    <string name="reg_activity_hint_repeat_password">Repeat Password</string>
+    <string name="reg_activity_register">Register</string>
+    <!--    Main activity section   -->
+    <string name="main_activity_connect_acc_prompt">Please create an account</string>
+    <string name="main_activity_dont_have_account">Don\'t have an account?</string>
+    <!--    Main menu activity section   -->
+    <string name="mainmenu_activity_title">Main Menu</string>
+    <string name="mainmenu_activity_shop">Shop</string>
+    <string name="mainmenu_activity_profile">Profile</string>
+    <string name="mainmenu_activity_exit">Exit</string>
+
+
 </resources>

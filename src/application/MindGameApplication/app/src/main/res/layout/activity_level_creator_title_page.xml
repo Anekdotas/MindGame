@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="Topic name: "
+                android:text="@string/lvl_creator_topicname"
                 android:textColor="@color/good_green"
                 android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:inputType="text"
                 />
         </LinearLayout>
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Topic description: "
+                android:text="@string/lvl_creator_topicdesc"
                 android:fontFamily="sans-serif-black"
                 android:textStyle="bold"
                 android:textColor="@color/good_green" />
@@ -71,7 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Description"
+                android:hint="@string/lvl_creator_desc"
                 android:inputType="text"
                 />
         </LinearLayout>
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Topic difficulty: "
+                android:text="@string/lvl_creator_difficulty"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/good_green"
                 android:textStyle="bold" />
@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
-            android:text="continue"
+            android:text="@string/lvl_creator_continue"
             android:textSize="25sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-black"

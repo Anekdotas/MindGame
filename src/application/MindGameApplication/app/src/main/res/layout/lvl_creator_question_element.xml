@@ -11,7 +11,7 @@
         android:id="@+id/tv_questionNr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New question"
+        android:text="@string/lvl_creator_new_question"
         android:gravity="center"
         android:textSize="25sp"
         android:textStyle="bold"/>
@@ -20,7 +20,7 @@
         android:id="@+id/input_et_Question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Input your question"
+        android:hint="@string/lvl_creator_question_prompt"
         android:inputType="text"
         android:maxLength="127"
         />
@@ -41,7 +41,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Select correct answer's number: "
+            android:text="@string/lvl_creator_answernum_prompt"
             android:textSize="20sp"
             android:layout_weight="3"
             android:gravity="center"/>

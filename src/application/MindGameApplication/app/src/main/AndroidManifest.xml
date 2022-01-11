@@ -33,6 +33,7 @@
         <activity
             android:name=".InfoActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".ListCategoriesActivity"

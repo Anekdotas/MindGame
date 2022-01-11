@@ -8,7 +8,7 @@
         android:id="@+id/tv_Answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Answer: "
+        android:text="@string/lvl_creator_answer_element"
         android:textSize="20sp"
         />
 
@@ -17,7 +17,7 @@
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="50sp"
-        android:hint="Input your answer option"
+        android:hint="@string/lvl_creator_answer_prompt"
         android:maxLength="63"
         android:inputType="text"
         />
