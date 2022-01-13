@@ -286,9 +286,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun checkLast(){
         if (myPosition == myQuestionsList!!.size) {
-            binding.btnSubmit.text = "FINISH"
+            binding.btnSubmit.text = getString(R.string.finish)
         } else {
-            binding.btnSubmit.text = "SUBMIT"
+            binding.btnSubmit.text = getString(R.string.submit)
         }
     }
     

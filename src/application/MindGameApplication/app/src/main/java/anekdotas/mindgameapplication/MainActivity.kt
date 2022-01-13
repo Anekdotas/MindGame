@@ -43,10 +43,10 @@ class MainActivity : AppCompatActivity() {
             if(networkOnline){
                 when {
                     binding.username.text.toString().isEmpty() -> {
-                        Toast.makeText(this@MainActivity, "No Username Selected", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, getString(R.string.main_activity_no_username_selected_toast), Toast.LENGTH_SHORT).show()
                     }
                     binding.password.text.toString().isEmpty() -> {
-                        Toast.makeText(this@MainActivity, "No Password Selected", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, getString(R.string.main_activity_no_password_selected_toast), Toast.LENGTH_SHORT).show()
                     }
                     else -> {
                         UserObjectConst.USERNAME = binding.username.text.toString() //delete later
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             else{
-                Toast.makeText(this@MainActivity, "No Internet Connection\nPlease restart the application with internet connection", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, getString(R.string.no_internet), Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -77,12 +77,12 @@ class MainActivity : AppCompatActivity() {
                     Log.d("POST response is", ""+ response.body())
                     JwtObject.userJwt = response.body()!!
                     Log.d("JWT stored in memory is", ""+ JwtObject.userJwt)
-                    Toast.makeText(this@MainActivity, "Welcome ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, getString(R.string.main_activity_welcome_overloaded_toast,binding.username.text.toString()), Toast.LENGTH_SHORT).show()
                     startActivity(intent)
                 }
                 else {
                     Log.d("POST did not succeed", "" + response.body())
-                    Toast.makeText(this@MainActivity, "Login details incorrect, please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, getString(R.string.main_activity_login_details_incorrect_toast), Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<JwtTestModel>, response: Throwable) {

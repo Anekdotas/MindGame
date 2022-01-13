@@ -62,7 +62,7 @@ class ListTopicsActivity : AppCompatActivity() {
    }
 
     private fun actionBarSetup(){
-        binding.abTopic.title.text = "Topics"
+        binding.abTopic.title.text = getString(R.string.Topics)
         binding.abTopic.actionBarTopic.setOnClickListener{
             val intent = Intent(this, ListCategoriesActivity::class.java)
             startActivity(intent)

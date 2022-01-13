@@ -29,9 +29,9 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvName.text = UserObjectConstTest.currentUser.username
         val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
         val myCorrectAnswers = intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )
-        binding.tvTime.text = "Time spent: ${UserObjectConst.sessionTimeHours}h  ${UserObjectConst.sessionTimeMinutes}min  ${UserObjectConst.sessionTimeSeconds}sec"
-        binding.tvScore.text = "Your score is $myCorrectAnswers / $totalQuestions"
-        binding.tvRatingInfo.text = "Please rate this quiz!"
+        binding.tvTime.text = getString(R.string.results_activity_time_spent_overloaded,UserObjectConst.sessionTimeHours,UserObjectConst.sessionTimeMinutes,UserObjectConst.sessionTimeSeconds)
+        binding.tvScore.text = getString(R.string.results_activity_your_score_overloaded,myCorrectAnswers, totalQuestions)
+        binding.tvRatingInfo.text = getString(R.string.results_activity_pls_rate_quiz)
 
 
         if(StatObject.stats.choices[0].questionId==0){StatObject.stats.choices.removeAt(0)}
@@ -56,7 +56,7 @@ class ResultsActivity : AppCompatActivity() {
             binding.rbRating.onRatingBarChangeListener =
                 OnRatingBarChangeListener { ratingBar, rating, _ -> if (rating < 1.0f) ratingBar.rating = 1.0f
                     var x=binding.rbRating.rating
-                    binding.tvRatingInfo.text="Thank you for rating!"
+                    binding.tvRatingInfo.text=getString(R.string.results_activity_thanks_for_rating)
                     UserObjectConst.ratedTopicsId.add(TopicsObject.selectedTopic.id)
                     binding.rbRating.isFocusable = false
                     binding.rbRating.setIsIndicator(true)

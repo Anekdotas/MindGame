@@ -32,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.email.text.toString().isEmpty() -> {
                         Toast.makeText(
                             this@RegisterActivity,
-                            "No Email Selected",
+                            getString(R.string.reg_activity_no_email_selected_toast),
                             Toast.LENGTH_SHORT
                         )
                             .show()
@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.username.text.toString().isEmpty() -> {
                         Toast.makeText(
                             this@RegisterActivity,
-                            "No Username Selected",
+                            getString(R.string.main_activity_no_username_selected_toast),
                             Toast.LENGTH_SHORT
                         )
                             .show()
@@ -48,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.password.text.toString().isEmpty() -> {
                         Toast.makeText(
                             this@RegisterActivity,
-                            "No Password Selected",
+                            getString(R.string.main_activity_no_password_selected_toast),
                             Toast.LENGTH_SHORT
                         )
                             .show()
@@ -56,7 +56,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.passwordRepeat.text.toString().isEmpty() -> {
                         Toast.makeText(
                             this@RegisterActivity,
-                            "No Password Repeat Selected",
+                            getString(R.string.reg_activity_no_password_repeat_selected_toast),
                             Toast.LENGTH_SHORT
                         )
                             .show()
@@ -94,12 +94,12 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if(response.isSuccessful){
                     Log.d("POST response code is", ""+ response.code())
-                    Toast.makeText(this@RegisterActivity, "Glad to have you ${binding.username.text.toString()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, getString(R.string.reg_activity_glad_to_have_you_overloaded_toast,binding.username.text.toString()), Toast.LENGTH_SHORT).show()
                     startActivity(intent)
                 }
                 else {
                     Log.d("POST for signup did not succeed", "" + response.code())
-                    Toast.makeText(this@RegisterActivity, "Registration details incorrect, please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, getString(R.string.reg_activity_reg_details_incorrect_toast), Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<Void>, response: Throwable) {

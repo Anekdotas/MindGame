@@ -31,7 +31,7 @@ class LevelCreatorTitlePageActivity : AppCompatActivity() {
             finish()
         }
 
-//        /* Function for testing */ fillRequiredData()
+//         Function for testing:  fillRequiredData()
 
         binding.btnContinue.setOnClickListener {
             val intent = Intent(this, LevelCreatorActivity::class.java)
@@ -42,16 +42,13 @@ class LevelCreatorTitlePageActivity : AppCompatActivity() {
             }
             when {
                nameTaken -> {
-                   Toast.makeText(this@LevelCreatorTitlePageActivity, "Topic Name is Already Taken", Toast.LENGTH_SHORT).show()
+                   Toast.makeText(this@LevelCreatorTitlePageActivity, getString(R.string.lvl_creator_topic_name_taken_toast), Toast.LENGTH_SHORT).show()
                }
                 binding.etTopicName.text.toString().isEmpty() -> {
-                    Toast.makeText(this@LevelCreatorTitlePageActivity, "No Topic Name Selected", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LevelCreatorTitlePageActivity, getString(R.string.lvl_creator_no_topic_name_selected_toast), Toast.LENGTH_SHORT).show()
                 }
                 binding.etTopicDescription.text.toString().isEmpty() -> {
-                    Toast.makeText(this@LevelCreatorTitlePageActivity, "No Topic Description Selected", Toast.LENGTH_SHORT).show()
-                }
-                nameTaken -> {
-                    Toast.makeText(this@LevelCreatorTitlePageActivity, "Topic Name is Already Taken", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LevelCreatorTitlePageActivity, getString(R.string.lvl_creator_no_topic_desc_selected_toast), Toast.LENGTH_SHORT).show()
                 }
             else -> {
                 intent.putExtra("topicName", binding.etTopicName.text.toString())

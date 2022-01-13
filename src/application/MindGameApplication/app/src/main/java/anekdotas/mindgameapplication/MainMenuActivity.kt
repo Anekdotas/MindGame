@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
@@ -37,7 +36,7 @@ class MainMenuActivity : AppCompatActivity() {
 //            val intent = Intent(this, ResultsActivity::class.java)
 //            Thread.sleep(100)
 //            startActivity(intent)
-            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
         }
 
         //PROFILE BUTTON logic
@@ -45,7 +44,7 @@ class MainMenuActivity : AppCompatActivity() {
 //            val intent = Intent(this, ResultsActivity::class.java)
 //            Thread.sleep(100)
 //            startActivity(intent)
-            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
         }
 
         //EXIT BUTTON logic

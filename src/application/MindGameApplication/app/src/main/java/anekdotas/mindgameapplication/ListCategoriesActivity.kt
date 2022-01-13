@@ -25,7 +25,7 @@ class ListCategoriesActivity : AppCompatActivity() {
     }
 
     private fun actionBarSetup(){
-        binding.actionBar.title.setText("Categories")
+        binding.actionBar.title.setText(getString(R.string.Categories))
         binding.actionBar.actionBarBackArrow.setOnClickListener{
             val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)

@@ -25,15 +25,15 @@ class InfoActivity : AppCompatActivity() {
         when (TopicsObject.selectedTopic.difficulty) {
             0 -> {
                 binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_green))
-                binding.tvDifficulty.text = "Easy"
+                binding.tvDifficulty.text = getString(R.string.info_activity_easy)
             }
             1 -> {
                 binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_yellow))
-                binding.tvDifficulty.text = "Moderate"
+                binding.tvDifficulty.text = getString(R.string.info_activity_moderate)
             }
             2 -> {
                 binding.llDifficulty.setBackgroundColor(ContextCompat.getColor(this, R.color.good_red))
-                binding.tvDifficulty.text = "Hard"
+                binding.tvDifficulty.text = getString(R.string.info_activity_hard)
             }
         }
 
