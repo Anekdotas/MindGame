@@ -10,5 +10,5 @@ data class QuestionModelForLevelCreator (
     @Json(name="correctAnswer")
     val answer: Int,
     @Json(name="answers")
-    val options: List<String>,
+    val options: List<AnswerModelForLevelCreator>,
 )

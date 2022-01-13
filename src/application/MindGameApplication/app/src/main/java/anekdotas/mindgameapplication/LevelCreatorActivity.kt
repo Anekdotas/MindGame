@@ -24,7 +24,7 @@ class LevelCreatorActivity : AppCompatActivity() {
         //ActionBar setup
         binding.actionBar.title.setText(R.string.lvl_creator_title)
         binding.actionBar.actionBarBackArrow.setOnClickListener {
-            var intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
+            val intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -32,7 +32,7 @@ class LevelCreatorActivity : AppCompatActivity() {
         setAnswerNumbers()  //used to have answers in "Answer 1, Answer 2..." format instead of "Answer, Answer, Answer, Answer"
 
 
-        var myCustomQuestions = ArrayList<QuestionModelForLevelCreator>()
+        val myCustomQuestions = ArrayList<QuestionModelForLevelCreator>()
         var currentQuestionNr = 1
 
         setQuestionNr(currentQuestionNr)
@@ -129,7 +129,9 @@ class LevelCreatorActivity : AppCompatActivity() {
         val answer4 = binding.objQuestionElement.Answer4.etAnswer.text.toString()
         val correctAnswerInt = binding.objQuestionElement.spCorrectAnswerID.selectedItemPosition
 
-        var answersList = listOf<String>(answer1, answer2, answer3, answer4)
+        val answersList = listOf<AnswerModelForLevelCreator>(AnswerModelForLevelCreator(answer1)
+            , AnswerModelForLevelCreator(answer2), AnswerModelForLevelCreator(answer3), AnswerModelForLevelCreator(answer4)
+        )
 
         val updatedQuestion = QuestionModelForLevelCreator(1, question, "", correctAnswerInt, answersList)
 
@@ -163,7 +165,8 @@ class LevelCreatorActivity : AppCompatActivity() {
         val answer4 = binding.objQuestionElement.Answer4.etAnswer.text.toString()
         val correctAnswerInt = binding.objQuestionElement.spCorrectAnswerID.selectedItemPosition
 
-        var answersList = listOf<String>(answer1, answer2, answer3, answer4)
+        val answersList = listOf<AnswerModelForLevelCreator>(AnswerModelForLevelCreator(answer1)
+            , AnswerModelForLevelCreator(answer2), AnswerModelForLevelCreator(answer3), AnswerModelForLevelCreator(answer4))
 
         myCustomQuestions.add(QuestionModelForLevelCreator(1, question, "", correctAnswerInt, answersList))
     }
@@ -174,10 +177,10 @@ class LevelCreatorActivity : AppCompatActivity() {
 
     private fun loadQuestion(myCustomQuestions: ArrayList<QuestionModelForLevelCreator>, questionNr: Int) {
         binding.objQuestionElement.inputEtQuestion.setText(myCustomQuestions[questionNr].question)
-        binding.objQuestionElement.Answer1.etAnswer.setText(myCustomQuestions[questionNr].options[0])
-        binding.objQuestionElement.Answer2.etAnswer.setText(myCustomQuestions[questionNr].options[1])
-        binding.objQuestionElement.Answer3.etAnswer.setText(myCustomQuestions[questionNr].options[2])
-        binding.objQuestionElement.Answer4.etAnswer.setText(myCustomQuestions[questionNr].options[3])
+        binding.objQuestionElement.Answer1.etAnswer.setText(myCustomQuestions[questionNr].options[0].text)
+        binding.objQuestionElement.Answer2.etAnswer.setText(myCustomQuestions[questionNr].options[1].text)
+        binding.objQuestionElement.Answer3.etAnswer.setText(myCustomQuestions[questionNr].options[2].text)
+        binding.objQuestionElement.Answer4.etAnswer.setText(myCustomQuestions[questionNr].options[3].text)
         binding.objQuestionElement.spCorrectAnswerID.setSelection(myCustomQuestions[questionNr].answer)
     }
 
@@ -284,7 +287,7 @@ class LevelCreatorActivity : AppCompatActivity() {
     }
 
     // - - - - - - - - FUNCTIONS USED FOR TESTING - - - - - - - - - -
-    private fun fillQuestion() {
+    /* private fun fillQuestion() {
         binding.objQuestionElement.inputEtQuestion.setText("What was the main reason for Jeremy Clarkson getting fired from Top Gear in 2015?")
         binding.objQuestionElement.Answer1.etAnswer.setText("For punching a producer in the face")
         binding.objQuestionElement.Answer2.etAnswer.setText("Due to budget cuts")
@@ -292,4 +295,5 @@ class LevelCreatorActivity : AppCompatActivity() {
         binding.objQuestionElement.Answer4.etAnswer.setText("For arguing with a BBC senior manager")
         binding.objQuestionElement.spCorrectAnswerID.setSelection(1)
     }
+     */
 }
