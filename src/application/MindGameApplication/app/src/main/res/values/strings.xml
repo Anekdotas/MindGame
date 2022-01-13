@@ -33,7 +33,7 @@
 <!--    Topic creator title page section   -->
     <string name="lvl_creator_topicname">Topic name: </string>
     <string name="lvl_creator_topicdesc">Topic description: </string>
-    <string name="lvl_creator_desc">Description</string>
+    <string name="lvl_creator_desc">Description (max 110 symbols)</string>
     <string name="lvl_creator_difficulty">Topic difficulty: </string>
     <string name="lvl_creator_continue">continue</string>
     <string name="lvl_creator_topic_name_taken_toast">Topic Name is Already Taken</string>
@@ -51,6 +51,7 @@
     <string name="lvl_creator_answer_prompt">Input your answer option</string>
     <string name="lvl_creator_question_prompt">Input your question</string>
     <string name="lvl_creator_answernum_prompt">Select correct answer\'s number: </string>
+    <string name="lvl_creator_enter_name_of_topic">Name (max 35 symbols)</string>
     <string-array name="lvl_creator_correct_answers">
         <item>-</item>
         <item>1</item>

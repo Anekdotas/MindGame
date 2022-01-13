@@ -9,9 +9,8 @@ import anekdotas.mindgameapplication.adapters.TopicsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityListTopicsBinding
 import anekdotas.mindgameapplication.objects.TopicsObject
 import android.widget.AdapterView
-
-
-
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 
 
 class ListTopicsActivity : AppCompatActivity() {
@@ -23,6 +22,7 @@ class ListTopicsActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         actionBarSetup()
+
 
         val topicListAdapter = TopicsAdapter(TopicsObject.topicList)
         binding.rvTopicRecycler.adapter = topicListAdapter
@@ -68,5 +68,15 @@ class ListTopicsActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        spinnerSetup()
+    }
+
+    private fun spinnerSetup() {
+        val coloredSpinner = binding.abTopic.spSort
+        val adapter = ArrayAdapter.createFromResource(
+            this, R.array.topic_spinner, R.layout.colored_spinner_layout
+        )
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+        coloredSpinner.adapter = adapter
     }
 }

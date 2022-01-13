@@ -22,8 +22,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="350dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+
         android:background="@color/secondary_dark_blue_background"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
@@ -31,7 +31,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@color/secondary_dark_blue_background"
@@ -53,20 +53,15 @@
                     android:textStyle="bold" />
             </ScrollView>
 
-            <ScrollView
+            <TextView
+                android:id="@+id/tv_desc"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                >
-                <TextView
-                    android:id="@+id/tv_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="desc"
-                    android:textColor="@color/green_blue"
-                    android:textSize="20sp" />
-            </ScrollView>
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="desc"
+                android:textColor="@color/green_blue"
+                android:textSize="20sp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -78,20 +73,6 @@
         android:numStars="5"
         android:stepSize="0.1"
         android:theme="@style/Widget.AppCompat.RatingBar" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_play"
-        android:layout_width="340dp"
-        android:layout_height="55dp"
-        android:layout_margin="6dp"
-        android:layout_marginBottom="96dp"
-        android:elevation="50dp"
-        android:text="@string/play"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:background="@drawable/custom_button" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_difficulty"
@@ -123,5 +104,19 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_play"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_margin="6dp"
+        android:layout_marginBottom="96dp"
+        android:elevation="50dp"
+        android:text="@string/play"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/custom_button" />
 
 </LinearLayout>
