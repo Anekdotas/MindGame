@@ -64,8 +64,12 @@ func (l *Logic) SaveMediaFile(ctx context.Context, questionID int64, filename st
 	return l.repo.UpdateMediaURL(ctx, questionID, mediaURL)
 }
 
-func (l *Logic) GetTopicsByCategory(ctx context.Context, categoryID int64) ([]*anekdotas.Topic, error) {
+func (l *Logic) GetAllTopics(ctx context.Context, categoryID int64) ([]*anekdotas.Topic, error) {
 	return l.repo.GetTopicsByCategoryID(ctx, categoryID)
+}
+
+func (l *Logic) GetRatedTopics(ctx context.Context, userID int64) ([]*anekdotas.Topic, error) {
+	return l.repo.GetRatedTopicsByUserID(ctx, userID)
 }
 
 func (l *Logic) CreateTopic(ctx context.Context, categoryID int64, authorID int64, topic *anekdotas.Topic) (name string, err error) {

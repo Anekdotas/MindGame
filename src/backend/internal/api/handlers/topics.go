@@ -3,6 +3,7 @@ package handlers
 import (
 	"anekdotas"
 	"anekdotas/internal/logic/auth"
+	"errors"
 	"net/http"
 	"strconv"
 
@@ -24,7 +25,7 @@ func (h *Handlers) GetTopics(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusBadRequest, "Invalid Category ID")
 	}
-	topics, err := h.logic.GetTopicsByCategory(c.Request().Context(), int64(categoryID))
+	topics, err := h.logic.GetAllTopics(c.Request().Context(), int64(categoryID))
 	if err != nil {
 		c.Logger().Error(err)
 		return err
@@ -39,6 +40,24 @@ func (h *Handlers) GetTopics(c echo.Context) error {
 			Difficulty:  t.Difficulty,
 		}
 	}, topics))
+}
+
+func (h *Handlers) GetRatedTopics(c echo.Context) error {
+	userID, err := auth.GetUserIDFromToken(c.Get("user"))
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	topics, err := h.logic.GetRatedTopics(c.Request().Context(), userID)
+	if err != nil && !errors.Is(err, anekdotas.ErrNotFound) {
+		c.Logger().Error(err)
+		return err
+	}
+	return c.JSON(http.StatusOK, echo.Map{
+		"ids": deriveFmapUnpackTopics(func(t *anekdotas.Topic) int64 {
+			return t.ID
+		}, topics),
+	})
 }
 
 func (h *Handlers) CreateTopic(c echo.Context) error {

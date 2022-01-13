@@ -10,6 +10,7 @@ type Repository interface {
 	CreateQuestionWithAnswers(ctx context.Context, topic string, question *anekdotas.Question, answers []*anekdotas.Answer) (id int64, err error)
 	UpdateMediaURL(ctx context.Context, questionID int64, mediaURL string) error
 	GetTopicsByCategoryID(ctx context.Context, categoryID int64) ([]*anekdotas.Topic, error)
+	GetRatedTopicsByUserID(ctx context.Context, userID int64) ([]*anekdotas.Topic, error)
 	CreateTopic(ctx context.Context, categoryID int64, authorID int64, topic *anekdotas.Topic) (name string, err error)
 	RateTopicByID(ctx context.Context, userID, topicID int64, rating float32) error
 	GetCategories(ctx context.Context) ([]*anekdotas.Category, error)
