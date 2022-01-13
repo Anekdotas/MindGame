@@ -41,10 +41,10 @@ class MainMenuActivity : AppCompatActivity() {
 
         //PROFILE BUTTON logic
         binding.personalStatisticsBtn.setOnClickListener {
-//            val intent = Intent(this, ResultsActivity::class.java)
-//            Thread.sleep(100)
-//            startActivity(intent)
-            Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ProfileActivity::class.java)
+            Thread.sleep(100)
+            startActivity(intent)
+//            Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
         }
 
         //EXIT BUTTON logic
