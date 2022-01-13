@@ -18,7 +18,7 @@ type TopicRecord struct {
 	Difficulty       int            `db:"difficulty"`
 
 	// Rating is aggregated read-only value
-	Rating float32 `db:"rating"`
+	Rating sql.NullFloat64 `db:"rating"`
 	// AuthorName only used in SELECT statements
 	AuthorName string `db:"author_name"`
 }
@@ -39,7 +39,7 @@ func (r *Repo) GetTopicsByCategoryID(ctx context.Context, categoryID int64) ([]*
 		`SELECT t.id, name, avg(r.rating) AS rating, description, u.username AS author_name, image_url, difficulty
 		FROM %s t
 		JOIN %s u ON u.id = t.author_id
-		JOIN %s r ON r.topic_id = t.id
+		LEFT JOIN %s r ON r.topic_id = t.id
 		WHERE category_id = ?
 		GROUP BY t.id, u.username`,
 		TopicsTableName, UsersTableName, RatesTableName,
@@ -54,7 +54,7 @@ func (r *Repo) GetTopicsByCategoryID(ctx context.Context, categoryID int64) ([]*
 			Name:        record.Name,
 			Description: record.Description,
 			Author:      record.AuthorName,
-			Rating:      record.Rating,
+			Rating:      float32(record.Rating.Float64),
 			ImageURL:    record.ImageURL.String,
 			Difficulty:  record.Difficulty,
 		}
