@@ -35,6 +35,7 @@ func (h *Handlers) GetTopics(c echo.Context) error {
 			ID:          t.ID,
 			Name:        t.Name,
 			Description: t.Description,
+			Rating:      t.Rating,
 			Author:      t.Author,
 			ImageURL:    t.ImageURL,
 			Difficulty:  t.Difficulty,
