@@ -10,7 +10,6 @@ import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import anekdotas.mindgameapplication.databinding.ActivityResultsBinding
 
 import android.widget.RatingBar.OnRatingBarChangeListener
-import android.widget.Toast
 import anekdotas.mindgameapplication.network.*
 import anekdotas.mindgameapplication.objects.*
 import retrofit2.Call

@@ -80,9 +80,6 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
             }
-            else{
-
-            }
         }
     }
     private fun callNetworkSignup() {

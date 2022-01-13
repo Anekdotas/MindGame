@@ -35,23 +35,23 @@ class ListTopicsActivity : AppCompatActivity() {
                 when (binding.abTopic.spSort.selectedItemPosition) {
                     1 -> {
                         TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.topicName }
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0)
                         finish()
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0)
                         startActivity(intent)
                     }
                     2 -> {
                         TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.rating }
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0)
                         finish()
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0)
                         startActivity(intent)
                     }
                     3 -> {
                         TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.difficulty }
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0)
                         finish()
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0)
                         startActivity(intent)
                     }
                 }
