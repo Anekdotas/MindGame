@@ -66,3 +66,38 @@ func (h *Handlers) CreateTopic(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{"name": name})
 }
+
+func (h *Handlers) RateTopic(c echo.Context) error {
+	_, err := strconv.Atoi(c.Param("categoryId"))
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Invalid Category ID")
+	}
+	topicID, err := strconv.Atoi(c.Param("topicId"))
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Invalid Topic ID")
+	}
+	rating := new(struct {
+		Rating float32 `json:"rating"`
+	})
+	if err := c.Bind(rating); err != nil {
+		return c.String(http.StatusBadRequest, "Invalid request body")
+	}
+	if rating.Rating <= 0 || rating.Rating > 5 {
+		return c.String(http.StatusBadRequest, "Invalid rating value, it must be between 0 (excl.) and 5 (incl.)")
+	}
+	userID, err := auth.GetUserIDFromToken(c.Get("user"))
+	if err != nil {
+		return err
+	}
+	if err := h.logic.RateTopic(c.Request().Context(), userID, int64(topicID), rating.Rating); err != nil {
+		if errors.Is(err, anekdotas.ErrAlreadyExists) {
+			return c.String(http.StatusBadRequest, "Topic is already rated")
+		}
+		if errors.Is(err, anekdotas.ErrNotFound) {
+			return c.String(http.StatusNotFound, "Topic does not exist")
+		}
+		c.Logger().Errorf("failed to rate topic: %v", err)
+		return err
+	}
+	return nil
+}

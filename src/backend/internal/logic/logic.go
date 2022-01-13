@@ -100,3 +100,7 @@ func (l *Logic) AuthenticateUser(ctx context.Context, user *anekdotas.User, pass
 func (l *Logic) FinishGameSession(ctx context.Context, userID int64, statistics *anekdotas.Statistics) error {
 	return l.repo.UpdateStatistics(ctx, userID, statistics)
 }
+
+func (l *Logic) RateTopic(ctx context.Context, userID, topicID int64, rating float32) error {
+	return l.repo.RateTopicByID(ctx, userID, topicID, rating)
+}

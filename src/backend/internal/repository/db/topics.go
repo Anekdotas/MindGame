@@ -87,3 +87,11 @@ func (r *Repo) CreateTopic(ctx context.Context, categoryID int64, authorID int64
 	}
 	return topic.Name, nil
 }
+
+func (r *Repo) RateTopicByID(ctx context.Context, userID, topicID int64, rating float32) error {
+	stmt := fmt.Sprintf(
+		"INSERT INTO %s (topic_id, user_id, rating) VALUES (?, ?, ?)", RatesTableName,
+	)
+	_, err := r.db.ExecContext(ctx, r.db.Rebind(stmt), topicID, userID, rating)
+	return translateDBError(err)
+}
