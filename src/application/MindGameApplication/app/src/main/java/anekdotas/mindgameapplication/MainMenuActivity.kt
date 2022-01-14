@@ -1,5 +1,6 @@
 package anekdotas.mindgameapplication
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,10 @@ import anekdotas.mindgameapplication.objects.CategoriesObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.DialogInterface
+
+
+
 
 class MainMenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainMenuBinding
@@ -72,5 +77,16 @@ class MainMenuActivity : AppCompatActivity() {
                 Log.e("Something went wrong! ", ""+response.message)
             }
         })
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle("Closing MindGameApp")
+            .setMessage("Are you sure you want to close this application?")
+            .setPositiveButton("Yes"
+            ) { _, _ -> finish() }
+            .setNegativeButton("No", null)
+            .show()
     }
 }
