@@ -43,6 +43,12 @@ interface ApiServices {
     fun getRatedTopics(@Url url: String?,
                        @Header("Authorization") Bearer: String,): Call<RatedListModel>
 
+    @POST
+    fun postRating(@Url url: String?,
+                   @Header("Authorization") Bearer: String,
+                   @Body post: RatingModel
+    ): Call<Void>
+
     @POST("/auth/login")
     fun pushPostLogin(
         @Body post: UserModelTest

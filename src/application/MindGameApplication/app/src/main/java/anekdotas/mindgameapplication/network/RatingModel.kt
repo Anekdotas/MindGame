@@ -1,5 +1,8 @@
 package anekdotas.mindgameapplication.network
 
-class RatingModel {
-    val rating = 0
-}
+import com.squareup.moshi.Json
+
+data class RatingModel(
+    @Json(name="rating")
+    val rating: Double = 0.0
+)

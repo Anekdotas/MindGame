@@ -26,6 +26,7 @@ class ResultsActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
         callRatedList()
+        Thread.sleep(100)
 
         binding.tvName.text = UserObjectConst.USERNAME
         val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
@@ -84,27 +85,24 @@ class ResultsActivity : AppCompatActivity() {
     }
 
     private fun setRatingUI(){
-        if(UserObjectConst.ratedTopicsId.ids!=null){
-
-            if(TopicsObject.selectedTopic.id in UserObjectConst.ratedTopicsId.ids!!){
+            if (TopicsObject.selectedTopic.id in UserObjectConst.ratedTopicsId.ids!!) {
                 binding.rbRating.isFocusable = false
                 binding.rbRating.setIsIndicator(true)
                 binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
-                binding.tvRatingInfo.text=""
+                binding.tvRatingInfo.text = ""
                 binding.rbRating.visibility = View.GONE
             }
+            else{
+                binding.rbRating.onRatingBarChangeListener =
+                    OnRatingBarChangeListener { ratingBar, rating, _ -> if (rating < 1.0f) ratingBar.rating = 1.0f
+                        var x=binding.rbRating.rating
+                        binding.tvRatingInfo.text=getString(R.string.results_activity_thanks_for_rating)
+                        callRateTopic(x.toDouble())
+                        binding.rbRating.isFocusable = false
+                        binding.rbRating.setIsIndicator(true)
+                    }
+            }
         }
-        else{
-            binding.rbRating.onRatingBarChangeListener =
-                OnRatingBarChangeListener { ratingBar, rating, _ -> if (rating < 1.0f) ratingBar.rating = 1.0f
-                    var x=binding.rbRating.rating
-                    binding.tvRatingInfo.text=getString(R.string.results_activity_thanks_for_rating)
-                    //UserObjectConst.ratedTopicsId.add(TopicsObject.selectedTopic.id)
-                    binding.rbRating.isFocusable = false
-                    binding.rbRating.setIsIndicator(true)
-                }
-        }
-    }
 
     private fun restartStats(){
         StatObject.stats.choices.clear()
@@ -149,7 +147,22 @@ class ResultsActivity : AppCompatActivity() {
         })
     }
 
-    private fun callRateTopic(Id : Int) {
+    private fun callRateTopic(rating : Double) {
 
+        val clientPOST = ApiClient.apiService.postRating("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic.topicName}/rate","Bearer " + JwtObject.userJwt.token,
+            RatingModel(TopicsObject.rated.rating))
+        clientPOST.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.d("RatePost Done! Woohoo!", ""+ response.code())
+                }
+                else {
+                    Log.d("RatePost failed. Bruh, $rating", "" + response.code())
+                }
+            }
+            override fun onFailure(call: Call<Void>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
     }
 }

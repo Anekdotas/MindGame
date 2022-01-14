@@ -49,7 +49,6 @@ class MainMenuActivity : AppCompatActivity() {
 //            val intent = Intent(this, ResultsActivity::class.java)
 //            Thread.sleep(100)
 //            startActivity(intent)
-            setLocale("lt")
             Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
         }
 
