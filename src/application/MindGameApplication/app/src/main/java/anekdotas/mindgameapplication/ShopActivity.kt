@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import anekdotas.mindgameapplication.adapters.HostsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityShopBinding
 import anekdotas.mindgameapplication.objects.ShopHostsList
+import anekdotas.mindgameapplication.objects.UserObjectConst
 
 class ShopActivity : AppCompatActivity() {
     private lateinit var binding : ActivityShopBinding
@@ -39,6 +40,7 @@ class ShopActivity : AppCompatActivity() {
 
         binding.btnBuy.setOnClickListener {
             Toast.makeText(this, "Selected host: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+            UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
 //            Log.d("Purchase item:", "\tPosition: " + binding.vp2HostPictures.currentItem)
 //            Log.d("Purchase item:", "\tName: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName)
         }
