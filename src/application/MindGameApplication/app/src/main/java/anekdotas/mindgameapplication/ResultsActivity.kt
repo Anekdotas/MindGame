@@ -63,6 +63,12 @@ class ResultsActivity : AppCompatActivity() {
         }
 
         callNetworkUploadStats()
+
+        binding.btnRetry.setOnClickListener{
+            Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(Intent(this, InfoActivity::class.java))
+            finish()
+        }
     }
 
     private fun callNetworkUploadStats() {
