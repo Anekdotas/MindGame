@@ -14,9 +14,7 @@ import anekdotas.mindgameapplication.objects.CategoriesObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.content.DialogInterface
-
-
+import java.util.*
 
 
 class MainMenuActivity : AppCompatActivity() {
@@ -57,6 +55,7 @@ class MainMenuActivity : AppCompatActivity() {
 
         //LEVEL CREATOR button logic
         binding.btnLevelCreator.setOnClickListener {
+            setLocale("lt")
             val intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
             Thread.sleep(100)
             startActivity(intent)
@@ -88,5 +87,16 @@ class MainMenuActivity : AppCompatActivity() {
             ) { _, _ -> finish() }
             .setNegativeButton(getString(R.string.mainmenu_activity_No), null)
             .show()
+    }
+
+    private fun setLocale(lang : String) {
+        val config = resources.configuration
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+            config.setLocale(locale)
+
+        createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
     }
 }

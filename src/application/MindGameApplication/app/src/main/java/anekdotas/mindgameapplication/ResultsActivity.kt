@@ -41,6 +41,8 @@ class ResultsActivity : AppCompatActivity() {
         Log.d("statscheckcorrect", QuestionsObject.questionList.toString())
         Log.d("stats", StatObject.stats.toString())
 
+        callNetworkUploadStats()
+
         binding.btnFinish.setOnClickListener{
             Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent(this, MainMenuActivity::class.java))
@@ -48,8 +50,6 @@ class ResultsActivity : AppCompatActivity() {
         }
 
         setRatingUI()
-
-        callNetworkUploadStats()
 
         restartStats()
 
