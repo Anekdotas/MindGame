@@ -32,6 +32,8 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvTime.text = getString(R.string.results_activity_time_spent_overloaded,UserObjectConst.sessionTimeHours,UserObjectConst.sessionTimeMinutes,UserObjectConst.sessionTimeSeconds)
         binding.tvScore.text = getString(R.string.results_activity_your_score_overloaded,myCorrectAnswers, totalQuestions)
         binding.tvRatingInfo.text = getString(R.string.results_activity_pls_rate_quiz)
+        binding.tvCoins.text = "${earnCoins()} coins earned"
+        println(UserObjectConst.coins)
 
 
         if(StatObject.stats.choices[0].questionId==0){StatObject.stats.choices.removeAt(0)}
@@ -109,9 +111,10 @@ class ResultsActivity : AppCompatActivity() {
         StatObject.stats.streak=0
     }
 
-    private fun earnCoins(){
-        UserObjectConst.coins+=(UserObjectConst.CORRECT_ANSWERS.toInt()*nextInt(3))
-        println(UserObjectConst.coins)
+    private fun earnCoins() : Int{
+        val earnings = (intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )*nextInt(1, 3))
+        UserObjectConst.coins += earnings
+        return earnings
     }
 
     private fun callNetworkRestartQuestions() {

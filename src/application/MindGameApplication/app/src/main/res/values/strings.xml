@@ -124,5 +124,6 @@
     <string name="results_activity_pls_rate_quiz">Please rate this quiz!</string>
     <string name="results_activity_thanks_for_rating">Thank you for rating!</string>
     <string name="retry">Retry</string>
+    <string name="shop_activity_shop">Shop</string>
 
 </resources>

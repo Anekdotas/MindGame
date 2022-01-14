@@ -29,7 +29,7 @@ class ShopActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         //ActionBar setup
-        binding.actionBar.title.text = "Shop"
+        binding.actionBar.title.text = getString(R.string.shop_activity_shop)
         binding.actionBar.actionBarBackArrow.setOnClickListener{
             val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)
