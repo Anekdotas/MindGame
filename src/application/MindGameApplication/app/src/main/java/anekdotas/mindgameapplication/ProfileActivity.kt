@@ -23,8 +23,6 @@ class ProfileActivity : AppCompatActivity() {
 
         actionBarSetup()
 
-//        fillStatistics()
-
         setStatistics()
     }
 
@@ -39,14 +37,14 @@ class ProfileActivity : AppCompatActivity() {
     }
 
 //      - - - DEPRECATED - - -
-//    private fun fillStatistics() {
+/*    private fun fillStatistics() {
 //        var statistics = arrayOf("Coins gained: 500", "Coins spent: 480", "Games played: 32", "Best strike: 7", "Total time spent: 35h", "Topics created: 0", "Average time per topic: 5 min", "Topics played: 80", "Topics rated: 77")
 //        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
 //            this,
 //            android.R.layout.simple_list_item_1, statistics
 //        )
 //        binding.lvStatisticsList.adapter = adapter
-//    }
+//    }     */
 
     private fun actionBarSetup() {
         binding.actionBar.title.setText(R.string.profile_activity_title)

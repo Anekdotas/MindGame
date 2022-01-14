@@ -16,7 +16,6 @@ class StatisticsAdapter (
     @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-//        var convertView = convertView
         val statisticsName = getItem(position)!!.statisticsName
         val statisticsValue = getItem(position)!!.statisticsValue
 
