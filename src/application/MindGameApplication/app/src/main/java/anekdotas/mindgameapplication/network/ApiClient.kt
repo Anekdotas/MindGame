@@ -39,6 +39,10 @@ interface ApiServices {
     fun getProperQuestions(@Url url: String?,
         @Header("Authorization") Bearer: String,): Call<QuestionModelWithGameSessionId>
 
+    @GET
+    fun getRatedTopics(@Url url: String?,
+                       @Header("Authorization") Bearer: String,): Call<RatedListModel>
+
     @POST("/auth/login")
     fun pushPostLogin(
         @Body post: UserModelTest

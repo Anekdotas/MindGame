@@ -25,6 +25,7 @@ class ResultsActivity : AppCompatActivity() {
         binding = ActivityResultsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
+        callRatedList()
 
         binding.tvName.text = UserObjectConst.USERNAME
         val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
@@ -32,7 +33,7 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvTime.text = getString(R.string.results_activity_time_spent_overloaded,UserObjectConst.sessionTimeHours,UserObjectConst.sessionTimeMinutes,UserObjectConst.sessionTimeSeconds)
         binding.tvScore.text = getString(R.string.results_activity_your_score_overloaded,myCorrectAnswers, totalQuestions)
         binding.tvRatingInfo.text = getString(R.string.results_activity_pls_rate_quiz)
-        binding.tvCoins.text = "${earnCoins()} coins earned"
+        binding.tvCoins.text = "${earnCoins(myCorrectAnswers)} coins earned"
         println(UserObjectConst.coins)
 
 
@@ -71,7 +72,6 @@ class ResultsActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if(response.isSuccessful){
                         Log.d("StatPost Done! Woohoo!", ""+ response.code())
-                        startActivity(intent)
                     }
                     else {
                         Log.d("StatPost failed. Bruh", "" + response.code())
@@ -84,19 +84,22 @@ class ResultsActivity : AppCompatActivity() {
     }
 
     private fun setRatingUI(){
-        if(TopicsObject.selectedTopic.id in UserObjectConst.ratedTopicsId){
-            binding.rbRating.isFocusable = false
-            binding.rbRating.setIsIndicator(true)
-            binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
-            binding.tvRatingInfo.text=""
-            binding.rbRating.visibility = View.GONE
+        if(UserObjectConst.ratedTopicsId.ids!=null){
+
+            if(TopicsObject.selectedTopic.id in UserObjectConst.ratedTopicsId.ids!!){
+                binding.rbRating.isFocusable = false
+                binding.rbRating.setIsIndicator(true)
+                binding.rbRating.rating = TopicsObject.selectedTopic.rating.toFloat()
+                binding.tvRatingInfo.text=""
+                binding.rbRating.visibility = View.GONE
+            }
         }
         else{
             binding.rbRating.onRatingBarChangeListener =
                 OnRatingBarChangeListener { ratingBar, rating, _ -> if (rating < 1.0f) ratingBar.rating = 1.0f
                     var x=binding.rbRating.rating
                     binding.tvRatingInfo.text=getString(R.string.results_activity_thanks_for_rating)
-                    UserObjectConst.ratedTopicsId.add(TopicsObject.selectedTopic.id)
+                    //UserObjectConst.ratedTopicsId.add(TopicsObject.selectedTopic.id)
                     binding.rbRating.isFocusable = false
                     binding.rbRating.setIsIndicator(true)
                 }
@@ -111,8 +114,8 @@ class ResultsActivity : AppCompatActivity() {
         StatObject.stats.streak=0
     }
 
-    private fun earnCoins() : Int{
-        val earnings = (intent.getIntExtra(UserObjectConst.CORRECT_ANSWERS, 0 )*nextInt(1, 3))
+    private fun earnCoins(correctAnswers : Int) : Int{
+        val earnings = correctAnswers*(nextInt(1, 3))
         UserObjectConst.coins += earnings
         return earnings
     }
@@ -124,13 +127,29 @@ class ResultsActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     QuestionsObjectWithGameSessionId.questionsWithGsId = response.body()!!
                     QuestionsObject.questionList = QuestionsObjectWithGameSessionId.questionsWithGsId.questions
-                    Log.d("url2", ""+response.body())
-                    Log.d("url3", ""+QuestionsObject.questionList.toString())
                 }
             }
-            override fun onFailure(call: Call<QuestionModelWithGameSessionId>, response: Throwable) {
+            override fun onFailure(call: Call<QuestionModelWithGameSessionId>, response: Throwable) {}
+        })
+    }
+
+    private fun callRatedList() {
+        val client = ApiClient.apiService.getRatedTopics("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/rated", "Bearer " + JwtObject.userJwt.token)
+        client.enqueue(object : Callback<RatedListModel> {
+            override fun onResponse(call: Call<RatedListModel>, response: Response<RatedListModel>) {
+                if(response.isSuccessful){
+                    Log.d("RatedBody ", ""+ response.body())
+                    UserObjectConst.ratedTopicsId = response.body()!!
+                    Log.d("RatedBody", UserObjectConst.ratedTopicsId.ids.toString())
+                }
+            }
+            override fun onFailure(call: Call<RatedListModel>, response: Throwable) {
                 Log.e("Something went wrong! ", ""+response.message)
             }
         })
+    }
+
+    private fun callRateTopic(Id : Int) {
+
     }
 }

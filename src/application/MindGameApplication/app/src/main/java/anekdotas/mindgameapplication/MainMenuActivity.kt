@@ -11,6 +11,7 @@ import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +26,7 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         callNetworkCategories()
+        UserObjectConst.ratedTopicsId
 
 
         //PLAY BUTTON logic
@@ -105,4 +107,5 @@ class MainMenuActivity : AppCompatActivity() {
         val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
+
 }
