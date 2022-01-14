@@ -52,6 +52,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'     //is used to display profile pictures
     implementation 'com.android.support:support-v4:27.0.2'  //is used for automatically scaling text
 
+    implementation ("com.tbuonomo:dotsindicator:4.2")       //is used in ShopActivity
+
     implementation 'io.supabase:postgrest-kt:0.2.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.core:core-ktx:1.6.0'

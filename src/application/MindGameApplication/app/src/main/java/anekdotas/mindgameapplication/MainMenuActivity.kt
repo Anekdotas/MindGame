@@ -33,10 +33,10 @@ class MainMenuActivity : AppCompatActivity() {
 
         //SHOP BUTTON logic
         binding.shopBtn.setOnClickListener {
-//            val intent = Intent(this, ResultsActivity::class.java)
-//            Thread.sleep(100)
-//            startActivity(intent)
-            Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ShopActivity::class.java)
+            Thread.sleep(100)
+            startActivity(intent)
+//            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
         }
 
         //PROFILE BUTTON logic
