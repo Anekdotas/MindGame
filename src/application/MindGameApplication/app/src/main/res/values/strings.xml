@@ -109,6 +109,11 @@
     <string name="mainmenu_activity_profile">Profile</string>
     <string name="mainmenu_activity_exit">Exit</string>
     <string name="mainmenu_activity_not_yet_implemented">Not yet implemented</string>
+    <string name="mainmenu_activity_retry">Retry</string>
+    <string name="mainmenu_activity_ClosingMindGameApp">Closing MindGameApp</string>
+    <string name="mainmenu_activity_ExitConfirmationQuestion">Are you sure you want to close this application?</string>
+    <string name="mainmenu_activity_Yes">Yes</string>
+    <string name="mainmenu_activity_No">No</string>
     <!--    info activity section   -->
     <string name="info_activity_easy">Easy</string>
     <string name="info_activity_moderate">Moderate</string>
@@ -118,5 +123,5 @@
     <string name="results_activity_time_spent_overloaded">Time spent %1$d h %2$d min %3$d sec</string>
     <string name="results_activity_pls_rate_quiz">Please rate this quiz!</string>
     <string name="results_activity_thanks_for_rating">Thank you for rating!</string>
-    <string name="retry">Retry</string>
+
 </resources>

@@ -82,11 +82,11 @@ class MainMenuActivity : AppCompatActivity() {
     override fun onBackPressed() {
         AlertDialog.Builder(this)
             .setIcon(android.R.drawable.ic_dialog_alert)
-            .setTitle("Closing MindGameApp")
-            .setMessage("Are you sure you want to close this application?")
-            .setPositiveButton("Yes"
+            .setTitle(getString(R.string.mainmenu_activity_ClosingMindGameApp))
+            .setMessage(getString(R.string.mainmenu_activity_ExitConfirmationQuestion))
+            .setPositiveButton(getString(R.string.mainmenu_activity_Yes)
             ) { _, _ -> finish() }
-            .setNegativeButton("No", null)
+            .setNegativeButton(getString(R.string.mainmenu_activity_No), null)
             .show()
     }
 }

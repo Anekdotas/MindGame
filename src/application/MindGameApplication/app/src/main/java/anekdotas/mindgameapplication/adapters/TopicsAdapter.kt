@@ -46,7 +46,7 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
                     context.startActivity(Intent(context, InfoActivity::class.java))
                 }
                 else{
-                    Toast.makeText(context, "No Internet Connection\nPlease restart the application with internet connection", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.no_internet, Toast.LENGTH_LONG).show()
                 }
             }
         }
