@@ -18,5 +18,7 @@ object UserObjectConst{
     var sessionTimeMinutes : Long = 0
     var sessionTimeHours : Long = 0
     var ratedTopicsId = mutableListOf(0)
+    var sessionStreak : Int = 0
+    var coins : Int = 0
 
 }

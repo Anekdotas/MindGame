@@ -172,11 +172,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mySelectedPosition == 0) {
-
-                    if(!select){
-                        StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, 0))
-                    }
-
                     myPosition++ // COULD SKIP ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
@@ -224,15 +219,15 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     if (question!!.answer != QuestionsObject.questionList[myPosition-1].options[mySelectedPosition-1].id) {
                         answerView(mySelectedPosition, R.drawable.custom_wrong_btn)
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
-                        UserStatsObject.sessionStreak=0
+                        UserObjectConst.sessionStreak=0
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.lasgov))
-                        UserStatsObject.sessionStreak++
-                        if(UserStatsObject.sessionStreak> StatObject.stats!!.streak) {
-                            StatObject.stats!!.streak=UserStatsObject.sessionStreak
+                        UserObjectConst.sessionStreak++
+                        if(UserObjectConst.sessionStreak> StatObject.stats!!.streak) {
+                            StatObject.stats!!.streak= UserObjectConst.sessionStreak
                         }
 
                     } //IF THE ANSWER WAS CORRECT
