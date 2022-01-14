@@ -1,6 +1,6 @@
 package anekdotas.mindgameapplication.objects
 
-import anekdotas.mindgameapplication.Host
+import anekdotas.mindgameapplication.java.Host
 import anekdotas.mindgameapplication.R
 
 object ShopHostsList {

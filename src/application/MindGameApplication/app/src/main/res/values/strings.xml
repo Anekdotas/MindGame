@@ -123,5 +123,6 @@
     <string name="results_activity_time_spent_overloaded">Time spent %1$d h %2$d min %3$d sec</string>
     <string name="results_activity_pls_rate_quiz">Please rate this quiz!</string>
     <string name="results_activity_thanks_for_rating">Thank you for rating!</string>
+    <string name="retry">Retry</string>
 
 </resources>

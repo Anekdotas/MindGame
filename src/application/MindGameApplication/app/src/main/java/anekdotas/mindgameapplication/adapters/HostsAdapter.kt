@@ -3,7 +3,7 @@ package anekdotas.mindgameapplication.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import anekdotas.mindgameapplication.Host
+import anekdotas.mindgameapplication.java.Host
 import anekdotas.mindgameapplication.databinding.ShopHostItemsBinding
 
 class HostsAdapter(private val hostList: List<Host>)
