@@ -46,14 +46,14 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
                     context.startActivity(Intent(context, InfoActivity::class.java))
                 }
                 else{
-                    Toast.makeText(context, "No Internet Connection\nPlease restart the application with internet connection", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.no_internet, Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
     private fun callNetwork() {
-        val client = ApiClient.apiService.getProperQuestions("https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions", "Bearer " + JwtObject.userJwt.token)
+        val client = ApiClient.apiService.getProperQuestions("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions", "Bearer " + JwtObject.userJwt.token)
         client.enqueue(object : Callback<QuestionModelWithGameSessionId> {
             override fun onResponse(call: Call<QuestionModelWithGameSessionId>, response: Response<QuestionModelWithGameSessionId>) {
                 if(response.isSuccessful){

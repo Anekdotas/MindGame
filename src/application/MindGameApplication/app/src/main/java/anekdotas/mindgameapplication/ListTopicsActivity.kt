@@ -28,7 +28,7 @@ class ListTopicsActivity : AppCompatActivity() {
         binding.rvTopicRecycler.adapter = topicListAdapter
         binding.rvTopicRecycler.layoutManager = LinearLayoutManager(this)
 
-
+        //spinner logic
         binding.abTopic.spSort.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -78,5 +78,41 @@ class ListTopicsActivity : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
         coloredSpinner.adapter = adapter
+    }
+
+    private fun spinnerCheck(){
+        binding.abTopic.spSort.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (binding.abTopic.spSort.selectedItemPosition) {
+                    1 -> {
+                        TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.topicName }
+                        overridePendingTransition(0, 0)
+                        finish()
+                        overridePendingTransition(0, 0)
+                        startActivity(intent)
+                    }
+                    2 -> {
+                        TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.rating }
+                        overridePendingTransition(0, 0)
+                        finish()
+                        overridePendingTransition(0, 0)
+                        startActivity(intent)
+                    }
+                    3 -> {
+                        TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.difficulty }
+                        overridePendingTransition(0, 0)
+                        finish()
+                        overridePendingTransition(0, 0)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
     }
 }

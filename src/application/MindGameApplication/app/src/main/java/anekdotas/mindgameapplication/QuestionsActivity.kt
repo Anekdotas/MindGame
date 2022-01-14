@@ -307,11 +307,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
 
+        if(RandomGen.chance(30) && myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
+        }
         if(myPosition!=1){
             messageList.add(Message(HostObject.host.hostName, HostTalk.giveMoveOn(), R.drawable.lasgov))
-        }
-        if(RandomGen.chance(25) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
         }
 
         when {
