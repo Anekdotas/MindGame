@@ -47,6 +47,7 @@ class MainMenuActivity : AppCompatActivity() {
 //            val intent = Intent(this, ResultsActivity::class.java)
 //            Thread.sleep(100)
 //            startActivity(intent)
+            setLocale("lt")
             Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
         }
 
@@ -55,7 +56,6 @@ class MainMenuActivity : AppCompatActivity() {
 
         //LEVEL CREATOR button logic
         binding.btnLevelCreator.setOnClickListener {
-            setLocale("lt")
             val intent = Intent(this, LevelCreatorTitlePageActivity::class.java)
             Thread.sleep(100)
             startActivity(intent)
@@ -98,5 +98,11 @@ class MainMenuActivity : AppCompatActivity() {
         createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
 
+        //Reset Activity
+        overridePendingTransition(0, 0)
+        finish()
+        overridePendingTransition(0, 0)
+        val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
     }
 }
