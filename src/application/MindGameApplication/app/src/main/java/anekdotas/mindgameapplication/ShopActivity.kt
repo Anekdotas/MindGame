@@ -18,21 +18,6 @@ class ShopActivity : AppCompatActivity() {
     private var viewPager2:ViewPager2? = null
 
     private val pager2Callback = object:ViewPager2.OnPageChangeCallback(){
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-
-        /* If we will have a button, this will be useful
-            if (position == ShopHostsList.hostPersonalities.size - 1) {
-                binding.*ButtonName*.text = "Finish"
-            } else {
-                binding.*ButtonName*.text = "Next"
-
-                binding.*ButtonName*.setOnClickListener{
-                    viewPager2.currentItem = position + 1
-                }
-            }
-         */
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,14 +28,14 @@ class ShopActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         //ActionBar setup
-        binding.actionBar.title.setText("Shop")
+        binding.actionBar.title.text = "Shop"
         binding.actionBar.actionBarBackArrow.setOnClickListener{
             val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        setupViewPager(binding!!)
+        setupViewPager(binding)
 
         binding.btnBuy.setOnClickListener {
             Toast.makeText(this, "Selected host: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
