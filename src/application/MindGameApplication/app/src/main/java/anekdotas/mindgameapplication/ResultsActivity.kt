@@ -73,7 +73,7 @@ class ResultsActivity : AppCompatActivity() {
 
     private fun callNetworkUploadStats() {
 
-            val clientPOST = ApiClient.apiService.postStats("https://193.219.91.103:14656/sessions/finish","Bearer " + JwtObject.userJwt.token,
+            val clientPOST = ApiClient.apiService.postStats("${Const.ipForNetworking}/sessions/finish","Bearer " + JwtObject.userJwt.token,
                 StatModel(StatObject.stats.id, StatObject.stats.choices, StatObject.stats.secondsSpent, StatObject.stats.streak))
             Log.d("callNetworkUploadStats", "has been called")
             Log.d("ChoiceModel", StatObject.stats.choices.toString())

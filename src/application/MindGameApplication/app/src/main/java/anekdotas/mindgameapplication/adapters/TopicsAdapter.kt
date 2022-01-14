@@ -53,7 +53,7 @@ class TopicsAdapter (private var topics: List<TopicModel>? = TopicsObject.topicL
     }
 
     private fun callNetwork() {
-        val client = ApiClient.apiService.getProperQuestions("https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions", "Bearer " + JwtObject.userJwt.token)
+        val client = ApiClient.apiService.getProperQuestions("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions", "Bearer " + JwtObject.userJwt.token)
         client.enqueue(object : Callback<QuestionModelWithGameSessionId> {
             override fun onResponse(call: Call<QuestionModelWithGameSessionId>, response: Response<QuestionModelWithGameSessionId>) {
                 if(response.isSuccessful){

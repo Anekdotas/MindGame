@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityLevelCreatorBinding
 import anekdotas.mindgameapplication.network.*
+import anekdotas.mindgameapplication.objects.Const
 import anekdotas.mindgameapplication.objects.JwtObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -265,7 +266,7 @@ class LevelCreatorActivity : AppCompatActivity() {
     private fun callNetworkUploadQuestions(myCustomQuestions: ArrayList<QuestionModelForLevelCreator>) {
         val topicName = intent.getStringExtra("topicName").toString()
         for (item in myCustomQuestions) {
-            val clientPOST = ApiClient.apiService.pushPostQuestions("https://193.219.91.103:14656/categories/1/topics/$topicName/questions","Bearer " + JwtObject.userJwt.token, item)
+            val clientPOST = ApiClient.apiService.pushPostQuestions("${Const.ipForNetworking}/categories/1/topics/$topicName/questions","Bearer " + JwtObject.userJwt.token, item)
             Log.d("callNetworkUploadTopic", "has been called")
             clientPOST.enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
