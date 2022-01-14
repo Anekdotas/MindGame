@@ -172,11 +172,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mySelectedPosition == 0) {
-
-                    if(!select){
-                        StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, 0))
-                    }
-
                     myPosition++ // COULD SKIP ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
@@ -232,7 +227,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.lasgov))
                         UserObjectConst.sessionStreak++
                         if(UserObjectConst.sessionStreak> StatObject.stats!!.streak) {
-                            StatObject.stats!!.streak=UserObjectConst.sessionStreak
+                            StatObject.stats!!.streak= UserObjectConst.sessionStreak
                         }
 
                     } //IF THE ANSWER WAS CORRECT

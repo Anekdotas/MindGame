@@ -7,7 +7,6 @@ object UserObjectConst{
     var PASSWORD = "PASSWORD"
     var TOTAL_QUESTIONS = "TOTAL_QUESTIONS"
     var CORRECT_ANSWERS = "CORRECT_ANSWERS"
-    var sessionStreak : Int = 0
 
      //VALUES FOR REGISTRATION
     var usernameRegister = "User_Name"
@@ -19,5 +18,7 @@ object UserObjectConst{
     var sessionTimeMinutes : Long = 0
     var sessionTimeHours : Long = 0
     var ratedTopicsId = mutableListOf(0)
+    var sessionStreak : Int = 0
+    var coins : Int = 0
 
 }
