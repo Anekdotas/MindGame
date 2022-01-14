@@ -52,6 +52,7 @@ class ResultsActivity : AppCompatActivity() {
         restartStats()
 
         binding.btnRetry.setOnClickListener{
+            callNetworkRestartQuestions()
             Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent(this, InfoActivity::class.java))
             finish()
@@ -111,5 +112,22 @@ class ResultsActivity : AppCompatActivity() {
     private fun earnCoins(){
         UserObjectConst.coins+=(UserObjectConst.CORRECT_ANSWERS.toInt()*nextInt(3))
         println(UserObjectConst.coins)
+    }
+
+    private fun callNetworkRestartQuestions() {
+        val client = ApiClient.apiService.getProperQuestions("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic!!.topicName}/questions", "Bearer " + JwtObject.userJwt.token)
+        client.enqueue(object : Callback<QuestionModelWithGameSessionId> {
+            override fun onResponse(call: Call<QuestionModelWithGameSessionId>, response: Response<QuestionModelWithGameSessionId>) {
+                if(response.isSuccessful){
+                    QuestionsObjectWithGameSessionId.questionsWithGsId = response.body()!!
+                    QuestionsObject.questionList = QuestionsObjectWithGameSessionId.questionsWithGsId.questions
+                    Log.d("url2", ""+response.body())
+                    Log.d("url3", ""+QuestionsObject.questionList.toString())
+                }
+            }
+            override fun onFailure(call: Call<QuestionModelWithGameSessionId>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
     }
 }
