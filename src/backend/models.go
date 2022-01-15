@@ -41,7 +41,7 @@ type Choice struct {
 	AnswerID   int64
 }
 
-type Statistics struct {
+type GameAnalytics struct {
 	GameSessionID int64
 	Choices       []*Choice
 	TimeSpent     time.Duration

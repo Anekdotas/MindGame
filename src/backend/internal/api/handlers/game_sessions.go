@@ -35,7 +35,7 @@ func (h *Handlers) FinishGameSession(c echo.Context) error {
 	if err := h.logic.FinishGameSession(
 		c.Request().Context(),
 		userID,
-		&anekdotas.Statistics{
+		&anekdotas.GameAnalytics{
 			GameSessionID: statistics.ID,
 			Choices:       convertChoices(statistics.Choices),
 			TimeSpent:     time.Second * time.Duration(statistics.TimeSpent),

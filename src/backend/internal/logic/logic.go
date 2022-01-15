@@ -101,7 +101,7 @@ func (l *Logic) AuthenticateUser(ctx context.Context, user *anekdotas.User, pass
 	return l.auth.NewToken(userID)
 }
 
-func (l *Logic) FinishGameSession(ctx context.Context, userID int64, statistics *anekdotas.Statistics) error {
+func (l *Logic) FinishGameSession(ctx context.Context, userID int64, statistics *anekdotas.GameAnalytics) error {
 	return l.repo.UpdateStatistics(ctx, userID, statistics)
 }
 

@@ -36,7 +36,7 @@ func (r *Repo) setQuestionsForGameSession(tx *sqlx.Tx, gameSessionID int64, ques
 	return translateDBError(err)
 }
 
-func (r *Repo) UpdateStatistics(ctx context.Context, userID int64, statistics *anekdotas.Statistics) error {
+func (r *Repo) UpdateStatistics(ctx context.Context, userID int64, statistics *anekdotas.GameAnalytics) error {
 	if err := r.verifyGameSessionOwner(ctx, userID, statistics.GameSessionID); err != nil {
 		return err
 	}
