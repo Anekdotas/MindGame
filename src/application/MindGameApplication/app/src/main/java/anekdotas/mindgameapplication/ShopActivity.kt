@@ -50,12 +50,15 @@ class ShopActivity : AppCompatActivity() {
             finish()
         }
 
+        setUserCoinsBalance()
+
         setupViewPager(binding)
 
         binding.btnBuy.setOnClickListener {
             if(userCanPurchaseItem() && !isItemPurchased()){
                 UserObjectConst.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
                 UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
+                setUserCoinsBalance()
             }
             else if(isItemPurchased()){
                 Toast.makeText(this, "Selected " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
@@ -64,6 +67,10 @@ class ShopActivity : AppCompatActivity() {
                 Toast.makeText(this, "Not enough coins to purchase " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName + "\n Current coins: ${UserObjectConst.coins}", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun setUserCoinsBalance() {
+        binding.tvCoinBalance.setText(UserObjectConst.coins.toString())
     }
 
     private fun isItemPurchased(): Boolean {

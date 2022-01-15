@@ -10,6 +10,7 @@ import anekdotas.mindgameapplication.databinding.ActivityProfileBinding
 import anekdotas.mindgameapplication.java.StatisticsAdapter
 import anekdotas.mindgameapplication.java.StatisticsRecord
 import anekdotas.mindgameapplication.objects.TopicsObject
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
@@ -24,6 +25,8 @@ class ProfileActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         actionBarSetup()
+
+        setUserCoinsBalance()
 
         setStatistics()
 
@@ -54,6 +57,10 @@ class ProfileActivity : AppCompatActivity() {
 
         val adapter = StatisticsAdapter(this, R.layout.statistics_record_element, statisticsList)
         binding.lvStatisticsList.adapter = adapter
+    }
+
+    private fun setUserCoinsBalance() {
+        binding.tvCoinBalance.setText(UserObjectConst.coins.toString())
     }
 
 //      - - - DEPRECATED - - -
