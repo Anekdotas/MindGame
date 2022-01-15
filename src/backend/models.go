@@ -45,5 +45,5 @@ type GameAnalytics struct {
 	GameSessionID int64
 	Choices       []*Choice
 	TimeSpent     time.Duration
-	Streak        uint
+	Streak        uint16
 }

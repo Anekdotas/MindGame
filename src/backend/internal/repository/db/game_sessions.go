@@ -65,7 +65,7 @@ func (r *Repo) SetChosenAnswers(ctx context.Context, userID, gameSessionID int64
 	return translateDBError(err)
 }
 
-func (r *Repo) updateTimeSpentAndStreak(ctx context.Context, gameSessionID int64, timeSpent time.Duration, streak uint) error {
+func (r *Repo) updateTimeSpentAndStreak(ctx context.Context, gameSessionID int64, timeSpent time.Duration, streak uint16) error {
 	stmt := fmt.Sprintf("UPDATE %s SET time_spent = ?, streak = ? WHERE id = ?", GameSessionsTableName)
 	_, err := r.db.ExecContext(ctx, r.db.Rebind(stmt), math.Round(timeSpent.Seconds()), streak, gameSessionID)
 	return translateDBError(err)
