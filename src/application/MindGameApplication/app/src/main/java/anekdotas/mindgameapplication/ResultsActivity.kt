@@ -64,7 +64,7 @@ class ResultsActivity : AppCompatActivity() {
     private fun callNetworkUploadStats() {
 
             val clientPOST = ApiClient.apiService.postStats("${Const.ipForNetworking}/sessions/finish","Bearer " + JwtObject.userJwt.token,
-                StatModel(StatObject.stats.gameSessionId, StatObject.stats.choices, StatObject.stats.secondsSpent, StatObject.stats.streak))
+                StatModel(StatObject.stats.gameSessionId, StatObject.stats.choices, StatObject.stats.streak, StatObject.stats.secondsSpent))
             Log.d("callNetworkUploadStats", "${Const.ipForNetworking}/sessions/finish")
             Log.d("ChoiceModel", StatObject.stats.choices.toString())
             clientPOST.enqueue(object : Callback<Void> {
@@ -80,6 +80,7 @@ class ResultsActivity : AppCompatActivity() {
                     Log.e("Something went wrong! ", ""+response.message)
                 }
             })
+
     }
 
     private fun setRatingUI(){

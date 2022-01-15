@@ -49,9 +49,6 @@ class ShopActivity : AppCompatActivity() {
             else{
                 Toast.makeText(this, "Not enough coins to purchase " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName + "\n Current coins: ${UserObjectConst.coins}", Toast.LENGTH_SHORT).show()
             }
-
-//            Log.d("Purchase item:", "\tPosition: " + binding.vp2HostPictures.currentItem)
-//            Log.d("Purchase item:", "\tName: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName)
         }
     }
 
