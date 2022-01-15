@@ -9,7 +9,10 @@ import android.widget.ArrayAdapter
 import anekdotas.mindgameapplication.databinding.ActivityProfileBinding
 import anekdotas.mindgameapplication.java.StatisticsAdapter
 import anekdotas.mindgameapplication.java.StatisticsRecord
+import anekdotas.mindgameapplication.network.AnalyticModel
+import anekdotas.mindgameapplication.objects.StatObject
 import anekdotas.mindgameapplication.objects.TopicsObject
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
@@ -22,6 +25,7 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        binding.tvCoinCount.text=UserObjectConst.coins.toString()
 
         actionBarSetup()
 
@@ -47,10 +51,16 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setStatistics() {
-        statisticsList.add(StatisticsRecord("stat name", "value"))
-        statisticsList.add(StatisticsRecord("stat name that is long as hell", "value"))
-        statisticsList.add(StatisticsRecord("stat name that is even longer than hell", "long value"))
-        statisticsList.add(StatisticsRecord("stat name that is even longer than hell", "value"))
+        statisticsList.add(StatisticsRecord("Total Time Spent: ", StatObject.analytics.totalTimeSpent.toString()))
+        statisticsList.add(StatisticsRecord("Correct Answers: ", StatObject.analytics.correctAnswers.toString()))
+        statisticsList.add(StatisticsRecord("Correct Answers Percentage: ", StatObject.analytics.correctAnswersPercentage.toString() + "%"))
+        statisticsList.add(StatisticsRecord("Longest Streak ", StatObject.analytics.longestStreak.toString()))
+
+        statisticsList.add(StatisticsRecord("Average Game Time: ", StatObject.analytics.averageGameTime.toString()))
+        statisticsList.add(StatisticsRecord("Topics Created: ", StatObject.analytics.topicsCreated.toString()))
+        statisticsList.add(StatisticsRecord("Topics Rated: ", StatObject.analytics.topicsRated.toString()))
+        statisticsList.add(StatisticsRecord("Topics Played: ", StatObject.analytics.topicsPlayed.toString()))
+
 
         val adapter = StatisticsAdapter(this, R.layout.statistics_record_element, statisticsList)
         binding.lvStatisticsList.adapter = adapter
