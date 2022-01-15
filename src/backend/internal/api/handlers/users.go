@@ -18,15 +18,15 @@ type User struct {
 }
 
 type UserStatistics struct {
-	TotalTimeSpent           int     `json:"total_time_spent,omitempty"`
-	CorrectAnswers           uint16  `json:"correct_answers,omitempty"`
-	CorrectAnswersPercentage float32 `json:"correct_answers_percentage,omitempty"`
-	LongestStreak            uint16  `json:"longest_streak,omitempty"`
-	LongestStreakTopicID     int64   `json:"longest_streak_topic_id,omitempty"`
-	AverageGameTime          int     `json:"average_game_time,omitempty"`
-	TopicsCreated            uint16  `json:"topics_created,omitempty"`
-	TopicsRated              uint16  `json:"topics_rated,omitempty"`
-	TopicsPlayed             uint16  `json:"topics_played,omitempty"`
+	TotalTimeSpent           uint16  `json:"totalTimeSpent,omitempty"`
+	CorrectAnswers           uint16  `json:"correctAnswers,omitempty"`
+	CorrectAnswersPercentage float32 `json:"correctAnswersPercentage,omitempty"`
+	LongestStreak            uint16  `json:"longestStreak,omitempty"`
+	LongestStreakTopicID     int64   `json:"longestStreakTopicId,omitempty"`
+	AverageGameTime          uint16  `json:"averageGameTime,omitempty"`
+	TopicsCreated            uint16  `json:"topicsCreated,omitempty"`
+	TopicsRated              uint16  `json:"topicsRated,omitempty"`
+	TopicsPlayed             uint16  `json:"topicsPlayed,omitempty"`
 }
 
 func (h *Handlers) RegisterUser(c echo.Context) error {
@@ -87,12 +87,12 @@ func (h *Handlers) GetStats(c echo.Context) error {
 		return err
 	}
 	return c.JSON(http.StatusOK, &UserStatistics{
-		TotalTimeSpent:           int(stats.TotalTimeSpent.Seconds()),
+		TotalTimeSpent:           uint16(stats.TotalTimeSpent.Seconds()),
 		CorrectAnswers:           stats.CorrectAnswers,
 		CorrectAnswersPercentage: stats.CorrectAnswersPercentage,
 		LongestStreak:            stats.LongestStreak,
 		LongestStreakTopicID:     stats.LongestStreakTopicID,
-		AverageGameTime:          int(stats.AverageGameTime.Seconds()),
+		AverageGameTime:          uint16(stats.AverageGameTime.Seconds()),
 		TopicsCreated:            stats.TopicsCreated,
 		TopicsRated:              stats.TopicsRated,
 		TopicsPlayed:             stats.TopicsPlayed,

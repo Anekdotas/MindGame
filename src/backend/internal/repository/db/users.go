@@ -61,7 +61,7 @@ func (r *Repo) GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserS
 	if err != nil {
 		return nil, err
 	}
-	stats.AverageGameTime, err = r.getAverageGameTime(ctx, userID)
+	stats.TotalTimeSpent, stats.AverageGameTime, err = r.getGameTimeStats(ctx, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -108,13 +108,16 @@ func (r *Repo) getLongestStreak(ctx context.Context, userID int64) (longestStrea
 	return longestStreak, topicID, translateDBError(r.db.GetContext(ctx, &topicID, r.db.Rebind(stmt), userID))
 }
 
-func (r *Repo) getAverageGameTime(ctx context.Context, userID int64) (time.Duration, error) {
-	stmt := fmt.Sprintf("SELECT AVG(time_spent) FROM %s WHERE user_id = ? AND time_spent > 0", GameSessionsTableName)
-	ret := new(float32)
+func (r *Repo) getGameTimeStats(ctx context.Context, userID int64) (time.Duration, time.Duration, error) {
+	stmt := fmt.Sprintf("SELECT SUM(time_spent) as total, AVG(time_spent) as average FROM %s WHERE user_id = ? AND time_spent > 0", GameSessionsTableName)
+	ret := new(struct {
+		TotalTime   uint16  `db:"total"`
+		AverageTime float32 `db:"average"`
+	})
 	if err := r.db.GetContext(ctx, ret, r.db.Rebind(stmt), userID); err != nil {
-		return 0, translateDBError(err)
+		return 0, 0, translateDBError(err)
 	}
-	return time.Second * time.Duration(*ret), nil
+	return time.Second * time.Duration(ret.TotalTime), time.Second * time.Duration(ret.AverageTime), nil
 }
 
 func (r *Repo) getTopicsStats(ctx context.Context, userID int64) (topicsCreated uint16, topicsRated uint16, topicsPlayed uint16, err error) {
