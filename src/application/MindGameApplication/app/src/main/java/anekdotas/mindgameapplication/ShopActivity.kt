@@ -58,13 +58,17 @@ class ShopActivity : AppCompatActivity() {
             if(userCanPurchaseItem() && !isItemPurchased()){
                 UserObjectConst.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
                 UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
+                UserObjectConst.purchasedItemIds.add(binding.vp2HostPictures.currentItem)
                 setUserCoinsBalance()
             }
             else if(isItemPurchased()){
-                Toast.makeText(this, "Selected " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.shop_activity_selected) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(this, "Not enough coins to purchase " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName + "\n Current coins: ${UserObjectConst.coins}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    getString(R.string.shop_activity_not_enough_coins) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName
+                            + "\n" + getString(R.string.shop_activity_current_coins) + " ${UserObjectConst.coins}",
+                        Toast.LENGTH_SHORT).show()
             }
         }
     }

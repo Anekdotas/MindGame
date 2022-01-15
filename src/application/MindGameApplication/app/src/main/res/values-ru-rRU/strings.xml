@@ -136,4 +136,9 @@
     <string name="profile_activity_coins">Coins: </string>
     <string name="retry">Retry</string>
     <string name="shop_activity_shop">Shop</string>
+    <string name="shop_activity_not_enough_coins">"Not enough coins to purchase "</string>
+    <string name="shop_activity_current_coins">" Текущий баланс: "</string>
+    <string name="shop_activity_selected">Выбрано</string>
+    <string name="shop_activity_select">выбрать</string>
+    <string name="shop_activity_purchase">купить</string>
 </resources>

@@ -138,5 +138,8 @@
     <string name="shop_activity_shop">Shop</string>
     <string name="shop_activity_purchase">purchase</string>
     <string name="shop_activity_select">select</string>
+    <string name="shop_activity_selected">Selected</string>
+    <string name="shop_activity_not_enough_coins">"Not enough coins to purchase "</string>
+    <string name="shop_activity_current_coins">" Current coins: "</string>
 
 </resources>
