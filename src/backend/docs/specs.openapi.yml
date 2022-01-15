@@ -119,7 +119,7 @@ paths:
                       description: Topic ID
         401:
           $ref: '#/components/responses/Unauthorized'
-  /categories/{categoryId}/topics/{topic}/rate:
+  /categories/{categoryId}/topics/{topicId}/rate:
     post:
       tags:
         - topics
@@ -133,12 +133,13 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: topic
+        - name: topicId
           in: path
-          description: Topic name
+          description: Topic ID
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       requestBody:
         required: true
         content:
@@ -146,8 +147,8 @@ paths:
             schema:
               properties:
                 rating:
-                  type: integer
-                  format: int64
+                  type: number
+                  format: double
                   minimum: 0
                   maximum: 5
                   description: Rating of the topic
