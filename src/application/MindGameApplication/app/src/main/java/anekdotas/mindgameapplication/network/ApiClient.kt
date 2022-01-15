@@ -40,6 +40,10 @@ interface ApiServices {
         @Header("Authorization") Bearer: String,): Call<QuestionModelWithGameSessionId>
 
     @GET
+    fun getAnalytics(@Url url: String?,
+                     @Header("Authorization") Bearer: String,): Call<AnalyticModel>
+
+    @GET
     fun getRatedTopics(@Url url: String?,
                        @Header("Authorization") Bearer: String,): Call<RatedListModel>
 

@@ -3,7 +3,7 @@ package anekdotas.mindgameapplication.network
 data class AnalyticModel (
     val totalTimeSpent: Int = 0,
     val correctAnswers : Int = 0,
-    val correctAnswersPercentage :Int = 0,
+    val correctAnswersPercentage : Double = 0.0,
     val longestStreak: Int =0,
     val longestStreakTopicId: Int = 0,
     val averageGameTime: Int = 0,

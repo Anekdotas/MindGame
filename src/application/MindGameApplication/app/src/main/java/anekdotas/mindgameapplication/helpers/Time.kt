@@ -1,5 +1,6 @@
 package anekdotas.mindgameapplication.helpers
 
+import anekdotas.mindgameapplication.objects.StatObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import java.util.concurrent.TimeUnit
 
@@ -15,4 +16,5 @@ object Time {
         UserObjectConst.sessionTimeMinutes = 0
         UserObjectConst.sessionTimeSeconds = 0
     }
+
 }

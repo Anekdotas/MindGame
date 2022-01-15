@@ -8,10 +8,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
+import anekdotas.mindgameapplication.network.AnalyticModel
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
-import anekdotas.mindgameapplication.objects.CategoriesObject
-import anekdotas.mindgameapplication.objects.UserObjectConst
+import anekdotas.mindgameapplication.network.RatedListModel
+import anekdotas.mindgameapplication.objects.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,8 +27,8 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         callNetworkCategories()
+        callGetAnalytics()
         UserObjectConst.ratedTopicsId
-
 
         //PLAY BUTTON logic
         binding.playBtn.setOnClickListener {
@@ -90,4 +91,19 @@ class MainMenuActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun callGetAnalytics() {
+        Log.d("Anal", "called")
+        val client = ApiClient.apiService.getAnalytics("${Const.ipForNetworking}/users/stats", "Bearer " + JwtObject.userJwt.token)
+        client.enqueue(object : Callback<AnalyticModel> {
+            override fun onResponse(call: Call<AnalyticModel>, response: Response<AnalyticModel>) {
+                if(response.isSuccessful){
+                    Log.d("AnalyticsBody ", ""+ response.body())
+                    StatObject.analytics= response.body()!!
+                }
+            }
+            override fun onFailure(call: Call<AnalyticModel>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+    }
 }
