@@ -47,3 +47,15 @@ type GameAnalytics struct {
 	TimeSpent     time.Duration
 	Streak        uint16
 }
+
+type UserStatistics struct {
+	TotalTimeSpent           time.Duration
+	CorrectAnswers           uint16
+	CorrectAnswersPercentage float32
+	LongestStreak            uint16
+	LongestStreakTopicID     int64
+	AverageGameTime          time.Duration
+	TopicsCreated            uint16
+	TopicsRated              uint16
+	TopicsPlayed             uint16
+}
