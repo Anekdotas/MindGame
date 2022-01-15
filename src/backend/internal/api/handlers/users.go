@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"anekdotas"
+	"anekdotas/internal/logic/auth"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -14,6 +15,18 @@ type User struct {
 	Email          string `json:"email"`
 	Password       string `json:"password,omitempty"`
 	RepeatPassword string `json:"repeatPassword,omitempty"`
+}
+
+type UserStatistics struct {
+	TotalTimeSpent           int     `json:"total_time_spent,omitempty"`
+	CorrectAnswers           uint16  `json:"correct_answers,omitempty"`
+	CorrectAnswersPercentage float32 `json:"correct_answers_percentage,omitempty"`
+	LongestStreak            uint16  `json:"longest_streak,omitempty"`
+	LongestStreakTopicID     int64   `json:"longest_streak_topic_id,omitempty"`
+	AverageGameTime          int     `json:"average_game_time,omitempty"`
+	TopicsCreated            uint16  `json:"topics_created,omitempty"`
+	TopicsRated              uint16  `json:"topics_rated,omitempty"`
+	TopicsPlayed             uint16  `json:"topics_played,omitempty"`
 }
 
 func (h *Handlers) RegisterUser(c echo.Context) error {
@@ -60,5 +73,28 @@ func (h *Handlers) Login(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, echo.Map{
 		"token": token,
+	})
+}
+
+func (h *Handlers) GetStats(c echo.Context) error {
+	userID, err := auth.GetUserIDFromToken(c.Get("user"))
+	if err != nil {
+		return err
+	}
+	stats, err := h.logic.GetUserStats(c.Request().Context(), userID)
+	if err != nil {
+		c.Logger().Error(err)
+		return err
+	}
+	return c.JSON(http.StatusOK, &UserStatistics{
+		TotalTimeSpent:           int(stats.TotalTimeSpent.Seconds()),
+		CorrectAnswers:           stats.CorrectAnswers,
+		CorrectAnswersPercentage: stats.CorrectAnswersPercentage,
+		LongestStreak:            stats.LongestStreak,
+		LongestStreakTopicID:     stats.LongestStreakTopicID,
+		AverageGameTime:          int(stats.AverageGameTime.Seconds()),
+		TopicsCreated:            stats.TopicsCreated,
+		TopicsRated:              stats.TopicsRated,
+		TopicsPlayed:             stats.TopicsPlayed,
 	})
 }

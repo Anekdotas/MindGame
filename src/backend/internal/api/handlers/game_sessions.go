@@ -19,7 +19,7 @@ type Statistics struct {
 	ID        int64     `json:"gameSessionId"`
 	Choices   []*choice `json:"choices"`
 	TimeSpent int       `json:"timeSpent"`
-	Streak    int       `json:"streak"`
+	Streak    uint16    `json:"streak"`
 }
 
 func (h *Handlers) FinishGameSession(c echo.Context) error {
@@ -39,7 +39,7 @@ func (h *Handlers) FinishGameSession(c echo.Context) error {
 			GameSessionID: statistics.ID,
 			Choices:       convertChoices(statistics.Choices),
 			TimeSpent:     time.Second * time.Duration(statistics.TimeSpent),
-			Streak:        uint(statistics.Streak),
+			Streak:        statistics.Streak,
 		},
 	); err != nil {
 		if errors.Is(err, anekdotas.ErrNotFound) || errors.Is(err, anekdotas.ErrAlreadyExists) ||
