@@ -136,4 +136,5 @@
     <string name="profile_activity_coins">Coins: </string>
     <string name="retry">Retry</string>
     <string name="shop_activity_shop">Shop</string>
+    <string name="shop_activity_selected_host">"Selected host: "</string>
 </resources>

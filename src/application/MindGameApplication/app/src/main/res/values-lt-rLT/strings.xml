@@ -121,4 +121,8 @@
 
     <string name="retry">Bandyti vėl</string>
     <string name="shop_activity_shop">Parduotuvė</string>
+    <string name="shop_activity_selected">Selected</string>
+    <string name="shop_activity_not_enough_coins">"Not enough coins to purchase "</string>
+    <string name="shop_activity_current_coins">Current coins:</string>
+    <string name="shop_activity_selected_host">"Selected host: "</string>
 </resources>

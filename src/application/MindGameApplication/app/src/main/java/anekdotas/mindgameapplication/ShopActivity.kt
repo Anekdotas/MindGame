@@ -39,7 +39,7 @@ class ShopActivity : AppCompatActivity() {
         setupViewPager(binding)
 
         binding.btnBuy.setOnClickListener {
-            Toast.makeText(this, "Selected host: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.shop_activity_selected_host) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
             UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
 //            Log.d("Purchase item:", "\tPosition: " + binding.vp2HostPictures.currentItem)
 //            Log.d("Purchase item:", "\tName: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName)
