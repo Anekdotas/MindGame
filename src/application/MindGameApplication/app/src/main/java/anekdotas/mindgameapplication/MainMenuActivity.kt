@@ -90,21 +90,4 @@ class MainMenuActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun setLocale(lang : String) {
-        val config = resources.configuration
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
-            config.setLocale(locale)
-
-        createConfigurationContext(config)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        //Reset Activity
-        overridePendingTransition(0, 0)
-        finish()
-        overridePendingTransition(0, 0)
-        val intent = Intent(this, MainMenuActivity::class.java)
-        startActivity(intent)
-    }
-
 }

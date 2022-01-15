@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import anekdotas.mindgameapplication.databinding.ActivityProfileBinding
 import anekdotas.mindgameapplication.java.StatisticsAdapter
 import anekdotas.mindgameapplication.java.StatisticsRecord
-import java.util.ArrayList
+import anekdotas.mindgameapplication.objects.TopicsObject
+import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding : ActivityProfileBinding
@@ -24,6 +26,24 @@ class ProfileActivity : AppCompatActivity() {
         actionBarSetup()
 
         setStatistics()
+
+        binding.spLanguageSelection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (binding.spLanguageSelection.selectedItemPosition) {
+                    1 -> {
+                        setLocale("en")
+                    }
+                    2 -> {
+                        setLocale("ru")
+                    }
+                    3 -> {
+                        setLocale("lt")
+                    }
+                }
+            }
+
+        }
     }
 
     private fun setStatistics() {
@@ -54,4 +74,29 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun setLocale(lang : String) {
+        val config = resources.configuration
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        config.setLocale(locale)
+
+        createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        //Reset Activity
+        overridePendingTransition(0, 0)
+        finish()
+        overridePendingTransition(0, 0)
+        val intent = Intent(this, ProfileActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+
 }
