@@ -39,13 +39,17 @@ class ShopActivity : AppCompatActivity() {
         setupViewPager(binding)
 
         binding.btnBuy.setOnClickListener {
-            Toast.makeText(this, "Selected host: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
-
-            if(UserObjectConst.coins>=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price){
+            if(UserObjectConst.coins>=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price && ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id !in UserObjectConst.purchasedItemIds){
                 UserObjectConst.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
+                UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
+            }
+            else if(ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id in UserObjectConst.purchasedItemIds){
+                Toast.makeText(this, "Selected " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(this, "Not enough coins to purchase " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName + "\n Current coins: ${UserObjectConst.coins}", Toast.LENGTH_SHORT).show()
             }
 
-            UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
 //            Log.d("Purchase item:", "\tPosition: " + binding.vp2HostPictures.currentItem)
 //            Log.d("Purchase item:", "\tName: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName)
         }
