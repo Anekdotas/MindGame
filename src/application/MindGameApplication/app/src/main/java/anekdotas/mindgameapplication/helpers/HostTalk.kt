@@ -1,8 +1,7 @@
 package anekdotas.mindgameapplication.helpers
 
 import anekdotas.mindgameapplication.objects.HostObject
-import anekdotas.mindgameapplication.objects.UserStatsObject
-import org.apache.hc.core5.net.Host
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import kotlin.random.Random
 
 object HostTalk {
@@ -16,7 +15,7 @@ object HostTalk {
     }
 
     private fun streak() : String {
-        return if(UserStatsObject.sessionStreak > 0){
+        return if(UserObjectConst.sessionStreak > 0){
             HostObject.host.goodStreak[Random.nextInt(0, HostObject.host.goodStreak.size)]
         } else{
             HostObject.host.badStreak[Random.nextInt(0, HostObject.host.badStreak.size)]

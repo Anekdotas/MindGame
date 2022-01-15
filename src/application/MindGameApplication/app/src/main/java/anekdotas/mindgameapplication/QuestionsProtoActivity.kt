@@ -14,7 +14,6 @@ import anekdotas.mindgameapplication.databinding.ActivityQuestionsProtoBinding
 import anekdotas.mindgameapplication.network.QuestionModel
 import anekdotas.mindgameapplication.objects.QuestionsObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
-import coil.load
 
 // TODO: 10/3/2021 interface kinda buggy - user can still change answer, need to fix that
 

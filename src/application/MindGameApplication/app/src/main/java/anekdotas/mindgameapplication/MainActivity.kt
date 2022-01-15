@@ -2,7 +2,6 @@ package anekdotas.mindgameapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View.*
 import android.widget.Toast
@@ -10,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import anekdotas.mindgameapplication.databinding.ActivityMainBinding
 import anekdotas.mindgameapplication.helpers.NetworkChecker.isNetworkAvailable
 import anekdotas.mindgameapplication.network.ApiClient
-import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.network.JwtTestModel
-import anekdotas.mindgameapplication.objects.CategoriesObject
 import anekdotas.mindgameapplication.objects.JwtObject
 
 import anekdotas.mindgameapplication.objects.UserObjectConst

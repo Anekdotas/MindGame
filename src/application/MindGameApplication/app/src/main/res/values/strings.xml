@@ -109,6 +109,11 @@
     <string name="mainmenu_activity_profile">Profile</string>
     <string name="mainmenu_activity_exit">Exit</string>
     <string name="mainmenu_activity_not_yet_implemented">Not yet implemented</string>
+    <string name="mainmenu_activity_retry">Retry</string>
+    <string name="mainmenu_activity_ClosingMindGameApp">Closing MindGameApp</string>
+    <string name="mainmenu_activity_ExitConfirmationQuestion">Are you sure you want to close this application?</string>
+    <string name="mainmenu_activity_Yes">Yes</string>
+    <string name="mainmenu_activity_No">No</string>
     <!--    info activity section   -->
     <string name="info_activity_easy">Easy</string>
     <string name="info_activity_moderate">Moderate</string>

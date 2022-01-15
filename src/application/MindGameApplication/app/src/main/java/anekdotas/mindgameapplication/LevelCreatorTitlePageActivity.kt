@@ -9,6 +9,7 @@ import android.widget.Toast
 import anekdotas.mindgameapplication.databinding.ActivityLevelCreatorTitlePageBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.TopicModel
+import anekdotas.mindgameapplication.objects.Const
 import anekdotas.mindgameapplication.objects.TopicsObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,7 +64,7 @@ class LevelCreatorTitlePageActivity : AppCompatActivity() {
 
 
     private fun callNetworkTopics() {
-        val client = ApiClient.apiService.getTopics("https://193.219.91.103:14656/categories/1/topics")
+        val client = ApiClient.apiService.getTopics("${Const.ipForNetworking}/categories/1/topics")
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){

@@ -59,6 +59,16 @@
         android:textSize="20sp"
         tools:text="Your Score is absolutely terrible" />
 
+
+            <TextView
+                android:id="@+id/tv_coins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="0 coins" />
+
     <TextView
         android:id="@+id/tv_rating_info"
         android:layout_width="wrap_content"
@@ -87,6 +97,20 @@
         android:layout_marginEnd="10dp"
         android:background="@drawable/custom_button"
         android:text="@string/finish"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/retry"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"

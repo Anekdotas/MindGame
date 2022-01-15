@@ -11,6 +11,8 @@ func (a *API) BindApiRoutes(e *echo.Echo, authMiddleware echo.MiddlewareFunc) {
 	topics := categories.Group("/:categoryId/topics")
 	topics.GET("", a.handlers.GetTopics)
 	topics.POST("", a.handlers.CreateTopic, authMiddleware)
+	topics.GET("/rated", a.handlers.GetRatedTopics, authMiddleware)
+	topics.POST("/:topicId/rate", a.handlers.RateTopic, authMiddleware)
 
 	questions := topics.Group("/:topic/questions")
 	questions.GET("", a.handlers.GetQuestions, authMiddleware)

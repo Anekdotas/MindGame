@@ -15,6 +15,7 @@ import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.network.TopicModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
+import anekdotas.mindgameapplication.objects.Const
 import anekdotas.mindgameapplication.objects.TopicsObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,15 +47,15 @@ class CategoriesAdapter(private var categories: List<CategoryModel>? = Categorie
                     context.startActivity(Intent(context, ListTopicsActivity::class.java))
                 }
                 else {
-                    Toast.makeText(context, "No Internet Connection\nPlease restart the application with internet connection", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.no_internet, Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
     private fun callNetworkTopics() {
-        Log.d("Testurl! ", ""+ "https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics")
-        val client = ApiClient.apiService.getTopics("https://193.219.91.103:14656/categories/${CategoriesObject.selectedCategory!!.id}/topics")
+        Log.d("Testurl! ", ""+ "${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics")
+        val client = ApiClient.apiService.getTopics("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics")
         client.enqueue(object : Callback<List<TopicModel>> {
             override fun onResponse(call: Call<List<TopicModel>>, response: Response<List<TopicModel>>) {
                 if(response.isSuccessful){

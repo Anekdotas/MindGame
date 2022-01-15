@@ -1,5 +1,6 @@
 package anekdotas.mindgameapplication
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,9 +11,12 @@ import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+
 
 class MainMenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainMenuBinding
@@ -22,6 +26,7 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         callNetworkCategories()
+        UserObjectConst.ratedTopicsId
 
 
         //PLAY BUTTON logic
@@ -33,10 +38,10 @@ class MainMenuActivity : AppCompatActivity() {
 
         //SHOP BUTTON logic
         binding.shopBtn.setOnClickListener {
-//            val intent = Intent(this, ResultsActivity::class.java)
-//            Thread.sleep(100)
-//            startActivity(intent)
-            Toast.makeText(this, getString(R.string.mainmenu_activity_not_yet_implemented), Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ShopActivity::class.java)
+            Thread.sleep(100)
+            startActivity(intent)
+//            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
         }
 
         //PROFILE BUTTON logic
@@ -73,4 +78,33 @@ class MainMenuActivity : AppCompatActivity() {
             }
         })
     }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle(getString(R.string.mainmenu_activity_ClosingMindGameApp))
+            .setMessage(getString(R.string.mainmenu_activity_ExitConfirmationQuestion))
+            .setPositiveButton(getString(R.string.mainmenu_activity_Yes)
+            ) { _, _ -> finish() }
+            .setNegativeButton(getString(R.string.mainmenu_activity_No), null)
+            .show()
+    }
+
+    private fun setLocale(lang : String) {
+        val config = resources.configuration
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+            config.setLocale(locale)
+
+        createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        //Reset Activity
+        overridePendingTransition(0, 0)
+        finish()
+        overridePendingTransition(0, 0)
+        val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
+    }
+
 }

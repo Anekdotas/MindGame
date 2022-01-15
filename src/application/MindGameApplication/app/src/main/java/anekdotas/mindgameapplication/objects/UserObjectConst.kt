@@ -1,5 +1,8 @@
 package anekdotas.mindgameapplication.objects
 
+import anekdotas.mindgameapplication.R
+import anekdotas.mindgameapplication.network.RatedListModel
+
 object UserObjectConst{
 
     //Placeholder values
@@ -17,6 +20,9 @@ object UserObjectConst{
     var sessionTimeSeconds : Long = 0
     var sessionTimeMinutes : Long = 0
     var sessionTimeHours : Long = 0
-    var ratedTopicsId = mutableListOf(0)
+    var ratedTopicsId = RatedListModel()
+    var sessionStreak : Int = 0
+    var coins : Int = 0
+    var userPhoto : Int = R.drawable.chuvas_cropped
 
 }

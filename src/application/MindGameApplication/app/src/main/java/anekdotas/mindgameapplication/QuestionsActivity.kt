@@ -172,11 +172,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mySelectedPosition == 0) {
-
-                    if(!select){
-                        StatObject.stats!!.choices.add(ChoiceModel(QuestionsObject.questionList[x].id, 0))
-                    }
-
                     myPosition++ // COULD SKIP ANSWERING
                     when {
                         myPosition <= myQuestionsList!!.size -> {
@@ -214,25 +209,25 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
                     binding.ListView.adapter = adapter
                     when (mySelectedPosition){
-                        1 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionA.text.toString(), R.drawable.chuvas_cropped))
-                        2 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionB.text.toString(), R.drawable.chuvas_cropped))
-                        3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), R.drawable.chuvas_cropped))
-                        4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
+                        1 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionA.text.toString(), UserObjectConst.userPhoto))
+                        2 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionB.text.toString(), UserObjectConst.userPhoto))
+                        3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), UserObjectConst.userPhoto))
+                        4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), UserObjectConst.userPhoto))
                     } //WRITES USER SELECTED ANSWER
                     nonClickable()
 
                     if (question!!.answer != QuestionsObject.questionList[myPosition-1].options[mySelectedPosition-1].id) {
                         answerView(mySelectedPosition, R.drawable.custom_wrong_btn)
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomBad(), R.drawable.lasgov))
-                        UserStatsObject.sessionStreak=0
+                        UserObjectConst.sessionStreak=0
                     } // CHECKS IF ANSWER WAS INCORRECT
 
                     else {
                         myCorrectAnswers++
                         messageList.add(Message(HostObject.host.hostName, HostTalk.giveRandomGood(), R.drawable.lasgov))
-                        UserStatsObject.sessionStreak++
-                        if(UserStatsObject.sessionStreak> StatObject.stats!!.streak) {
-                            StatObject.stats!!.streak=UserStatsObject.sessionStreak
+                        UserObjectConst.sessionStreak++
+                        if(UserObjectConst.sessionStreak> StatObject.stats!!.streak) {
+                            StatObject.stats!!.streak= UserObjectConst.sessionStreak
                         }
 
                     } //IF THE ANSWER WAS CORRECT
@@ -307,11 +302,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
         binding.ListView.adapter = adapter
 
+        if(RandomGen.chance(30) && myPosition!=1){
+            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
+        }
         if(myPosition!=1){
             messageList.add(Message(HostObject.host.hostName, HostTalk.giveMoveOn(), R.drawable.lasgov))
-        }
-        if(RandomGen.chance(25) && myPosition!=1){
-            messageList.add(Message(HostObject.host.hostName, HostTalk.saySomething(), R.drawable.lasgov))
         }
 
         when {
