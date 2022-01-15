@@ -18,26 +18,20 @@ class ShopActivity : AppCompatActivity() {
     private var viewPager2:ViewPager2? = null
 
     private val pager2Callback = object:ViewPager2.OnPageChangeCallback(){
-//        override fun onPageScrollStateChanged(state: Int) {
-//            Log.d("|+|", "onPageScrollStateChanged: yes")
-//        }
-
         override fun onPageScrolled(
             position: Int,
             positionOffset: Float,
             positionOffsetPixels: Int
         ) {
-//            Log.d("|-|", "*PageScrolled*")
             updateBuyButtonsTitle()
         }
     }
 
     private fun updateBuyButtonsTitle() {
-        Log.d("say hello:", "Hi!")
         if (isItemPurchased()) {
-            binding.btnBuy.setText("select")
+            binding.btnBuy.text = "select"
         } else {
-            binding.btnBuy.setText("purchase")
+            binding.btnBuy.text = "purchase"
         }
     }
 
@@ -74,10 +68,6 @@ class ShopActivity : AppCompatActivity() {
 
     private fun isItemPurchased(): Boolean {
         return ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id in UserObjectConst.purchasedItemIds
-    }
-
-    private fun itemIsNotPurchased(): Boolean {
-        return ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id !in UserObjectConst.purchasedItemIds
     }
 
     private fun userCanPurchaseItem(): Boolean {
