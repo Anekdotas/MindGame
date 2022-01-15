@@ -1,6 +1,5 @@
 package anekdotas.mindgameapplication.helpers
 
-import anekdotas.mindgameapplication.objects.StatObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 import java.util.concurrent.TimeUnit
 
@@ -17,4 +16,10 @@ object Time {
         UserObjectConst.sessionTimeSeconds = 0
     }
 
+    fun formatTimeAnalytics(s: Int) : String{
+        var sec = (TimeUnit.SECONDS.toSeconds(s.toLong()) % 60).toInt()
+        var min = (TimeUnit.SECONDS.toMinutes(s.toLong()) % 60).toInt()
+        var h = TimeUnit.SECONDS.toHours(s.toLong()).toInt()
+        return "${h}h ${min}m ${sec}s"
+    }
 }
