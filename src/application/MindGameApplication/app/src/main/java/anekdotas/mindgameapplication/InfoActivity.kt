@@ -3,11 +3,17 @@ package anekdotas.mindgameapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import anekdotas.mindgameapplication.databinding.ActivityInfoBinding
-import anekdotas.mindgameapplication.objects.TopicsObject
+import anekdotas.mindgameapplication.network.ApiClient
+import anekdotas.mindgameapplication.network.RatedListModel
+import anekdotas.mindgameapplication.objects.*
 import coil.load
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class InfoActivity : AppCompatActivity() {
     private lateinit var binding : ActivityInfoBinding // UI element binding
@@ -16,6 +22,7 @@ class InfoActivity : AppCompatActivity() {
         binding = ActivityInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        callRatedList()
         
         binding.tvTopicName.text = TopicsObject.selectedTopic.topicName
         binding.ivTopic.load(TopicsObject.selectedTopic.imageUrl)
@@ -44,5 +51,21 @@ class InfoActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun callRatedList() {
+        val client = ApiClient.apiService.getRatedTopics("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/rated", "Bearer " + JwtObject.userJwt.token)
+        client.enqueue(object : Callback<RatedListModel> {
+            override fun onResponse(call: Call<RatedListModel>, response: Response<RatedListModel>) {
+                if(response.isSuccessful){
+                    Log.d("RatedBody ", ""+ response.body())
+                    UserObjectConst.ratedTopicsId = response.body()!!
+                    Log.d("RatedBody", UserObjectConst.ratedTopicsId.ids.toString())
+                }
+            }
+            override fun onFailure(call: Call<RatedListModel>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
     }
 }

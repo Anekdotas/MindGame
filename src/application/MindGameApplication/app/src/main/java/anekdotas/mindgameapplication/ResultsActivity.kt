@@ -25,8 +25,6 @@ class ResultsActivity : AppCompatActivity() {
         binding = ActivityResultsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
-        callRatedList()
-        Thread.sleep(100)
 
         binding.tvName.text = UserObjectConst.USERNAME
         val totalQuestions = intent.getIntExtra(UserObjectConst.TOTAL_QUESTIONS, 0)
@@ -95,7 +93,7 @@ class ResultsActivity : AppCompatActivity() {
             else{
                 binding.rbRating.onRatingBarChangeListener =
                     OnRatingBarChangeListener { ratingBar, rating, _ -> if (rating < 1.0f) ratingBar.rating = 1.0f
-                        var x=binding.rbRating.rating
+                        val x=binding.rbRating.rating
                         binding.tvRatingInfo.text=getString(R.string.results_activity_thanks_for_rating)
                         callRateTopic(x.toDouble())
                         binding.rbRating.isFocusable = false
@@ -131,33 +129,19 @@ class ResultsActivity : AppCompatActivity() {
         })
     }
 
-    private fun callRatedList() {
-        val client = ApiClient.apiService.getRatedTopics("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/rated", "Bearer " + JwtObject.userJwt.token)
-        client.enqueue(object : Callback<RatedListModel> {
-            override fun onResponse(call: Call<RatedListModel>, response: Response<RatedListModel>) {
-                if(response.isSuccessful){
-                    Log.d("RatedBody ", ""+ response.body())
-                    UserObjectConst.ratedTopicsId = response.body()!!
-                    Log.d("RatedBody", UserObjectConst.ratedTopicsId.ids.toString())
-                }
-            }
-            override fun onFailure(call: Call<RatedListModel>, response: Throwable) {
-                Log.e("Something went wrong! ", ""+response.message)
-            }
-        })
-    }
 
     private fun callRateTopic(rating : Double) {
 
-        val clientPOST = ApiClient.apiService.postRating("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic.topicName}/rate","Bearer " + JwtObject.userJwt.token,
-            RatingModel(TopicsObject.rated.rating))
+        val clientPOST = ApiClient.apiService.postRating("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic.id}/rate",
+            "Bearer " + JwtObject.userJwt.token,
+            RatingModel(rating))
         clientPOST.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if(response.isSuccessful){
                     Log.d("RatePost Done! Woohoo!", ""+ response.code())
                 }
                 else {
-                    Log.d("RatePost failed. Bruh, $rating", "" + response.code())
+                    Log.d("RatePost failed. Bruh, ${RatingModel(rating)}", "" + response.code())
                 }
             }
             override fun onFailure(call: Call<Void>, response: Throwable) {
