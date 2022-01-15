@@ -40,6 +40,11 @@ class ShopActivity : AppCompatActivity() {
 
         binding.btnBuy.setOnClickListener {
             Toast.makeText(this, "Selected host: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+
+            if(UserObjectConst.coins>=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price){
+                UserObjectConst.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
+            }
+
             UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
 //            Log.d("Purchase item:", "\tPosition: " + binding.vp2HostPictures.currentItem)
 //            Log.d("Purchase item:", "\tName: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName)
