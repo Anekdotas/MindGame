@@ -103,6 +103,7 @@ class ResultsActivity : AppCompatActivity() {
         }
 
     private fun restartStats(){
+        Thread.sleep(100)
         StatObject.stats.choices.clear()
         StatObject.stats.choices.add(ChoiceModel(0,0))
         StatObject.stats.gameSessionId=0

@@ -133,4 +133,6 @@
     </string-array>
     <string name="profile_activity_language">Language:</string>
     <string name="profile_activity_coins">Coins: </string>
+    <string name="retry">Retry</string>
+    <string name="shop_activity_shop">Shop</string>
 </resources>
