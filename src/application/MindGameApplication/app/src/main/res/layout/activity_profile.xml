@@ -54,6 +54,26 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_activity_language"
+                style="@style/ProfileBasicInfoText"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/sp_LanguageSelection"
+                />
+            <Spinner
+                android:id="@+id/sp_LanguageSelection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/profile_activity_language_spinner"
+                android:layout_gravity="right"
+                app:layout_constraintEnd_toEndOf="@id/constLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <ListView
             android:id="@+id/lv_StatisticsList"
