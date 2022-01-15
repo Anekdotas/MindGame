@@ -11,12 +11,11 @@ import anekdotas.mindgameapplication.databinding.ActivityMainMenuBinding
 import anekdotas.mindgameapplication.network.ApiClient
 import anekdotas.mindgameapplication.network.CategoryModel
 import anekdotas.mindgameapplication.objects.CategoriesObject
+import anekdotas.mindgameapplication.objects.UserObjectConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.content.DialogInterface
-
-
+import java.util.*
 
 
 class MainMenuActivity : AppCompatActivity() {
@@ -27,6 +26,7 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         callNetworkCategories()
+        UserObjectConst.ratedTopicsId
 
 
         //PLAY BUTTON logic
@@ -89,4 +89,22 @@ class MainMenuActivity : AppCompatActivity() {
             .setNegativeButton(getString(R.string.mainmenu_activity_No), null)
             .show()
     }
+
+    private fun setLocale(lang : String) {
+        val config = resources.configuration
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+            config.setLocale(locale)
+
+        createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        //Reset Activity
+        overridePendingTransition(0, 0)
+        finish()
+        overridePendingTransition(0, 0)
+        val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
+    }
+
 }

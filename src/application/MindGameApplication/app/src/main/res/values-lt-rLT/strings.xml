@@ -1,0 +1,124 @@
+<resources>
+    <string name="app_name">Programėlė "MindGame"</string>
+    <string name="app_name_short">MindGame</string>
+    <string name="progress">pažaznga</string>
+    <string name="question_placeholder">laikingas klausimas</string>
+    <string name="answer">ATSAKYMAS</string>
+    <string name="finish">BAIGTI</string>
+    <string name="submit">PATEIKTI</string>
+    <string name="quizapp">programėlė</string>
+    <string name="congrats">Sveikiname!</string>
+    <string name="image">paveikslėlis</string>
+    <string name="result">Rezultatas</string>
+    <string name="title_activity_login">Prisijunkite</string>
+    <string name="hint_username">Vartotojo vardas</string>
+    <string name="prompt_email">El. Paštas</string>
+    <string name="prompt_password">Slaptažodis</string>
+    <string name="action_sign_in">Prisijunkite arba registruokitės</string>
+    <string name="action_sign_in_short">Prisijungti</string>
+    <string name="welcome">"Sveiki atvykę!"</string>
+    <string name="invalid_username">Neteisingas vartotojo vardas</string>
+    <string name="invalid_password">Slaptažodis turi būti ne mažiau 5 simbolių</string>
+    <string name="login_failed">"Prisijungimas nepavyko"</string>
+    <string name="topic">Tema</string>
+    <string name="Topics">Temos</string>
+    <string name="category">Kategorija</string>
+    <string name="Categories">Kategorijos</string>
+    <string name="play">Žaisti</string>
+    <string name="built_by">Anekdoto sukurta</string>
+    <string name="name">Pavadinimas</string>
+    <string name="host">Vedėjas:</string>
+    <string name="no_internet">Nėra interneto, ijunkite internetą ir perkraukite programėlę</string>
+
+    <!--    Topic creator title page section   -->
+    <string name="lvl_creator_topicname">Temos pavadinimas: </string>
+    <string name="lvl_creator_topicdesc">Temos aprašymas: </string>
+    <string name="lvl_creator_desc">Aprašymas</string>
+    <string name="lvl_creator_difficulty">Temos sunkumas </string>
+    <string name="lvl_creator_continue">tęsti</string>
+    <string name="lvl_creator_topic_name_taken_toast">Tema tokiu pavadinimu jau egzistuoja</string>
+    <string name="lvl_creator_no_topic_name_selected_toast">Įveskite temos pavadinimą</string>
+    <string name="lvl_creator_no_topic_desc_selected_toast">Įveskite temos aprašymą</string>
+    <!--    Topic creator section   -->
+    <string name="lvl_creator_title">Sukurkite temą</string>
+    <string name="lvl_creator_prev_question">Praeitas klausimas</string>
+    <string name="lvl_creator_next_question">Kitas klausimas</string>
+    <string name="lvl_creator_update_question">Atnaujinti klausimą</string>
+    <string name="lvl_creator_new_question">Naujas question</string>
+    <string name="lvl_creator_answer_element">Atsakymas: </string>
+    <string name="lvl_creator_answer_overloaded">Atsakymas %1$d: </string>
+    <string name="lvl_creator_question_overloaded">Klausimas %1$d: </string>
+    <string name="lvl_creator_answer_prompt">Įveskite savo atsakymo variantą</string>
+    <string name="lvl_creator_question_prompt">Įveskite savo klausimą</string>
+    <string name="lvl_creator_answernum_prompt">Pasirinkite teisingo atsakymo numerį </string>
+    <string name="lvl_creator_enter_name_of_topic">Pavadinimas</string>
+    <string-array name="lvl_creator_correct_answers">
+        <item>-</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="lvl_creator_spinner">
+        <item>Lengvas</item>
+        <item>Vidutinis</item>
+        <item>Sunkus</item>
+    </string-array>
+
+    <string-array name="topic_spinner">
+        <item>Rūšiuoti pagal</item>
+        <item>Pavadinimą</item>
+        <item>Reitingą</item>
+        <item>Sunkumą</item>
+    </string-array>
+
+    <string name="lvl_creator_save_question">Išsaugoti klausimą</string>
+    <string name="lvl_creator_upload_topic_to_the_server">Įkelti temą</string>
+    <string name="lvl_creator_enter_your_question">Įveskite savo klausimą</string>
+    <string name="lvl_creator_question_saved_toast">Klausimas išsaugotas</string>
+    <string name="lvl_creator_pls_create_question_first_toast">Sukurkite bent vieną klausimą</string>
+    <string name="lvl_creator_creating_new_question_toast">Kuriamas naujas klausimas</string>
+    <string name="lvl_creator_you_cannot_modify_toast">Negalite pakeisti klausimo, nes jis dar neišsaugotas</string>
+    <string name="lvl_creator_current_question_toast">Dabartinis klausimas: </string>
+    <string name="lvl_creator_question_cannot_be_empty_toast">Klausimas negali būti tuščias</string>
+    <string name="lvl_creator_option_cannot_be_empty_toast">Atsakymo variantas %1$d negali būti tuščias</string>
+    <string name="lvl_creator_number_of_correct_answer_mustbe_toast">Teisingo atsakymo numeris turi būti 1, 2, 3 arba 4 </string>
+    <string name="lvl_creator_topic_uploaded_toast">Tema įkelta sėkmingai</string>
+    <string name="lvl_creator_topic_upload_failed_toast">Temos įkelti nepavyko, bandykite dar kartą</string>
+    <string name="lvl_creator_questions_uploaded_toast">Klausimai įkelti sėkmingai</string>
+    <string name="lvl_creator_question_upload_failed_toast">Klausimo įkelti nepavyko, bandykite dar kartą</string>
+    <!--    Registration section   -->
+    <string name="reg_activity_create_acc_prompt">Susikurkite paskyrą</string>
+    <string name="reg_activity_hint_repeat_password">Pakartokite slaptažodį</string>
+    <string name="reg_activity_register">Registruotis</string>
+    <string name="reg_activity_no_email_selected_toast">Įveskite el. paštą</string>
+    <string name="reg_activity_no_password_repeat_selected_toast">Įveskite slaptažodį</string>
+    <string name="reg_activity_glad_to_have_you_overloaded_toast">Džiaugiamės kad prisijungiate, %1$s</string>
+    <string name="reg_activity_reg_details_incorrect_toast">Registracijos duomenys netinkami, bandykite dar kartą</string>
+    <!--    Main activity section   -->
+    <string name="main_activity_connect_acc_prompt">Susikurkite paskyą</string>
+    <string name="main_activity_dont_have_account">Neturite paskyros?</string>
+    <string name="main_activity_no_username_selected_toast">Įveskite vartotojo vardą</string>
+    <string name="main_activity_no_password_selected_toast">Įveskite slaptažodį</string>
+    <string name="main_activity_login_details_incorrect_toast">Prisijungimo duomenys neteisingi, bandykite dar kartą</string>
+    <string name="main_activity_welcome_overloaded_toast">Sveiki atvykę, %1$s</string>
+    <!--    Main menu activity section   -->
+    <string name="mainmenu_activity_title">Pagrindinis meniu</string>
+    <string name="mainmenu_activity_shop">Parduotuvė</string>
+    <string name="mainmenu_activity_profile">Paskyra</string>
+    <string name="mainmenu_activity_exit">Išeiti</string>
+    <string name="mainmenu_activity_not_yet_implemented">Ši dalis dar kuriama</string>
+    <!--    info activity section   -->
+    <string name="info_activity_easy">Lengvas</string>
+    <string name="info_activity_moderate">Vidutinis</string>
+    <string name="info_activity_hard">Sunkus</string>
+    <!--    Results activity section   -->
+    <string name="results_activity_your_score_overloaded">Jūsų balas yra %1$d iš %2$d </string>
+    <string name="results_activity_time_spent_overloaded">Praleidote %1$d h %2$d min %3$d sek</string>
+    <string name="results_activity_pls_rate_quiz">Prašome įvertinti šią temą!</string>
+    <string name="results_activity_thanks_for_rating">Ačiū už vertinimą!</string>
+
+    <string name="retry">Bandyti vėl</string>
+    <string name="shop_activity_shop">Parduotuvė</string>
+</resources>

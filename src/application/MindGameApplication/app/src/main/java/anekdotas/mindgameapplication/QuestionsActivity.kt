@@ -209,10 +209,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     val adapter = ChatAdapter(this, R.layout.message_list_view_element, messageList)
                     binding.ListView.adapter = adapter
                     when (mySelectedPosition){
-                        1 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionA.text.toString(), R.drawable.chuvas_cropped))
-                        2 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionB.text.toString(), R.drawable.chuvas_cropped))
-                        3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), R.drawable.chuvas_cropped))
-                        4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), R.drawable.chuvas_cropped))
+                        1 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionA.text.toString(), UserObjectConst.userPhoto))
+                        2 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionB.text.toString(), UserObjectConst.userPhoto))
+                        3 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionC.text.toString(), UserObjectConst.userPhoto))
+                        4 -> messageList.add(Message(UserObjectConst.USERNAME, binding.tvOptionD.text.toString(), UserObjectConst.userPhoto))
                     } //WRITES USER SELECTED ANSWER
                     nonClickable()
 
