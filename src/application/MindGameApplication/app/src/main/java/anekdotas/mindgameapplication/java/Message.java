@@ -1,6 +1,5 @@
 package anekdotas.mindgameapplication.java;
 
-import anekdotas.mindgameapplication.R;
 public class Message {
     private String author;
     private String text;
@@ -13,9 +12,6 @@ public class Message {
         this.text = text;
         this.profPicSource = profPicSource;
         this.questionPicture = questionPicture;
-//        if (questionPicture == 123) {                         //I am not sure can I delete this, some tests needed
-//            this.questionPicture = R.drawable.bred;
-//        }
     }
 
     public Message(String author, String text, int profPicSource) {

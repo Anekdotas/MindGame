@@ -5,6 +5,7 @@ import (
 	"anekdotas/internal/logic/auth"
 	"errors"
 	"net/http"
+	"time"
 
 	"github.com/labstack/echo/v4"
 )
@@ -37,6 +38,8 @@ func (h *Handlers) FinishGameSession(c echo.Context) error {
 		&anekdotas.Statistics{
 			GameSessionID: statistics.ID,
 			Choices:       convertChoices(statistics.Choices),
+			TimeSpent:     time.Second * time.Duration(statistics.TimeSpent),
+			Streak:        uint(statistics.Streak),
 		},
 	); err != nil {
 		if errors.Is(err, anekdotas.ErrNotFound) || errors.Is(err, anekdotas.ErrAlreadyExists) ||

@@ -51,6 +51,15 @@ func deriveFmapAnswersReverse(f func(*Answer) *anekdotas.Answer, list []*Answer)
 	return out
 }
 
+// deriveFmapUnpackTopics returns a list where each element of the input list has been morphed by the input function.
+func deriveFmapUnpackTopics(f func(*anekdotas.Topic) int64, list []*anekdotas.Topic) []int64 {
+	out := make([]int64, len(list))
+	for i, elem := range list {
+		out[i] = f(elem)
+	}
+	return out
+}
+
 // deriveFmapTopics returns a list where each element of the input list has been morphed by the input function.
 func deriveFmapTopics(f func(*anekdotas.Topic) *Topic, list []*anekdotas.Topic) []*Topic {
 	out := make([]*Topic, len(list))

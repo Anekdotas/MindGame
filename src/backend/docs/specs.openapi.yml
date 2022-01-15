@@ -89,7 +89,78 @@ paths:
                     description: Topic name
         401:
           $ref: '#/components/responses/Unauthorized'
-
+  /categories/{categoryId}/topics/rated:
+    get:
+      tags:
+        - topics
+      summary: Get rated topics
+      parameters:
+        - name: categoryId
+          description: Category ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ids:
+                    type: array
+                    description: Rated Topic IDs
+                    items:
+                      type: integer
+                      format: int64
+                      description: Topic ID
+        401:
+          $ref: '#/components/responses/Unauthorized'
+  /categories/{categoryId}/topics/{topicId}/rate:
+    post:
+      tags:
+        - topics
+      summary: Rate the topic
+      operationId: rateTopic
+      parameters:
+        - name: categoryId
+          description: Category ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: topicId
+          in: path
+          description: Topic ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                rating:
+                  type: number
+                  format: double
+                  minimum: 0
+                  maximum: 5
+                  description: Rating of the topic
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect rating values passed or topic is already rated by user
+        401:
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - oAuth2: []
   /categories/{categoryId}/topics/{topic}/questions:
     get:
       tags:
@@ -259,7 +330,7 @@ paths:
             schema:
               type: object
               properties:
-                id:
+                gameSessionId:
                   type: integer
                   format: int64
                   description: Game Session ID
