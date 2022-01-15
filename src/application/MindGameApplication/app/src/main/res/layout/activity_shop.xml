@@ -36,7 +36,7 @@
             app:selectedDotColor="@color/good_red"
             app:progressMode="true"
             android:layout_marginTop="16dp"
-            />
+            tools:ignore="MissingClass" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_buy"
