@@ -42,7 +42,7 @@
             android:id="@+id/btn_buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="purchase"
+            android:text="@string/shop_activity_purchase"
             android:layout_marginTop="8dp"
             android:background="@drawable/custom_button"
             />

@@ -29,9 +29,9 @@ class ShopActivity : AppCompatActivity() {
 
     private fun updateBuyButtonsTitle() {
         if (isItemPurchased()) {
-            binding.btnBuy.text = "select"
+            binding.btnBuy.setText(R.string.shop_activity_select)
         } else {
-            binding.btnBuy.text = "purchase"
+            binding.btnBuy.setText(R.string.shop_activity_purchase)
         }
     }
 
