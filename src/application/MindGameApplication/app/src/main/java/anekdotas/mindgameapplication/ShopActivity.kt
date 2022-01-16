@@ -149,6 +149,7 @@ class ShopActivity : AppCompatActivity() {
             })
         callGetPurchased()
         callGetAnalytics()
+        updateBuyButtonsTitle()
     }
 
 }
