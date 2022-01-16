@@ -111,7 +111,7 @@ class ResultsActivity : AppCompatActivity() {
     }
 
     private fun earnCoins(correctAnswers : Int) : Int{
-        val earnings = correctAnswers*(nextInt(1, 3))
+        val earnings = correctAnswers*(nextInt(1, 3))*1000
         StatObject.analytics.coins += earnings
         binding.tvCoins.text = earnings.toString() + " " + getString(R.string.results_activity_coins_gained)
         return earnings

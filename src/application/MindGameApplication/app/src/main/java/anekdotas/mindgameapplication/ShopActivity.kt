@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import anekdotas.mindgameapplication.adapters.HostsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityShopBinding
-import anekdotas.mindgameapplication.network.AnalyticModel
-import anekdotas.mindgameapplication.network.ApiClient
-import anekdotas.mindgameapplication.network.CoinModel
+import anekdotas.mindgameapplication.network.*
 import anekdotas.mindgameapplication.objects.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,15 +53,14 @@ class ShopActivity : AppCompatActivity() {
             finish()
         }
 
+        callGetPurchased()
         setUserCoinsBalance()
 
         setupViewPager(binding)
 
         binding.btnBuy.setOnClickListener {
             if(userCanPurchaseItem() && !isItemPurchased()){
-                callTakeCoins(ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price)
-                UserObjectConst.purchasedItemIds.add(binding.vp2HostPictures.currentItem)
-                setUserCoinsBalance()
+                callPostPurchase(ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id)
             }
             else if(isItemPurchased()){
                 Toast.makeText(this, getString(R.string.shop_activity_selected) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
@@ -103,28 +100,6 @@ class ShopActivity : AppCompatActivity() {
         viewPager2?.unregisterOnPageChangeCallback(pager2Callback)
     }
 
-    private fun callTakeCoins(price : Int) {
-        val clientPOST = ApiClient.apiService.postCoinsDelta("${Const.ipForNetworking}/users/coins",
-            "Bearer " + JwtObject.userJwt.token, CoinModel(price*-1)
-        )
-        clientPOST.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if(response.isSuccessful){
-                    Log.d("CoinPost Done! Woohoo!", ""+ response.code())
-                }
-                else {
-                    Log.d("CoinPost failed. Bruh, ${CoinModel(price)}", "" + response.code())
-                }
-            }
-            override fun onFailure(call: Call<Void>, response: Throwable) {
-                Log.e("Something went wrong! ", ""+response.message)
-            }
-        })
-        callGetAnalytics()
-        Thread.sleep(100)
-        setUserCoinsBalance()
-    }
-
     private fun callGetAnalytics() {
         val client = ApiClient.apiService.getAnalytics("${Const.ipForNetworking}/users/stats", "Bearer " + JwtObject.userJwt.token)
         client.enqueue(object : Callback<AnalyticModel> {
@@ -138,6 +113,42 @@ class ShopActivity : AppCompatActivity() {
                 Log.e("Something went wrong! ", ""+response.message)
             }
         })
+    }
+
+    private fun callGetPurchased() {
+        Log.d("buy:  ", "buy")
+        val client = ApiClient.apiService.getPurchased("${Const.ipForNetworking}/hosts/purchased", "Bearer " + JwtObject.userJwt.token)
+        client.enqueue(object : Callback<PurchaseModel> {
+            override fun onResponse(call: Call<PurchaseModel>, response: Response<PurchaseModel>) {
+                if(response.isSuccessful){
+                    Log.d("buy:  ", ""+ response.body())
+                    UserObjectConst.purchasedItemIds = response.body()!!.purchases
+                }
+            }
+            override fun onFailure(call: Call<PurchaseModel>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+    }
+
+    private fun callPostPurchase(hostId : Int) {
+            val clientPOST = ApiClient.apiService.postPurchase("${Const.ipForNetworking}/hosts/purchase",
+                "Bearer " + JwtObject.userJwt.token, PostPurchaseModel(hostId))
+            clientPOST.enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if(response.isSuccessful){
+                        Log.d("RatePost Done! Woohoo!", ""+ response.code())
+                    }
+                    else {
+                        Log.d("RatePost failed. Bruh, $hostId", "" + response.code())
+                    }
+                }
+                override fun onFailure(call: Call<Void>, response: Throwable) {
+                    Log.e("Something went wrong! ", ""+response.message)
+                }
+            })
+        callGetPurchased()
+        callGetAnalytics()
     }
 
 }

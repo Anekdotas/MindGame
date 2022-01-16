@@ -91,4 +91,14 @@ interface ApiServices {
         @Body post: CoinModel
     ): Call<Void>
 
+    @POST
+    fun postPurchase(
+        @Url url: String?,
+        @Header("Authorization") Bearer: String,
+        @Body post: PostPurchaseModel
+    ): Call<Void>
+
+    @GET
+    fun getPurchased(@Url url: String?,
+                     @Header("Authorization") Bearer: String,): Call<PurchaseModel>
 }
