@@ -1,0 +1,5 @@
+DROP TABLE purchases IF EXISTS;
+
+DROP TABLE hosts IF EXISTS;
+
+ALTER TABLE users DROP COLUMN coins;

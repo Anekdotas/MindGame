@@ -1,0 +1,12 @@
+ALTER TABLE users ADD COLUMN coins INTEGER DEFAULT 0 CHECK (coins >= 0);
+
+CREATE TABLE IF NOT EXISTS hosts (
+    id SERIAL PRIMARY KEY,
+    logo_url VARCHAR NOT NULL,
+    cost INTEGER DEFAULT 0 CHECK
+);
+
+CREATE TABLE IF NOT EXISTS purchases (
+    host_id INTEGER REFERENCES hosts,
+    user_id INTEGER REFERENCES users
+);
