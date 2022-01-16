@@ -107,7 +107,7 @@ func (h *Handlers) UpdateCoins(c echo.Context) error {
 		return err
 	}
 	req := new(struct {
-		CoinsDelta int `json:"coins"`
+		CoinsDelta int `json:"coinsDelta"`
 	})
 	if err := c.Bind(req); err != nil {
 		return c.String(http.StatusBadRequest, "Invalid request body")

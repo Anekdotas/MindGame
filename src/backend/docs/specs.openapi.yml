@@ -332,6 +332,8 @@ paths:
               schema:
                 type: object
                 properties:
+                  coins:
+                    type: integer
                   totalTimeSpent:
                     type: integer
                   correctAnswers:
@@ -351,6 +353,28 @@ paths:
                     type: integer
                   topicsPlayed:
                     type: integer
+        401:
+          $ref: '#/components/responses/Unauthorized'
+  /users/coins:
+    post:
+      tags:
+        - users
+      summary: Update User's coins value
+      operationId: updateCoins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                coinsDelta:
+                  type: integer
+                  description: Coins delta
+      responses:
+        200:
+          description: Success
+        400:
+          description: If resultion coins value is negative (< 0)
         401:
           $ref: '#/components/responses/Unauthorized'
   /sessions/finish:
