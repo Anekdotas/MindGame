@@ -15,4 +15,11 @@ object Time {
         UserObjectConst.sessionTimeMinutes = 0
         UserObjectConst.sessionTimeSeconds = 0
     }
+
+    fun formatTimeAnalytics(s: Int) : String{
+        var sec = (TimeUnit.SECONDS.toSeconds(s.toLong()) % 60).toInt()
+        var min = (TimeUnit.SECONDS.toMinutes(s.toLong()) % 60).toInt()
+        var h = TimeUnit.SECONDS.toHours(s.toLong()).toInt()
+        return "${h}h ${min}m ${sec}s"
+    }
 }

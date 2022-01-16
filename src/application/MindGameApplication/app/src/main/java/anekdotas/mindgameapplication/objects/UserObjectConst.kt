@@ -22,7 +22,6 @@ object UserObjectConst{
     var sessionTimeHours : Long = 0
     var ratedTopicsId = RatedListModel()
     var sessionStreak : Int = 0
-    var coins : Int = 0
     var userPhoto : Int = R.drawable.chuvas_cropped
     var purchasedItemIds = mutableListOf(0)
 

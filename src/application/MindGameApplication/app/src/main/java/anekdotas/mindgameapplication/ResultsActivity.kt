@@ -114,7 +114,7 @@ class ResultsActivity : AppCompatActivity() {
 
     private fun earnCoins(correctAnswers : Int) : Int{
         val earnings = correctAnswers*(nextInt(1, 3))
-        UserObjectConst.coins += earnings
+        StatObject.analytics.coins += earnings
         return earnings
     }
 
