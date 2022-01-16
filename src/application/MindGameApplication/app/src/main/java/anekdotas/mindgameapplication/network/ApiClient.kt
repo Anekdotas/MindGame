@@ -49,12 +49,12 @@ interface ApiServices {
                    @Body post: RatingModel
     ): Call<Void>
 
-    @POST("/auth/login")
+    @POST("/users/auth/login")
     fun pushPostLogin(
         @Body post: UserModelTest
     ): Call<JwtTestModel>
 
-    @POST("/auth/register")
+    @POST("/users/auth/register")
     fun pushPostSignup(
         @Body post: RegistrationModel
     ): Call<Void>

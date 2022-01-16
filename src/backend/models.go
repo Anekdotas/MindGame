@@ -41,9 +41,21 @@ type Choice struct {
 	AnswerID   int64
 }
 
-type Statistics struct {
+type GameAnalytics struct {
 	GameSessionID int64
 	Choices       []*Choice
 	TimeSpent     time.Duration
-	Streak        uint
+	Streak        uint16
+}
+
+type UserStatistics struct {
+	TotalTimeSpent           time.Duration
+	CorrectAnswers           uint16
+	CorrectAnswersPercentage float32
+	LongestStreak            uint16
+	LongestStreakTopic       string
+	AverageGameTime          time.Duration
+	TopicsCreated            uint16
+	TopicsRated              uint16
+	TopicsPlayed             uint16
 }

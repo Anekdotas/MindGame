@@ -273,7 +273,7 @@ paths:
           description: Success
         401:
           $ref: '#/components/responses/Unauthorized'
-  /auth/register:
+  /users/auth/register:
     post:
       tags:
         - users
@@ -296,7 +296,7 @@ paths:
       responses:
         201:
           $ref: '#/components/responses/ReturnedID'
-  /auth/login:
+  /users/auth/login:
     post:
       tags:
         - users
@@ -318,6 +318,41 @@ paths:
                   token:
                     type: string
                     description: Access token
+  /users/stats:
+    get:
+      tags:
+        - users
+      summary: Gets User's statistics
+      operationId: getUserStats
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalTimeSpent:
+                    type: integer
+                  correctAnswers:
+                    type: integer
+                  correctAnswersPercentage:
+                    type: number
+                    format: float
+                  longestStreak:
+                    type: integer
+                  longestStreakTopic:
+                    type: string
+                  averageGameTime:
+                    type: integer
+                  topicsCreated:
+                    type: integer
+                  topicsRated:
+                    type: integer
+                  topicsPlayed:
+                    type: integer
+        401:
+          $ref: '#/components/responses/Unauthorized'
   /sessions/finish:
     post:
       tags:
