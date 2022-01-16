@@ -87,7 +87,7 @@ class MainMenuActivity : AppCompatActivity() {
             .setTitle(getString(R.string.mainmenu_activity_ClosingMindGameApp))
             .setMessage(getString(R.string.mainmenu_activity_ExitConfirmationQuestion))
             .setPositiveButton(getString(R.string.mainmenu_activity_Yes)
-            ) { _, _ -> finish() }
+            ) { _, _ -> this.finishAffinity() }
             .setNegativeButton(getString(R.string.mainmenu_activity_No), null)
             .show()
     }

@@ -103,6 +103,11 @@
     <string name="main_activity_no_password_selected_toast">Įveskite slaptažodį</string>
     <string name="main_activity_login_details_incorrect_toast">Prisijungimo duomenys neteisingi, bandykite dar kartą</string>
     <string name="main_activity_welcome_overloaded_toast">Sveiki atvykę, %1$s</string>
+    <string name="mainmenu_activity_retry">Bandyti iš naujo</string>
+    <string name="mainmenu_activity_ClosingMindGameApp">Programėlė uždaroma</string>
+    <string name="mainmenu_activity_ExitConfirmationQuestion">Ar tikrai norite išeiti iš programėlės?</string>
+    <string name="mainmenu_activity_Yes">Taip</string>
+    <string name="mainmenu_activity_No">Ne</string>
     <!--    Main menu activity section   -->
     <string name="mainmenu_activity_title">Pagrindinis meniu</string>
     <string name="mainmenu_activity_shop">Parduotuvė</string>
@@ -118,7 +123,26 @@
     <string name="results_activity_time_spent_overloaded">Praleidote %1$d h %2$d min %3$d sek</string>
     <string name="results_activity_pls_rate_quiz">Prašome įvertinti šią temą!</string>
     <string name="results_activity_thanks_for_rating">Ačiū už vertinimą!</string>
-
-    <string name="retry">Bandyti vėl</string>
+    <string name="results_activity_coins_gained">uždirbta valiuta</string>
+    <!--    Profile activity section   -->
+    <string name="retry">Bandyti iš naujo</string>
     <string name="shop_activity_shop">Parduotuvė</string>
+    <string name="shop_activity_selected">Selected</string>
+    <string name="shop_activity_not_enough_coins">"Turite nepakankamai lėšų "</string>
+    <string name="shop_activity_current_coins">Dabartinis balansas:</string>
+    <string name="shop_activity_selected_host">"Pasirinktas vedėjęs: "</string>
+
+    <string name="profile_activity_title">Profile</string>
+    <string-array name="profile_activity_language_spinner">
+        <item>-</item>
+        <item>EN</item>
+        <item>RU</item>
+        <item>LT</item>
+    </string-array>
+    <string name="profile_activity_language">Kalba:</string>
+    <string name="profile_activity_coins">Balansas: </string>
+    <string name="shop_activity_purchase">pirkti</string>
+    <string name="shop_activity_select">pasirinkti</string>
+
+
 </resources>

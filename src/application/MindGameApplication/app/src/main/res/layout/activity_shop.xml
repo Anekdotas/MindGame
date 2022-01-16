@@ -12,6 +12,46 @@
 
     <include layout="@layout/action_bar" android:id="@+id/actionBar" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/actionBar">
+
+        <TextView
+            android:id="@+id/tv_Coins"
+            style="@style/ProfileBasicInfoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/constLayout"
+            android:text="@string/profile_activity_coins"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_coin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_coin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_Coins"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_CoinBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ProfileBasicInfoText"
+            tools:text="155"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_coin"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,13 +76,13 @@
             app:selectedDotColor="@color/good_red"
             app:progressMode="true"
             android:layout_marginTop="16dp"
-            />
+            tools:ignore="MissingClass" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="purchase"
+            android:text="@string/shop_activity_purchase"
             android:layout_marginTop="8dp"
             android:background="@drawable/custom_button"
             />

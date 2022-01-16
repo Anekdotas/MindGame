@@ -27,6 +27,8 @@ class ProfileActivity : AppCompatActivity() {
 
         actionBarSetup()
 
+        setUserCoinsBalance()
+
         setStatistics()
 
         binding.spLanguageSelection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -62,6 +64,10 @@ class ProfileActivity : AppCompatActivity() {
 
         val adapter = StatisticsAdapter(this, R.layout.statistics_record_element, statisticsList)
         binding.lvStatisticsList.adapter = adapter
+    }
+
+    private fun setUserCoinsBalance() {
+        binding.tvCoinBalance.setText(UserObjectConst.coins.toString())
     }
 
 //      - - - DEPRECATED - - -

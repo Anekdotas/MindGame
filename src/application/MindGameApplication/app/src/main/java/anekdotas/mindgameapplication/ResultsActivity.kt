@@ -32,8 +32,8 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvTime.text = getString(R.string.results_activity_time_spent_overloaded,UserObjectConst.sessionTimeHours,UserObjectConst.sessionTimeMinutes,UserObjectConst.sessionTimeSeconds)
         binding.tvScore.text = getString(R.string.results_activity_your_score_overloaded,myCorrectAnswers, totalQuestions)
         binding.tvRatingInfo.text = getString(R.string.results_activity_pls_rate_quiz)
-        binding.tvCoins.text = "${earnCoins(myCorrectAnswers)} coins earned"
-        println(StatObject.analytics.coins)
+        binding.tvCoins.text = earnCoins(myCorrectAnswers).toString() + getString(R.string.results_activity_coins_gained)
+        println(UserObjectConst.coins)
 
 
         if(StatObject.stats.choices[0].questionId==0){StatObject.stats.choices.removeAt(0)}
@@ -64,7 +64,7 @@ class ResultsActivity : AppCompatActivity() {
     private fun callNetworkUploadStats() {
 
             val clientPOST = ApiClient.apiService.postStats("${Const.ipForNetworking}/sessions/finish","Bearer " + JwtObject.userJwt.token,
-                StatModel(StatObject.stats.gameSessionId, StatObject.stats.choices, StatObject.stats.secondsSpent, StatObject.stats.streak))
+                StatModel(StatObject.stats.gameSessionId, StatObject.stats.choices, StatObject.stats.streak, StatObject.stats.secondsSpent))
             Log.d("callNetworkUploadStats", "${Const.ipForNetworking}/sessions/finish")
             Log.d("ChoiceModel", StatObject.stats.choices.toString())
             clientPOST.enqueue(object : Callback<Void> {
@@ -80,6 +80,7 @@ class ResultsActivity : AppCompatActivity() {
                     Log.e("Something went wrong! ", ""+response.message)
                 }
             })
+
     }
 
     private fun setRatingUI(){

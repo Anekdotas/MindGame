@@ -19,7 +19,10 @@ func (a *API) BindApiRoutes(e *echo.Echo, authMiddleware echo.MiddlewareFunc) {
 	questions.POST("", a.handlers.CreateQuestion, authMiddleware)
 	questions.POST("/:questionId/media", a.handlers.UploadMedia, authMiddleware)
 
-	authGroup := e.Group("/auth")
+	users := e.Group("/users")
+	users.GET("/stats", a.handlers.GetStats, authMiddleware)
+
+	authGroup := users.Group("/auth")
 	authGroup.POST("/register", a.handlers.RegisterUser)
 	authGroup.POST("/login", a.handlers.Login)
 

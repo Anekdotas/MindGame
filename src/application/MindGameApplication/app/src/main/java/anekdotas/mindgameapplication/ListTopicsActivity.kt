@@ -41,7 +41,7 @@ class ListTopicsActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     2 -> {
-                        TopicsObject.topicList = TopicsObject.topicList.sortedBy { it.rating }
+                        TopicsObject.topicList = (TopicsObject.topicList.sortedBy { it.rating }).reversed()
                         overridePendingTransition(0, 0)
                         finish()
                         overridePendingTransition(0, 0)
@@ -58,7 +58,6 @@ class ListTopicsActivity : AppCompatActivity() {
             }
 
         }
-
    }
 
     private fun actionBarSetup(){

@@ -23,5 +23,6 @@ object UserObjectConst{
     var ratedTopicsId = RatedListModel()
     var sessionStreak : Int = 0
     var userPhoto : Int = R.drawable.chuvas_cropped
+    var purchasedItemIds = mutableListOf(0)
 
 }

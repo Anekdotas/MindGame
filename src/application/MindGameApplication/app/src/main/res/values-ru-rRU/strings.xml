@@ -1,57 +1,57 @@
 <resources>
     <string name="app_name">MindGame Application</string>
     <string name="app_name_short">MindGame</string>
-    <string name="progress">progress</string>
+    <string name="progress">прогресс</string>
     <string name="question_placeholder">question placeholder</string>
-    <string name="answer">ANSWER</string>
-    <string name="finish">FINISH</string>
-    <string name="submit">SUBMIT</string>
+    <string name="answer">ОВТЕТ</string>
+    <string name="finish">ЗАКОНЧИТЬ</string>
+    <string name="submit">ОТПРАВИТЬ</string>
     <string name="quizapp">QuizApp</string>
-    <string name="congrats">Congrats!</string>
-    <string name="image">image</string>
-    <string name="result">Result</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="hint_username">Username</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="topic">Topic</string>
-    <string name="Topics">Topics</string>
-    <string name="category">category</string>
-    <string name="Categories">Categories</string>
-    <string name="play">Play</string>
-    <string name="built_by">Built by Team Anekdotas</string>
-    <string name="name">Name</string>
-    <string name="host">HOST:</string>
-    <string name="no_internet">No Internet Connection. Please restart the application with internet connection</string>
+    <string name="congrats">Отличная работа!</string>
+    <string name="image">картинка</string>
+    <string name="result">Результат</string>
+    <string name="title_activity_login">Логин</string>
+    <string name="hint_username">Имя пользователя</string>
+    <string name="prompt_email">Почта</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Войти или зарегистрироваться</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="welcome">"Добро пожаловать!"</string>
+    <string name="invalid_username">Неправильное имя пользователя</string>
+    <string name="invalid_password">Пароль должен быть длинее 5 символов</string>
+    <string name="login_failed">"Авторизация не удалась"</string>
+    <string name="topic">Игровой уровень</string>
+    <string name="Topics">Игровые уровени</string>
+    <string name="category">категория</string>
+    <string name="Categories">Категории</string>
+    <string name="play">Играть</string>
+    <string name="built_by">Создано командой Anekdotas</string>
+    <string name="name">Имя</string>
+    <string name="host">Ведущий:</string>
+    <string name="no_internet">Нет интернета. Пожалуйста подключитесь к интернету и перезапустите уровень</string>
 
     <!--    Topic creator title page section   -->
-    <string name="lvl_creator_topicname">Topic name: </string>
-    <string name="lvl_creator_topicdesc">Topic description: </string>
-    <string name="lvl_creator_desc">Description (max 110 symbols)</string>
-    <string name="lvl_creator_difficulty">Topic difficulty: </string>
-    <string name="lvl_creator_continue">continue</string>
-    <string name="lvl_creator_topic_name_taken_toast">Topic Name is Already Taken</string>
-    <string name="lvl_creator_no_topic_name_selected_toast">No Topic Name Selected</string>
-    <string name="lvl_creator_no_topic_desc_selected_toast">No Topic Description Selected</string>
+    <string name="lvl_creator_topicname">Название уровня: </string>
+    <string name="lvl_creator_topicdesc">Описание уровня: </string>
+    <string name="lvl_creator_desc">Описание (макс 110 символов)</string>
+    <string name="lvl_creator_difficulty">Сложность уровня: </string>
+    <string name="lvl_creator_continue">продолжить</string>
+    <string name="lvl_creator_topic_name_taken_toast">Уровнень с таким названием уже существует</string>
+    <string name="lvl_creator_no_topic_name_selected_toast">Не выбрано названия уровня</string>
+    <string name="lvl_creator_no_topic_desc_selected_toast">Нет описания уровня</string>
     <!--    Topic creator section   -->
-    <string name="lvl_creator_title">Topic Creator</string>
-    <string name="lvl_creator_prev_question">Previous Question</string>
-    <string name="lvl_creator_next_question">Next Question</string>
-    <string name="lvl_creator_update_question">Update Question</string>
-    <string name="lvl_creator_new_question">New question</string>
-    <string name="lvl_creator_answer_element">Answer: </string>
-    <string name="lvl_creator_answer_overloaded">Answer %1$d: </string>
-    <string name="lvl_creator_question_overloaded">Question %1$d: </string>
-    <string name="lvl_creator_answer_prompt">Input your answer option</string>
-    <string name="lvl_creator_question_prompt">Input your question</string>
-    <string name="lvl_creator_answernum_prompt">Select correct answer\'s number: </string>
-    <string name="lvl_creator_enter_name_of_topic">Name (max 35 symbols)</string>
+    <string name="lvl_creator_title">Создание игровых уровней</string>
+    <string name="lvl_creator_prev_question">Предыдущий вопрос</string>
+    <string name="lvl_creator_next_question">Следующий вопрос</string>
+    <string name="lvl_creator_update_question">Обновить вопрос</string>
+    <string name="lvl_creator_new_question">Добавить вопрос</string>
+    <string name="lvl_creator_answer_element">Ответ: </string>
+    <string name="lvl_creator_answer_overloaded">Ответ %1$d: </string>
+    <string name="lvl_creator_question_overloaded">Вопрос %1$d: </string>
+    <string name="lvl_creator_answer_prompt">Введите вариант ответа</string>
+    <string name="lvl_creator_question_prompt">Введите вопрос</string>
+    <string name="lvl_creator_answernum_prompt">Выбрать номер правильного ответа: </string>
+    <string name="lvl_creator_enter_name_of_topic">Название (макс 35 символов)</string>
     <string-array name="lvl_creator_correct_answers">
         <item>-</item>
         <item>1</item>
@@ -61,79 +61,90 @@
     </string-array>
 
     <string-array name="lvl_creator_spinner">
-        <item>Easy</item>
-        <item>Medium</item>
-        <item>Hard</item>
+        <item>Лёгкий</item>
+        <item>Средний</item>
+        <item>Тяжёлый</item>
     </string-array>
 
     <string-array name="topic_spinner">
-        <item>SortBy</item>
-        <item>Name</item>
-        <item>Rating</item>
-        <item>Difficulty</item>
+        <item>Сортировать</item>
+        <item>Названию</item>
+        <item>Рейтингу</item>
+        <item>Сложности</item>
     </string-array>
 
-    <string name="lvl_creator_save_question">save question</string>
-    <string name="lvl_creator_upload_topic_to_the_server">upload topic</string>
-    <string name="lvl_creator_enter_your_question">Input your question</string>
-    <string name="lvl_creator_question_saved_toast">Question saved</string>
-    <string name="lvl_creator_pls_create_question_first_toast">Please create at least one question first</string>
-    <string name="lvl_creator_creating_new_question_toast">Creating a new question</string>
-    <string name="lvl_creator_you_cannot_modify_toast">You cannot modify question as it is not saved yet</string>
-    <string name="lvl_creator_current_question_toast">Current question: </string>
-    <string name="lvl_creator_question_cannot_be_empty_toast">Question cannot be empty</string>
-    <string name="lvl_creator_option_cannot_be_empty_toast">Answer option %1$d cannot be empty</string>
-    <string name="lvl_creator_number_of_correct_answer_mustbe_toast">Number of the correct answer must be 1, 2, 3 or 4 </string>
-    <string name="lvl_creator_topic_uploaded_toast">Topic uploaded successfully</string>
-    <string name="lvl_creator_topic_upload_failed_toast">Topic upload failed, please try again</string>
-    <string name="lvl_creator_questions_uploaded_toast">Questions uploaded successfully</string>
-    <string name="lvl_creator_question_upload_failed_toast">Question upload failed, please try again</string>
+    <string name="lvl_creator_save_question">сохранить вопрос</string>
+    <string name="lvl_creator_upload_topic_to_the_server">Поделиться уровенем</string>
+    <string name="lvl_creator_enter_your_question">Введите вопрос</string>
+    <string name="lvl_creator_question_saved_toast">Вопрос сохранён</string>
+    <string name="lvl_creator_pls_create_question_first_toast">Пожалуйста для начала создайте хотя бы 1 вопрос</string>
+    <string name="lvl_creator_creating_new_question_toast">Создание нового вопроса</string>
+    <string name="lvl_creator_you_cannot_modify_toast">Вы не можете обновить вопрос, так как он ещё не был вами сохранён</string>
+    <string name="lvl_creator_current_question_toast">Текущий вопрос: </string>
+    <string name="lvl_creator_question_cannot_be_empty_toast">Вопрос не может быть пустым</string>
+    <string name="lvl_creator_option_cannot_be_empty_toast">Вариант ответа %1$d не может быть пустым</string>
+    <string name="lvl_creator_number_of_correct_answer_mustbe_toast">Номер правильного ответа должен быть 1, 2, 3 или 4 </string>
+    <string name="lvl_creator_topic_uploaded_toast">Уровень успешно сохранён</string>
+    <string name="lvl_creator_topic_upload_failed_toast">Не удалось сохраненить уровень, попробуйте ещё раз</string>
+    <string name="lvl_creator_questions_uploaded_toast">Вопросы успешно сохранены</string>
+    <string name="lvl_creator_question_upload_failed_toast">Сохранение вопроса(-ов) не удалось, попробуйте ещё раз</string>
     <!--    Registration section   -->
-    <string name="reg_activity_create_acc_prompt">Please create an account</string>
-    <string name="reg_activity_hint_repeat_password">Repeat Password</string>
-    <string name="reg_activity_register">Register</string>
-    <string name="reg_activity_no_email_selected_toast">No Email Selected</string>
-    <string name="reg_activity_no_password_repeat_selected_toast">No Password Repeat Selected</string>
-    <string name="reg_activity_glad_to_have_you_overloaded_toast">Glad to have you %1$s</string>
-    <string name="reg_activity_reg_details_incorrect_toast">Registration details incorrect, please try again</string>
+    <string name="reg_activity_create_acc_prompt">Пожалуйста создайте аккаунт</string>
+    <string name="reg_activity_hint_repeat_password">Повторите пароль</string>
+    <string name="reg_activity_register">Зарегистрироваться</string>
+    <string name="reg_activity_no_email_selected_toast">Не введена электроная почта</string>
+    <string name="reg_activity_no_password_repeat_selected_toast">Не введён повтор пароля</string>
+    <string name="reg_activity_glad_to_have_you_overloaded_toast">Рады тебя видеть, %1$s</string>
+    <string name="reg_activity_reg_details_incorrect_toast">Неверные данные регистрации, попробуйте ещё раз</string>
     <!--    Main activity section   -->
-    <string name="main_activity_connect_acc_prompt">Please create an account</string>
-    <string name="main_activity_dont_have_account">Don\'t have an account?</string>
-    <string name="main_activity_no_username_selected_toast">No Username Selected</string>
-    <string name="main_activity_no_password_selected_toast">No Password Selected</string>
-    <string name="main_activity_login_details_incorrect_toast">Login details incorrect, please try again</string>
-    <string name="main_activity_welcome_overloaded_toast">Welcome %1$s</string>
+    <string name="main_activity_connect_acc_prompt">Пожалуйста создайте аккаунт</string>
+    <string name="main_activity_dont_have_account">Ещё нет аккаунта?</string>
+    <string name="main_activity_no_username_selected_toast">Не введено имя пользователя</string>
+    <string name="main_activity_no_password_selected_toast">Не введён пароль</string>
+    <string name="main_activity_login_details_incorrect_toast">Неверные данные авторизации, попробуйте ещё раз</string>
+    <string name="main_activity_welcome_overloaded_toast">Добро пожаловать %1$s</string>
     <!--    Main menu activity section   -->
-    <string name="mainmenu_activity_title">Main Menu</string>
-    <string name="mainmenu_activity_shop">Shop</string>
-    <string name="mainmenu_activity_profile">Profile</string>
-    <string name="mainmenu_activity_exit">Exit</string>
-    <string name="mainmenu_activity_not_yet_implemented">Not yet implemented</string>
-    <string name="mainmenu_activity_retry">Retry</string>
-    <string name="mainmenu_activity_ClosingMindGameApp">Closing MindGameApp</string>
-    <string name="mainmenu_activity_ExitConfirmationQuestion">Are you sure you want to close this application?</string>
-    <string name="mainmenu_activity_Yes">Yes</string>
-    <string name="mainmenu_activity_No">No</string>
+    <string name="mainmenu_activity_title">Меню</string>
+    <string name="mainmenu_activity_shop">Магазин</string>
+    <string name="mainmenu_activity_profile">Профиль</string>
+    <string name="mainmenu_activity_exit">Выход</string>
+    <string name="mainmenu_activity_not_yet_implemented">Пока не реализовано</string>
+    <string name="mainmenu_activity_retry">Повторить</string>
+    <string name="mainmenu_activity_ClosingMindGameApp">Закрываем MindGameApp</string>
+    <string name="mainmenu_activity_ExitConfirmationQuestion">Вы уверены, что хотите выйти?</string>
+    <string name="mainmenu_activity_Yes">Да</string>
+    <string name="mainmenu_activity_No">Нет</string>
     <!--    info activity section   -->
-    <string name="info_activity_easy">Easy</string>
-    <string name="info_activity_moderate">Moderate</string>
-    <string name="info_activity_hard">Hard</string>
+    <string name="info_activity_easy">Лёгкий</string>
+    <string name="info_activity_moderate">Средний</string>
+    <string name="info_activity_hard">Тяжёлый</string>
     <!--    Results activity section   -->
-    <string name="results_activity_your_score_overloaded">Your score is %1$d / %2$d </string>
-    <string name="results_activity_time_spent_overloaded">Time spent %1$d h %2$d min %3$d sec</string>
-    <string name="results_activity_pls_rate_quiz">Please rate this quiz!</string>
-    <string name="results_activity_thanks_for_rating">Thank you for rating!</string>
+    <string name="results_activity_your_score_overloaded">Ваш счёт: %1$d из %2$d </string>
+    <string name="results_activity_time_spent_overloaded">Проведено времени %1$d ч %2$d мин %3$d сек</string>
+    <string name="results_activity_pls_rate_quiz">Оцените уровень</string>
+    <string name="results_activity_thanks_for_rating">Спасибо за оценку!</string>
+    <string name="results_activity_coins_gained">монеток получено</string>
 
     <!--    Profile activity section   -->
-    <string name="profile_activity_title">Profile</string>
+    <string name="profile_activity_title">Профиль</string>
     <string-array name="profile_activity_language_spinner">
         <item>-</item>
-        <item>EN</item>
-        <item>RU</item>
-        <item>LT</item>
+        <item>Англ</item>
+        <item>Рус</item>
+        <item>Лит</item>
     </string-array>
-    <string name="profile_activity_language">Language:</string>
-    <string name="profile_activity_coins">Coins: </string>
-    <string name="retry">Retry</string>
-    <string name="shop_activity_shop">Shop</string>
+    <string name="profile_activity_language">Язык:</string>
+    <string name="profile_activity_coins">"Монетки: "</string>
+
+    <!--    Shop activity section   -->
+    <string name="shop_activity_purchase">купить</string>
+    <string name="shop_activity_select">выбрать</string>
+    <string name="shop_activity_shop">Магазин</string>
+    <string name="shop_activity_selected">Выбрано</string>
+    <string name="shop_activity_not_enough_coins">"У вас не хватает монет на "</string>
+    <string name="shop_activity_current_coins">Текущий баланс:</string>
+    <string name="shop_activity_selected_host">"Выбраный ведущий: "</string>
+
+
+    <string name="retry">Попытаться ещё раз</string>
 </resources>
