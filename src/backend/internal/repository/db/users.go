@@ -57,7 +57,7 @@ func (r *Repo) GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserS
 	if err != nil {
 		return nil, err
 	}
-	stats.LongestStreak, stats.LongestStreakTopicID, err = r.getLongestStreak(ctx, userID)
+	stats.LongestStreak, stats.LongestStreakTopic, err = r.getLongestStreak(ctx, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -89,13 +89,14 @@ func (r *Repo) getCorrectAnswers(ctx context.Context, userID int64) (uint16, flo
 	return record.CorrectAnswers, record.CorrectAnswersPercentage, translateDBError(r.db.GetContext(ctx, record, r.db.Rebind(stmt), userID))
 }
 
-func (r *Repo) getLongestStreak(ctx context.Context, userID int64) (longestStreak uint16, topicID int64, err error) {
+func (r *Repo) getLongestStreak(ctx context.Context, userID int64) (longestStreak uint16, topicName string, err error) {
 	stmt := fmt.Sprintf("SELECT max(streak) FROM %s WHERE user_id = ?", GameSessionsTableName)
 	if err := r.db.GetContext(ctx, &longestStreak, r.db.Rebind(stmt), userID); err != nil {
-		return 0, 0, translateDBError(err)
+		return 0, "", translateDBError(err)
 	}
 	stmt = fmt.Sprintf(
-		`SELECT topic_id FROM questions AS q
+		`SELECT name FROM %s AS t
+		JOIN %s AS q ON q.topic_id = t.id
 		JOIN %s AS qs ON qs.question_id = q.id
 		JOIN %s AS gs ON gs.id = qs.game_session_id
 		JOIN (
@@ -103,9 +104,9 @@ func (r *Repo) getLongestStreak(ctx context.Context, userID int64) (longestStrea
 		) AS temp_gs ON temp_gs.user_id = gs.user_id
 		WHERE gs.user_id = ? AND gs.streak = temp_gs.streak
 		LIMIT 1`,
-		SessionQuestionsTableName, GameSessionsTableName, GameSessionsTableName,
+		TopicsTableName, QuestionsTableName, SessionQuestionsTableName, GameSessionsTableName, GameSessionsTableName,
 	)
-	return longestStreak, topicID, translateDBError(r.db.GetContext(ctx, &topicID, r.db.Rebind(stmt), userID))
+	return longestStreak, topicName, translateDBError(r.db.GetContext(ctx, &topicName, r.db.Rebind(stmt), userID))
 }
 
 func (r *Repo) getGameTimeStats(ctx context.Context, userID int64) (time.Duration, time.Duration, error) {
@@ -145,59 +146,3 @@ func (r *Repo) getTopicsStats(ctx context.Context, userID int64) (topicsCreated 
 	)
 	return topicsCreated, topicsRated, topicsPlayed, r.db.GetContext(ctx, &topicsPlayed, r.db.Rebind(stmt), userID)
 }
-
-/*
-
--- CorrectAnswers and CorrectAnswersPercentage
-SELECT sum(is_correct::int) as correct_answers, round(avg(is_correct::int) * 100, 2) as correct_answers_percentage FROM
-(
-	SELECT COALESCE(ca.answer_id=q.correct_answer, 'f') as is_correct
-	FROM game_sessions as gs
-	JOIN questions_sessions as qs on qs.game_session_id = gs.id
-	LEFT JOIN chosen_answers as ca on ca.game_session_id = gs.id and ca.question_id = qs.question_id
-	JOIN questions as q on q.id = qs.question_id
-	WHERE gs.user_id = 2
-) as sq;
-
--- LongestStreak
-SELECT max(streak) FROM game_sessions WHERE user_id = ?;
-
--- LongestStreakTopicID
-SELECT topic_id FROM questions as q
-JOIN questions_sessions as qs on qs.question_id = q.id
-JOIN game_sessions as gs on gs.id = qs.game_session_id
-JOIN (
-	SELECT user_id, max(streak) as streak FROM game_sessions group by user_id
-) as temp_gs on temp_gs.user_id = gs.user_id
-WHERE gs.user_id = 2 and gs.streak = temp_gs.streak
-limit 1;
-
--- AverageGameTime
-SELECT avg(time_spent) FROM game_sessions WHERE user_id = 2 and time_spent > 0;
-
--- BestKnownTopic
-SELECT topic_id FROM
-(
-	SELECT topic_id, sum((ca.answer_id=q.correct_answer)::int) as most_answers
-	FROM game_sessions as gs
-	JOIN chosen_answers as ca on ca.game_session_id = gs.id
-	JOIN questions as q on q.id = ca.question_id
-	WHERE gs.user_id = 2
-	group by topic_id
-) as sq;
-
--- TopicsCreated
-SELECT count(id) as topics_created FROM topics WHERE author_id = 2;
-
--- TopicsRated
-SELECT count(topic_id) FROM rates as r
-JOIN users as u on u.id = r.user_id
-WHERE u.id = 2;
-
--- TopicsPlayed
-SELECT count(distinct q.topic_id) FROM questions as q
-JOIN questions_sessions as qs on qs.question_id = q.id
-JOIN game_sessions as gs on gs.id = qs.game_session_id
-WHERE gs.user_id = 2;
-
-*/

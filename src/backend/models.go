@@ -53,7 +53,7 @@ type UserStatistics struct {
 	CorrectAnswers           uint16
 	CorrectAnswersPercentage float32
 	LongestStreak            uint16
-	LongestStreakTopicID     int64
+	LongestStreakTopic       string
 	AverageGameTime          time.Duration
 	TopicsCreated            uint16
 	TopicsRated              uint16

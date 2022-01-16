@@ -22,7 +22,7 @@ type UserStatistics struct {
 	CorrectAnswers           uint16  `json:"correctAnswers,omitempty"`
 	CorrectAnswersPercentage float32 `json:"correctAnswersPercentage,omitempty"`
 	LongestStreak            uint16  `json:"longestStreak,omitempty"`
-	LongestStreakTopicID     int64   `json:"longestStreakTopicId,omitempty"`
+	LongestStreakTopic       string  `json:"longestStreakTopic,omitempty"`
 	AverageGameTime          uint16  `json:"averageGameTime,omitempty"`
 	TopicsCreated            uint16  `json:"topicsCreated,omitempty"`
 	TopicsRated              uint16  `json:"topicsRated,omitempty"`
@@ -91,7 +91,7 @@ func (h *Handlers) GetStats(c echo.Context) error {
 		CorrectAnswers:           stats.CorrectAnswers,
 		CorrectAnswersPercentage: stats.CorrectAnswersPercentage,
 		LongestStreak:            stats.LongestStreak,
-		LongestStreakTopicID:     stats.LongestStreakTopicID,
+		LongestStreakTopic:       stats.LongestStreakTopic,
 		AverageGameTime:          uint16(stats.AverageGameTime.Seconds()),
 		TopicsCreated:            stats.TopicsCreated,
 		TopicsRated:              stats.TopicsRated,

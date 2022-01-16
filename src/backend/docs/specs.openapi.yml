@@ -341,9 +341,8 @@ paths:
                     format: float
                   longestStreak:
                     type: integer
-                  longestStreakTopicId:
-                    type: integer
-                    format: int64
+                  longestStreakTopic:
+                    type: string
                   averageGameTime:
                     type: integer
                   topicsCreated:
