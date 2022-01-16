@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import anekdotas.mindgameapplication.adapters.HostsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityShopBinding
@@ -19,6 +18,21 @@ class ShopActivity : AppCompatActivity() {
     private var viewPager2:ViewPager2? = null
 
     private val pager2Callback = object:ViewPager2.OnPageChangeCallback(){
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            updateBuyButtonsTitle()
+        }
+    }
+
+    private fun updateBuyButtonsTitle() {
+        if (isItemPurchased()) {
+            binding.btnBuy.setText(R.string.shop_activity_select)
+        } else {
+            binding.btnBuy.setText(R.string.shop_activity_purchase)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +50,39 @@ class ShopActivity : AppCompatActivity() {
             finish()
         }
 
+        setUserCoinsBalance()
+
         setupViewPager(binding)
 
         binding.btnBuy.setOnClickListener {
-            Toast.makeText(this, getString(R.string.shop_activity_selected_host) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
-            UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
-//            Log.d("Purchase item:", "\tPosition: " + binding.vp2HostPictures.currentItem)
-//            Log.d("Purchase item:", "\tName: " + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName)
+            if(userCanPurchaseItem() && !isItemPurchased()){
+                UserObjectConst.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
+                UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
+                UserObjectConst.purchasedItemIds.add(binding.vp2HostPictures.currentItem)
+                setUserCoinsBalance()
+            }
+            else if(isItemPurchased()){
+                Toast.makeText(this, getString(R.string.shop_activity_selected) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(this,
+                    getString(R.string.shop_activity_not_enough_coins) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName
+                            + "\n" + getString(R.string.shop_activity_current_coins) + " ${UserObjectConst.coins}",
+                        Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    private fun setUserCoinsBalance() {
+        binding.tvCoinBalance.setText(UserObjectConst.coins.toString())
+    }
+
+    private fun isItemPurchased(): Boolean {
+        return ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id in UserObjectConst.purchasedItemIds
+    }
+
+    private fun userCanPurchaseItem(): Boolean {
+        return UserObjectConst.coins>=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
     }
 
     //ViewPager2 setup

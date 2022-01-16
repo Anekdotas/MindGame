@@ -46,10 +46,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
             <TextView
+                android:id="@+id/tv_CoinBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ProfileBasicInfoText"
-                android:text="155"
+                tools:text="155"
+                android:layout_marginStart="5dp"
                 app:layout_constraintStart_toEndOf="@id/iv_coin"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
