@@ -19,4 +19,6 @@ type Repository interface {
 	UpdateStatistics(ctx context.Context, userID int64, statistics *anekdotas.GameAnalytics) error
 	UpdateUserCoins(ctx context.Context, userID int64, coinsDelta int) error
 	GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserStatistics, error)
+	GetPurchasedHosts(ctx context.Context, userID int64) ([]int64, error)
+	CreateHostPurchase(ctx context.Context, hostID, userID int64) error
 }

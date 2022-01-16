@@ -19,6 +19,10 @@ func (a *API) BindApiRoutes(e *echo.Echo, authMiddleware echo.MiddlewareFunc) {
 	questions.POST("", a.handlers.CreateQuestion, authMiddleware)
 	questions.POST("/:questionId/media", a.handlers.UploadMedia, authMiddleware)
 
+	hosts := e.Group("/hosts")
+	hosts.GET("/purchased", a.handlers.GetPurchasedHosts, authMiddleware)
+	hosts.POST("/purchase", a.handlers.PurchaseHost, authMiddleware)
+
 	users := e.Group("/users")
 	users.GET("/stats", a.handlers.GetStats, authMiddleware)
 	users.POST("/coins", a.handlers.UpdateCoins, authMiddleware)
