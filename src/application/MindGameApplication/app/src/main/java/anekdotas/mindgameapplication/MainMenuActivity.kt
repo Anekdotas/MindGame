@@ -93,7 +93,6 @@ class MainMenuActivity : AppCompatActivity() {
     }
 
     private fun callGetAnalytics() {
-        Log.d("Anal", "called")
         val client = ApiClient.apiService.getAnalytics("${Const.ipForNetworking}/users/stats", "Bearer " + JwtObject.userJwt.token)
         client.enqueue(object : Callback<AnalyticModel> {
             override fun onResponse(call: Call<AnalyticModel>, response: Response<AnalyticModel>) {

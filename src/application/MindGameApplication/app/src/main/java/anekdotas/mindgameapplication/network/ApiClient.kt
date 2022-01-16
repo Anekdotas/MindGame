@@ -53,6 +53,7 @@ interface ApiServices {
                    @Body post: RatingModel
     ): Call<Void>
 
+
     @POST("/users/auth/login")
     fun pushPostLogin(
         @Body post: UserModelTest
@@ -81,6 +82,13 @@ interface ApiServices {
         @Url url: String?,
         @Header("Authorization") Bearer: String,
         @Body post: StatModel
+    ): Call<Void>
+
+    @POST
+    fun postCoinsDelta(
+        @Url url: String?,
+        @Header("Authorization") Bearer: String,
+        @Body post: CoinModel
     ): Call<Void>
 
 }

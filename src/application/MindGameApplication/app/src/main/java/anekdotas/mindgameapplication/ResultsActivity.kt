@@ -41,16 +41,16 @@ class ResultsActivity : AppCompatActivity() {
         Log.d("statscheckcorrect", QuestionsObject.questionList.toString())
         Log.d("stats", StatObject.stats.toString())
 
-        callNetworkUploadStats()
+        if(StatObject.stats.choices.isNotEmpty()){callNetworkUploadStats()}
 
         binding.btnFinish.setOnClickListener{
             Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent(this, MainMenuActivity::class.java))
             finish()
         }
-
+        callAwardCoins(myCorrectAnswers)
         setRatingUI()
-
+        Thread.sleep(100)
         restartStats()
 
         binding.btnRetry.setOnClickListener{
@@ -104,7 +104,6 @@ class ResultsActivity : AppCompatActivity() {
         }
 
     private fun restartStats(){
-        Thread.sleep(100)
         StatObject.stats.choices.clear()
         StatObject.stats.choices.add(ChoiceModel(0,0))
         StatObject.stats.gameSessionId=0
@@ -133,7 +132,6 @@ class ResultsActivity : AppCompatActivity() {
 
 
     private fun callRateTopic(rating : Double) {
-
         val clientPOST = ApiClient.apiService.postRating("${Const.ipForNetworking}/categories/${CategoriesObject.selectedCategory!!.id}/topics/${TopicsObject.selectedTopic.id}/rate",
             "Bearer " + JwtObject.userJwt.token,
             RatingModel(rating))
@@ -144,6 +142,24 @@ class ResultsActivity : AppCompatActivity() {
                 }
                 else {
                     Log.d("RatePost failed. Bruh, ${RatingModel(rating)}", "" + response.code())
+                }
+            }
+            override fun onFailure(call: Call<Void>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+    }
+
+    private fun callAwardCoins(correctAnswers : Int) {
+        val clientPOST = ApiClient.apiService.postCoinsDelta("${Const.ipForNetworking}/users/coins",
+            "Bearer " + JwtObject.userJwt.token, CoinModel(earnCoins(correctAnswers)))
+        clientPOST.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.d("CoinPost Done! Woohoo!", ""+ response.code())
+                }
+                else {
+                    Log.d("CoinPost failed. Bruh, ${CoinModel(earnCoins(correctAnswers))}", "" + response.code())
                 }
             }
             override fun onFailure(call: Call<Void>, response: Throwable) {
