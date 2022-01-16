@@ -392,6 +392,17 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ids:
+                    type: array
+                    items:
+                      type: integer
+                      format: int64
+                      description: Host ID
         401:
           $ref: '#/components/responses/Unauthorized'
       security:
