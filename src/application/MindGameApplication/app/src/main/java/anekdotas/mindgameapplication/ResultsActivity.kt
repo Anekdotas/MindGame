@@ -32,7 +32,6 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvTime.text = getString(R.string.results_activity_time_spent_overloaded,UserObjectConst.sessionTimeHours,UserObjectConst.sessionTimeMinutes,UserObjectConst.sessionTimeSeconds)
         binding.tvScore.text = getString(R.string.results_activity_your_score_overloaded,myCorrectAnswers, totalQuestions)
         binding.tvRatingInfo.text = getString(R.string.results_activity_pls_rate_quiz)
-        binding.tvCoins.text = earnCoins(myCorrectAnswers).toString() + getString(R.string.results_activity_coins_gained)
         println(StatObject.analytics.coins)
 
 
@@ -114,6 +113,7 @@ class ResultsActivity : AppCompatActivity() {
     private fun earnCoins(correctAnswers : Int) : Int{
         val earnings = correctAnswers*(nextInt(1, 3))
         StatObject.analytics.coins += earnings
+        binding.tvCoins.text = earnings.toString() + " " + getString(R.string.results_activity_coins_gained)
         return earnings
     }
 

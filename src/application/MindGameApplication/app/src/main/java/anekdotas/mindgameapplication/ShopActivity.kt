@@ -9,9 +9,13 @@ import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import anekdotas.mindgameapplication.adapters.HostsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityShopBinding
-import anekdotas.mindgameapplication.objects.ShopHostsList
-import anekdotas.mindgameapplication.objects.StatObject
-import anekdotas.mindgameapplication.objects.UserObjectConst
+import anekdotas.mindgameapplication.network.AnalyticModel
+import anekdotas.mindgameapplication.network.ApiClient
+import anekdotas.mindgameapplication.network.CoinModel
+import anekdotas.mindgameapplication.objects.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ShopActivity : AppCompatActivity() {
     private lateinit var binding : ActivityShopBinding
@@ -57,8 +61,7 @@ class ShopActivity : AppCompatActivity() {
 
         binding.btnBuy.setOnClickListener {
             if(userCanPurchaseItem() && !isItemPurchased()){
-                StatObject.analytics.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
-                UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
+                callTakeCoins(ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price)
                 UserObjectConst.purchasedItemIds.add(binding.vp2HostPictures.currentItem)
                 setUserCoinsBalance()
             }
@@ -99,4 +102,42 @@ class ShopActivity : AppCompatActivity() {
         super.onDestroy()
         viewPager2?.unregisterOnPageChangeCallback(pager2Callback)
     }
+
+    private fun callTakeCoins(price : Int) {
+        val clientPOST = ApiClient.apiService.postCoinsDelta("${Const.ipForNetworking}/users/coins",
+            "Bearer " + JwtObject.userJwt.token, CoinModel(price*-1)
+        )
+        clientPOST.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.d("CoinPost Done! Woohoo!", ""+ response.code())
+                }
+                else {
+                    Log.d("CoinPost failed. Bruh, ${CoinModel(price)}", "" + response.code())
+                }
+            }
+            override fun onFailure(call: Call<Void>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+        callGetAnalytics()
+        Thread.sleep(100)
+        setUserCoinsBalance()
+    }
+
+    private fun callGetAnalytics() {
+        val client = ApiClient.apiService.getAnalytics("${Const.ipForNetworking}/users/stats", "Bearer " + JwtObject.userJwt.token)
+        client.enqueue(object : Callback<AnalyticModel> {
+            override fun onResponse(call: Call<AnalyticModel>, response: Response<AnalyticModel>) {
+                if(response.isSuccessful){
+                    Log.d("AnalyticsBody ", ""+ response.body())
+                    StatObject.analytics= response.body()!!
+                }
+            }
+            override fun onFailure(call: Call<AnalyticModel>, response: Throwable) {
+                Log.e("Something went wrong! ", ""+response.message)
+            }
+        })
+    }
+
 }
