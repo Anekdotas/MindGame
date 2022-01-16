@@ -23,7 +23,7 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        binding.tvCoinCount.text=UserObjectConst.coins.toString()
+        binding.tvCoinCount.text=StatObject.analytics.coins.toString()
 
         actionBarSetup()
 
@@ -53,8 +53,8 @@ class ProfileActivity : AppCompatActivity() {
         statisticsList.add(StatisticsRecord("Correct Answers: ", StatObject.analytics.correctAnswers.toString()))
         statisticsList.add(StatisticsRecord("Correct Answers Percentage: ", StatObject.analytics.correctAnswersPercentage.toString() + "%"))
         statisticsList.add(StatisticsRecord("Longest Streak ", StatObject.analytics.longestStreak.toString()))
-
         statisticsList.add(StatisticsRecord("Average Game Time: ",Time.formatTimeAnalytics(StatObject.analytics.averageGameTime)))
+        statisticsList.add(StatisticsRecord("Long Streak Topic: ", StatObject.analytics.longestStreakTopic))
         statisticsList.add(StatisticsRecord("Topics Created: ", StatObject.analytics.topicsCreated.toString()))
         statisticsList.add(StatisticsRecord("Topics Rated: ", StatObject.analytics.topicsRated.toString()))
         statisticsList.add(StatisticsRecord("Topics Played: ", StatObject.analytics.topicsPlayed.toString()))

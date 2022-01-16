@@ -33,7 +33,7 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvScore.text = getString(R.string.results_activity_your_score_overloaded,myCorrectAnswers, totalQuestions)
         binding.tvRatingInfo.text = getString(R.string.results_activity_pls_rate_quiz)
         binding.tvCoins.text = "${earnCoins(myCorrectAnswers)} coins earned"
-        println(UserObjectConst.coins)
+        println(StatObject.analytics.coins)
 
 
         if(StatObject.stats.choices[0].questionId==0){StatObject.stats.choices.removeAt(0)}
@@ -113,7 +113,7 @@ class ResultsActivity : AppCompatActivity() {
 
     private fun earnCoins(correctAnswers : Int) : Int{
         val earnings = correctAnswers*(nextInt(1, 3))
-        UserObjectConst.coins += earnings
+        StatObject.analytics.coins += earnings
         return earnings
     }
 
