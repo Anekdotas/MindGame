@@ -101,6 +101,10 @@ func (l *Logic) AuthenticateUser(ctx context.Context, user *anekdotas.User, pass
 	return l.auth.NewToken(userID)
 }
 
+func (l *Logic) UpdateUserCoins(ctx context.Context, userID int64, coinsDelta int) error {
+	return l.repo.UpdateUserCoins(ctx, userID, coinsDelta)
+}
+
 func (l *Logic) GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserStatistics, error) {
 	return l.repo.GetUserStats(ctx, userID)
 }

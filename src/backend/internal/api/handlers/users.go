@@ -18,15 +18,16 @@ type User struct {
 }
 
 type UserStatistics struct {
-	TotalTimeSpent           uint16  `json:"totalTimeSpent,omitempty"`
-	CorrectAnswers           uint16  `json:"correctAnswers,omitempty"`
-	CorrectAnswersPercentage float32 `json:"correctAnswersPercentage,omitempty"`
-	LongestStreak            uint16  `json:"longestStreak,omitempty"`
-	LongestStreakTopic       string  `json:"longestStreakTopic,omitempty"`
-	AverageGameTime          uint16  `json:"averageGameTime,omitempty"`
-	TopicsCreated            uint16  `json:"topicsCreated,omitempty"`
-	TopicsRated              uint16  `json:"topicsRated,omitempty"`
-	TopicsPlayed             uint16  `json:"topicsPlayed,omitempty"`
+	Coins                    uint    `json:"coins"`
+	TotalTimeSpent           uint16  `json:"totalTimeSpent"`
+	CorrectAnswers           uint16  `json:"correctAnswers"`
+	CorrectAnswersPercentage float32 `json:"correctAnswersPercentage"`
+	LongestStreak            uint16  `json:"longestStreak"`
+	LongestStreakTopic       string  `json:"longestStreakTopic"`
+	AverageGameTime          uint16  `json:"averageGameTime"`
+	TopicsCreated            uint16  `json:"topicsCreated"`
+	TopicsRated              uint16  `json:"topicsRated"`
+	TopicsPlayed             uint16  `json:"topicsPlayed"`
 }
 
 func (h *Handlers) RegisterUser(c echo.Context) error {
@@ -87,6 +88,7 @@ func (h *Handlers) GetStats(c echo.Context) error {
 		return err
 	}
 	return c.JSON(http.StatusOK, &UserStatistics{
+		Coins:                    stats.Coins,
 		TotalTimeSpent:           uint16(stats.TotalTimeSpent.Seconds()),
 		CorrectAnswers:           stats.CorrectAnswers,
 		CorrectAnswersPercentage: stats.CorrectAnswersPercentage,
@@ -97,4 +99,25 @@ func (h *Handlers) GetStats(c echo.Context) error {
 		TopicsRated:              stats.TopicsRated,
 		TopicsPlayed:             stats.TopicsPlayed,
 	})
+}
+
+func (h *Handlers) UpdateCoins(c echo.Context) error {
+	userID, err := auth.GetUserIDFromToken(c.Get("user"))
+	if err != nil {
+		return err
+	}
+	req := new(struct {
+		CoinsDelta int `json:"coins"`
+	})
+	if err := c.Bind(req); err != nil {
+		return c.String(http.StatusBadRequest, "Invalid request body")
+	}
+	if err := h.logic.UpdateUserCoins(c.Request().Context(), userID, req.CoinsDelta); err != nil {
+		if errors.Is(err, anekdotas.ErrNegativeCoinsValue) {
+			return c.String(http.StatusBadRequest, "Negative coins result value is not permitted")
+		}
+		c.Logger().Error(err)
+		return err
+	}
+	return nil
 }

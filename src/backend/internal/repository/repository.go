@@ -17,5 +17,6 @@ type Repository interface {
 	CreateUser(ctx context.Context, user *anekdotas.User, passwordHash []byte) (id int64, err error)
 	GetUserPasswordHash(ctx context.Context, username string) (int64, []byte, error)
 	UpdateStatistics(ctx context.Context, userID int64, statistics *anekdotas.GameAnalytics) error
+	UpdateUserCoins(ctx context.Context, userID int64, coinsDelta int) error
 	GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserStatistics, error)
 }

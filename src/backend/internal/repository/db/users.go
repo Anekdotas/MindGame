@@ -50,9 +50,19 @@ func (r *Repo) GetUserPasswordHash(ctx context.Context, username string) (int64,
 	return record.ID, record.PasswordHash, nil
 }
 
+func (r *Repo) UpdateUserCoins(ctx context.Context, userID int64, coinsDelta int) error {
+	stmt := fmt.Sprintf("UPDATE %s SET coins = coins + ? WHERE id = ?", UsersTableName)
+	_, err := r.db.ExecContext(ctx, r.db.Rebind(stmt), coinsDelta, userID)
+	return translateDBError(err)
+}
+
 func (r *Repo) GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserStatistics, error) {
 	stats := new(anekdotas.UserStatistics)
 	var err error
+	stats.Coins, err = r.getUserCoins(ctx, userID)
+	if err != nil {
+		return nil, err
+	}
 	stats.CorrectAnswers, stats.CorrectAnswersPercentage, err = r.getCorrectAnswers(ctx, userID)
 	if err != nil {
 		return nil, err
@@ -67,6 +77,11 @@ func (r *Repo) GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserS
 	}
 	stats.TopicsCreated, stats.TopicsRated, stats.TopicsPlayed, err = r.getTopicsStats(ctx, userID)
 	return stats, err
+}
+
+func (r *Repo) getUserCoins(ctx context.Context, userID int64) (coins uint, err error) {
+	stmt := fmt.Sprintf("SELECT coins FROM %s WHERE id = ?", UsersTableName)
+	return coins, translateDBError(r.db.GetContext(ctx, &coins, r.db.Rebind(stmt), userID))
 }
 
 func (r *Repo) getCorrectAnswers(ctx context.Context, userID int64) (uint16, float32, error) {

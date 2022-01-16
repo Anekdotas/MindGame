@@ -21,6 +21,7 @@ func (a *API) BindApiRoutes(e *echo.Echo, authMiddleware echo.MiddlewareFunc) {
 
 	users := e.Group("/users")
 	users.GET("/stats", a.handlers.GetStats, authMiddleware)
+	users.POST("/coins", a.handlers.UpdateCoins, authMiddleware)
 
 	authGroup := users.Group("/auth")
 	authGroup.POST("/register", a.handlers.RegisterUser)

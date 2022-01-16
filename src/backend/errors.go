@@ -10,4 +10,5 @@ var (
 	ErrAlreadyExists               = errors.New("already exists")
 	ErrQuestionsAndAnswersMismatch = errors.New("questions and answers mismatch")
 	ErrGameSessionAlreadyFinished  = errors.New("game session already finished")
+	ErrNegativeCoinsValue          = errors.New("negative coins value not allowed")
 )
