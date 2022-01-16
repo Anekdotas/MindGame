@@ -23,7 +23,7 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        binding.tvCoinCount.text=StatObject.analytics.coins.toString()
+        binding.tvCoinBalance.text=StatObject.analytics.coins.toString()
 
         actionBarSetup()
 
@@ -67,7 +67,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setUserCoinsBalance() {
-        binding.tvCoinBalance.setText(UserObjectConst.coins.toString())
+        binding.tvCoinBalance.setText(StatObject.analytics.coins.toString())
     }
 
 //      - - - DEPRECATED - - -

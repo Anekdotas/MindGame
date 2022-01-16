@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import anekdotas.mindgameapplication.adapters.HostsAdapter
 import anekdotas.mindgameapplication.databinding.ActivityShopBinding
 import anekdotas.mindgameapplication.objects.ShopHostsList
+import anekdotas.mindgameapplication.objects.StatObject
 import anekdotas.mindgameapplication.objects.UserObjectConst
 
 class ShopActivity : AppCompatActivity() {
@@ -56,7 +57,7 @@ class ShopActivity : AppCompatActivity() {
 
         binding.btnBuy.setOnClickListener {
             if(userCanPurchaseItem() && !isItemPurchased()){
-                UserObjectConst.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
+                StatObject.analytics.coins -= ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
                 UserObjectConst.userPhoto = ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
                 UserObjectConst.purchasedItemIds.add(binding.vp2HostPictures.currentItem)
                 setUserCoinsBalance()
@@ -67,14 +68,14 @@ class ShopActivity : AppCompatActivity() {
             else{
                 Toast.makeText(this,
                     getString(R.string.shop_activity_not_enough_coins) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName
-                            + "\n" + getString(R.string.shop_activity_current_coins) + " ${UserObjectConst.coins}",
+                            + "\n" + getString(R.string.shop_activity_current_coins) + " ${StatObject.analytics.coins}",
                         Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun setUserCoinsBalance() {
-        binding.tvCoinBalance.setText(UserObjectConst.coins.toString())
+        binding.tvCoinBalance.text = StatObject.analytics.coins.toString()
     }
 
     private fun isItemPurchased(): Boolean {
@@ -82,7 +83,7 @@ class ShopActivity : AppCompatActivity() {
     }
 
     private fun userCanPurchaseItem(): Boolean {
-        return UserObjectConst.coins>=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
+        return StatObject.analytics.coins>=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
     }
 
     //ViewPager2 setup

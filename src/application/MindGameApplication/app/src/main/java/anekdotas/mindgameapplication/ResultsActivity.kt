@@ -33,7 +33,7 @@ class ResultsActivity : AppCompatActivity() {
         binding.tvScore.text = getString(R.string.results_activity_your_score_overloaded,myCorrectAnswers, totalQuestions)
         binding.tvRatingInfo.text = getString(R.string.results_activity_pls_rate_quiz)
         binding.tvCoins.text = earnCoins(myCorrectAnswers).toString() + getString(R.string.results_activity_coins_gained)
-        println(UserObjectConst.coins)
+        println(StatObject.analytics.coins)
 
 
         if(StatObject.stats.choices[0].questionId==0){StatObject.stats.choices.removeAt(0)}
