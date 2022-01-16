@@ -16,6 +16,8 @@ tags:
     description: Everything about users authentication
   - name: game sessions
     description: Everything about statistics and game sessions
+  - name: hosts
+    description: Everything about hosts and their purchases
 paths:
   /categories:
     get:
@@ -355,6 +357,8 @@ paths:
                     type: integer
         401:
           $ref: '#/components/responses/Unauthorized'
+      security:
+        - oAuth2: []
   /users/coins:
     post:
       tags:
@@ -377,6 +381,45 @@ paths:
           description: If resultion coins value is negative (< 0)
         401:
           $ref: '#/components/responses/Unauthorized'
+      security:
+        - oAuth2: []
+  /hosts/purchased:
+    get:
+      tags:
+        - hosts
+      summary: Get hosts purchased by user
+      operationId: getPurchasedHosts
+      responses:
+        200:
+          description: Success
+        401:
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - oAuth2: []
+  /hosts/purchase:
+    post:
+      tags:
+        - hosts
+      summary: Purchase a host
+      operationId: purchaseHost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hostId:
+                  type: integer
+                  format: int64
+      responses:
+        200:
+          description: Success
+        400:
+          description: Host is already purchased or host is not found
+        401:
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - oAuth2: []
   /sessions/finish:
     post:
       tags:
