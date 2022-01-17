@@ -55,9 +55,11 @@ class ShopActivity : AppCompatActivity() {
             if(userCanPurchaseItem() && !isItemPurchased()){
                 callPostPurchase(ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id)
                 updateCoinsAndButton()
+                UserObjectConst.userPhoto=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
             }
             else if(isItemPurchased()){
                 Toast.makeText(this, getString(R.string.shop_activity_selected) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
+                UserObjectConst.userPhoto=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].photo
             }
             else{
                 Toast.makeText(this,
