@@ -51,15 +51,15 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setStatistics() {
-        statisticsList.add(StatisticsRecord("Total Time Spent: ", Time.formatTimeAnalytics(StatObject.analytics.totalTimeSpent)))
-        statisticsList.add(StatisticsRecord("Correct Answers: ", StatObject.analytics.correctAnswers.toString()))
-        statisticsList.add(StatisticsRecord("Correct Answers Percentage: ", StatObject.analytics.correctAnswersPercentage.toString() + "%"))
-        statisticsList.add(StatisticsRecord("Longest Streak ", StatObject.analytics.longestStreak.toString()))
-        statisticsList.add(StatisticsRecord("Average Game Time: ",Time.formatTimeAnalytics(StatObject.analytics.averageGameTime)))
-        statisticsList.add(StatisticsRecord("Long Streak Topic: ", StatObject.analytics.longestStreakTopic))
-        statisticsList.add(StatisticsRecord("Topics Created: ", StatObject.analytics.topicsCreated.toString()))
-        statisticsList.add(StatisticsRecord("Topics Rated: ", StatObject.analytics.topicsRated.toString()))
-        statisticsList.add(StatisticsRecord("Topics Played: ", StatObject.analytics.topicsPlayed.toString()))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_time_spent_playing), Time.formatTimeAnalytics(StatObject.analytics.totalTimeSpent)))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_correct_answers), StatObject.analytics.correctAnswers.toString()))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_correct_answers_percentage), StatObject.analytics.correctAnswersPercentage.toString() + "%"))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_longest_streak), StatObject.analytics.longestStreak.toString()))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_correct_answers_average_game_time),Time.formatTimeAnalytics(StatObject.analytics.averageGameTime)))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_longest_streak_topic), StatObject.analytics.longestStreakTopic))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_topics_created), StatObject.analytics.topicsCreated.toString()))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_topics_rated), StatObject.analytics.topicsRated.toString()))
+        statisticsList.add(StatisticsRecord(getString(R.string.profile_activity_topics_played), StatObject.analytics.topicsPlayed.toString()))
 
 
         val adapter = StatisticsAdapter(this, R.layout.statistics_record_element, statisticsList)
@@ -69,16 +69,6 @@ class ProfileActivity : AppCompatActivity() {
     private fun setUserCoinsBalance() {
         binding.tvCoinBalance.setText(StatObject.analytics.coins.toString())
     }
-
-//      - - - DEPRECATED - - -
-/*    private fun fillStatistics() {
-//        var statistics = arrayOf("Coins gained: 500", "Coins spent: 480", "Games played: 32", "Best strike: 7", "Total time spent: 35h", "Topics created: 0", "Average time per topic: 5 min", "Topics played: 80", "Topics rated: 77")
-//        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-//            this,
-//            android.R.layout.simple_list_item_1, statistics
-//        )
-//        binding.lvStatisticsList.adapter = adapter
-//    }     */
 
     private fun actionBarSetup() {
         binding.actionBar.title.setText(R.string.profile_activity_title)

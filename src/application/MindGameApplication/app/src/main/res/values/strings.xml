@@ -135,13 +135,25 @@
     </string-array>
     <string name="profile_activity_language">Language:</string>
     <string name="profile_activity_coins">Coins: </string>
-    <string name="retry">Retry</string>
+
+
+    <!--    Shop activity section   -->
     <string name="shop_activity_shop">Shop</string>
     <string name="shop_activity_purchase">purchase</string>
     <string name="shop_activity_select">select</string>
-    <string name="shop_activity_selected">Selected</string>
+    <string name="shop_activity_selected">"Selected "</string>
     <string name="shop_activity_not_enough_coins">"Not enough coins to purchase "</string>
     <string name="shop_activity_current_coins">Current coins:</string>
     <string name="shop_activity_selected_host">"Selected host: "</string>
 
+    <string name="retry">Retry</string>
+    <string name="profile_activity_time_spent_playing">\"Time Spent Playing: \"</string>
+    <string name="profile_activity_correct_answers">\"Correct Answers: \"</string>
+    <string name="profile_activity_correct_answers_percentage">\"Correct Answers Percentage: \"</string>
+    <string name="profile_activity_longest_streak">\"Longest Streak \"</string>
+    <string name="profile_activity_correct_answers_average_game_time">\"Average Game Time: \"</string>
+    <string name="profile_activity_longest_streak_topic">\"Longest Streak Topic: \"</string>
+    <string name="profile_activity_topics_created">\"Topics Created: \"</string>
+    <string name="profile_activity_topics_rated">\"Topics Rated: \"</string>
+    <string name="profile_activity_topics_played">\"Topics Played: \"</string>
 </resources>

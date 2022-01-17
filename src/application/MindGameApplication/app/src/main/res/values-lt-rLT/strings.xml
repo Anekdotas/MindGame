@@ -127,10 +127,10 @@
     <!--    Profile activity section   -->
     <string name="retry">Bandyti iš naujo</string>
     <string name="shop_activity_shop">Parduotuvė</string>
-    <string name="shop_activity_selected">Selected</string>
+    <string name="shop_activity_selected">"Selected "</string>
     <string name="shop_activity_not_enough_coins">"Turite nepakankamai lėšų "</string>
     <string name="shop_activity_current_coins">Dabartinis balansas:</string>
-    <string name="shop_activity_selected_host">"Pasirinktas vedėjęs: "</string>
+    <string name="shop_activity_selected_host">"Pasirinktas vedėjas: "</string>
 
     <string name="profile_activity_title">Profile</string>
     <string-array name="profile_activity_language_spinner">
@@ -143,6 +143,15 @@
     <string name="profile_activity_coins">Balansas: </string>
     <string name="shop_activity_purchase">pirkti</string>
     <string name="shop_activity_select">pasirinkti</string>
+    <string name="profile_activity_time_spent_playing">\"Laikas praleistas žaidime: \"</string>
+    <string name="profile_activity_correct_answers">\"Teisingi atsakymai: \"</string>
+    <string name="profile_activity_correct_answers_percentage">\"Teisingų atsakymų santykis: \"</string>
+    <string name="profile_activity_longest_streak">\"Ilgiausia teisingų atsakymų grandinėlė \"</string>
+    <string name="profile_activity_correct_answers_average_game_time">\"Vidutinis žaidimo laikas: \"</string>
+    <string name="profile_activity_longest_streak_topic">\"Tema, kurioje grandinėlė ilgiausia: \"</string>
+    <string name="profile_activity_topics_created">\"Jūsų sukurtos temos: \"</string>
+    <string name="profile_activity_topics_rated">\"Jūsų įvertintos temos: \"</string>
+    <string name="profile_activity_topics_played">\"Jūsų išbandytos temos: \"</string>
 
 
 </resources>
