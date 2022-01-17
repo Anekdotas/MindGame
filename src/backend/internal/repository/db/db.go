@@ -37,7 +37,7 @@ func (r *Repo) Close() error {
 //
 // Current translations:
 //  sql.ErrNoRows -> anekdotas.ErrNotFound
-//  PostgreSQL Error Code 23505 -> anekdotas.ErrAlreadyExists
+//  PostgreSQL Unique Violation -> anekdotas.ErrAlreadyExists
 //  Unknown error -> original error
 func translateDBError(err error) error {
 	if err == nil {
@@ -56,7 +56,12 @@ func translateDBError(err error) error {
 	case "23505": // unique violation
 		return anekdotas.ErrAlreadyExists
 	case "23514": // check violation
-		return anekdotas.ErrQuestionsAndAnswersMismatch
+		if pqErr.Constraint == "chosen_answer_check" {
+			return anekdotas.ErrQuestionsAndAnswersMismatch
+		}
+		if pqErr.Constraint == "users_coins_check" {
+			return anekdotas.ErrNegativeCoinsValue
+		}
 	}
 	return err
 }

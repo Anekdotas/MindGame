@@ -101,6 +101,10 @@ func (l *Logic) AuthenticateUser(ctx context.Context, user *anekdotas.User, pass
 	return l.auth.NewToken(userID)
 }
 
+func (l *Logic) UpdateUserCoins(ctx context.Context, userID int64, coinsDelta int) error {
+	return l.repo.UpdateUserCoins(ctx, userID, coinsDelta)
+}
+
 func (l *Logic) GetUserStats(ctx context.Context, userID int64) (*anekdotas.UserStatistics, error) {
 	return l.repo.GetUserStats(ctx, userID)
 }
@@ -111,4 +115,12 @@ func (l *Logic) FinishGameSession(ctx context.Context, userID int64, statistics 
 
 func (l *Logic) RateTopic(ctx context.Context, userID, topicID int64, rating float32) error {
 	return l.repo.RateTopicByID(ctx, userID, topicID, rating)
+}
+
+func (l *Logic) GetPurchasedHosts(ctx context.Context, userID int64) ([]int64, error) {
+	return l.repo.GetPurchasedHosts(ctx, userID)
+}
+
+func (l *Logic) PurchaseHost(ctx context.Context, hostID, userID int64) error {
+	return l.repo.CreateHostPurchase(ctx, hostID, userID)
 }

@@ -49,6 +49,7 @@ type GameAnalytics struct {
 }
 
 type UserStatistics struct {
+	Coins                    uint
 	TotalTimeSpent           time.Duration
 	CorrectAnswers           uint16
 	CorrectAnswersPercentage float32
