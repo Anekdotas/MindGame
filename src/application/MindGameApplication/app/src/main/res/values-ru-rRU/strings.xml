@@ -135,15 +135,15 @@
     </string-array>
     <string name="profile_activity_language">Язык:</string>
     <string name="profile_activity_coins">"Монетки: "</string>
-    <string name="profile_activity_time_spent_playing">\"Времени за игрой: \"</string>
-    <string name="profile_activity_correct_answers">\"Кол-во правильных ответов: \"</string>
-    <string name="profile_activity_correct_answers_percentage">\"% правильных ответ: \"</string>
-    <string name="profile_activity_longest_streak">\"Самое длиное комбо \"</string>
-    <string name="profile_activity_correct_answers_average_game_time">\"В среднем времени на уровень: \"</string>
-    <string name="profile_activity_longest_streak_topic">\"Уровень с самым длиным комбо: \"</string>
-    <string name="profile_activity_topics_created">\"Создано уровней: \"</string>
-    <string name="profile_activity_topics_rated">\"Оценено уровней: \"</string>
-    <string name="profile_activity_topics_played">\"Сыграно уровней: \"</string>
+    <string name="profile_activity_time_spent_playing">Времени за игрой: </string>
+    <string name="profile_activity_correct_answers">Кол-во правильных ответов: </string>
+    <string name="profile_activity_correct_answers_percentage">% правильных ответ: </string>
+    <string name="profile_activity_longest_streak">Самое длиное комбо </string>
+    <string name="profile_activity_correct_answers_average_game_time">В среднем времени на уровень: </string>
+    <string name="profile_activity_longest_streak_topic">Уровень с самым длиным комбо: </string>
+    <string name="profile_activity_topics_created">Создано уровней: </string>
+    <string name="profile_activity_topics_rated">Оценено уровней: </string>
+    <string name="profile_activity_topics_played">Сыграно уровней: </string>
 
     <!--    Shop activity section   -->
     <string name="shop_activity_purchase">купить</string>
