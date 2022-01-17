@@ -45,22 +45,16 @@ class ShopActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
-        //ActionBar setup
-        binding.actionBar.title.text = getString(R.string.shop_activity_shop)
-        binding.actionBar.actionBarBackArrow.setOnClickListener{
-            val intent = Intent(this, MainMenuActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
+        setupActionBar()
         callGetPurchased()
+        setupViewPager()
         setUserCoinsBalance()
 
-        setupViewPager(binding)
 
         binding.btnBuy.setOnClickListener {
             if(userCanPurchaseItem() && !isItemPurchased()){
                 callPostPurchase(ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].id)
+                updateCoinsAndButton()
             }
             else if(isItemPurchased()){
                 Toast.makeText(this, getString(R.string.shop_activity_selected) + ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].hostName, Toast.LENGTH_SHORT).show()
@@ -72,6 +66,27 @@ class ShopActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun setupActionBar() {
+        binding.actionBar.title.text = getString(R.string.shop_activity_shop)
+        binding.actionBar.actionBarBackArrow.setOnClickListener{
+            val intent = Intent(this, MainMenuActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun updateCoinsAndButton() {
+        binding.btnBuy.setText(R.string.shop_activity_select)
+        updateUserCoinsBalance()
+    }
+
+    private fun updateUserCoinsBalance() {
+        val outdatedBalance = Integer.parseInt(binding.tvCoinBalance.text.toString())
+        Log.d("|+|", "setUserCoinsBalance: $outdatedBalance")
+        val newBalance = outdatedBalance - ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
+        binding.tvCoinBalance.text = newBalance.toString()
     }
 
     private fun setUserCoinsBalance() {
@@ -86,8 +101,7 @@ class ShopActivity : AppCompatActivity() {
         return StatObject.analytics.coins>=ShopHostsList.hostPersonalities[binding.vp2HostPictures.currentItem].price
     }
 
-    //ViewPager2 setup
-    private fun setupViewPager(binding: ActivityShopBinding) {
+    private fun setupViewPager() {
         val adapter = HostsAdapter(ShopHostsList.hostPersonalities)
         viewPager2 = binding.vp2HostPictures
         viewPager2?.adapter = adapter
