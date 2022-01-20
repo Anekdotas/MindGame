@@ -362,3 +362,24 @@
 |  Jan. 16 | 20:28 - 00:02 | 214 min |  Updating shop purchase button logic  | 
 |  | **Total:** | **16h 14min** | |
 
+
+## Week 21 (Jan. 17 - Jan. 20)
+
+| **Date**  | **Time**      | **Duration**  | **Activity** |
+| --------  | ------------- | ------------  | ------------ |
+|  Jan. 17 | 00:02 - 00:08 | 6 min |  Minor changes  | 
+|  Jan. 17 | 00:08 - 00:27 | 19 min |  Replacing hardcoded text with string values  | 
+|  Jan. 17 | 00:27 - 00:41 | 14 min |  Structuring weekly notes and pushing them to GitLab  | 
+|  Jan. 17 | 18:31 - 22:01 | 211 min |  Group meeting  | 
+|  Jan. 19 | 18:06 - 18:33 | 28 min |  Thinking off presentation contents  | 
+|  Jan. 19 | 18:34 - 20:20 | 107 min |  Group meeting  | 
+|  Jan. 20 | 11:24 - 12:36 | 72 min |  Creating slides  | 
+|  Jan. 20 | 14:23 - 15:01 | 38 min |  Creating slides  | 
+|  Jan. 20 | 15:01 - 15:40 | 39 min |  Group meeting  | 
+|  Jan. 20 | 15:40 - 17:35 | 115 min |  Creating slides  | 
+|  Jan. 20 | 18:33 - 20:41 | 128 min |  Group meeting  | 
+|  Jan. 20 | 21:26 - 21:38 | 12 min |  Structuring weekly notes and pushing them to GitLab  | 
+|  Jan. 20 | 21:40 - 21:58 | 18 min |  Practicing presentation  | 
+|  | **Total:** | **13h 27min** | |
+
+Process finished with exit code 0
