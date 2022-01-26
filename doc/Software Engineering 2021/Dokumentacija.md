@@ -1,4 +1,4 @@
-![Title page](./documentation images/PBL-title-page.png)
+![Title page](./documentation%20images/PBL-title-page.png)
 
 # 1. Purpose of the system
 
@@ -39,7 +39,7 @@ The system will be of a client-server type that contains:
 - The Web Server - a server, which can facilitate the communication between the mobile application and the database.
 - The Database - a relational database which stores quiz levels, user data and other relevant information.
 
-![alternative text](./documentation images/High-level%20overview.jpg)
+![alternative text](./documentation%20images/High-level%20overview.jpg)
 
 
 
@@ -69,7 +69,7 @@ The system will be of a client-server type that contains:
 # 4. Non-Functional requirements
 
 ## 4.1 Compatibility:
-- The mobile app must be able to run on Android 6.0 or greater.
+- The mobile app must be able to run on Android 7.0 or greater.
 - Implement unicode compatibility in every step of the system: users must be able to type, submit and see non-latin characters.
 - The system must run in VU infrastructure.
 
