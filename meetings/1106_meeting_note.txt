@@ -1,0 +1,8 @@
+13:00 - Meeting start, discussing possibilities of 24h project
+13:08 - Reviewing DB structure, generating ideas
+13:30 - Discussing features we should focus on
+13:45 - How to implement login with backend and frontend 
+13:55 - Creating tasks for the sprint
+14:05 - Level creator
+14:18 - Setting up task priorities
+14:23 - Meeting end

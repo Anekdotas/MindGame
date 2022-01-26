@@ -1,0 +1,5 @@
+14:00 - Meeting start, reviewing current progress
+14:15 - Clearing up completed or deprecated tasks in Jira
+14:30 - Reviewing peer-review feedback
+15:00 - Creating new tasks, discussing work separation and plans
+15:26 - Meeting end

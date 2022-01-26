@@ -1,0 +1,10 @@
+18:30 - Meeting start
+20:00 - Meeting end
+
+Purpose:
+Writing weekly report for SE
+Reviewing and discussing content for 10-14 PBL presentation
+Quick reviewing of Vidmantas' progress in Android with retrofit
+Reviewing Bohdan's progress with backend
+
+Duration: 1,5h

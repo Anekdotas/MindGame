@@ -1,0 +1,9 @@
+18:15 - Meeting start
+20:38 - Meeting end
+
+Purpose:
+Reviewing Bohdan's progress with back-end
+Discussing slide outline draft: what to include/not include, considering which screenshots/diagrams to use
+Merging stable git branches into main
+
+Duration: 2h 22min

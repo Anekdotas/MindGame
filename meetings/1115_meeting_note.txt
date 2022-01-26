@@ -1,0 +1,5 @@
+18:30 - Start of the meeting, reviewing Android code written by Vidmantas
+18:34 - Overviewing progress
+18:40 - Creating tasks, new sprint
+19:02 - Software Engineering weekly report
+19:47 - Meeting end

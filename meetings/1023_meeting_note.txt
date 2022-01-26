@@ -1,0 +1,12 @@
+12:30 - Start of the meeting, reviewing Android code written by Vidmantas
+12:33 - Discussion about tasks and goals for the future
+12:48 - Decided who will be presenter and reviewer
+12:50 - More talk about backend things (protocols we can use)
+13:00 - Short discussion about DBMS mini project
+13:01 - Making sprint for the next week
+13:22 - Short discussion about DBMS mini project 
+13:39 - Reviewing and making final changes to Software engineering 2nd delivery document
+14:00 - Reviewing diagrams, applying changes
+14:40 - Meeting end
+
+Duration: 2h 10 min
